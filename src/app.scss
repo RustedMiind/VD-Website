@@ -1,0 +1,29 @@
+:root {
+  --main: #35337d;
+  --main-sec: #292283;
+  --third: #f19b02;
+  --third-sec: #f9cb8b;
+  --font-light: white;
+  --bg-lightest: #f5f7fa;
+  --bg-light: #f5f7fa;
+}
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  color: var(--main);
+  font-family: "TheSans";
+  line-height: 1.2em;
+}
+
+.section-header {
+  color: var(--font-light);
+  margin-bottom: 1.6em;
+}
+
+* {
+  // outline: 1px solid rgba(255, 0, 0, 0.15);
+}

@@ -1,0 +1,53 @@
+:root {
+  --top-navbar-height: 5.2rem;
+}
+
+.top-navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 10rem;
+  width: 100%;
+  height: var(--top-navbar-height);
+  background: var(--bg-light);
+  .nav-item {
+    display: flex;
+    align-items: center;
+    .icon,
+    .content {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    .icon {
+      align-items: center;
+      padding: 0 0.4rem;
+      font-size: 2rem;
+    }
+    .title {
+      color: var(--main);
+    }
+    .value {
+      color: var(--third);
+    }
+    &.main {
+      .icon {
+        box-sizing: content-box;
+        width: 4rem;
+        height: 4rem;
+        img,
+        svg {
+          width: 100%;
+          height: 100%;
+          object-fit: contain;
+        }
+      }
+      .title {
+        color: var(--third);
+      }
+      .value {
+        color: var(--main);
+      }
+    }
+  }
+}

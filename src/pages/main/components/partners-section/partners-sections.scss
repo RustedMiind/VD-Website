@@ -1,0 +1,35 @@
+.partners-section {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  width: 100%;
+  padding: 4rem;
+  padding-bottom: 14rem;
+  pointer-events: none;
+  background-color: var(--main);
+  background: linear-gradient(180deg, var(--main-sec) 0%, var(--main) 113.64%);
+
+  .swiper-container {
+    // width: 50rem;
+    width: 80%;
+  }
+  .swiper-slide {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .swiper-item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    width: 6rem;
+    height: 6rem;
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+  }
+}

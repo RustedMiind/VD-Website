@@ -1,0 +1,20 @@
+nav.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 2rem;
+  border-radius: 0.3rem;
+  flex-wrap: wrap;
+  width: 80%;
+  padding: 1.2rem 4rem;
+  background: var(--bg-light);
+  gap: 1rem;
+  //   color: var(--font-light);
+  .right,
+  .left {
+    gap: 4rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
