@@ -7,9 +7,9 @@ nav.navbar {
   flex-wrap: wrap;
   width: 80%;
   padding: 1.2rem 4rem;
-  background: var(--bg-light);
+  background: var(--bg-light-semi);
   gap: 1rem;
-
+  transition: 800ms;
   box-shadow: 0.2rem 0.2rem 0.4rem var(--main-shadow);
   //   color: var(--font-light);
   .right,
@@ -19,4 +19,20 @@ nav.navbar {
     align-items: center;
     justify-content: center;
   }
+  text-shadow: 0.1rem 0.1rem 0.2rem var(--bg-light);
 }
+
+.hide-top {
+  nav.navbar {
+    background-color: var(--bg-light);
+    // margin-top: 0.6rem;
+    // width: 95%;
+  }
+}
+
+// .expand-nav {
+//   nav.navbar {
+//     margin-top: 0.6rem;
+//     width: 95%;
+//   }
+// }

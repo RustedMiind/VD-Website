@@ -1,12 +1,14 @@
 :root {
   --main: #35337d;
   --main-sec: #292283;
-  --main-shadow: #28218260;
+  --main-shadow: #2821824b;
+  --main-shadow-light: #2821821a;
   --third: #f19b02;
   --third-sec: #f9cb8b;
   --font-light: white;
-  --bg-lightest: #f5f7fa;
+  --bg-lightest: white;
   --bg-light: #f5f7fa;
+  --bg-light-semi: #f5f7faa9;
 }
 * {
   margin: 0;
@@ -27,11 +29,4 @@ html {
 
 * {
   // outline: 1px solid rgba(255, 0, 0, 0.15);
-}
-
-.ltr {
-  direction: ltr !important;
-}
-.rtl {
-  direction: rtl !important;
 }

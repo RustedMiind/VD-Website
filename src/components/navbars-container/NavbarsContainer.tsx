@@ -5,18 +5,20 @@ import { useEffect, useState } from "react";
 
 function NavbarContainers() {
   const [navClass, setNavClass] = useState<NavClassesType>("");
+  const [navClass2, setNavClass2] = useState<Nav2ClassesType>("");
   useEffect(() => {
     window.onscroll = topNavbarHandler;
     // return document.body.removeEventListener("scroll", topNavbarHandler);
   }, []);
   return (
-    <div className={"navbars-container " + navClass}>
+    <div className={"navbars-container " + navClass + navClass2}>
       <TopNavbar />
       <Navbar />
     </div>
   );
   function topNavbarHandler() {
     const BREAK_POINT = 100;
+    const BREAK_POINT2 = window.innerHeight;
     const element = window;
     const scrollTop = element.scrollY;
     console.log("ScrollTop :", scrollTop);
@@ -25,8 +27,14 @@ function NavbarContainers() {
     } else {
       setNavClass("");
     }
+    if (scrollTop > BREAK_POINT2) {
+      setNavClass2(" expand-nav");
+    } else {
+      setNavClass2("");
+    }
   }
 }
 
 type NavClassesType = "" | "hide-top";
+type Nav2ClassesType = "" | " expand-nav";
 export default NavbarContainers;

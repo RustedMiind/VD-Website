@@ -13,3 +13,24 @@ button {
   outline: none;
   border: none;
 }
+
+.ltr {
+  direction: ltr !important;
+}
+.rtl {
+  direction: rtl !important;
+}
+
+.center-head {
+  width: 100%;
+  text-align: center;
+}
+.bg-container {
+  background-size: cover;
+  background-position: center;
+}
+input {
+  background-color: transparent;
+  font-family: inherit;
+  color: inherit;
+}

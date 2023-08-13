@@ -1,18 +1,19 @@
 import "./navbar.scss";
 import { LockFill } from "react-bootstrap-icons";
+import { NavLink } from "react-router-dom";
 
 function Navbar() {
   return (
     <nav className="navbar">
       <ul className="right">
         <li>
-          <a href=" ">نبذة عنا</a>
+          <NavLink to="/">الرئيسية</NavLink>
         </li>
         <li>
           <a href=" ">أخبارنا</a>
         </li>
         <li>
-          <a href=" ">المشاريع</a>
+          <NavLink to="/projects">المشاريع </NavLink>
         </li>
         <li>
           <a href=" ">خدماتنا</a>

@@ -9,6 +9,11 @@
   flex-direction: column;
   align-items: center;
   z-index: 10000;
+  pointer-events: none;
+  * {
+    pointer-events: all;
+  }
+
   &.hide-top {
     margin-top: calc(var(--top-navbar-height) * -1);
   }

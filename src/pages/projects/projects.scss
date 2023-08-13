@@ -1,0 +1,59 @@
+.projects-page {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  padding-bottom: 2rem;
+  .overlay {
+    width: 100%;
+    height: 100%;
+    background-color: var(--main);
+    opacity: 0.4;
+  }
+  .banner {
+    width: 100%;
+    height: 15rem;
+  }
+}
+.filter-container {
+  max-width: 100%;
+  width: 50rem;
+  gap: 1rem;
+  margin: 2rem 0;
+  .search-bar {
+    width: calc(85% - 1rem);
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+    background-color: var(--bg-light);
+    border-radius: 200rem;
+    overflow: hidden;
+    box-shadow: 0.2rem 0.2rem 0.3rem var(--main-shadow-light);
+    input {
+      background-color: transparent;
+      width: 100%;
+      padding: 0.8rem 2rem;
+      // border: 1px solid black;
+      font-size: 1em;
+      border: none;
+      outline: none;
+      border-radius: 200rem;
+    }
+    svg {
+      position: absolute;
+      left: 2rem;
+      color: gray;
+    }
+  }
+}
+.projects-cards-container {
+  // min-width: 46rem;
+  width: 92rem;
+  max-width: 100vw;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  justify-content: center;
+}

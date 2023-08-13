@@ -1,8 +1,14 @@
 import "./services-section.scss";
+import topShape from "assets/images/services-header2.png";
 
 function ServicesSection() {
   return (
     <div className="services-section">
+      <img src={topShape} className="top-shape" />
+      {/* <div
+        className="top-shape"
+        style={{ backgroundImage: `url(${topShape})` }}
+      ></div> */}
       <h2>أبرز خدماتنا</h2>
       <div className="services-cards-container">
         <div className="service-card">
