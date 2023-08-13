@@ -31,7 +31,7 @@ function TopNavbar() {
         </div>
         <div className="content">
           <div className="title">تواصل معنا عبر الهاتف</div>
-          <div className="value">+966 123 4566 234</div>
+          <div className="value ltr">+966 123 4566 234</div>
         </div>
       </div>
       <div className="nav-item">
@@ -40,7 +40,7 @@ function TopNavbar() {
         </div>
         <div className="content">
           <div className="title">تواصل معنا عبر الواتس اب</div>
-          <div className="value">+966 123 4566 234</div>
+          <div className="value ltr">+966 123 4566 234</div>
         </div>
       </div>
     </nav>

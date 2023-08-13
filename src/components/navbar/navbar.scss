@@ -9,6 +9,8 @@ nav.navbar {
   padding: 1.2rem 4rem;
   background: var(--bg-light);
   gap: 1rem;
+
+  box-shadow: 0.2rem 0.2rem 0.4rem var(--main-shadow);
   //   color: var(--font-light);
   .right,
   .left {

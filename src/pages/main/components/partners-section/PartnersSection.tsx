@@ -13,9 +13,9 @@ function PartnersSection() {
           //   spaceBetween={0}
           slidesPerView={4}
           //   loop={true}
-          speed={2000}
+          speed={2500}
           autoplay={{
-            delay: 500,
+            delay: 2000,
             disableOnInteraction: false,
             // reverseDirection: true,
           }}

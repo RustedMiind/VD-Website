@@ -4,6 +4,7 @@
 
 .top-navbar {
   display: flex;
+  // flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
   padding: 0 10rem;
@@ -29,6 +30,7 @@
     }
     .value {
       color: var(--third);
+      width: fit-content;
     }
     &.main {
       .icon {

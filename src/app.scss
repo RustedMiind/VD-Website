@@ -1,6 +1,7 @@
 :root {
   --main: #35337d;
   --main-sec: #292283;
+  --main-shadow: #28218260;
   --third: #f19b02;
   --third-sec: #f9cb8b;
   --font-light: white;
@@ -16,7 +17,7 @@
 html {
   color: var(--main);
   font-family: "TheSans";
-  line-height: 1.2em;
+  line-height: 1.4em;
 }
 
 .section-header {
@@ -26,4 +27,11 @@ html {
 
 * {
   // outline: 1px solid rgba(255, 0, 0, 0.15);
+}
+
+.ltr {
+  direction: ltr !important;
+}
+.rtl {
+  direction: rtl !important;
 }

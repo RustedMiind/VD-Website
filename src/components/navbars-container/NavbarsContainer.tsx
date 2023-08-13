@@ -10,12 +10,7 @@ function NavbarContainers() {
     // return document.body.removeEventListener("scroll", topNavbarHandler);
   }, []);
   return (
-    <div
-      className={"navbars-container " + navClass}
-      onClick={() => {
-        setNavClass("hide-top");
-      }}
-    >
+    <div className={"navbars-container " + navClass}>
       <TopNavbar />
       <Navbar />
     </div>
