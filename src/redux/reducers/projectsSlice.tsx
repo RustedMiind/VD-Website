@@ -35,6 +35,14 @@ export type ProjectType = {
   project_type_id: number;
   media: [];
   workZones: WorkZoneType[];
+  attachments: AttachmentType[];
+};
+
+export type AttachmentType = {
+  path: string;
+  size: string;
+  type: string;
+  original_name: string;
 };
 
 export type ProjectsType = ProjectType[] | "error" | "loading";

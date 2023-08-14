@@ -2,9 +2,11 @@ import "./top-navbar.scss";
 import logo from "assets/images/logo-vision.png";
 import { useState } from "react";
 import { At, Telephone, Whatsapp } from "react-bootstrap-icons";
+import { useTranslation } from "react-i18next";
 
 function TopNavbar() {
   const [navClass, setNavClass] = useState<"" | "hide-top">("");
+  const { t } = useTranslation();
   return (
     <nav className="top-navbar">
       <div className="nav-item main">
@@ -12,8 +14,8 @@ function TopNavbar() {
           <img src={logo} alt="" />
         </div>
         <div className="content">
-          <div className="title">تواصل معنا عبر الايميل</div>
-          <div className="value">vision22@support.com</div>
+          <div className="title">{t("vision.name")}</div>
+          <div className="value">{t("vision.for")}</div>
         </div>
       </div>
       <div className="nav-item">
@@ -21,7 +23,7 @@ function TopNavbar() {
           <At />
         </div>
         <div className="content">
-          <div className="title">تواصل معنا عبر الايميل</div>
+          <div className="title">{t("contact.email")}</div>
           <div className="value">vision22@support.com</div>
         </div>
       </div>
@@ -30,7 +32,7 @@ function TopNavbar() {
           <Telephone />
         </div>
         <div className="content">
-          <div className="title">تواصل معنا عبر الهاتف</div>
+          <div className="title">{t("contact.phone")}</div>
           <div className="value ltr">+966 123 4566 234</div>
         </div>
       </div>
@@ -39,7 +41,7 @@ function TopNavbar() {
           <Whatsapp />
         </div>
         <div className="content">
-          <div className="title">تواصل معنا عبر الواتس اب</div>
+          <div className="title">{t("contact.whatsapp")}</div>
           <div className="value ltr">+966 123 4566 234</div>
         </div>
       </div>

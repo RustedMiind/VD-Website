@@ -9,8 +9,26 @@ import LangContextProvider from "contexts/LangContext";
 
 axios.defaults.headers.common["from"] = "website";
 
-const translationsEn = { test: "test" };
-const translationsAr = { test: "اختبار" };
+const translationsEn = {
+  test: "test",
+  contact: {
+    whatsapp: "Contact via Whatsapp",
+    phone: "Contact via Phone",
+    email: "Contact via Email",
+  },
+  vision: { name: "Vision Dimensions", for: "Engineering Consulting Company" },
+  links: { home: "Home", projects: "Projects" },
+};
+const translationsAr = {
+  test: "اختبار",
+  contact: {
+    whatsapp: "تواصل معنا عبر الواتس اب",
+    phone: "تواصل معنا عبر الهاتف",
+    email: "تواصل معنا عبر الايميل",
+  },
+  vision: { name: "أبعاد الرؤية", for: "للاستشارات الهندسية" },
+  links: { home: "الرئيسية", projects: "المشاريع" },
+};
 
 i18n.use(initReactI18next).init({
   resources: {

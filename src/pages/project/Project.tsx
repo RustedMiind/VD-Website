@@ -45,9 +45,9 @@ function Project() {
             <p>{lang(project?.title)}</p>
           </div>
         </section>
-        <section className="section">
-          <TrippleSlider />
-        </section>
+        {/* <section className="section">
+          <TrippleSlider images={project?.attachments} />
+        </section> */}
         <section className="section">
           <h3 className="section-title">الوصف</h3>
           <div className="section-content">

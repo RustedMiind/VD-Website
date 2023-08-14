@@ -5,10 +5,15 @@ import "./layout.scss";
 import MainPage from "pages/main/Main";
 import Projects from "pages/projects/Projects";
 import Project from "pages/project/Project";
+import { LangContext } from "contexts/LangContext";
+import { useContext } from "react";
 
 function Layout() {
+  const { lang } = useContext(LangContext);
   return (
-    <div className="layout">
+    <div
+      className={`layout ${lang({ ar: "ar", en: "en" }) === "en" ? "ltr" : ""}`}
+    >
       <NavbarContainers />
       <div className="main-view">
         <Routes>

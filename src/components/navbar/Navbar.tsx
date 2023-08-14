@@ -3,31 +3,34 @@ import "./navbar.scss";
 import { LockFill } from "react-bootstrap-icons";
 import { NavLink } from "react-router-dom";
 import { LangContext } from "contexts/LangContext";
+import { changeLanguage } from "i18next";
+import { useTranslation } from "react-i18next";
 
 function Navbar() {
   const { changeLang } = useContext(LangContext);
+
+  const { t } = useTranslation();
   return (
-    <nav
-      className="navbar"
-      onClick={() => {
-        changeLang("en");
-      }}
-    >
+    <nav className="navbar">
       <ul className="right">
         <li>
-          <NavLink to="/">الرئيسية</NavLink>
+          <NavLink to="/">{t("links.home")}</NavLink>
         </li>
         <li>
-          <a href=" ">أخبارنا</a>
+          <NavLink to="/projects">{t("links.projects")}</NavLink>
         </li>
+
         <li>
-          <NavLink to="/projects">المشاريع </NavLink>
-        </li>
-        <li>
-          <a href=" ">خدماتنا</a>
-        </li>
-        <li>
-          <a href=" ">التواصل</a>
+          <a
+            className="active"
+            role="button"
+            onClick={() => {
+              changeLang("en");
+              changeLanguage("en");
+            }}
+          >
+            تغيير اللغة
+          </a>
         </li>
       </ul>
       <div className="left">
