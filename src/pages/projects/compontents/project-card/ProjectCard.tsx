@@ -1,6 +1,12 @@
 import { ProjectType } from "redux/reducers/projectsSlice";
+import { NavLink } from "react-router-dom";
 import "./project-card.scss";
 import wave from "assets/images/wave.png";
+import {
+  ArrowBarLeft,
+  ArrowLeft,
+  ArrowLeftCircleFill,
+} from "react-bootstrap-icons";
 
 function ProjectCard({ project }: PropsType) {
   return (
@@ -11,7 +17,11 @@ function ProjectCard({ project }: PropsType) {
       }}
     >
       <div className="info" style={{ backgroundImage: `url("${wave}")` }}>
-        {project.name}
+        <div className="name">{project.name}</div>
+        <NavLink className="link" to={project.id.toString()}>
+          <div>عرض المشروع</div>
+          <ArrowLeftCircleFill />
+        </NavLink>
       </div>
     </div>
   );

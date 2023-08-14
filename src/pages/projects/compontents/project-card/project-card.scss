@@ -8,12 +8,18 @@
   border-radius: 0.6rem;
   overflow: hidden;
   box-shadow: 0.1rem 0.1rem 0.4rem var(--main-shadow);
-
+  &,
+  * {
+    transition: 300ms;
+  }
   .info {
     height: 40%;
     width: 100%;
     padding: 2rem;
+    padding-top: 2.6rem;
+    padding-bottom: 1.4rem;
     display: flex;
+    flex-direction: column;
     align-items: center;
     text-align: center;
     justify-content: center;
@@ -21,5 +27,37 @@
     background-size: 100% 100%;
     font-weight: 600;
     font-size: 1.05rem;
+  }
+  .link {
+    height: 0;
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(1.4rem);
+    width: 60%;
+    // height: 5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-radius: 100rem;
+    margin-top: 0.6rem;
+    background-color: var(--third);
+    color: var(--font-light);
+    padding: 1rem;
+    &:hover {
+      width: 65%;
+      box-shadow: 0.1rem 0.1rem 1rem var(--third);
+    }
+  }
+  &:hover {
+    transform: scale(1.03);
+    box-shadow: 0.1rem 0.1rem 1.6rem var(--main-shadow);
+    .info {
+      height: 45%;
+    }
+    .link {
+      pointer-events: all;
+      opacity: 1;
+      transform: translateY(0);
+    }
   }
 }
