@@ -19,8 +19,8 @@ function PartnersSection() {
             disableOnInteraction: false,
             // reverseDirection: true,
           }}
-          onSlideChange={() => console.log("slide change")}
-          onSwiper={(swiper) => console.log(swiper)}
+          // onSlideChange={() => console.log("slide change")}
+          // onSwiper={(swiper) => console.log(swiper)}
         >
           <SwiperSlide>
             <div className="swiper-item">

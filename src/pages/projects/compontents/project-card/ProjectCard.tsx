@@ -7,8 +7,11 @@ import {
   ArrowLeft,
   ArrowLeftCircleFill,
 } from "react-bootstrap-icons";
+import { useContext } from "react";
+import { LangContext } from "contexts/LangContext";
 
 function ProjectCard({ project }: PropsType) {
+  const { lang } = useContext(LangContext);
   return (
     <div
       className="project-card"
@@ -17,7 +20,7 @@ function ProjectCard({ project }: PropsType) {
       }}
     >
       <div className="info" style={{ backgroundImage: `url("${wave}")` }}>
-        <div className="name">{project.name}</div>
+        <div className="name">{lang(project.name)}</div>
         <NavLink className="link" to={project.id.toString()}>
           <div>عرض المشروع</div>
           <ArrowLeftCircleFill />

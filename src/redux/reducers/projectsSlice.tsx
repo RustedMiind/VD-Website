@@ -1,11 +1,12 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { LanguagesObjectType } from "contexts/LangContext";
 
 export interface projectsStateType {
-  projects: ProjectType[];
+  projects: ProjectsType;
 }
 
 const initialState: projectsStateType = {
-  projects: [],
+  projects: "loading",
 };
 
 export const projectsSlice = createSlice({
@@ -16,22 +17,27 @@ export const projectsSlice = createSlice({
       console.log("state from reducer: ", state);
       return action.payload.projects;
     },
+    setProjectsError: (state) => {
+      return { projects: "error" };
+    },
   },
 });
 
 export type ProjectType = {
   id: number;
-  name: string;
-  title: string;
-  description: string;
+  name: LanguagesObjectType;
+  title: LanguagesObjectType;
+  description: LanguagesObjectType;
   link: string | null;
   "main-image": string;
   active: boolean;
   projectType: ProjectTypeType;
   project_type_id: number;
-
   media: [];
+  workZones: WorkZoneType[];
 };
+
+export type ProjectsType = ProjectType[] | "error" | "loading";
 
 export type ProjectTypeType = {
   id: number;
@@ -40,5 +46,9 @@ export type ProjectTypeType = {
   group: null;
 };
 
-export const { setProjects } = projectsSlice.actions;
+export type WorkZoneType = {
+  name: string;
+  zone: string;
+};
+export const { setProjects, setProjectsError } = projectsSlice.actions;
 export default projectsSlice.reducer;

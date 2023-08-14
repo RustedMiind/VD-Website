@@ -20,10 +20,16 @@
     width: 100%;
     height: 18rem;
   }
+  .content {
+    width: 80%;
+    max-width: 90vw;
+    display: flex;
+    flex-direction: column;
+  }
 }
 .filter-container {
   max-width: 100%;
-  width: 50rem;
+  width: 75%;
   gap: 1rem;
   margin: 2rem 0;
   .search-bar {

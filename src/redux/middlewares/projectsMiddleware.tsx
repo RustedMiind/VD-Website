@@ -1,6 +1,10 @@
 import axios from "axios";
 import { Dispatch, AnyAction } from "redux";
-import { ProjectType, setProjects } from "../reducers/projectsSlice";
+import {
+  ProjectType,
+  setProjects,
+  setProjectsError,
+} from "../reducers/projectsSlice";
 import api from "methods/api";
 import ApiResponse from "types/ApiResponse";
 
@@ -16,6 +20,7 @@ export function requestSetProjects(dispatch: Dispatch<AnyAction>) {
       })
       .catch((err) => {
         reject(err);
+        dispatch(setProjectsError());
         console.log(err);
       });
   });

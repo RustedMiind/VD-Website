@@ -27,14 +27,31 @@ function Projects() {
 
   return (
     <PageBannerLayout data={data}>
-      {projects && projects.projects && (
+      {/* Success */}
+      {typeof projects.projects === "object" && projects.projects && (
         <div className="projects-cards-container">
-          {projects.projects.map((project) => (
-            <ProjectCard key={project.id} project={project} />
-          ))}
+          {projects.projects.length ? (
+            projects.projects.map((project) => (
+              <ProjectCard key={project.id} project={project} />
+            ))
+          ) : (
+            <h2>لا يوجد مشاريع</h2>
+          )}
         </div>
       )}
-      {(!projects.projects.length || !projects) && <PlaceHolder />}
+      {/* Error */}
+      {projects.projects === "error" && projects.projects && (
+        <div className="projects-cards-container">
+          <h2>فشل التحميل</h2>
+        </div>
+      )}
+      {/* Loading */}
+      {projects.projects === "loading" && projects.projects && (
+        <div className="projects-cards-container">
+          <PlaceHolder />
+        </div>
+      )}
+      {/* {(!projects.projects.length || !projects) && <PlaceHolder />} */}
     </PageBannerLayout>
   );
 }

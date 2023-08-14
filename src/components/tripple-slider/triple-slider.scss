@@ -1,8 +1,10 @@
 .swiper-custom {
   .container {
-    max-width: 124rem;
-    padding: 4rem 1rem;
+    max-width: 100%;
+    width: 60rem;
+    padding: 1rem 0;
     margin: 0 auto;
+    overflow: hidden;
   }
 
   .heading {
@@ -12,34 +14,34 @@
   }
 
   .swiper_container {
-    height: 52rem;
+    height: 20rem;
     padding: 2rem 0;
     position: relative;
   }
 
   .swiper-slide {
-    width: 37rem;
-    height: 42rem;
+    width: 30rem;
+    height: 100%;
     position: relative;
   }
 
-  @media (max-width: 500px) {
-    .swiper_container {
-      height: 47rem;
-    }
-    .swiper-slide {
-      width: 28rem !important;
-      height: 36rem !important;
-    }
-    .swiper-slide img {
-      width: 28rem !important;
-      height: 36rem !important;
-    }
-  }
+  // @media (max-width: 500px) {
+  //   .swiper_container {
+  //     height: 47rem;
+  //   }
+  //   .swiper-slide {
+  //     width: 28rem !important;
+  //     height: 36rem !important;
+  //   }
+  //   .swiper-slide img {
+  //     width: 28rem !important;
+  //     height: 36rem !important;
+  //   }
+  // }
 
   .swiper-slide img {
-    width: 37rem;
-    height: 42rem;
+    width: 100%;
+    height: 100%;
     border-radius: 2rem;
     object-fit: cover;
   }

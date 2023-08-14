@@ -1,10 +1,18 @@
+import { useContext } from "react";
 import "./navbar.scss";
 import { LockFill } from "react-bootstrap-icons";
 import { NavLink } from "react-router-dom";
+import { LangContext } from "contexts/LangContext";
 
 function Navbar() {
+  const { changeLang } = useContext(LangContext);
   return (
-    <nav className="navbar">
+    <nav
+      className="navbar"
+      onClick={() => {
+        changeLang("en");
+      }}
+    >
       <ul className="right">
         <li>
           <NavLink to="/">الرئيسية</NavLink>

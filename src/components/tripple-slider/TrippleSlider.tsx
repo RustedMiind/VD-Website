@@ -1,6 +1,7 @@
 import { Swiper, SwiperSlide } from "swiper/react";
 import slide_image_1 from "assets/images/bg-temp.jpg";
 import { EffectCoverflow, Pagination, Navigation } from "swiper/modules";
+import "./triple-slider.scss";
 
 function TrippleSlider() {
   return (
