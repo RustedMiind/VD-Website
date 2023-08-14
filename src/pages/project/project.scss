@@ -1,0 +1,43 @@
+.project-page {
+  width: 100%;
+  width: 50rem;
+  max-width: 100vw;
+  // font-size: 3rem;
+  .section {
+    padding: 1rem;
+  }
+  .section-title {
+    color: var(--third);
+    font-size: 1.4em;
+    margin-bottom: 0.6rem;
+  }
+  .work-areas-container {
+    gap: 1rem;
+    display: flex;
+    flex-direction: column;
+    .work-area-card {
+      gap: 1rem;
+      display: flex;
+      height: 10rem;
+      .title,
+      .content {
+        height: 100%;
+        border-radius: 0.6rem;
+      }
+      .title {
+        width: 10rem;
+        padding: 1rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        background: var(--third-light);
+      }
+      .content {
+        padding: 0.8rem;
+        width: calc(100% - 11rem);
+        background: var(--bg-light);
+      }
+    }
+  }
+}

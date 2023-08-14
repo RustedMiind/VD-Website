@@ -1,0 +1,124 @@
+$font: "Roboto", sans-serif;
+$bgColor: #fff;
+$fbBgColor: #fff;
+//$fbBorder: 1px solid;
+//$fbBorderColor: #e5e6e9 #dfe0e4 #d0d1d5;
+//$fbBorderRadius: 3px;
+$fontColor: #333;
+$weight300: 300;
+//$maxWidth: 472px;
+//$minHeight: 200px;
+
+.placeholder-project-card {
+  background: #f6f7f8;
+  background: linear-gradient(to right, #f5f4f3 8%, #ebebeb 18%, #f5f4f3 33%);
+  // background-size: 10rem 8rem !important;
+  animation-duration: 1.4s;
+  animation-fill-mode: forwards;
+  animation-iteration-count: infinite;
+  animation-name: placeHolderShimmer;
+  animation-timing-function: linear;
+
+  .name {
+    width: 80%;
+    height: 1.2em;
+    background: linear-gradient(to right, #a5a5a5 8%, #ebebeb 18%, #a5a5a5 33%);
+    border-radius: 1rem;
+    animation-duration: 4s;
+    animation-fill-mode: forwards;
+    animation-iteration-count: infinite;
+    animation-name: placeHolderShimmer;
+    animation-timing-function: linear;
+  }
+}
+
+.timeline-item {
+  background: $fbBgColor;
+  //border: $fbBorder;
+  //border-color: $fbBorderColor;
+  //border-radius: $fbBorderRadius;
+  padding: 4px;
+  //margin: 0 auto;
+  //max-width: $maxWidth;
+  //min-height: $minHeight;
+  width: 190px;
+  display: inline-block;
+}
+
+@keyframes placeHolderShimmer {
+  0% {
+    background-position: -20em 0;
+  }
+  100% {
+    background-position: 20em 0;
+  }
+}
+
+.animated-background {
+  animation-duration: 1s;
+  animation-fill-mode: forwards;
+  animation-iteration-count: infinite;
+  animation-name: placeHolderShimmer;
+  animation-timing-function: linear;
+  background: #f6f7f8;
+  background: linear-gradient(to right, #f5f4f3 8%, #ebebeb 18%, #f5f4f3 33%);
+  background-size: 1200px 104px;
+  height: 264px;
+  position: relative;
+}
+
+.background-masker.content-top,
+.background-masker.content-second-line,
+.background-masker.content-third-line,
+.background-masker.content-second-end,
+.background-masker.content-third-end,
+.background-masker.content-first-end {
+  top: 204px;
+  left: 0;
+  right: 0;
+  height: 12px;
+  //background-color: pink;
+}
+
+.background-masker.content-top {
+  top: 190px;
+  height: 14px;
+  //background-color: red;
+}
+
+.background-masker.content-first-end,
+.background-masker.content-second-end,
+.background-masker.content-third-end {
+  width: auto;
+  left: 152px;
+  right: 0;
+  top: 204px;
+  height: 12px;
+  //background-color: yellow;
+}
+
+.background-masker.content-second-line {
+  top: 216px;
+  left: 0;
+  right: 0;
+  height: 10px;
+  //background-color: blue;
+}
+
+.background-masker.content-second-end {
+  left: 171px;
+  top: 226px;
+  //background-color: green;
+}
+
+.background-masker.content-third-line {
+  top: 238px;
+  height: 14px;
+  //background-color: yellow;
+}
+
+.background-masker.content-third-end {
+  left: 76px;
+  top: 252px;
+  //background-color: brown;
+}

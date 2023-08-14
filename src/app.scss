@@ -6,11 +6,20 @@
   --main-shadow-light: #2821821a;
   --third: #f19b02;
   --third-sec: #f9cb8b;
+  --third-light: #fceed6;
   --font-light: white;
   --bg-lightest: white;
   --bg-light: #f5f7fa;
-  --bg-light-semi: #f5f7faa9;
+  --bg-light-semi: #f5f7fac7;
 }
+
+body::-webkit-scrollbar,
+html::-webkit-scrollbar,
+.table-container::-webkit-scrollbar,
+.table::-webkit-scrollbar {
+  display: none;
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -20,7 +29,7 @@
 html {
   color: var(--main);
   font-family: "TheSans";
-  line-height: 1.4em;
+  // line-height: 1.4em;
 }
 
 .section-header {

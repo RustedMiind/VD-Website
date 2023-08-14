@@ -8,6 +8,7 @@ import { projectsStateType } from "redux/reducers/projectsSlice";
 import PageBannerLayout, {
   PageBannerDataType,
 } from "pages/page-banner-layout/PageBannerLayout";
+import PlaceHolder from "./compontents/placeholder/Placeholder";
 
 function Projects() {
   const dispatch = useDispatch();
@@ -26,11 +27,14 @@ function Projects() {
 
   return (
     <PageBannerLayout data={data}>
-      <div className="projects-cards-container">
-        {projects.projects.map((project) => (
-          <ProjectCard key={project.id} project={project} />
-        ))}
-      </div>
+      {projects && projects.projects && (
+        <div className="projects-cards-container">
+          {projects.projects.map((project) => (
+            <ProjectCard key={project.id} project={project} />
+          ))}
+        </div>
+      )}
+      {(!projects.projects.length || !projects) && <PlaceHolder />}
     </PageBannerLayout>
   );
 }

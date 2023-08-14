@@ -20,6 +20,13 @@ nav.navbar {
     justify-content: center;
   }
   text-shadow: 0.1rem 0.1rem 0.2rem var(--bg-light);
+  .active {
+    background-color: var(--third);
+    text-shadow: none;
+    color: var(--font-light);
+    padding: 0.2rem 0.8rem;
+    border-radius: 2rem;
+  }
 }
 
 .hide-top {
