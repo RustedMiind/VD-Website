@@ -20,8 +20,8 @@ function ProjectCard({ project }: PropsType) {
       }}
     >
       <div className="info" style={{ backgroundImage: `url("${wave}")` }}>
-        <div className="name">{lang(project.name)}</div>
-        <NavLink className="link" to={project.id.toString()}>
+        <div className="name">{project.name}</div>
+        <NavLink className="link-with-arrow" to={project.id.toString()}>
           <div>عرض المشروع</div>
           <ArrowLeftCircleFill />
         </NavLink>

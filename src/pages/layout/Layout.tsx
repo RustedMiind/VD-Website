@@ -7,6 +7,7 @@ import Projects from "pages/projects/Projects";
 import Project from "pages/project/Project";
 import { LangContext } from "contexts/LangContext";
 import { useContext } from "react";
+import Services from "pages/services/Services";
 
 function Layout() {
   const { lang } = useContext(LangContext);
@@ -18,6 +19,10 @@ function Layout() {
       <div className="main-view">
         <Routes>
           <Route path="" element={<MainPage />} />
+          <Route path="services">
+            <Route path="" element={<Services />} />
+            <Route path=":serviceId" element={<Services />} />
+          </Route>
           <Route path="projects">
             <Route path="" element={<Projects />} />
             <Route path=":projectId" element={<Project />} />

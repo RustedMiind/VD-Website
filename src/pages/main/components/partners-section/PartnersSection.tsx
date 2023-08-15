@@ -6,7 +6,7 @@ import "swiper/css";
 function PartnersSection() {
   return (
     <div className="partners-section">
-      <h2 className="section-header">شركاؤنا</h2>
+      <h3 className="section-header">شركاؤنا</h3>
       <div className="swiper-container">
         <Swiper
           modules={[Autoplay]}

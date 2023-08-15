@@ -28,23 +28,14 @@
     font-weight: 600;
     font-size: 1.05rem;
   }
-  .link {
-    height: 0;
+  .link-with-arrow {
+    // height: 0;
+    transform: translateY(1.4rem);
     opacity: 0;
     pointer-events: none;
-    transform: translateY(1.4rem);
-    width: 60%;
-    // height: 5rem;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    border-radius: 100rem;
     margin-top: 0.6rem;
-    background-color: var(--third);
-    color: var(--font-light);
-    padding: 1rem;
     &:hover {
-      width: 65%;
+      width: 11rem;
       box-shadow: 0.1rem 0.1rem 1rem var(--third);
     }
   }
@@ -55,7 +46,7 @@
     .info {
       height: 45%;
     }
-    .link {
+    .link-with-arrow {
       pointer-events: all;
       opacity: 1;
       transform: translateY(0);

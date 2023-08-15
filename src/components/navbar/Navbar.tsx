@@ -19,6 +19,9 @@ function Navbar() {
         <li>
           <NavLink to="/projects">{t("links.projects")}</NavLink>
         </li>
+        <li>
+          <NavLink to="/services">{t("links.services")}</NavLink>
+        </li>
 
         <li>
           <a
@@ -36,7 +39,7 @@ function Navbar() {
       <div className="left">
         <a href=" ">
           <LockFill />
-          تسجيل الدخول
+          {t("links.login")}
         </a>
       </div>
     </nav>

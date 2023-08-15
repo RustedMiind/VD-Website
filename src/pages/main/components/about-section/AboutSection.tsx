@@ -14,15 +14,15 @@ function AboutSection() {
         <div className="header-image">
           <img src={whiteHeader} alt="" />
         </div>
-        <h2 className="">تعرف علينا</h2>
+        <h3 className="">تعرف علينا</h3>
         <div className="content-container">
           <div className="manager-card">
-            <h4 className="title">
+            <h5 className="title">
               <span className="icon-with-border">
                 <Person />
               </span>
               المدير التنفيذي
-            </h4>
+            </h5>
             <div className="image">
               <img
                 src="https://media.istockphoto.com/id/1341347262/photo/portrait-smiling-african-american-businessman-in-blue-suit-sit-at-table-for-meeting-in-office.webp?b=1&s=170667a&w=0&k=20&c=ROzf-9PsItphtLJpDBLZ75aiDXYGvet3dViR8r6t54Q="
@@ -32,12 +32,12 @@ function AboutSection() {
             <div className="name">م/ سعد مشعل</div>
           </div>
           <div className="profile-card">
-            <h4 className="title">
+            <h5 className="title">
               <span className="icon-with-border">
                 <Folder2 />
               </span>
               الملف التعريفي
-            </h4>
+            </h5>
             <div className="about-us">
               <p>هذا نص مثال هذا نص مثال هذا نص مثال هذا نص مثال</p>
             </div>

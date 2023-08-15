@@ -5,15 +5,18 @@ import "./triple-slider.scss";
 import { AttachmentType } from "redux/reducers/projectsSlice";
 
 function TrippleSlider(props: PropsType) {
+  const repeat = (arr: any[], n: number): any[] => Array(n).fill(arr).flat();
+  const slides: any[] = props.images ? repeat(props.images, 5) : [];
+  console.log(slides);
   return (
-    <div className="swiper-custom">
+    <div className="swiper-custom rtl">
       <div className="container">
         <Swiper
           effect={"coverflow"}
-          grabCursor={true}
+          // grabCursor={true}
           centeredSlides={true}
           loop={true}
-          slidesPerView={"auto"}
+          slidesPerView={2}
           coverflowEffect={{
             rotate: 0,
             stretch: 0,
@@ -29,17 +32,17 @@ function TrippleSlider(props: PropsType) {
           modules={[EffectCoverflow, Pagination, Navigation]}
           className="swiper_container"
         >
-          {props.images?.map((image) => (
-            <SwiperSlide>
+          {slides?.map((image) => (
+            <SwiperSlide key={image.original_name}>
               <img src={image.path} alt="slide_image" />
             </SwiperSlide>
           ))}
 
-          <div className="slider-controler">
+          {/* <div className="slider-controler">
             <div className="swiper-button-prev slider-arrow">left</div>
             <div className="swiper-button-next slider-arrow">right</div>
             <div className="swiper-pagination"></div>
-          </div>
+          </div> */}
         </Swiper>
       </div>
     </div>

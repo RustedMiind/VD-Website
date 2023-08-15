@@ -9,10 +9,10 @@ function ServicesSection() {
         className="top-shape"
         style={{ backgroundImage: `url(${topShape})` }}
       ></div> */}
-      <h2>أبرز خدماتنا</h2>
+      <h3>أبرز خدماتنا</h3>
       <div className="services-cards-container">
-        <div className="service-card">
-          <h3 className="title">التصميم الانشائي</h3>
+        <div className="service-card-main-page">
+          <h5 className="title">التصميم الانشائي</h5>
           <p className="describtion">
             لوريم ايبسوم دولار سيت أميت ,كونسيكتيتور أدايبا يسكينج أليايت,سيت دو
             أيوسمود تيمبور أنكايديديونتيوت لابوري ات دولار ماجنا أليكيوا . يوت
@@ -24,8 +24,8 @@ function ServicesSection() {
             className="service-image"
           />
         </div>
-        <div className="service-card">
-          <h3 className="title">التصميم الانشائي</h3>
+        <div className="service-card-main-page">
+          <h5 className="title">التصميم الانشائي</h5>
           <p className="describtion">
             لوريم ايبسوم دولار سيت أميت ,كونسيكتيتور أدايبا يسكينج أليايت,سيت دو
             أيوسمود تيمبور أنكايديديونتيوت لابوري ات دولار ماجنا أليكيوا . يوت

@@ -1,5 +1,4 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { LanguagesObjectType } from "contexts/LangContext";
 
 export interface projectsStateType {
   projects: ProjectsType;
@@ -25,9 +24,9 @@ export const projectsSlice = createSlice({
 
 export type ProjectType = {
   id: number;
-  name: LanguagesObjectType;
-  title: LanguagesObjectType;
-  description: LanguagesObjectType;
+  name: string;
+  title: string;
+  description: string;
   link: string | null;
   "main-image": string;
   active: boolean;

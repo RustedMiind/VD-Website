@@ -16,8 +16,19 @@ const translationsEn = {
     phone: "Contact via Phone",
     email: "Contact via Email",
   },
+  project: {
+    name: "Project Name",
+    describtion: "Describtion",
+    zone: "Work Zone",
+    projects: "Projects",
+  },
   vision: { name: "Vision Dimensions", for: "Engineering Consulting Company" },
-  links: { home: "Home", projects: "Projects" },
+  links: {
+    home: "Home",
+    projects: "Projects",
+    login: "Login",
+    services: "Services",
+  },
 };
 const translationsAr = {
   test: "اختبار",
@@ -26,8 +37,19 @@ const translationsAr = {
     phone: "تواصل معنا عبر الهاتف",
     email: "تواصل معنا عبر الايميل",
   },
+  project: {
+    name: "اسم المشروع",
+    describtion: "الوصف",
+    zone: "نطاق العمل",
+    projects: "المشاريع",
+  },
   vision: { name: "أبعاد الرؤية", for: "للاستشارات الهندسية" },
-  links: { home: "الرئيسية", projects: "المشاريع" },
+  links: {
+    home: "الرئيسية",
+    projects: "المشاريع",
+    login: "تسجيل الدخول",
+    services: "الخدمات",
+  },
 };
 
 i18n.use(initReactI18next).init({
