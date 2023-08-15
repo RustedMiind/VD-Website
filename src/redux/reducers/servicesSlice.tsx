@@ -29,6 +29,18 @@ export type ServiceType = {
   order_id: number;
 };
 
+export const initialService: ServiceType = {
+  id: 0,
+  name: "Loading...",
+  title: "Loading...",
+  description: "Loading...",
+  link: "Loading...",
+  details: "Loading...",
+  image: "Loading...",
+  category_id: 0,
+  order_id: 0,
+};
+
 export type ServicesType = ServiceType[] | "error" | "loading";
 
 export const { setServices } = servicesSlice.actions;

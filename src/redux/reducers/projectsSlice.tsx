@@ -39,9 +39,7 @@ export type ProjectType = {
 
 export type AttachmentType = {
   path: string;
-  size: string;
-  type: string;
-  original_name: string;
+  describtion?: string;
 };
 
 export type ProjectsType = ProjectType[] | "error" | "loading";

@@ -1,0 +1,20 @@
+.service-page {
+  //   width: 100%;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  padding: 2rem 0;
+  .link-with-arrow.custom {
+    width: 80%;
+    color: var(--font-light);
+    background-color: var(--third);
+    padding: 0.6rem;
+    font-size: 1.4rem;
+    border-radius: 0.6rem;
+    &:hover {
+      color: var(--third);
+      background-color: var(--font-light);
+    }
+  }
+}

@@ -34,7 +34,10 @@ function TrippleSlider(props: PropsType) {
         >
           {slides?.map((image) => (
             <SwiperSlide key={image.original_name}>
-              <img src={image.path} alt="slide_image" />
+              <div className="image-container">
+                <img src={image.path} alt="slide_image" />
+                {image.describtion && <div className="describtion">hello</div>}
+              </div>
             </SwiperSlide>
           ))}
 
