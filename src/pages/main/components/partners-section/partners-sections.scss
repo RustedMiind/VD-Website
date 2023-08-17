@@ -1,3 +1,5 @@
+@import "../../../../sass/breakpoints";
+
 .partners-section {
   display: flex;
   align-items: center;
@@ -9,10 +11,17 @@
   pointer-events: none;
   background-color: var(--main);
   background: linear-gradient(180deg, var(--main-sec) 0%, var(--main) 113.64%);
+  @include Mobile {
+    padding-left: 0;
+    padding-right: 0;
+  }
 
   .swiper-container {
     // width: 50rem;
     width: 80%;
+    @include Mobile {
+      width: 30rem;
+    }
   }
   .swiper-slide {
     display: flex;

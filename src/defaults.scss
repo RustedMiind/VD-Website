@@ -12,6 +12,7 @@ button {
   background-color: unset;
   outline: none;
   border: none;
+  font-family: inherit;
 }
 
 .ltr {
@@ -33,6 +34,8 @@ input {
   background-color: transparent;
   font-family: inherit;
   color: inherit;
+  border: none;
+  outline: none;
 }
 
 button {

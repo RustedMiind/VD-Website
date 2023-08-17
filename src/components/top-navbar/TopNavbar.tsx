@@ -46,33 +46,50 @@ function TopNavbar() {
           <div className="value">{slogan}</div>
         </div>
       </div>
-      <div className="nav-item">
-        <div className="icon">
-          <At />
+
+      {emails && emails[0] && (
+        <div className="nav-item">
+          <div className="icon">
+            <At />
+          </div>
+          <div className="content">
+            <div className="title">{t("contact.email")}</div>
+            <a href={"mailto:" + emails[0]} className="value">
+              {emails[0]}
+            </a>
+          </div>
         </div>
-        <div className="content">
-          <div className="title">{t("contact.email")}</div>
-          <div className="value">{emails && emails[0]}</div>
+      )}
+      {phones && phones[0] && (
+        <div className="nav-item">
+          <div className="icon">
+            <Telephone />
+          </div>
+          <div className="content">
+            <div className="title">{t("contact.phone")}</div>
+            <a href={"tel:" + phones[0]} className="value ltr">
+              {phones[0]}
+            </a>
+          </div>
         </div>
-      </div>
-      <div className="nav-item">
-        <div className="icon">
-          <Telephone />
+      )}
+      {whatsapp && whatsapp[0] && (
+        <div className="nav-item">
+          <div className="icon">
+            <Whatsapp />
+          </div>
+          <div className="content">
+            <div className="title">{t("contact.whatsapp")}</div>
+            <a
+              target="_blank"
+              href={"https://wa.me/" + whatsapp[0]}
+              className="value ltr"
+            >
+              {whatsapp[0]}
+            </a>
+          </div>
         </div>
-        <div className="content">
-          <div className="title">{t("contact.phone")}</div>
-          <div className="value ltr">{phones && phones[0]}</div>
-        </div>
-      </div>
-      <div className="nav-item">
-        <div className="icon">
-          <Whatsapp />
-        </div>
-        <div className="content">
-          <div className="title">{t("contact.whatsapp")}</div>
-          <div className="value ltr">{whatsapp && whatsapp[0]}</div>
-        </div>
-      </div>
+      )}
     </nav>
   );
 }

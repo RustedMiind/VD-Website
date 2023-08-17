@@ -1,9 +1,42 @@
+@import "../../../../sass/breakpoints";
+
 .intro-section {
   width: 100%;
+  position: relative;
   height: calc(100vh - var(--top-navbar-height));
   .intro-background {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    position: absolute;
+    top: 0;
+    left: 0;
+    object-position: right;
+  }
+  .page-content {
+    z-index: 100;
+    width: 100%;
+    height: 100%;
+    position: relative;
+    .request-service {
+      display: block;
+      width: fit-content;
+      font-size: 1.4rem;
+      background: var(--main);
+      border-radius: 0.4rem;
+      color: var(--font-light);
+      padding: 0.8rem 8rem;
+      position: absolute;
+      bottom: 12%;
+      right: 15%;
+      font-weight: 900;
+      @include Mobile {
+        font-size: 1.2rem;
+        padding: 0.8rem 2rem;
+        right: 1rem;
+        bottom: unset;
+        top: 55%;
+      }
+    }
   }
 }

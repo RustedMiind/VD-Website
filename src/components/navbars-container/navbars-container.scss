@@ -1,3 +1,5 @@
+@import "../../sass/breakpoints";
+
 .navbars-container {
   position: fixed;
   top: 0;
@@ -16,5 +18,8 @@
 
   &.hide-top {
     margin-top: calc(var(--top-navbar-height) * -1);
+  }
+  @include Mobile {
+    // display: none;
   }
 }

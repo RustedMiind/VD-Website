@@ -1,6 +1,6 @@
 @import "sass/breakpoints";
 :root {
-  --main: #35337d;
+  --main: #004693;
   --main-sec: #292283;
   --main-overlay: #35337d66;
   --main-shadow: #2821824b;
@@ -47,6 +47,12 @@ html {
   color: var(--main);
   font-family: "TheSans";
   // line-height: 1.4em;
+  overflow-x: hidden;
+  max-width: 100vw;
+}
+body {
+  overflow-x: hidden;
+  max-width: 100%;
 }
 
 .section-header {
@@ -103,6 +109,12 @@ html {
   color: var(--third);
   font-size: 1.4em;
   margin-bottom: 0.6rem;
+}
+.max-w-4 {
+  max-width: 20rem;
+}
+.max-w-2 {
+  max-width: 10rem;
 }
 .image-container {
   display: flex;

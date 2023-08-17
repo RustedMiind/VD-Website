@@ -1,6 +1,9 @@
 import "./cards-slider.scss";
 import { Swiper, SwiperSlide } from "swiper/react";
 import slide_image_1 from "assets/images/bg-temp.jpg";
+import topRightBorder from "assets/images/1.png";
+import bottomLeftBorder from "assets/images/2.png";
+import bg from "assets/images/card-bg.png";
 import {
   EffectCoverflow,
   Pagination,
@@ -21,11 +24,11 @@ function CardsSlider(props: PropsType) {
           effect={"coverflow"}
           // grabCursor={true}
           centeredSlides={true}
-          autoplay={{
-            delay: 3000,
-            disableOnInteraction: false,
-            stopOnLastSlide: false,
-          }}
+          // autoplay={{
+          //   delay: 3000,
+          //   disableOnInteraction: false,
+          //   stopOnLastSlide: false,
+          // }}
           loop={true}
           speed={1000}
           onSwiper={(swiper) => {
@@ -59,8 +62,13 @@ function CardsSlider(props: PropsType) {
                   alt="slide_image"
                 />
               </div> */}
-              <div className="card-content-wrapper">
+              <div
+                className="card-content-wrapper"
+                style={{ backgroundImage: `url("${bg}")` }}
+              >
                 <div className="card-content">
+                  <img src={topRightBorder} alt="" className="top-right" />
+                  <img src={bottomLeftBorder} alt="" className="bottom-left" />
                   <div className="person-info">
                     <div className="image">
                       <div className="image-container">

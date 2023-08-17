@@ -9,6 +9,7 @@ import { LangContext } from "contexts/LangContext";
 import { useContext, useEffect } from "react";
 import Services from "pages/services/Services";
 import ServicePage from "pages/service/Service";
+import Footer from "components/footer/Footer";
 
 function Layout() {
   const { lang } = useContext(LangContext);
@@ -34,6 +35,7 @@ function Layout() {
           </Route>
         </Routes>
       </div>
+      <Footer />
     </div>
   );
 }

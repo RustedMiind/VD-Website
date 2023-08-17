@@ -4,6 +4,9 @@ import { Autoplay } from "swiper/modules";
 import "swiper/css";
 
 function PartnersSection() {
+  const repeat = (arr: any[], n: number): any[] => Array(n).fill(arr).flat();
+  const slides: any[] = true ? repeat([1, 2, 3, 4, 5, 6], 5) : [];
+
   return (
     <div className="partners-section">
       <h3 className="section-header">شركاؤنا</h3>
@@ -12,61 +15,32 @@ function PartnersSection() {
           modules={[Autoplay]}
           //   spaceBetween={0}
           slidesPerView={4}
-          //   loop={true}
+          loop={true}
           speed={2500}
           autoplay={{
             delay: 2000,
             disableOnInteraction: false,
             // reverseDirection: true,
           }}
+          onSwiper={(swiper) => {
+            setTimeout(() => {
+              swiper.slideNext(1000);
+            }, 2000);
+            console.log(swiper);
+          }}
           // onSlideChange={() => console.log("slide change")}
           // onSwiper={(swiper) => console.log(swiper)}
         >
-          <SwiperSlide>
-            <div className="swiper-item">
-              <img
-                src="https://image.pngaaa.com/744/131744-middle.png"
-                alt=""
-              />
-            </div>
-          </SwiperSlide>
-          <SwiperSlide>
-            <div className="swiper-item">
-              <img
-                src="https://spng.pinpng.com/pngs/s/608-6088018_visit-our-work-dole-logo-png-white-transparent.png"
-                alt=""
-              />
-            </div>
-          </SwiperSlide>
-          <SwiperSlide>
-            <div className="swiper-item">
-              <img
-                src="https://image.pngaaa.com/744/131744-middle.png"
-                alt=""
-              />
-            </div>
-          </SwiperSlide>
-          <SwiperSlide>
-            <div className="swiper-item">
-              <img src="https://image.pngaaa.com/376/50376-small.png" alt="" />
-            </div>
-          </SwiperSlide>
-          <SwiperSlide>
-            <div className="swiper-item">
-              <img
-                src="https://www.pngitem.com/pimgs/m/110-1103620_world-health-organization-logo-white-png-transparent-png.png"
-                alt=""
-              />
-            </div>
-          </SwiperSlide>
-          <SwiperSlide>
-            <div className="swiper-item">
-              <img
-                src="https://smallimg.pngkey.com/png/small/1008-10087161_northrop-grumman-foundation-walmart-logo-png-white.png"
-                alt=""
-              />
-            </div>
-          </SwiperSlide>
+          {slides.map((slide) => (
+            <SwiperSlide>
+              <div className="swiper-item">
+                <img
+                  src="https://image.pngaaa.com/744/131744-middle.png"
+                  alt=""
+                />
+              </div>
+            </SwiperSlide>
+          ))}
         </Swiper>
       </div>
       <div className="swiper-pagination">
