@@ -21,17 +21,17 @@ function CardsSlider(props: PropsType) {
           effect={"coverflow"}
           // grabCursor={true}
           centeredSlides={true}
-          // autoplay={{
-          //   delay: 2000,
-          //   disableOnInteraction: false,
-          //   stopOnLastSlide: false,
-          // }}
+          autoplay={{
+            delay: 3000,
+            disableOnInteraction: false,
+            stopOnLastSlide: false,
+          }}
           loop={true}
           speed={1000}
           onSwiper={(swiper) => {
             setTimeout(() => {
               swiper.slideNext(1000);
-            }, 1000);
+            }, 2000);
             console.log(swiper);
           }}
           slidesPerView={2}

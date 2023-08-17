@@ -24,7 +24,7 @@ export type SettingValueType =
         link: string;
       }[]
     >
-  | kv<"logo", string>
+  | kv<"logo", [string]>
   | kv<"name", [string]>;
 
 export function getValueByKey(arr: SettingValueType[] | undefined) {

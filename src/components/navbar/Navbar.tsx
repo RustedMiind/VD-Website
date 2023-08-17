@@ -12,9 +12,6 @@ import { getValueByKey } from "types/SettingsType";
 function Navbar() {
   const { changeLang } = useContext(LangContext);
   const state = useSelector((state: { settings: SettingsStateType }) => state);
-  useEffect(() => {
-    console.log("state ", state);
-  }, [state]);
   const getvalue = getValueByKey(state.settings);
   const name = getvalue("slogan");
   const { t } = useTranslation();
