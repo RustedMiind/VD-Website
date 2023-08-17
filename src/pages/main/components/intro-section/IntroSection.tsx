@@ -6,10 +6,10 @@ import bgImage from "assets/images/bg-temp.jpg";
 function IntroSection() {
   return (
     <div className="intro-section">
-      {/* <video className="intro-background" loop autoPlay muted>
+      <video className="intro-background screen" loop autoPlay muted>
         <source src={introVideo} type="video/mp4" />
-      </video> */}
-      <video className="intro-background" loop autoPlay muted>
+      </video>
+      <video className="intro-background mobile" loop autoPlay muted>
         <source src={introVideoMobile} type="video/mp4" />
       </video>
       {/* <img src={bgImage} className="intro-background" alt="" /> */}

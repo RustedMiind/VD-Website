@@ -13,6 +13,12 @@
     left: 0;
     object-position: right;
   }
+  .mobile {
+    display: none;
+  }
+  .screen {
+    display: block;
+  }
   .page-content {
     z-index: 100;
     width: 100%;
@@ -36,7 +42,22 @@
         right: 1rem;
         bottom: unset;
         top: 55%;
+
+        .mobile {
+          display: block;
+        }
+        .screen {
+          display: none;
+        }
       }
+    }
+  }
+  @include Mobile {
+    .mobile {
+      display: block;
+    }
+    .screen {
+      display: none;
     }
   }
 }

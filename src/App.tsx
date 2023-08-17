@@ -10,6 +10,9 @@ import { useDispatch } from "react-redux";
 import { requestSetSettings } from "redux/middlewares/settingsMiddlware";
 
 axios.defaults.headers.common["from"] = "website";
+// axios.defaults.headers.common["Access-Control-Allow-Origin"] =
+//   "https://visiondimensions.com/";
+axios.defaults.withCredentials = true;
 
 const translationsEn = {
   test: "test",
