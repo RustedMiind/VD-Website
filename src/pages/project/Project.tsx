@@ -61,7 +61,10 @@ function Project() {
           <div className="section-content">
             <div className="work-areas-container">
               {project?.workZones.map((zone) => (
-                <div className="work-area-card">
+                <div
+                  className="work-area-card"
+                  key={`${zone.zone}${zone.name}`}
+                >
                   <div className="title">{zone.name}</div>
                   <div className="content">{zone.zone}</div>
                 </div>

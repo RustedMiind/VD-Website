@@ -8,16 +8,49 @@
   padding: 4rem 0;
   padding-bottom: 0rem;
   z-index: 1000;
+  .tight-section {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+  }
 }
 
 .services-cards-container {
-  max-width: 60rem;
-  width: 60rem;
   gap: 4rem;
+  width: 100%;
   display: flex;
-  justify-content: center;
+  justify-content: space-around;
   margin-top: 4rem;
   flex-wrap: wrap;
+}
+
+.change-slide-buttons {
+  display: flex;
+  margin-top: 1rem;
+  gap: 0.6rem;
+  .increment,
+  .center,
+  .decrement {
+    width: 2rem;
+    height: 0.6rem;
+    background-color: var(--gray);
+    border-radius: 0.2rem;
+  }
+  .center {
+    width: 4rem;
+    background-color: var(--third);
+  }
+  .increment,
+  .decrement {
+    cursor: pointer;
+    transition: 400ms;
+    &:hover {
+      z-index: 100;
+      transform: scale(1.2, 1);
+      background-color: var(--third);
+      box-shadow: 0 0 0.8rem var(--third);
+    }
+  }
 }
 
 .top-shape {
@@ -31,12 +64,13 @@
 }
 
 .service-card-main-page {
-  width: 20rem;
+  width: 25rem;
   margin: 1rem;
   margin-top: -2rem;
   display: flex;
   flex-direction: column;
   gap: 0.4rem;
+  transition: 300ms ease-in-out;
   .title {
     max-width: 60%;
     width: fit-content;
@@ -49,7 +83,7 @@
     overflow: hidden;
   }
   .service-image {
-    width: 20rem;
+    width: 100%;
     height: 21rem;
     margin-top: 0.4rem;
     object-fit: cover;
@@ -60,5 +94,9 @@
 
   &:nth-of-type(2n) {
     margin-top: 2rem;
+  }
+  &.loading {
+    opacity: 0;
+    transform: translateX(5rem);
   }
 }

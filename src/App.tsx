@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Layout from "./pages/layout/Layout";
 import "./app.scss";
 import "./defaults.scss";
@@ -6,6 +6,8 @@ import axios from "axios";
 import i18n from "i18next";
 import { initReactI18next } from "react-i18next";
 import LangContextProvider from "contexts/LangContext";
+import { useDispatch } from "react-redux";
+import { requestSetSettings } from "redux/middlewares/settingsMiddlware";
 
 axios.defaults.headers.common["from"] = "website";
 
@@ -41,14 +43,14 @@ const translationsAr = {
     name: "اسم المشروع",
     describtion: "الوصف",
     zone: "نطاق العمل",
-    projects: "المشاريع",
+    projects: "مشاريعنا",
   },
   vision: { name: "أبعاد الرؤية", for: "للاستشارات الهندسية" },
   links: {
     home: "الرئيسية",
-    projects: "المشاريع",
+    projects: "مشاريعنا",
     login: "تسجيل الدخول",
-    services: "الخدمات",
+    services: "خدماتنا",
   },
 };
 
@@ -63,6 +65,13 @@ i18n.use(initReactI18next).init({
 });
 
 function App() {
+  const dispatch = useDispatch();
+  useEffect(() => {
+    requestSetSettings(dispatch).then((res) => {
+      console.log("res from disptatch", res);
+    });
+    console.log("Settings Requested");
+  }, []);
   return (
     <React.Suspense fallback="Loading...">
       <LangContextProvider>
