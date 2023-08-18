@@ -43,6 +43,7 @@ export type AttachmentType = {
 };
 
 export type ProjectsType = ProjectType[] | "error" | "loading";
+export type ProjectsListType = ProjectType[];
 
 export type ProjectTypeType = {
   id: number;

@@ -1,9 +1,18 @@
-import { Person, Folder2, CaretLeftFill } from "react-bootstrap-icons";
+import {
+  Person,
+  Folder2,
+  CaretLeftFill,
+  Download,
+} from "react-bootstrap-icons";
 import "./about-section.scss";
 import whiteHeader from "assets/images/white-header.png";
 import CardsSlider from "components/cards-slider/CardsSlider";
+import { useSelector } from "react-redux";
+import { MainStateType } from "redux/reducers/mainSlice";
 
 function AboutSection() {
+  const { main } = useSelector((state: { main: MainStateType }) => state);
+
   return (
     <div
       className="bg-container"
@@ -18,6 +27,22 @@ function AboutSection() {
         <h3 className="">تعرف علينا</h3>
         <div className="content-container">
           <CardsSlider />
+          <div className="two-links-container">
+            <a href="" className="third">
+              تعرف علينا
+            </a>
+            {typeof main == "object" && main.file && (
+              <a
+                href={main.file}
+                target="_blank"
+                download="الهيكل التنظيمي"
+                rel="noreferrer"
+              >
+                <Download />
+                تحميل الهيكل التنظيمي
+              </a>
+            )}
+          </div>
         </div>
       </div>
     </div>

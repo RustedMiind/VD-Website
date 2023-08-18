@@ -4,43 +4,52 @@ import topShape from "assets/images/services-header2.png";
 import { ServiceType, initialService } from "redux/reducers/servicesSlice";
 import ServicesSectionCard from "./ServicesSectionCard";
 import { setInterval } from "timers";
+import { useSelector } from "react-redux";
+import { MainStateType } from "redux/reducers/mainSlice";
 
 function ServicesSection() {
   const [indexes, setIndexes] = useState<number[]>([0, 1]);
   const [enablePlay, setEnablePlay] = useState<boolean>(true);
-  const [services, setServices] = useState<ServiceType[]>([
-    { ...initialService, id: 0 },
-    { ...initialService, id: 1 },
-  ]);
+  const { main } = useSelector((state: { main: MainStateType }) => state);
+  const services: ServiceType[] =
+    typeof main === "object" ? main.services : [initialService];
+  // const [servicess, setServices] = useState<ServiceType[]>([
+  //   { ...initialService, id: 0 },
+  //   { ...initialService, id: 1 },
+  // ]);
   const handleIncrement = () => {
-    setIndexes(
-      indexes.map((value, index, arr) => {
-        return value + 1 === arr.length ? 0 : value + 1;
-      })
-    );
+    if (typeof main === "object" && main.services)
+      setIndexes(
+        indexes.map((value) => {
+          return value + 1 === main.services.length ? 0 : value + 1;
+        })
+      );
     setEnablePlay(false);
   };
   const handleDecrement = () => {
-    setIndexes(
-      indexes.map((value, index, arr) => {
-        return value - 1 === -1 ? arr.length - 1 : value - 1;
-      })
-    );
+    if (typeof main === "object" && main.services)
+      setIndexes(
+        indexes.map((value) => {
+          return value - 1 === -1 ? main.services.length - 1 : value - 1;
+        })
+      );
     setEnablePlay(false);
   };
   const handleIncrementAutoplay = () => {
-    setIndexes(
-      indexes.map((value, index, arr) => {
-        return value - 1 === -1 ? arr.length - 1 : value - 1;
-      })
-    );
+    if (typeof main === "object" && main.services)
+      setIndexes(
+        indexes.map((value) => {
+          return value - 1 === -1 ? main.services.length - 1 : value - 1;
+        })
+      );
   };
 
   useEffect(() => {
     setTimeout(() => {
       if (enablePlay) handleIncrementAutoplay();
+      console.log(enablePlay);
     }, 5000);
-  }, [indexes]);
+  }, [indexes, main]);
   return (
     <div className="services-section">
       <img src={topShape} className="top-shape" />
@@ -51,13 +60,25 @@ function ServicesSection() {
       <div className="tight-section">
         <h3>أبرز خدماتنا</h3>
         <div className="services-cards-container">
-          {indexes.map((index, i) => (
-            <ServicesSectionCard
-              key={services[i].id}
-              services={services}
-              index={index}
-            />
-          ))}
+          {typeof services === "object" && services[1] ? (
+            indexes.map((index, i) => (
+              <ServicesSectionCard
+                key={services[i].id}
+                services={services}
+                index={index}
+              />
+            ))
+          ) : (
+            <>
+              {services[0] && (
+                <ServicesSectionCard
+                  key={services[0].id}
+                  services={services}
+                  index={0}
+                />
+              )}
+            </>
+          )}
         </div>
 
         <div className="change-slide-buttons">

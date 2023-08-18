@@ -3,6 +3,7 @@ import { ServiceType } from "redux/reducers/servicesSlice";
 
 function ServicesSectionCard(props: PropsType) {
   const [index, setIndex] = useState<IndexStateType>({ value: 0, state: "ok" });
+  const service = props.services[index.value];
   useEffect(() => {
     setTimeout(() => {
       setIndex({ ...index, state: "loading" });
@@ -17,17 +18,9 @@ function ServicesSectionCard(props: PropsType) {
         index.state === "loading" ? index.state : ""
       }`}
     >
-      <h5 className="title">التصميم الانشائي</h5>
-      <p className="describtion">
-        لوريم ايبسوم دولار سيت أميت ,كونسيكتيتور أدايبا يسكينج أليايت,سيت دو
-        أيوسمود تيمبور أنكايديديونتيوت لابوري ات دولار ماجنا أليكيوا . يوت انيم
-        أد مينيم فينايم,كيواس نوستريد أكسير سيتاشن يللأمكو لابورأس
-      </p>
-      <img
-        src="https://images.businessnewsdaily.com/app/uploads/2022/04/04082415/Customer_Service_Getty_nortonrsx.jpg"
-        alt=""
-        className="service-image"
-      />
+      <h5 className="title">{service.name}</h5>
+      <p className="describtion">{service.description}</p>
+      <img src={service.image} alt="" className="service-image" />
     </div>
   );
 }

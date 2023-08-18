@@ -1,38 +1,55 @@
+import { NavLink } from "react-router-dom";
 import "./latest-news-section.scss";
+import { ArrowLeftCircleFill } from "react-bootstrap-icons";
+import { useSelector } from "react-redux";
+import { MainStateType } from "redux/reducers/mainSlice";
+import {
+  ProjectType,
+  ProjectsListType,
+  ProjectsType,
+} from "redux/reducers/projectsSlice";
 
 function LatestNewsSection() {
+  const main = useSelector((state: { main: MainStateType }) => state.main);
+
+  const projects: ProjectsListType =
+    typeof main === "object" ? main.projects : [];
+  const lastProject: ProjectType = projects[projects.length - 1];
+
   return (
-    <div
-      className="bg-container"
-      style={{
-        backgroundImage: `url("${"https://image.shutterstock.com/image-photo/farmer-holding-soil-hands-closeup-260nw-1992117911.jpg"}")`,
-      }}
-    >
-      <div className="latest-news-section">
-        <div className="content-container">
-          <h2 className="section-title">اخر اخبارنا</h2>
-          <div className="content">
-            <div className="image">
-              <img
-                src="https://image.shutterstock.com/image-photo/farmer-holding-soil-hands-closeup-260nw-1992117911.jpg"
-                alt=""
-              />
-            </div>
-            <div className="describtion-card">
-              <h3 className="news-title">خدمات التربة</h3>
-              <p>
-                هذا النص هو مثال لنص يمكن أن يستبدل في نفس المساحة، لقد تم توليد
-                هذا النص من مولد النص العربى هذا النص هو مثال لنص يمكن أن يستبدل
-                في نفس المساحة، لقد تم توليد هذا النص من مولد النص العربى هذا
-                النص هو مثال لنص يمكن أن يستبدل في نفس المساحة، لقد تم توليد هذا
-                النص من مولد النص العربى هذا النص هو مثال لنص يمكن أن يستبدل في
-                نفس المساحة، لقد تم توليد هذا النص من مولد النص العربى
-              </p>
+    <>
+      {typeof projects === "object" && lastProject && (
+        <div
+          className="bg-container"
+          style={{
+            backgroundImage: `url("${lastProject["main-image"]}")`,
+          }}
+        >
+          <div className="latest-news-section">
+            <div className="content-container">
+              <h2 className="section-title">أهم المشاريع</h2>
+              <div className="content">
+                <div className="image">
+                  <img src={lastProject["main-image"]} alt="" />
+                </div>
+                <div className="describtion-card">
+                  <h3 className="news-title">
+                    <span className="the-title">{lastProject.title}</span>
+                  </h3>
+                  <p>{lastProject.description}</p>
+                  <div className="read-more-button-container">
+                    <NavLink to={"/projects"}>
+                      المزيد
+                      <ArrowLeftCircleFill />
+                    </NavLink>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
-      </div>
-    </div>
+      )}
+    </>
   );
 }
 

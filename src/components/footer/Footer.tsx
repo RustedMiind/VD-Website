@@ -21,6 +21,12 @@ function Footer() {
   const phones = getvalue("phones") as undefined | string[];
   const name = getvalue("name") as undefined | string;
   const slogan = getvalue("slogan") as undefined | string;
+  const address = getvalue("address") as
+    | undefined
+    | {
+        address: string;
+        link: string;
+      }[];
   const social = getvalue("social") as
     | undefined
     | {
@@ -140,9 +146,11 @@ function Footer() {
           <div className="card-content">
             <div className="title">عنواننا</div>
             <div className="section-content max-w-2 adresses">
-              <a href="#">جدة - ش البلدية مركز القمة لأدارة الأعمال</a>
-              <a href="#">جدة - ش البلدية مركز القمة لأدارة الأعمال</a>
-              <a href="#">جدة - ش البلدية مركز القمة لأدارة الأعمال</a>
+              {address?.map((item) => (
+                <a target="_blank" href={item.link}>
+                  {item.address}
+                </a>
+              ))}
             </div>
           </div>
           <div className="card-content link-icons">

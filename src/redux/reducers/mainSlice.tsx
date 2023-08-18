@@ -1,15 +1,17 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { ProjectType } from "./projectsSlice";
 
-export type ServicesStateType = ServicesType;
+export type MainStateType = MainType;
 
-const initialState: ServicesStateType = "loading";
-export const servicesSlice = createSlice({
+const initialState: MainStateType = "loading";
+
+export const mainSlice = createSlice({
   name: "services",
   initialState,
   reducers: {
-    setServices: (state: ServicesStateType, action) => {
+    setMain: (state: MainStateType, action) => {
       console.log("state from reducer: ", state);
-      return action.payload.services;
+      return action.payload.main;
     },
     // setServicesError: (state: ServicesStateType) => {
     //   return "loading";
@@ -17,31 +19,79 @@ export const servicesSlice = createSlice({
   },
 });
 
-export type ServiceType = {
+export type MainType =
+  | "error"
+  | "loading"
+  | {
+      icons: IconsType;
+      services: [];
+      projects: ProjectType[];
+      members: MembersType;
+      file: string;
+    };
+
+export type IconsType = {
+  icons: {
+    id: Number;
+    name: string;
+    type: string;
+    logo: string;
+    link: string;
+  }[];
+  type: string;
+};
+
+export type MembersType = {
   id: number;
   name: string;
-  title: string;
+  job_title: string;
+  bio: string;
   description: string;
-  link: string | null;
-  details: string | null;
   image: string;
-  category_id: number;
-  order_id: number;
+}[];
+
+export const initialService: MainType = {
+  icons: {
+    icons: [
+      {
+        id: 0,
+        name: "string",
+        type: "string",
+        logo: "string",
+        link: "string",
+      },
+    ],
+    type: "string",
+  },
+  services: [],
+  projects: [
+    {
+      id: 1,
+      name: "string",
+      title: "string",
+      description: "string",
+      link: "string",
+      "main-image": "string",
+      active: true,
+      projectType: { id: 1, name: "string", color: null, group: null },
+      project_type_id: 1,
+      media: [],
+      workZones: [{ name: "string", zone: "string" }],
+      attachments: [{ path: "" }],
+    },
+  ],
+  members: [
+    {
+      id: 1,
+      name: "string",
+      job_title: "string",
+      bio: "string",
+      description: "string",
+      image: "string",
+    },
+  ],
+  file: "string",
 };
 
-export const initialService: ServiceType = {
-  id: 0,
-  name: "Loading...",
-  title: "Loading...",
-  description: "Loading...",
-  link: "Loading...",
-  details: "Loading...",
-  image: "Loading...",
-  category_id: 0,
-  order_id: 0,
-};
-
-export type ServicesType = ServiceType[] | "error" | "loading";
-
-export const { setServices } = servicesSlice.actions;
-export default servicesSlice.reducer;
+export const { setMain } = mainSlice.actions;
+export default mainSlice.reducer;
