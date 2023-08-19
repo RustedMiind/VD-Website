@@ -110,7 +110,11 @@ function Footer() {
                 </div>
                 <div className="section-content">
                   {phones &&
-                    phones.map((phone) => <a href={"tel:" + phone}>{phone}</a>)}
+                    phones.map((phone) => (
+                      <a key={phone} href={"tel:" + phone}>
+                        {phone}
+                      </a>
+                    ))}
                 </div>
               </div>
             </div>
@@ -132,9 +136,9 @@ function Footer() {
             <div className="title">الروابط المهمة</div>
             <div className="section-content">
               <NavLink to={""}>الرئيسية</NavLink>
+              {/* <NavLink to={""}>الرئيسية</NavLink>
               <NavLink to={""}>الرئيسية</NavLink>
-              <NavLink to={""}>الرئيسية</NavLink>
-              <NavLink to={""}>الرئيسية</NavLink>
+              <NavLink to={""}>الرئيسية</NavLink> */}
             </div>
           </div>
           <div className="card-content">
@@ -147,7 +151,7 @@ function Footer() {
             <div className="title">عنواننا</div>
             <div className="section-content max-w-2 adresses">
               {address?.map((item) => (
-                <a target="_blank" href={item.link}>
+                <a target="_blank" href={item.link} key={item.link}>
                   {item.address}
                 </a>
               ))}

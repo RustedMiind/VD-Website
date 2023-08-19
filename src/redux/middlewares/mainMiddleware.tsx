@@ -9,7 +9,7 @@ export function requestSetMain(dispatch: Dispatch<AnyAction>) {
   console.log("Request Called");
   return new Promise((resolve, reject) => {
     axios
-      .post<ApiResponse<MainType>>(api("client/main-page/"))
+      .post<ApiResponse<MainType>>(api("client/main-page"))
       .then((res) => {
         dispatch(setMain({ main: res.data.data }));
         resolve(res.data);

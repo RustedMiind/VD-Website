@@ -1,0 +1,15 @@
+.animate-fade-to-left {
+  animation: animate-fade-to-left 1000ms;
+  // width: 100%;
+  max-width: 100%;
+}
+@keyframes animate-fade-to-left {
+  0% {
+    opacity: 0;
+    // transform: translateX(3rem);
+  }
+  100% {
+    opacity: 1;
+    // transform: translateX(0rem);
+  }
+}

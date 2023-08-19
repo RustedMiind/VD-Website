@@ -10,6 +10,9 @@ import { useContext, useEffect } from "react";
 import Services from "pages/services/Services";
 import ServicePage from "pages/service/Service";
 import Footer from "components/footer/Footer";
+import AboutUs from "pages/about-us/AboutUs";
+import CountUp from "react-countup";
+import ReactVisibilitySensor from "react-visibility-sensor";
 
 function Layout() {
   const { lang } = useContext(LangContext);
@@ -25,6 +28,7 @@ function Layout() {
       <div className="main-view">
         <Routes>
           <Route path="" element={<MainPage />} />
+          <Route path="about" element={<AboutUs />} />
           <Route path="services">
             <Route path="" element={<Services />} />
             <Route path=":serviceId" element={<ServicePage />} />
@@ -35,6 +39,7 @@ function Layout() {
           </Route>
         </Routes>
       </div>
+
       <Footer />
     </div>
   );

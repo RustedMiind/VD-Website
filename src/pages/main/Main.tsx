@@ -6,6 +6,7 @@ import PartnersSection from "./components/partners-section/PartnersSection";
 import ServicesSection from "./components/services-section/ServicesSection";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
+import ScrollAnimation from "react-animate-on-scroll";
 
 function MainPage() {
   const dispatch = useDispatch();
@@ -16,7 +17,9 @@ function MainPage() {
   return (
     <div className="main-page">
       <IntroSection />
+      {/* <ScrollAnimation animateIn="animate-fade-to-left"> */}
       <PartnersSection />
+      {/* </ScrollAnimation> */}
       <ServicesSection />
       <AboutSection />
       <LatestNewsSection />

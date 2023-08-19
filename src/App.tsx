@@ -8,11 +8,15 @@ import { initReactI18next } from "react-i18next";
 import LangContextProvider from "contexts/LangContext";
 import { useDispatch } from "react-redux";
 import { requestSetSettings } from "redux/middlewares/settingsMiddlware";
+import "assets/styles/animate-css.min.css";
+import "assets/styles/custom-onscroll-animations.scss";
 
 axios.defaults.headers.common["from"] = "website";
+// axios.defaults.headers.post["Content-Type"] = "application/json;charset=utf-8";
+// axios.defaults.headers.post["Access-Control-Allow-Origin"] = "*";
 // axios.defaults.headers.common["Access-Control-Allow-Origin"] =
-//   "https://visiondimensions.com/";
-// axios.defaults.withCredentials = true;
+//   "https://visiondimensions.com";
+// axios.defaults.withCredentials = false;
 
 const translationsEn = {
   test: "test",
@@ -33,6 +37,7 @@ const translationsEn = {
     projects: "Projects",
     login: "Login",
     services: "Services",
+    aboutUs: "About Us",
   },
 };
 const translationsAr = {
@@ -54,6 +59,7 @@ const translationsAr = {
     projects: "مشاريعنا",
     login: "تسجيل الدخول",
     services: "خدماتنا",
+    aboutUs: "نبذة عنا",
   },
 };
 

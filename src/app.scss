@@ -10,6 +10,7 @@
   --third-light: #fceed6;
   --font-light: white;
   --bg-lightest: white;
+  --bg-med: #f3f5f7;
   --bg-light: #f5f7fa;
   --bg-light-semi: #f5f7fac7;
   --gray: rgb(175, 175, 175);
@@ -66,6 +67,10 @@ body {
 
 .tight-section {
   width: 65rem;
+  max-width: 100vw;
+}
+.wide-section {
+  width: 100vw;
   max-width: 100vw;
 }
 
@@ -127,6 +132,58 @@ body {
     height: 100%;
     object-fit: cover;
   }
+}
+
+.image-container-16-9 {
+  width: 100%;
+  padding-top: 56.25%;
+  overflow: hidden;
+  position: relative;
+  > img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  border-radius: 0.6rem;
+}
+.image-container-21-9 {
+  border-radius: 0.6rem;
+  width: 100%;
+  padding-top: 42.85%;
+  overflow: hidden;
+  position: relative;
+  > img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+}
+
+.two-paragraphs-container {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: center;
+  > .paragraph {
+    width: 45%;
+    min-width: 10rem;
+    text-align: center;
+  }
+}
+
+.centered-paragraph {
+  text-align: center;
+}
+
+.text-third {
+  color: var(--third);
 }
 
 @include Mobile {

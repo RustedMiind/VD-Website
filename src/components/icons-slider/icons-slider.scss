@@ -1,0 +1,41 @@
+@import "../../sass/_breakpoints.scss";
+
+.partners-wrapper {
+  width: 100%;
+  max-width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  @include Mobile {
+    padding-left: 0;
+    padding-right: 0;
+  }
+}
+
+.swiper-container {
+  // width: 50rem;
+  width: 80%;
+  @include Mobile {
+    width: 30rem;
+  }
+}
+.swiper-slide {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.swiper-item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  width: 6rem;
+  height: 6rem;
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+}
