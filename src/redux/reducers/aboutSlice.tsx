@@ -39,12 +39,14 @@ export interface AboutResType {
   projects: ProjectsEntity[];
   partners: PartnersEntity[];
   settings: KeyValue[];
+  files: FileType[];
 }
 export interface AboutType {
   icons: Icons;
   projects: ProjectsEntity[];
   partners: PartnersEntity[];
   settings: AboutSettings;
+  files: FileType[];
 }
 export interface Icons {
   icons: IconType[];
@@ -72,10 +74,18 @@ export interface AboutSettings {
   about_us: string;
   vision: string;
   goal: string;
-  slogan: string;
+  about_slogan: string;
   about_page_image?: string[] | null;
   files?: string[] | null;
 }
+
+export type FileType = {
+  path: string;
+  size: string;
+  type: string;
+  original_name: string;
+  extension: string;
+};
 
 // export interface AboutType {
 //   about_page_icons: string;

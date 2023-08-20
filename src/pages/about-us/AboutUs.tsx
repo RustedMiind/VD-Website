@@ -13,6 +13,7 @@ import { useEffect } from "react";
 import { requestSetAbout } from "redux/middlewares/aboutMiddleware";
 import { AboutStateType } from "redux/reducers/aboutSlice";
 import storage from "methods/storage";
+import FilesSlider from "components/files-slider/FilesSlider";
 
 function AboutUs() {
   const about: AboutStateType = useSelector(
@@ -113,7 +114,7 @@ function AboutUs() {
         {/* <ReactVisibilitySensor partialVisibility offset={{ bottom: 200 }}>
           {({ isVisible }: { isVisible: boolean }) => (
             <div style={{ height: 100 }}>
-              {isVisible ? <CountUp duration={5} end={1000} /> : 0}
+              {isVisible ? <CountUp duration={3} end={1000} /> : 0}
             </div>
           )}
         </ReactVisibilitySensor> */}
@@ -139,13 +140,13 @@ function AboutUs() {
                     <p>{about.settings.goal}</p>
                   </div>
                 )}
-                {settingsCondition && about.settings.slogan && (
+                {settingsCondition && about.settings.about_slogan && (
                   <div className="card-item">
                     <div className="icon-head">
                       <EyeFill />
                     </div>
                     <h4>الشعار</h4>
-                    <p>{about.settings.slogan}</p>
+                    <p>{about.settings.about_slogan}</p>
                   </div>
                 )}
               </div>
@@ -171,7 +172,7 @@ function AboutUs() {
                   <div className="statistics-container tight-section">
                     <div className="total">
                       <h3>
-                        {isVisible ? <CountUp duration={5} end={1000} /> : 0}
+                        {isVisible ? <CountUp duration={3} end={1000} /> : 0}
                       </h3>
                       <div>اجمالي عدد المشاريع</div>
                     </div>
@@ -184,7 +185,7 @@ function AboutUs() {
                               <div className="count-number">
                                 {isVisible ? (
                                   <CountUp
-                                    duration={5}
+                                    duration={3}
                                     end={parseInt(item.num)}
                                   />
                                 ) : (
@@ -203,7 +204,7 @@ function AboutUs() {
                               <div className="count-number">
                                 {isVisible ? (
                                   <CountUp
-                                    duration={5}
+                                    duration={3}
                                     end={parseInt(item.num)}
                                   />
                                 ) : (
@@ -228,6 +229,12 @@ function AboutUs() {
                 : [""]
             }
           />
+
+          {condition && about.files && about.files[0] && (
+            <div className="files-slider-container">
+              <FilesSlider files={about.files} />
+            </div>
+          )}
         </div>
       </div>
     </PageBannerLayout>

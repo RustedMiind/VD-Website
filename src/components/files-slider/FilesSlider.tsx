@@ -1,4 +1,4 @@
-import "./cards-slider.scss";
+import "./files-slider.scss";
 import { Swiper, SwiperSlide } from "swiper/react";
 import topRightBorder from "assets/images/1.png";
 import bottomLeftBorder from "assets/images/2.png";
@@ -10,15 +10,18 @@ import {
 } from "swiper/modules";
 import { useSelector } from "react-redux";
 import { MainStateType, MembersType } from "redux/reducers/mainSlice";
+import { Download } from "react-bootstrap-icons";
+import { FileType } from "redux/reducers/aboutSlice";
 
 function FilesSlider(props: PropsType) {
   const repeat = (arr: any[], n: number): any[] => Array(n).fill(arr).flat();
-  const { main } = useSelector((state: { main: MainStateType }) => state);
-  const slides = typeof main === "object" ? repeat(main.members, 5) : [];
+  const slides: FileType[] =
+    typeof props.files === "object" ? repeat(props.files, 5) : [];
+  console.log("files ", slides);
 
   return (
     <>
-      {typeof main === "object" && (
+      {typeof slides === "object" && (
         <div className="swiper-custom-files rtl">
           <div className="container">
             <Swiper
@@ -54,51 +57,35 @@ function FilesSlider(props: PropsType) {
               // }}
               className="swiper_container"
             >
-              {slides?.map((member) => (
+              {slides?.map((file) => (
                 <SwiperSlide key={Math.random()}>
-                  {/* <div className="image-container">
-                <img
-                  src={
-                    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTHZAq08u4YaR0Jsu2CgeptdxC74y-9QEeFYEAb6YHP&s"
-                  }
-                  alt="slide_image"
-                />
-              </div> */}
                   <div
                     className="card-content-wrapper"
-                    // style={{ backgroundImage: `url("${bg}")` }}
+                    style={{
+                      backgroundImage: `linear-gradient(259.28deg, #004693 0%, #29285E 100%)`,
+                    }}
                   >
                     <div className="card-content">
-                      <img src={topRightBorder} alt="" className="top-right" />
-                      <img
-                        src={bottomLeftBorder}
-                        alt=""
-                        className="bottom-left"
-                      />
-                      <div className="person-info">
-                        <div className="image">
-                          <div className="image-container">
-                            <img src={member.image} alt="" />
-                          </div>
-                        </div>
-                        <div className="info-container">
-                          <h6 className="name">{member.name}</h6>
-                          <div>{member.job_title}</div>
-                        </div>
+                      <div className="right-side">
+                        <h4>{file.original_name}</h4>
+                        <p>حجم الملف: {file.size}</p>
+                        <p>نوع الملف: {file.extension}</p>
                       </div>
-                      <div className="paragraph">
-                        <ul>{member.description}</ul>
+                      <div className="left-side">
+                        <a
+                          download
+                          href={file.path}
+                          target="_blank"
+                          className="download-link"
+                        >
+                          تحميل الملف
+                          <Download />
+                        </a>
                       </div>
                     </div>
                   </div>
                 </SwiperSlide>
               ))}
-
-              {/* <div className="slider-controler">
-          <div className="swiper-button-prev slider-arrow">left</div>
-          <div className="swiper-button-next slider-arrow">right</div>
-          <div className="swiper-pagination"></div>
-        </div> */}
             </Swiper>
           </div>
         </div>
@@ -108,7 +95,7 @@ function FilesSlider(props: PropsType) {
 }
 
 type PropsType = {
-  // images: AttachmentType[] | undefined;
+  files: FileType[];
 };
 
 export default FilesSlider;
