@@ -7,18 +7,45 @@ import ReactVisibilitySensor from "react-visibility-sensor";
 import ScrollAnimation from "react-animate-on-scroll";
 import IconsSlider from "components/icons-slider/IconsSlider";
 import { Bullseye, EyeFill, RocketTakeoffFill } from "react-bootstrap-icons";
+import PartnersSectionAbout from "./components/partners-section/PartnersSection";
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from "react";
+import { requestSetAbout } from "redux/middlewares/aboutMiddleware";
+import { AboutStateType } from "redux/reducers/aboutSlice";
+import storage from "methods/storage";
+
 function AboutUs() {
+  const about: AboutStateType = useSelector(
+    (state: { about: AboutStateType }) => state.about
+  );
+  const settingsCondition =
+    about && typeof about === "object" && about.settings;
+  const condition = about && typeof about === "object";
   const data: PageBannerDataType = {
-    bgImage: false || "",
+    bgImage:
+      settingsCondition &&
+      about.settings.about_page_image &&
+      about.settings.about_page_image[0]
+        ? storage(about.settings.about_page_image[0])
+        : "",
     title: false || "نبذة عنا",
   };
-
+  const projectsCounts =
+    condition && about.projects
+      ? {
+          top: about.projects.slice(0, 3),
+          bottom: about.projects.slice(3, 6),
+        }
+      : undefined;
+  const dispatch = useDispatch();
+  useEffect(() => {
+    requestSetAbout(dispatch);
+  }, []);
   return (
     <PageBannerLayout data={data}>
       <div className="about-us-page">
         <div className="tight-section">
           <ScrollAnimation animateIn="animate-fade-to-left">
-            {" "}
             {/* {({ isVisible }: { isVisible: boolean }) => ( */}
             <div className="about-us-content">
               <div className="right">
@@ -32,11 +59,17 @@ function AboutUs() {
                   </h4> */}
                 <div className="image-container-16-9">
                   <img
-                    src="https://images.unsplash.com/photo-1584904939065-6864ccc1fcab?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1yZWxhdGVkfDF8fHxlbnwwfHx8fHw%3D&w=1000&q=80"
+                    src={
+                      settingsCondition &&
+                      about.settings.about_page_image &&
+                      about.settings.about_page_image[0]
+                        ? storage(about.settings.about_page_image[0])
+                        : ""
+                    }
                     alt=""
                   />
                 </div>
-                {/* <div className="couners-container">
+                {/* <div className="counters-container">
                   <div className="counter-item">
                     <div className="val">
                       {true ? <CountUp duration={4} end={23} /> : 0}
@@ -47,13 +80,7 @@ function AboutUs() {
               </div>
               <div className="left">
                 <h4 className="text-third">من نحن</h4>
-                <p>
-                  ا النص هو مثال لنص يمكن أن يستبدل في نفس المساحة، لقد تم توليد
-                  هذا النص من مولد النص العربى، حيث يمكنك أن تولد مثل هذا النص
-                  أو العديد من النصوص الأخرى إضافة إلى زيادة عدد الحروف التى
-                  يولدها التطبيق. إذا كنت تحتاج إلى عدد أكبر من الفقرات يتيح لك
-                  مولد النص العربى زيادة عدد الفقرات كما تريد،
-                </p>
+                <p>{settingsCondition && about.settings.about_us}</p>
                 {/* <div className="two-paragraphs-container">
                   <div className="paragraph">
                     <h4 className="text-third">الرؤية</h4>
@@ -94,51 +121,48 @@ function AboutUs() {
           <div className="tight-section">
             <ScrollAnimation animateIn="animate-fade-to-left">
               <div className="three-cards-cotnainer">
-                <div className="card-item">
-                  <div className="icon-head">
-                    <Bullseye />
+                {settingsCondition && about.settings.vision && (
+                  <div className="card-item">
+                    <div className="icon-head">
+                      <Bullseye />
+                    </div>
+                    <h4>الرؤية</h4>
+                    <p>{about.settings.vision}</p>
                   </div>
-                  <h4>الرؤية</h4>
-                  <p>
-                    تولد مثل هذا النص أو العديد منن تولد مثل هذا النص أو العديد
-                    منن تولد مثل هذا النص أو العديد من
-                  </p>
-                </div>
-                <div className="card-item">
-                  <div className="icon-head">
-                    <RocketTakeoffFill />
+                )}
+                {settingsCondition && about.settings.goal && (
+                  <div className="card-item">
+                    <div className="icon-head">
+                      <RocketTakeoffFill />
+                    </div>
+                    <h4>الهدف</h4>
+                    <p>{about.settings.goal}</p>
                   </div>
-                  <h4>الهدف</h4>
-                  <p>
-                    تولد مثل هذا النص أو العديد منن تولد مثل هذا النص أو العديد
-                    منن تولد مثل هذا النص أو العديد من
-                  </p>
-                </div>
-                <div className="card-item">
-                  <div className="icon-head">
-                    <EyeFill />
+                )}
+                {settingsCondition && about.settings.slogan && (
+                  <div className="card-item">
+                    <div className="icon-head">
+                      <EyeFill />
+                    </div>
+                    <h4>الشعار</h4>
+                    <p>{about.settings.slogan}</p>
                   </div>
-                  <h4>الشعار</h4>
-                  <p>
-                    تولد مثل هذا النص أو العديد منن تولد مثل هذا النص أو العديد
-                    منن تولد مثل هذا النص أو العديد من
-                  </p>
-                </div>
+                )}
               </div>
             </ScrollAnimation>
           </div>
-
-          <div className="about-icons-container wide-section">
-            <IconsSlider
-              title="شهاداتنا"
-              className="tight-section"
-              icons={[
-                "https://image.similarpng.com/very-thumbnail/2020/06/logo-pepsi-icon-PNG.png",
-                "https://image.similarpng.com/very-thumbnail/2020/06/logo-pepsi-icon-PNG.png",
-                "https://image.similarpng.com/very-thumbnail/2020/06/logo-pepsi-icon-PNG.png",
-              ]}
-            />
-          </div>
+          {condition &&
+            about.icons &&
+            about.icons.icons &&
+            about.icons.icons[0] && (
+              <div className="about-icons-container wide-section">
+                <IconsSlider
+                  title="شهاداتنا"
+                  className="tight-section"
+                  icons={about.icons.icons?.map((item) => item.logo)}
+                />
+              </div>
+            )}
 
           <div className="bg-container-dark">
             <ScrollAnimation animateIn="animate-fade-to-left">
@@ -153,44 +177,42 @@ function AboutUs() {
                     </div>
                     <div className="counters">
                       <div className="top">
-                        <div className="item">
-                          <div className="count-number">
-                            {isVisible ? <CountUp duration={5} end={245} /> : 0}
-                          </div>
-                          <div>مباني سكنية</div>
-                        </div>
-                        <div className="item">
-                          <div className="count-number">
-                            {isVisible ? <CountUp duration={5} end={23} /> : 0}
-                          </div>
-                          <div>مباني سكنية</div>
-                        </div>
-                        <div className="item">
-                          <div className="count-number">
-                            {isVisible ? <CountUp duration={5} end={4} /> : 0}
-                          </div>
-                          <div>مباني سكنية</div>
-                        </div>
+                        {projectsCounts &&
+                          projectsCounts?.top &&
+                          projectsCounts?.top.map((item) => (
+                            <div className="item">
+                              <div className="count-number">
+                                {isVisible ? (
+                                  <CountUp
+                                    duration={5}
+                                    end={parseInt(item.num)}
+                                  />
+                                ) : (
+                                  0
+                                )}
+                              </div>
+                              <div>{item.name}</div>
+                            </div>
+                          ))}
                       </div>
                       <div className="bottom">
-                        <div className="item">
-                          <div className="count-number">
-                            {isVisible ? <CountUp duration={5} end={800} /> : 0}
-                          </div>
-                          <div>مباني سكنية</div>
-                        </div>
-                        <div className="item">
-                          <div className="count-number">
-                            {isVisible ? <CountUp duration={5} end={143} /> : 0}
-                          </div>
-                          <div>مباني سكنية</div>
-                        </div>
-                        <div className="item">
-                          <div className="count-number">
-                            {isVisible ? <CountUp duration={5} end={22} /> : 0}
-                          </div>
-                          <div>مباني سكنية</div>
-                        </div>
+                        {projectsCounts &&
+                          projectsCounts?.bottom &&
+                          projectsCounts?.bottom.map((item) => (
+                            <div className="item">
+                              <div className="count-number">
+                                {isVisible ? (
+                                  <CountUp
+                                    duration={5}
+                                    end={parseInt(item.num)}
+                                  />
+                                ) : (
+                                  0
+                                )}
+                              </div>
+                              <div>{item.name}</div>
+                            </div>
+                          ))}
                       </div>
                     </div>
                   </div>
@@ -198,6 +220,14 @@ function AboutUs() {
               </ReactVisibilitySensor>
             </ScrollAnimation>
           </div>
+
+          <PartnersSectionAbout
+            icons={
+              condition && about.icons
+                ? about.partners.map((item) => item.logo)
+                : [""]
+            }
+          />
         </div>
       </div>
     </PageBannerLayout>

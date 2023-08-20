@@ -12,7 +12,7 @@ export function requestSetServices(dispatch: Dispatch<AnyAction>) {
   console.log("Services Request Called");
   return new Promise((resolve, reject) => {
     axios
-      .get<ApiResponse<ServiceType[]>>(api("client/services/"))
+      .get<ApiResponse<ServiceType[]>>(api("client/services"))
       .then((res) => {
         dispatch(setServices({ services: res.data.data }));
         resolve(res.data);

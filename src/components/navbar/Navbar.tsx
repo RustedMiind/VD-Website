@@ -36,9 +36,9 @@ function Navbar() {
         <li>
           <NavLink to="/">{t("links.home")}</NavLink>
         </li>
-        <li>
+        {/* <li>
           <NavLink to="/about">{t("links.aboutUs")}</NavLink>
-        </li>
+        </li> */}
         {/* <li>
           <NavLink to="/projects">{t("links.projects")}</NavLink>
         </li>

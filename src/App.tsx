@@ -13,10 +13,13 @@ import "assets/styles/custom-onscroll-animations.scss";
 
 axios.defaults.headers.common["from"] = "website";
 // axios.defaults.headers.post["Content-Type"] = "application/json;charset=utf-8";
+axios.defaults.headers.common["Access-Control-Allow-Origin"] = "*";
+axios.defaults.headers.common["Access-Control-Allow-Methods"] = "*";
 // axios.defaults.headers.post["Access-Control-Allow-Origin"] = "*";
-// axios.defaults.headers.common["Access-Control-Allow-Origin"] =
-//   "https://visiondimensions.com";
-// axios.defaults.withCredentials = false;
+// axios.defaults.headers.post["Access-Control-Allow-Methods"] = "*";
+// axios.defaults.headers.get["Access-Control-Allow-Origin"] = "*";
+// axios.defaults.headers.get["Access-Control-Allow-Methods"] = "*";
+// axios.defaults.withCredentials = true;
 
 const translationsEn = {
   test: "test",

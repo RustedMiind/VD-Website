@@ -1,0 +1,40 @@
+.partners-section-about {
+  padding: 4rem 0;
+  .header {
+    margin-bottom: 2rem;
+  }
+  .partners-icons-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    .row {
+      display: flex;
+      width: fit-content;
+      max-width: 100%;
+      align-items: center;
+      gap: 1.4rem;
+      .icon-item {
+        width: 5rem;
+        height: 5rem;
+        border-radius: 50rem;
+        border: 2px solid var(--third);
+        overflow: hidden;
+        padding: 0.6rem;
+        display: flex;
+        align-items: center;
+        box-shadow: 0px 0px 2rem 0px #f9ca8780;
+
+        justify-content: center;
+        img {
+          display: flex;
+          width: 100%;
+          height: 100%;
+          align-items: center;
+          justify-content: center;
+          object-fit: contain;
+        }
+      }
+    }
+  }
+}
