@@ -232,6 +232,7 @@ function AboutUs() {
 
           {condition && about.files && about.files[0] && (
             <div className="files-slider-container">
+              <h3>اهم الملفات</h3>
               <FilesSlider files={about.files} />
             </div>
           )}

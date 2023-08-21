@@ -172,34 +172,7 @@
   .swiper-pagination .swiper-pagination-bullet-active {
     background: var(--primary);
   }
-  @include Mobile {
-    .container {
-      max-width: 100%;
-      width: 150vw;
-      padding: 0rem 0;
-      margin: 0 auto;
-      overflow: hidden;
-    }
-    .swiper_container {
-      height: 35rem;
 
-      .card-content {
-        flex-direction: column;
-      }
-    }
-    .paragraph {
-      width: 100% !important;
-      overflow: hidden !important;
-      height: 10rem !important;
-      padding: 0 2rem !important;
-    }
-    .person-info {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      width: 100% !important;
-    }
-  }
   .card-content {
     display: flex;
     color: var(--font-light);
@@ -230,6 +203,46 @@
         gap: 0.6rem;
         pointer-events: all;
       }
+    }
+  }
+  @include Mobile {
+    .container {
+      max-width: 100%;
+      width: 150vw;
+      padding: 0rem 0;
+      margin: 0 auto;
+      overflow: hidden;
+    }
+    .swiper_container {
+      height: 35rem;
+
+      .card-content {
+        flex-direction: column;
+      }
+    }
+    .card-content {
+      .left-side,
+      .right-side {
+        width: 100%;
+        height: 50%;
+      }
+      .right-side {
+        display: flex;
+        flex-direction: column;
+        padding-top: 20%;
+      }
+    }
+    .paragraph {
+      width: 100% !important;
+      overflow: hidden !important;
+      height: 10rem !important;
+      padding: 0 2rem !important;
+    }
+    .person-info {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 100% !important;
     }
   }
 }
