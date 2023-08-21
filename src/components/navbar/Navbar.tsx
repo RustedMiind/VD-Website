@@ -18,7 +18,7 @@ function Navbar() {
   const { t } = useTranslation();
   const [navVisibilty, setNavVisibilty] = useState<"show" | "hide">("hide");
   return (
-    <nav className="navbar">
+    <nav className="navbar tight-section">
       <button
         className="menu-btn"
         onClick={() => {
@@ -39,10 +39,10 @@ function Navbar() {
         <li>
           <NavLink to="/about">{t("links.aboutUs")}</NavLink>
         </li>
-        {/* <li>
+        <li>
           <NavLink to="/projects">{t("links.projects")}</NavLink>
         </li>
-        <li>
+        {/* <li>
           <NavLink to="/services">{t("links.services")}</NavLink>
         </li> */}
 

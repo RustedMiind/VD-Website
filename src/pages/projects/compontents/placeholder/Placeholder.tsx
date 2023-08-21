@@ -7,6 +7,8 @@ function PlaceHolder() {
       <PlaceholderCard />
       <PlaceholderCard />
       <PlaceholderCard />
+      <PlaceholderCard />
+      <PlaceholderCard />
     </div>
   );
 }

@@ -34,7 +34,7 @@ function TrippleSlider(props: PropsType) {
             }, 1000);
             console.log(swiper);
           }}
-          slidesPerView={2}
+          slidesPerView={2.2}
           coverflowEffect={{
             rotate: 0,
             stretch: 0,

@@ -2,6 +2,7 @@ import "./navbars-container.scss";
 import Navbar from "components/navbar/Navbar";
 import TopNavbar from "components/top-navbar/TopNavbar";
 import { useEffect, useState } from "react";
+import { ArrowUpCircle, ArrowUpCircleFill } from "react-bootstrap-icons";
 
 function NavbarContainers() {
   const [navClass, setNavClass] = useState<NavClassesType>("");
@@ -14,8 +15,18 @@ function NavbarContainers() {
     <div className={"navbars-container " + navClass + navClass2}>
       <TopNavbar />
       <Navbar />
+      <div className="scroll-to-top" id="ScrollToTop" onClick={scrollToTop}>
+        <ArrowUpCircleFill />
+      </div>
     </div>
   );
+
+  function scrollToTop() {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  }
   function topNavbarHandler() {
     const BREAK_POINT = 100;
     const BREAK_POINT2 = window.innerHeight;

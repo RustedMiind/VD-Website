@@ -15,10 +15,13 @@ function ProjectCard({ project }: PropsType) {
   return (
     <div
       className="project-card"
-      style={{
-        backgroundImage: `url("${project["main-image"]}")`,
-      }}
+      // style={{
+      //   backgroundImage: `url("${project["main-image"]}")`,
+      // }}
     >
+      <div className="card-image">
+        <img src={project["main-image"]} alt="" />
+      </div>
       <div className="info" style={{ backgroundImage: `url("${wave}")` }}>
         <div className="name">{project.name}</div>
         <NavLink className="link-with-arrow" to={project.id.toString()}>

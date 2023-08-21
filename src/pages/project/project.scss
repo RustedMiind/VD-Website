@@ -1,6 +1,6 @@
-.project-page {
-  // font-size: 3rem;
+@import "../../sass/breakpoints";
 
+.project-page {
   .work-areas-container {
     display: flex;
     flex-direction: column;
@@ -27,6 +27,36 @@
         padding: 0.8rem;
         width: calc(100% - 11rem);
         background: var(--bg-light);
+      }
+    }
+    @include Mobile {
+      .work-area-card {
+        gap: 1rem;
+        display: flex;
+        flex-direction: column;
+        height: fit-content;
+        background-color: var(--bg-light);
+        padding: 1.6rem 1rem;
+        .title,
+        .content {
+          height: fit-content;
+          border-radius: 0.6rem;
+          max-height: 15rem;
+        }
+        .title {
+          width: fit-content;
+          padding: 0;
+          height: fit-content;
+          text-align: start;
+          background: transparent;
+          font-weight: 800;
+          font-size: 1.1em;
+        }
+        .content {
+          padding: 0;
+          width: calc(100%);
+          background: transparent;
+        }
       }
     }
   }

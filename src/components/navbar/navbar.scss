@@ -7,7 +7,7 @@ nav.navbar {
   margin-top: 2rem;
   border-radius: 0.3rem;
   flex-wrap: wrap;
-  width: 80%;
+  max-width: calc(100% - 2rem);
   padding: 1.2rem 4rem;
   background: var(--bg-light-semi);
   gap: 1rem;
@@ -64,6 +64,7 @@ nav.navbar {
 
   @include Mobile {
     width: 100%;
+    max-width: 100%;
     margin: 0;
     border-radius: 0;
     background-color: var(--bg-light);
@@ -99,6 +100,9 @@ nav.navbar {
         left: 0;
       }
     }
+  }
+  .navbar {
+    padding: 0.4rem;
   }
 }
 

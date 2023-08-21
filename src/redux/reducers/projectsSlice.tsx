@@ -2,10 +2,12 @@ import { createSlice } from "@reduxjs/toolkit";
 
 export interface projectsStateType {
   projects: ProjectsType;
+  projectTypes: ProjectTypeType[];
 }
 
 const initialState: projectsStateType = {
   projects: "loading",
+  projectTypes: [],
 };
 
 export const projectsSlice = createSlice({
@@ -17,7 +19,7 @@ export const projectsSlice = createSlice({
       return action.payload.projects;
     },
     setProjectsError: (state) => {
-      return { projects: "error" };
+      return { ...state, projects: "error" };
     },
   },
 });

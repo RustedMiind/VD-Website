@@ -9,7 +9,7 @@ import IconsSlider from "components/icons-slider/IconsSlider";
 import { Bullseye, EyeFill, RocketTakeoffFill } from "react-bootstrap-icons";
 import PartnersSectionAbout from "./components/partners-section/PartnersSection";
 import { useDispatch, useSelector } from "react-redux";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { requestSetAbout } from "redux/middlewares/aboutMiddleware";
 import { AboutStateType } from "redux/reducers/aboutSlice";
 import storage from "methods/storage";
@@ -31,6 +31,7 @@ function AboutUs() {
         : "",
     title: false || "نبذة عنا",
   };
+  const [counterRan, setCounterRan] = useState(false);
   const projectsCounts =
     condition && about.projects
       ? {
@@ -58,7 +59,7 @@ function AboutUs() {
                     </span>
                     مشروع
                   </h4> */}
-                <div className="image-container-16-9">
+                <div className="image-container-21-9">
                   <img
                     src={
                       settingsCondition &&
@@ -168,56 +169,60 @@ function AboutUs() {
           <div className="bg-container-dark">
             <ScrollAnimation animateIn="animate-fade-to-left">
               <ReactVisibilitySensor partialVisibility offset={{ bottom: 200 }}>
-                {({ isVisible }: { isVisible: boolean }) => (
-                  <div className="statistics-container tight-section">
-                    <div className="total">
-                      <h3>
-                        {isVisible ? <CountUp duration={3} end={1000} /> : 0}
-                      </h3>
-                      <div>اجمالي عدد المشاريع</div>
-                    </div>
-                    <div className="counters">
-                      <div className="top">
-                        {projectsCounts &&
-                          projectsCounts?.top &&
-                          projectsCounts?.top.map((item) => (
-                            <div className="item">
-                              <div className="count-number">
-                                {isVisible ? (
-                                  <CountUp
-                                    duration={3}
-                                    end={parseInt(item.num)}
-                                  />
-                                ) : (
-                                  0
-                                )}
-                              </div>
-                              <div>{item.name}</div>
-                            </div>
-                          ))}
+                {({ isVisible }: { isVisible: boolean }) => {
+                  isVisible && setCounterRan(true);
+
+                  return (
+                    <div className="statistics-container tight-section">
+                      <div className="total">
+                        <h3>
+                          {counterRan ? <CountUp duration={3} end={1000} /> : 0}
+                        </h3>
+                        <div>اجمالي عدد المشاريع</div>
                       </div>
-                      <div className="bottom">
-                        {projectsCounts &&
-                          projectsCounts?.bottom &&
-                          projectsCounts?.bottom.map((item) => (
-                            <div className="item">
-                              <div className="count-number">
-                                {isVisible ? (
-                                  <CountUp
-                                    duration={3}
-                                    end={parseInt(item.num)}
-                                  />
-                                ) : (
-                                  0
-                                )}
+                      <div className="counters">
+                        <div className="top">
+                          {projectsCounts &&
+                            projectsCounts?.top &&
+                            projectsCounts?.top.map((item) => (
+                              <div className="item">
+                                <div className="count-number">
+                                  {counterRan ? (
+                                    <CountUp
+                                      duration={3}
+                                      end={parseInt(item.num)}
+                                    />
+                                  ) : (
+                                    0
+                                  )}
+                                </div>
+                                <div>{item.name}</div>
                               </div>
-                              <div>{item.name}</div>
-                            </div>
-                          ))}
+                            ))}
+                        </div>
+                        <div className="bottom">
+                          {projectsCounts &&
+                            projectsCounts?.bottom &&
+                            projectsCounts?.bottom.map((item) => (
+                              <div className="item">
+                                <div className="count-number">
+                                  {counterRan ? (
+                                    <CountUp
+                                      duration={3}
+                                      end={parseInt(item.num)}
+                                    />
+                                  ) : (
+                                    0
+                                  )}
+                                </div>
+                                <div>{item.name}</div>
+                              </div>
+                            ))}
+                        </div>
                       </div>
                     </div>
-                  </div>
-                )}
+                  );
+                }}
               </ReactVisibilitySensor>
             </ScrollAnimation>
           </div>

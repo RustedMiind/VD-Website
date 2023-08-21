@@ -22,7 +22,7 @@ function FilesSlider(props: PropsType) {
   return (
     <>
       {typeof slides === "object" && (
-        <div className="swiper-custom-files rtl">
+        <div className="swiper-custom-files tight-section rtl">
           <div className="container">
             <Swiper
               modules={[EffectCoverflow, Pagination, Navigation, Autoplay]}

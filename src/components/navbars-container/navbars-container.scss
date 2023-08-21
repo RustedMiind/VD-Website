@@ -1,7 +1,7 @@
 @import "../../sass/breakpoints";
 
 .navbars-container {
-  position: fixed;
+  position: absolute;
   top: 0;
   left: 0;
   width: 100%;
@@ -15,9 +15,43 @@
   * {
     pointer-events: all;
   }
+  .scroll-to-top {
+    opacity: 0;
+    pointer-events: none;
+    font-size: 2.6rem;
+    width: fit-content;
+    border-radius: 300rem;
+    border: 2px solid var(--main);
+    background-color: var(--main);
+    color: var(--font-light);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    bottom: 0rem;
+    left: 2rem;
+    cursor: pointer;
+    transition: 150ms;
+  }
 
   &.hide-top {
-    margin-top: calc(var(--top-navbar-height) * -1);
+    // margin-top: calc(var(--top-navbar-height) * -1);
+  }
+
+  &.expand-nav {
+    .scroll-to-top {
+      opacity: 0.5;
+      pointer-events: all;
+      bottom: 3rem;
+      &:hover {
+        opacity: 1;
+        background-color: var(--font-light);
+        color: var(--main);
+        border-color: var(--font-light);
+        box-shadow: 0 0 0.8rem var(--main);
+        transform: scale(1.1);
+      }
+    }
   }
   @include Mobile {
     // display: none;

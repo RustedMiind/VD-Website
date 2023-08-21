@@ -18,13 +18,13 @@
 }
 
 .services-cards-container {
-  gap: 4rem;
+  gap: 3rem;
   width: 100%;
   display: flex;
   justify-content: space-around;
   margin-top: 4rem;
   flex-wrap: wrap;
-
+  margin-bottom: 2rem;
   @include Mobile {
     gap: 1rem;
   }
@@ -70,8 +70,8 @@
 }
 
 .service-card-main-page {
-  width: 25rem;
-  margin: 1rem;
+  width: calc(50% - 1.5rem);
+  // margin: 1rem;
   margin-top: -2rem;
   display: flex;
   flex-direction: column;
@@ -101,12 +101,13 @@
   &:nth-of-type(2n) {
     margin-top: 2rem;
   }
-  @include Mobile {
-    margin: 0;
-    padding: 1rem;
-  }
   &.loading {
     opacity: 0;
     transform: translateX(5rem);
+  }
+  @include Mobile {
+    margin: 0;
+    width: 100%;
+    padding: 1rem;
   }
 }

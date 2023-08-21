@@ -39,7 +39,7 @@ function AboutSection() {
                 rel="noreferrer"
               >
                 <Download />
-                تحميل الهيكل التنظيمي
+                تحميل الملف التعريفي
               </a>
             )}
           </div>

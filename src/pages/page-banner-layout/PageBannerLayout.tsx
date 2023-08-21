@@ -14,7 +14,7 @@ function PageBannerLayout({ data, children }: PropsType) {
           <h2>{data.title}</h2>
         </div>
       </div>
-      {data.search && (
+      {/* {data.search && (
         <div className="filter-container">
           <div className={`search-bar ${data.filter && "with-filter"}`}>
             <input type="text" placeholder="بحث" />
@@ -22,7 +22,7 @@ function PageBannerLayout({ data, children }: PropsType) {
           </div>
           {data.filter && <button className="filter-btn">فلتر</button>}
         </div>
-      )}
+      )} */}
       <div className="content">{children}</div>
     </div>
   );

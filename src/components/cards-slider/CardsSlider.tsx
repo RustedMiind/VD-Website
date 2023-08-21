@@ -23,7 +23,7 @@ function CardsSlider(props: PropsType) {
   return (
     <>
       {typeof main === "object" && (
-        <div className="swiper-custom-cards rtl">
+        <div className="swiper-custom-cards tight-section rtl">
           <div className="container">
             <Swiper
               modules={[EffectCoverflow, Pagination, Navigation, Autoplay]}
