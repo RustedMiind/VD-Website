@@ -33,7 +33,8 @@ function Projects() {
     projects.projects.length
       ? projects.projects.filter((project) => {
           return (
-            (search === "" || project.name.includes(search)) &&
+            (search === "" ||
+              project.name.toLowerCase().includes(search.toLowerCase())) &&
             (type === "" || project.projectType.id.toString() === type)
           );
         })

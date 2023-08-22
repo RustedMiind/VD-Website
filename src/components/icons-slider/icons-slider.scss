@@ -1,4 +1,5 @@
 @import "../../sass/_breakpoints.scss";
+@import "../../sass/effects";
 
 .partners-wrapper {
   width: 100%;
@@ -33,6 +34,7 @@
   width: 100%;
   width: 6rem;
   height: 6rem;
+  @include ScaleHover;
   img {
     width: 100%;
     height: 100%;

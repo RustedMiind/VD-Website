@@ -10,8 +10,9 @@ import { useDispatch } from "react-redux";
 import { requestSetSettings } from "redux/middlewares/settingsMiddlware";
 import "assets/styles/animate-css.min.css";
 import "assets/styles/custom-onscroll-animations.scss";
-
+import {} from "react-animate-on-scroll";
 axios.defaults.headers.common["from"] = "website";
+axios.defaults.headers.common["lang"] = "ar";
 // axios.defaults.headers.post["Content-Type"] = "application/json;charset=utf-8";
 axios.defaults.headers.common["Access-Control-Allow-Origin"] = "*";
 axios.defaults.headers.common["Access-Control-Allow-Methods"] = "*";

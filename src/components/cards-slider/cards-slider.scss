@@ -1,6 +1,11 @@
 @import "../../sass/breakpoints";
+@import "../../sass/effects";
 
 .swiper-custom-cards {
+  @include Mobile {
+    width: 150vw;
+    max-width: none !important;
+  }
   .container {
     max-width: 100%;
     width: 100%;
@@ -27,6 +32,7 @@
     position: relative;
     overflow: hidden;
     box-shadow: 0 0 1rem var(--main-shadow);
+    // @include ScaleHoverSm;
   }
 
   .card-content-wrapper {

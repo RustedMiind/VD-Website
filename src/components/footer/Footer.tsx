@@ -21,6 +21,14 @@ function Footer() {
   const phones = getvalue("phones") as undefined | string[];
   const name = getvalue("name") as undefined | string;
   const slogan = getvalue("slogan") as undefined | string;
+  const footer = getvalue("footer") as undefined | string;
+  const whatsapp = getvalue("whatsapp") as undefined | [string];
+  const apps = getvalue("apps") as
+    | undefined
+    | {
+        app_store_link: string;
+        play_store_link: string;
+      };
   const address = getvalue("address") as
     | undefined
     | {
@@ -76,7 +84,9 @@ function Footer() {
                 </div>
                 <div className="small-title-content">
                   <div className="small-title">متوفر علي </div>
-                  <a href="">متجر بلاي ستور</a>
+                  <a target="_blank" href={apps?.play_store_link}>
+                    متجر بلاي ستور
+                  </a>
                 </div>
               </div>
               <div className="icon-with-data">
@@ -96,7 +106,9 @@ function Footer() {
                 </div>
                 <div className="small-title-content">
                   <div className="small-title">متوفر علي </div>
-                  <a href="">متجر بلاي ستور</a>
+                  <a target="_blank" href={apps?.app_store_link}>
+                    متجر اب ستور
+                  </a>
                 </div>
               </div>
             </div>
@@ -136,15 +148,14 @@ function Footer() {
             <div className="title">الروابط المهمة</div>
             <div className="section-content">
               <NavLink to={""}>الرئيسية</NavLink>
-              {/* <NavLink to={""}>الرئيسية</NavLink>
-              <NavLink to={""}>الرئيسية</NavLink>
-              <NavLink to={""}>الرئيسية</NavLink> */}
+              <NavLink to={"/projects"}>مشاريعنا</NavLink>
+              <NavLink to={"/about"}>نبذة عنا</NavLink>
             </div>
           </div>
           <div className="card-content">
             <div className="title">{`${name} ${slogan}`}</div>
             <div className="section-content max-w-4">
-              <p>هذا النص هو مثال لنص يمكن أن يستبدل في نفس المساحة.</p>
+              <p>{footer && footer}</p>
             </div>
           </div>
           <div className="card-content">
@@ -160,9 +171,11 @@ function Footer() {
           <div className="card-content link-icons">
             <div className="title">التواصل</div>
             <div className="section-content">
-              <a target="_blank" href="#">
-                <Whatsapp />
-              </a>
+              {whatsapp && whatsapp[0] && (
+                <a target="_blank" href={"https://wa.me/" + whatsapp[0]}>
+                  <Whatsapp />
+                </a>
+              )}
               {social && social.instagram && (
                 <a target="_blank" href={social.instagram}>
                   <Instagram />

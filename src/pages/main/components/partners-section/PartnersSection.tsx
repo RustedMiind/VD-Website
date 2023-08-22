@@ -14,15 +14,17 @@ function PartnersSection() {
     typeof main === "object" ? repeat(main.icons.icons, 6) : [{ path: "" }];
   return (
     <div className="partners-section">
-      {typeof main === "object" &&
-        main.icons &&
-        main.icons.type &&
-        main.icons.icons && (
-          <IconsSlider
-            icons={main.icons.icons.map((icon) => icon.logo)}
-            title={main.icons.type}
-          />
-        )}
+      <div className="tight-section">
+        {typeof main === "object" &&
+          main.icons &&
+          main.icons.type &&
+          main.icons.icons && (
+            <IconsSlider
+              icons={main.icons.icons.map((icon) => icon.logo)}
+              title={main.icons.type}
+            />
+          )}
+      </div>
     </div>
   );
 }

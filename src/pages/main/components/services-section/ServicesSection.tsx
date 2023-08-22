@@ -1,6 +1,8 @@
 import "./services-section.scss";
 import { useState, useEffect } from "react";
 import topShape from "assets/images/services-header2.png";
+import topRightShape from "assets/images/home-vector-right.png";
+import medLedtShape from "assets/images/home-vector-left.png";
 import { ServiceType, initialService } from "redux/reducers/servicesSlice";
 import ServicesSectionCard from "./ServicesSectionCard";
 import { setInterval } from "timers";
@@ -53,6 +55,8 @@ function ServicesSection() {
   return (
     <div className="services-section">
       <img src={topShape} className="top-shape" />
+      <img src={topRightShape} className="top-right-shape" />
+      <img src={medLedtShape} className="med-left-shape" />
       {/* <div
         className="top-shape"
         style={{ backgroundImage: `url(${topShape})` }}

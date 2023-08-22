@@ -28,6 +28,7 @@ export type MainType =
       projects: ProjectType[];
       members: MembersType;
       file: string;
+      main_description: string;
     };
 
 export type IconsType = {
@@ -63,6 +64,7 @@ export const initialService: MainType = {
     ],
     type: "string",
   },
+  main_description: "string",
   services: [],
   projects: [
     {

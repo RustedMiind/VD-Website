@@ -25,7 +25,15 @@ export type SettingValueType =
       }[]
     >
   | kv<"logo", [string]>
-  | kv<"name", [string]>;
+  | kv<"name", [string]>
+  | kv<"footer", string>
+  | kv<
+      "apps",
+      {
+        app_store_link: string;
+        play_store_link: string;
+      }
+    >;
 
 export function getValueByKey(arr: SettingValueType[] | undefined) {
   console.log("arr ----", arr, typeof arr);

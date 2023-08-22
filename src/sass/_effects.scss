@@ -1,0 +1,25 @@
+@mixin effectOnHover {
+  transition: var(--main-transition);
+  &:hover {
+    @content;
+  }
+}
+
+@mixin ScaleHoverLg {
+  @include effectOnHover {
+    transform: scale(1.25);
+    @content;
+  }
+}
+@mixin ScaleHover {
+  @include effectOnHover {
+    transform: scale(1.15);
+    @content;
+  }
+}
+@mixin ScaleHoverSm {
+  @include effectOnHover {
+    transform: scale(1.07);
+    @content;
+  }
+}

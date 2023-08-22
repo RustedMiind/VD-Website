@@ -1,11 +1,14 @@
 @import "../../../../sass/breakpoints";
+@import "../../../../sass/effects";
 
 .latest-news-section {
-  padding: 4rem;
+  padding-top: 4rem;
+  padding-bottom: 4rem;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  width: 100%;
   min-height: 60vh;
   background-color: rgba(255, 255, 255, 0.8);
   .content-container {
@@ -31,28 +34,30 @@
     .section-title {
       margin-bottom: 2rem;
     }
-    width: 60rem;
-    max-width: 100%;
+    // width: 100%;
+    // max-width: 100%;
     .content {
       display: flex;
+      width: 100%;
       gap: 5rem;
       .image {
-        width: 25rem;
-        height: 15rem;
+        width: 50%;
+        // height: 15rem;
         border-radius: 0.6rem;
         display: flex;
         align-items: center;
         justify-content: center;
         overflow: hidden;
-        img {
-          width: 100%;
-          height: 100%;
-          object-fit: cover;
-        }
+        @include ScaleHoverSm;
+        // img {
+        //   width: 100%;
+        //   height: 100%;
+        //   object-fit: cover;
+        // }
       }
     }
     .describtion-card {
-      width: 25rem;
+      width: 50%;
       position: relative;
       overflow: hidden;
     }
@@ -74,9 +79,6 @@
       transition: 150ms;
       margin-top: 0.8rem;
       &:hover {
-        // color: var(--third);
-        // border-color: var(--third);
-        // background-color: var(--font-light);
         gap: 0.8rem;
       }
     }

@@ -10,7 +10,7 @@ function ServicesSectionCard(props: PropsType) {
       setTimeout(() => {
         setIndex({ state: "ok", value: props.index });
       }, 500);
-    }, Math.floor(Math.random() * 500));
+    }, Math.floor(500));
   }, [props.index, props.services]);
   return (
     <div
@@ -20,7 +20,9 @@ function ServicesSectionCard(props: PropsType) {
     >
       <h5 className="title">{service.name}</h5>
       <p className="describtion">{service.description}</p>
-      <img src={service.image} alt="" className="service-image" />
+      <div className="image-container-21-9 hover-image">
+        <img src={service.image} alt="" />
+      </div>
     </div>
   );
 }

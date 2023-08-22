@@ -1,10 +1,12 @@
 @import "sass/breakpoints";
 :root {
+  --main: #292283;
   --main: #004693;
   --main-sec: #292283;
   --main-overlay: #35337d66;
   --main-shadow: #2821824b;
   --main-shadow-light: #2821821a;
+  --main-transition: 200ms ease-out;
   --third: #f19b02;
   --third-sec: #f9cb8b;
   --third-light: #fceed6;
@@ -31,8 +33,8 @@
   border-radius: 1rem;
 }
 
-body::-webkit-scrollbar,
-html::-webkit-scrollbar,
+// body::-webkit-scrollbar,
+// html::-webkit-scrollbar,
 .table-container::-webkit-scrollbar,
 .table::-webkit-scrollbar {
   display: none;
@@ -104,6 +106,26 @@ body {
     gap: 2rem;
     // width: 11rem;
     box-shadow: 0 0 0.8rem var(--third);
+    color: var(--font-light);
+    background-color: var(--third);
+  }
+}
+.icon-text {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4em;
+}
+.icon-text-hover {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4em;
+  padding: 0.4rem 0.8rem;
+  border-radius: 100rem;
+  transition: 200ms;
+  &:hover {
+    gap: 0.8rem;
     color: var(--font-light);
     background-color: var(--third);
   }

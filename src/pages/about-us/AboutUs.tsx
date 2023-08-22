@@ -14,6 +14,7 @@ import { requestSetAbout } from "redux/middlewares/aboutMiddleware";
 import { AboutStateType } from "redux/reducers/aboutSlice";
 import storage from "methods/storage";
 import FilesSlider from "components/files-slider/FilesSlider";
+import { sum, sumByKey } from "methods/sumByKey";
 
 function AboutUs() {
   const about: AboutStateType = useSelector(
@@ -176,7 +177,19 @@ function AboutUs() {
                     <div className="statistics-container tight-section">
                       <div className="total">
                         <h3>
-                          {counterRan ? <CountUp duration={3} end={1000} /> : 0}
+                          {projectsCounts &&
+                          typeof about === "object" &&
+                          about.projects &&
+                          counterRan ? (
+                            <CountUp
+                              duration={3}
+                              end={sum(
+                                about.projects.map((item) => parseInt(item.num))
+                              )}
+                            />
+                          ) : (
+                            0
+                          )}
                         </h3>
                         <div>اجمالي عدد المشاريع</div>
                       </div>

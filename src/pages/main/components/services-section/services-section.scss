@@ -1,4 +1,5 @@
 @import "../../../../sass/breakpoints";
+@import "../../../../sass/effects";
 
 .services-section {
   // background-color: var(--bg-lightest);
@@ -65,8 +66,26 @@
   position: absolute;
   bottom: calc(100% - 5rem);
   left: 0;
-  z-index: -1;
+  z-index: -2;
   background-size: 100% 100%;
+}
+.top-right-shape {
+  max-width: 50vw;
+  object-fit: contain;
+  position: absolute;
+  bottom: calc(80% - 5rem);
+  // transform: scale(-1, 1);
+  right: 0;
+  z-index: -1;
+}
+.med-left-shape {
+  max-width: 40vw;
+  object-fit: contain;
+  position: absolute;
+  top: calc(50%);
+  // transform: scale(-1, 1);
+  left: 0;
+  z-index: -2;
 }
 
 .service-card-main-page {
@@ -82,6 +101,7 @@
     width: fit-content;
     padding: 0.6rem 0.4rem;
     background: linear-gradient(270deg, #f19b02 0%, rgba(241, 155, 2, 0) 70%);
+    @include ScaleHover;
   }
   .describtion {
     width: 100%;
@@ -96,6 +116,13 @@
     overflow: hidden;
     border-radius: 0.8rem;
     box-shadow: 0.2rem 0.2rem 0.4rem var(--main-shadow);
+    &,
+    * {
+      @include ScaleHoverSm;
+    }
+  }
+  .hover-image {
+    @include ScaleHoverSm;
   }
 
   &:nth-of-type(2n) {

@@ -26,11 +26,13 @@ function LatestNewsSection() {
           }}
         >
           <div className="latest-news-section">
-            <div className="content-container">
+            <div className="content-container  tight-section">
               <h2 className="section-title">أهم المشاريع</h2>
               <div className="content">
                 <div className="image">
-                  <img src={lastProject["main-image"]} alt="" />
+                  <div className="image-container-16-9">
+                    <img src={lastProject["main-image"]} alt="" />
+                  </div>
                 </div>
                 <div className="describtion-card">
                   <h3 className="news-title">

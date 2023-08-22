@@ -19,7 +19,7 @@ type PropsType = {
 
 function PartnersIconsContainer(props: PropsType) {
   console.log("called");
-  const template = [1, 2, 3, 4, 5, 5, 4, 3, 2, 1];
+  const template = [2, 4, 4, 5, 5, 4, 3, 2, 2, 4, 4, 5, 5];
   const data = props.icons;
   const theGrid = arrToTemplate<string>(data, template);
   return (

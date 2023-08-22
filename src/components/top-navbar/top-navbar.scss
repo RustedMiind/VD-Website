@@ -20,6 +20,9 @@
   overflow: hidden;
   height: var(--top-navbar-height);
   background: var(--bg-light);
+  @include Tablet {
+    padding: 0 2rem;
+  }
   .nav-item {
     display: flex;
     align-items: center;
@@ -36,6 +39,7 @@
     }
     .title {
       color: var(--main);
+      font-weight: 900;
     }
     .value {
       color: var(--third);

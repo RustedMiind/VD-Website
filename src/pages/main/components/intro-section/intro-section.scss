@@ -1,4 +1,5 @@
 @import "../../../../sass/breakpoints";
+@import "../../../../sass/effects";
 
 .intro-section {
   width: 100%;
@@ -50,6 +51,34 @@
           display: none;
         }
       }
+    }
+  }
+  .intro-small-card {
+    width: 22rem;
+    padding: 1rem;
+    border-radius: 0.6rem;
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: end;
+    max-height: 25rem;
+    overflow-x: hidden;
+    overflow-y: auto;
+    left: 4rem;
+    bottom: 4rem;
+    background-color: var(--bg-light-semi);
+    p {
+      width: 100%;
+    }
+    a {
+      // padding: 1rem 0;
+      svg {
+        font-size: 1.2em;
+      }
+    }
+    @include ScaleHover;
+    @include Mobile {
+      display: none;
     }
   }
   @include Mobile {
