@@ -34,12 +34,7 @@ function AboutUs() {
   };
   const [counterRan, setCounterRan] = useState(false);
   const projectsCounts =
-    condition && about.projects
-      ? {
-          top: about.projects.slice(0, 3),
-          bottom: about.projects.slice(3, 6),
-        }
-      : undefined;
+    condition && about.projects ? about.projects : undefined;
   const dispatch = useDispatch();
   useEffect(() => {
     requestSetAbout(dispatch);
@@ -193,44 +188,19 @@ function AboutUs() {
                         </h3>
                         <div>اجمالي عدد المشاريع</div>
                       </div>
-                      <div className="counters">
-                        <div className="top">
-                          {projectsCounts &&
-                            projectsCounts?.top &&
-                            projectsCounts?.top.map((item) => (
-                              <div className="item">
-                                <div className="count-number">
-                                  {counterRan ? (
-                                    <CountUp
-                                      duration={3}
-                                      end={parseInt(item.num)}
-                                    />
-                                  ) : (
-                                    0
-                                  )}
+                      <div className="padding-2">
+                        <div className="border-wrapper">
+                          <div className="counters">
+                            {projectsCounts &&
+                              projectsCounts.map((projectcount) => (
+                                <div className="item">
+                                  <div className="count-number">
+                                    {projectcount.num}
+                                  </div>
+                                  <div>{projectcount.name}</div>
                                 </div>
-                                <div>{item.name}</div>
-                              </div>
-                            ))}
-                        </div>
-                        <div className="bottom">
-                          {projectsCounts &&
-                            projectsCounts?.bottom &&
-                            projectsCounts?.bottom.map((item) => (
-                              <div className="item">
-                                <div className="count-number">
-                                  {counterRan ? (
-                                    <CountUp
-                                      duration={3}
-                                      end={parseInt(item.num)}
-                                    />
-                                  ) : (
-                                    0
-                                  )}
-                                </div>
-                                <div>{item.name}</div>
-                              </div>
-                            ))}
+                              ))}
+                          </div>
                         </div>
                       </div>
                     </div>

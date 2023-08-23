@@ -90,7 +90,7 @@
     align-items: center;
     justify-content: center;
     text-align: center;
-    height: 28rem;
+    // height: 28rem;
     padding: 6rem 2rem;
     // width: 100%;
     color: var(--font-light);
@@ -98,18 +98,30 @@
     .counters {
       display: flex;
       align-items: center;
-      justify-content: center;
-      flex-direction: column;
+      // justify-content: space-between;
+      // flex-direction: column;
+      flex-wrap: wrap;
       height: 100%;
-      padding: 0.8rem;
+      // padding: 0.8rem;
     }
     .total {
       width: 25%;
       height: 100%;
+      flex-direction: column;
+      justify-content: center;
       @include ScaleHoverLg;
     }
+    .border-wrapper {
+      overflow: hidden;
+    }
     .counters {
-      width: 75%;
+      width: 100%;
+
+      transform: scale(1.02);
+      transform-origin: right;
+      @include Mobile {
+        transform-origin: top;
+      }
       .top,
       .bottom {
         width: 100%;
@@ -124,7 +136,7 @@
           align-items: center;
           gap: 1rem;
           padding: 0.6rem;
-          border: 1px solid var(--third);
+          border: 2px solid var(--third);
           .count-number {
             @include ScaleHoverLg;
             color: var(--third);
@@ -135,40 +147,44 @@
           }
         }
       }
-      .top > .item {
-        border-top-color: transparent;
-        &:last-of-type {
-          border-left-color: transparent;
-        }
-      }
-      .bottom > .item {
-        border-bottom-color: transparent;
-        &:last-of-type {
-          border-left-color: transparent;
+      .item {
+        width: 33.33%;
+        height: 6rem;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        // gap: 0.4rem;
+        padding: 0.6rem;
+        border: 1px solid var(--third);
+        .count-number {
+          @include ScaleHoverLg;
+          color: var(--third);
+          font-size: 1.2rem;
+          &::after {
+            content: "+";
+          }
         }
       }
     }
     @include Mobile {
       flex-direction: column;
       height: fit-content;
-      .total {
-        height: 25%;
-        width: 100%;
-      }
-      .counters {
-        width: 100%;
-        height: 18rem;
-        .top,
-        .bottom {
-          .item {
-            border-color: var(--third);
-            border-bottom-color: transparent;
-            &:first-of-type {
-              border-right-color: transparent;
-            }
-          }
-        }
-      }
+      // .total {
+      //   height: 25%;
+      //   width: 100%;
+      // }
+      // .counters {
+      //   width: 100%;
+      //   height: 18rem;
+      //   .item {
+      //     border-color: var(--third);
+      //     border-bottom-color: transparent;
+      //     &:first-of-type {
+      //       border-right-color: transparent;
+      //     }
+      //   }
+      // }
     }
   }
   .three-cards-cotnainer {

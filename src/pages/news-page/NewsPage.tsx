@@ -1,138 +1,81 @@
 import "./news-page.scss";
 import PageBannerLayout from "pages/page-banner-layout/PageBannerLayout";
+import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
+import { useDispatch, useSelector } from "react-redux";
+import { requestSetNews } from "redux/middlewares/newsMiddleware";
+import { newsStateType } from "redux/reducers/newsSlice";
+import NewNewsCard from "./NewNewsCard";
+import MainNewsCard from "./MainNewsCard";
 
 function NewsPage() {
   const { t } = useTranslation();
+  const dispatch = useDispatch();
+  useEffect(() => {
+    requestSetNews(dispatch);
+  }, []);
+  const news = useSelector((state: { news: newsStateType }) => state.news);
+
+  let newNews = undefined;
+  let allNews = undefined;
+  console.log("News State test ", news);
+  if (Array.isArray(news)) {
+    console.log("news", news);
+    newNews = news.slice(0, 4);
+    allNews = news.slice(4);
+  }
 
   const data = {
     title: t("links.news"),
-    bgImage: "",
+    bgImage: { gradient: true },
   };
   return (
     <PageBannerLayout data={data}>
       <div className="news-page tight-section">
-        <h2 className="news-section-header">اخر اخبارنا</h2>
+        {newNews && <h2 className="news-section-header">احدث اخبارنا</h2>}
         <div className="news-grid-layout">
-          <div className="news-grid-item">
-            <div className="new-news-card">
-              <div className="content-container">
-                <p className="new-icon">جديد</p>
-                <h6 className="card-title">
-                  هذا النص هو مثال لنص يمكن أن يستبدل في نفس المساحة، لقد تم
-                  توليد هذا النص من مولد النص العربى، حيث يمكنك أن تولد مثل هذا.
-                  هذا النص
-                </h6>
+          {newNews && newNews[0] && (
+            <div className="news-grid-item">
+              <NewNewsCard data={newNews[0]} />
+            </div>
+          )}
+          {typeof newNews === "object" && newNews.length >= 2 && (
+            <div className="news-grid-item">
+              <div className="new-news-cards-container">
+                <NewNewsCard data={newNews[1]} className="row-1-of-2" />
+                {newNews[2] && (
+                  <NewNewsCard data={newNews[2]} className="row-1-of-2" />
+                )}
+                {newNews[3] && (
+                  <NewNewsCard data={newNews[3]} className="row-1-of-1" />
+                )}
               </div>
             </div>
-          </div>
-          <div className="news-grid-item">
-            <div className="new-news-cards-container">
-              <div className="new-news-card row-1-of-2">
-                <div className="content-container">
-                  <p className="new-icon">جديد</p>
-                  <h6 className="card-title">
-                    هذا النص هو مثال لنص يمكن أن يستبدل في نفس المساحة، لقد تم
-                    توليد هذا النص من مولد النص العربى، حيث يمكنك أن تولد مثل
-                    هذا. هذا النص
-                  </h6>
-                </div>
-              </div>
-              <div className="new-news-card row-1-of-2">
-                <div className="content-container">
-                  <p className="new-icon">جديد</p>
-                  <h6 className="card-title">
-                    هذا النص هو مثال لنص يمكن أن يستبدل في نفس المساحة، لقد تم
-                    توليد هذا النص من مولد النص العربى، حيث يمكنك أن تولد مثل
-                    هذا. هذا النص
-                  </h6>
-                </div>
-              </div>
-              <div className="new-news-card row-1-of-1">
-                <div className="content-container">
-                  <p className="new-icon">جديد</p>
-                  <h6 className="card-title">
-                    هذا النص هو مثال لنص يمكن أن يستبدل في نفس المساحة، لقد تم
-                    توليد هذا النص من مولد النص العربى، حيث يمكنك أن تولد مثل
-                    هذا. هذا النص
-                  </h6>
-                </div>
-              </div>
-            </div>
-          </div>
+          )}
         </div>
-        <h2 className="news-section-header">احدث الاخبار</h2>
+        {Array.isArray(allNews) && allNews.length >= 1 && (
+          <h2 className="news-section-header">كل الاخبار</h2>
+        )}
         <div className="news-grid-layout">
-          <div className="news-grid-item">
-            <div className="inline-card main-card">
-              <img
-                className="card-image"
-                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRYnW1Vf6vjLjDfG8JZyubARDUorkFXu9jj0Q&usqp=CAU"
-              />
-              <div className="content-container">
-                <div>
-                  <h4 className="title">الوصف</h4>
-                  <p className="descibtion">
-                    هذا النص هو مثال لنص يمكن أن يستبدل في نفس المساحة، لقد تم
-                    توليد هذا النص
-                  </p>
-                </div>
-                <div className="date">8 يوليو 2023</div>
+          {Array.isArray(allNews) && allNews.length >= 1 && (
+            <div className="news-grid-item">
+              <div className="news-three-cards-container">
+                <MainNewsCard data={allNews[0]} isInline={true} />
+                {allNews[1] && (
+                  <MainNewsCard data={allNews[1]} isInline={true} />
+                )}
+                {allNews[2] && (
+                  <MainNewsCard data={allNews[2]} isInline={true} />
+                )}
               </div>
             </div>
-          </div>
-          <div className="news-grid-item">
-            <div className="news-three-cards-container">
-              <div className="inline-card">
-                <img
-                  className="card-image"
-                  src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRYnW1Vf6vjLjDfG8JZyubARDUorkFXu9jj0Q&usqp=CAU"
-                />
-                <div className="content-container">
-                  <div>
-                    <h4 className="title">الوصف</h4>
-                    <p className="descibtion">
-                      هذا النص هو مثال لنص يمكن أن يستبدل في نفس المساحة، لقد تم
-                      توليد هذا النص
-                    </p>
-                  </div>
-                  <div className="date">8 يوليو 2023</div>
-                </div>
+          )}
+          {Array.isArray(allNews) &&
+            allNews.slice(2).map((news) => (
+              <div className="news-grid-item">
+                <MainNewsCard data={news} />
               </div>
-              <div className="inline-card">
-                <img
-                  className="card-image"
-                  src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRYnW1Vf6vjLjDfG8JZyubARDUorkFXu9jj0Q&usqp=CAU"
-                />
-                <div className="content-container">
-                  <div>
-                    <h4 className="title">الوصف</h4>
-                    <p className="descibtion">
-                      هذا النص هو مثال لنص يمكن أن يستبدل في نفس المساحة، لقد تم
-                      توليد هذا النص
-                    </p>
-                  </div>
-                  <div className="date">8 يوليو 2023</div>
-                </div>
-              </div>
-              <div className="inline-card">
-                <img
-                  className="card-image"
-                  src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRYnW1Vf6vjLjDfG8JZyubARDUorkFXu9jj0Q&usqp=CAU"
-                />
-                <div className="content-container">
-                  <div>
-                    <h4 className="title">الوصف</h4>
-                    <p className="descibtion">
-                      هذا النص هو مثال لنص يمكن أن يستبدل في نفس المساحة، لقد تم
-                      توليد هذا النص
-                    </p>
-                  </div>
-                  <div className="date">8 يوليو 2023</div>
-                </div>
-              </div>
-            </div>
-          </div>
+            ))}
         </div>
       </div>
     </PageBannerLayout>

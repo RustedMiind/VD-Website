@@ -7,7 +7,10 @@ function PageBannerLayout({ data, children }: PropsType) {
       <div
         className="bg-container banner"
         style={{
-          backgroundImage: `url("${data.bgImage}")`,
+          backgroundImage:
+            typeof data.bgImage === "object"
+              ? `linear-gradient(265.03deg, #004693 0%, #29285E 100%)`
+              : `url("${data.bgImage}")`,
         }}
       >
         <div className="overlay">
@@ -34,7 +37,7 @@ type PropsType = {
 };
 
 export type PageBannerDataType = {
-  bgImage: string;
+  bgImage: string | { gradient: boolean };
   title: string;
   search?: boolean;
   filter?: boolean;
