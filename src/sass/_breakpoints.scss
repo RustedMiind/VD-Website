@@ -8,3 +8,8 @@
     @content;
   }
 }
+@mixin TabletOrLess {
+  @media (max-width: 1279px) {
+    @content;
+  }
+}
