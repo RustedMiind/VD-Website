@@ -13,9 +13,12 @@ import { useSelector } from "react-redux";
 import { SettingsStateType } from "redux/reducers/settingsSlice";
 import { getValueByKey } from "types/SettingsType";
 import storage from "methods/storage";
+import { navigationRoutes } from "methods/data/navigationRoutes";
+import { useTranslation } from "react-i18next";
 
 function Footer() {
   const state = useSelector((state: { settings: SettingsStateType }) => state);
+  const { t } = useTranslation();
   const getvalue = getValueByKey(state.settings);
   const logo = getvalue("logo") as undefined | string[];
   const phones = getvalue("phones") as undefined | string[];
@@ -147,9 +150,9 @@ function Footer() {
           <div className="card-content">
             <div className="title">الروابط المهمة</div>
             <div className="section-content">
-              <NavLink to={""}>الرئيسية</NavLink>
-              <NavLink to={"/projects"}>مشاريعنا</NavLink>
-              <NavLink to={"/about"}>نبذة عنا</NavLink>
+              {navigationRoutes.map((item) => (
+                <NavLink to={item.path}>{t(item.name)}</NavLink>
+              ))}
             </div>
           </div>
           <div className="card-content">

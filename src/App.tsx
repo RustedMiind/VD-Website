@@ -11,6 +11,9 @@ import { requestSetSettings } from "redux/middlewares/settingsMiddlware";
 import "assets/styles/animate-css.min.css";
 import "assets/styles/custom-onscroll-animations.scss";
 import {} from "react-animate-on-scroll";
+import Ar from "translate/ArTranslation";
+import ArTranslation from "translate/ArTranslation";
+import EnTranslation from "translate/EnTranslation";
 axios.defaults.headers.common["from"] = "website";
 axios.defaults.headers.common["lang"] = "ar";
 // axios.defaults.headers.post["Content-Type"] = "application/json;charset=utf-8";
@@ -22,50 +25,8 @@ axios.defaults.headers.common["Access-Control-Allow-Methods"] = "*";
 // axios.defaults.headers.get["Access-Control-Allow-Methods"] = "*";
 // axios.defaults.withCredentials = true;
 
-const translationsEn = {
-  test: "test",
-  contact: {
-    whatsapp: "Contact via Whatsapp",
-    phone: "Contact via Phone",
-    email: "Contact via Email",
-  },
-  project: {
-    name: "Project Name",
-    describtion: "Describtion",
-    zone: "Work Zone",
-    projects: "Projects",
-  },
-  vision: { name: "Vision Dimensions", for: "Engineering Consulting Company" },
-  links: {
-    home: "Home",
-    projects: "Projects",
-    login: "Login",
-    services: "Services",
-    aboutUs: "About Us",
-  },
-};
-const translationsAr = {
-  test: "اختبار",
-  contact: {
-    whatsapp: "تواصل معنا عبر الواتس اب",
-    phone: "تواصل معنا عبر الهاتف",
-    email: "تواصل معنا عبر الايميل",
-  },
-  project: {
-    name: "اسم المشروع",
-    describtion: "الوصف",
-    zone: "نطاق العمل",
-    projects: "مشاريعنا",
-  },
-  vision: { name: "أبعاد الرؤية", for: "للاستشارات الهندسية" },
-  links: {
-    home: "الرئيسية",
-    projects: "مشاريعنا",
-    login: "تسجيل الدخول",
-    services: "خدماتنا",
-    aboutUs: "نبذة عنا",
-  },
-};
+const translationsEn = EnTranslation;
+const translationsAr = ArTranslation;
 
 i18n.use(initReactI18next).init({
   resources: {

@@ -14,6 +14,7 @@ import AboutUs from "pages/about-us/AboutUs";
 import CountUp from "react-countup";
 import ReactVisibilitySensor from "react-visibility-sensor";
 import PrivacyPage from "pages/privacy/Privacy";
+import ContactUsPage from "pages/contact-us/ContactUsPage";
 
 function Layout() {
   const { lang } = useContext(LangContext);
@@ -31,6 +32,7 @@ function Layout() {
           <Route path="" element={<MainPage />} />
           <Route path="about" element={<AboutUs />} />
           <Route path="privacy" element={<PrivacyPage />} />
+          <Route path="contact" element={<ContactUsPage />} />
           <Route path="services">
             <Route path="" element={<Services />} />
             <Route path=":serviceId" element={<ServicePage />} />

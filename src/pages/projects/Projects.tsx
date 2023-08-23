@@ -10,16 +10,18 @@ import PageBannerLayout, {
 } from "pages/page-banner-layout/PageBannerLayout";
 import PlaceHolder from "./compontents/placeholder/Placeholder";
 import SearchAndFilter from "components/search-and-filter/SearchAndFilter";
+import { useTranslation } from "react-i18next";
 
 function Projects() {
   const dispatch = useDispatch();
+  const { t } = useTranslation();
   const projects = useSelector(
     (state: { projects: projectsStateType }) => state.projects
   );
   const data: PageBannerDataType = {
     bgImage:
       "https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8Y2l0eXxlbnwwfHwwfHx8MA%3D%3D&w=1000&q=80",
-    title: "المشاريع",
+    title: t("links.projects"),
     search: true,
   };
   const [search, setSearch] = useState("");

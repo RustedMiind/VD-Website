@@ -9,6 +9,7 @@ import { useSelector } from "react-redux";
 import { SettingsStateType } from "redux/reducers/settingsSlice";
 import { getValueByKey } from "types/SettingsType";
 import logo from "assets/images/logo-vision.png";
+import { navigationRoutes } from "methods/data/navigationRoutes";
 
 function Navbar() {
   const { changeLang } = useContext(LangContext);
@@ -33,15 +34,12 @@ function Navbar() {
           setNavVisibilty("hide");
         }}
       >
-        <li>
-          <NavLink to="/">{t("links.home")}</NavLink>
-        </li>
-        <li>
-          <NavLink to="/about">{t("links.aboutUs")}</NavLink>
-        </li>
-        <li>
-          <NavLink to="/projects">{t("links.projects")}</NavLink>
-        </li>
+        {navigationRoutes.map((link) => (
+          <li>
+            <NavLink to={link.path}>{t(link.name)}</NavLink>
+          </li>
+        ))}
+
         {/* <li>
           <NavLink to="/services">{t("links.services")}</NavLink>
         </li> */}
