@@ -2,12 +2,16 @@
 :root {
   --main: #292283;
   --main: #004693;
+  --main-fixed: #004693;
   --main-sec: #292283;
   --main-overlay: #35337d66;
   --main-shadow: #2821824b;
   --main-shadow-light: #2821821a;
   --main-transition: 200ms ease-out;
   --third: #f19b02;
+  --success: #4ade80;
+  --error: #dc2626;
+  --warning: #f19b02;
   --third-sec: #f9cb8b;
   --third-light: #fceed6;
   --font-light: white;
@@ -44,6 +48,10 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+}
+
+.text-error {
+  color: var(--error) !important;
 }
 
 html {
@@ -212,6 +220,45 @@ body {
 
 .text-third {
   color: var(--third);
+}
+
+.input-container {
+  width: 100%;
+  label {
+    font-weight: 800;
+    margin-bottom: 0.4rem;
+    display: block;
+    color: var(--main);
+  }
+  &.third {
+    --main: var(--third);
+  }
+  input,
+  textarea,
+  select {
+    width: 100%;
+    max-width: 100%;
+    border: 1px solid var(--main);
+    border-radius: 0.6rem;
+    padding: 0.4rem 1rem;
+    // height: 1rem;
+    font-size: 1rem;
+    display: block;
+    color: var(--main-fixed);
+    min-width: 80%;
+    font-family: inherit;
+    transition: 200ms;
+    &:focus {
+      box-shadow: 0 0 0rem 0.2rem var(--main);
+      // outline: none;
+      // border: none;
+      border-color: transparent;
+      outline: none;
+    }
+  }
+  textarea {
+    min-height: 8rem;
+  }
 }
 
 @include Mobile {

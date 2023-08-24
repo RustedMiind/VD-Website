@@ -20,7 +20,7 @@
   overflow: hidden;
   height: var(--top-navbar-height);
   background: var(--bg-light);
-  @include Tablet {
+  @include SmallScreenOrLess {
     padding: 0 2rem;
   }
   .nav-item {

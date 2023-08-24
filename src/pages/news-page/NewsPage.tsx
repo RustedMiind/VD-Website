@@ -71,7 +71,7 @@ function NewsPage() {
             </div>
           )}
           {Array.isArray(allNews) &&
-            allNews.slice(2).map((news) => (
+            allNews.slice(3).map((news) => (
               <div className="news-grid-item">
                 <MainNewsCard data={news} />
               </div>

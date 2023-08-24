@@ -131,7 +131,7 @@ footer.footer {
       }
     }
   }
-  @include Mobile {
+  @include SmallScreenOrLess {
     .logo-container {
       display: none;
     }

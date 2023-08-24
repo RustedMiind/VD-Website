@@ -4,6 +4,7 @@ nav.navbar {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  justify-content: center;
   margin-top: 2rem;
   border-radius: 0.3rem;
   flex-wrap: wrap;
@@ -109,8 +110,13 @@ nav.navbar {
 .hide-top {
   nav.navbar {
     background-color: var(--bg-light);
-    // margin-top: 0.6rem;
-    // width: 95%;
+    margin-top: 0rem;
+    width: 100% !important;
+    border-radius: 0;
+    max-width: 100vw;
+    padding-top: 0.6rem;
+    padding-bottom: 0.6rem;
+    // box-shadow: none;
   }
 }
 
