@@ -5,7 +5,7 @@ function GoogleMap(props: PropsType) {
   const myLatLng = props.coOrdinates;
   function renderMarkers(map: any, maps: any) {
     let marker = new maps.Marker({
-      position: myLatLng,
+      position: props.coOrdinates,
       map,
       title: "Hello World!",
     });
@@ -19,16 +19,10 @@ function GoogleMap(props: PropsType) {
     <div style={{ height: "100%", width: "100%" }}>
       <GoogleMapReact
         bootstrapURLKeys={{ key: "AIzaSyBx1GmOXC3CLSgfvPNYpu0CEDItEMN3W0M" }}
-        defaultCenter={defaultProps.center}
+        center={defaultProps.center}
         defaultZoom={defaultProps.zoom}
         onGoogleApiLoaded={({ map, maps }) => renderMarkers(map, maps)}
-      >
-        {/* <LocationPin
-      lat={location.lat}
-      lng={location.lng}
-      text={location.address}
-    /> */}
-      </GoogleMapReact>
+      ></GoogleMapReact>
     </div>
   );
 }

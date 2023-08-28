@@ -11,6 +11,8 @@
     height: 100%;
     background-color: var(--main-overlay);
     display: flex;
+    flex-direction: column;
+    // gap: 0.4rem;
     align-items: center;
     justify-content: center;
   }
@@ -22,6 +24,22 @@
     }
     width: 100%;
     height: 18rem;
+    .subtitle {
+      font-size: 1.3rem;
+      max-width: 40%;
+      line-height: 1.2em;
+    }
+    .navigate {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      a::before {
+        content: "";
+      }
+      .active {
+        color: var(--third);
+      }
+    }
   }
   > .content {
     width: 80%;

@@ -9,6 +9,9 @@ import { requestSetServices } from "redux/middlewares/servicesMiddleware";
 import { useDispatch, useSelector } from "react-redux";
 import { ServicesStateType } from "redux/reducers/servicesSlice";
 import ServicePlaceHolder from "./components/placeholder/ServicesPlaceholder";
+import HexagonShape from "./components/hexagon-shape/HexagonShape";
+import HexagonsContainer from "./components/hexagons-container/HexagonsContainer";
+import Test from "./components/test/Test";
 
 function Services() {
   const { t } = useTranslation();
@@ -28,10 +31,14 @@ function Services() {
   return (
     <PageBannerLayout data={data}>
       <div className="services-page tight-section">
-        {services === "loading" && <ServicePlaceHolder />}
+        {/* {services === "loading" && <ServicePlaceHolder />}
         {typeof services === "object" &&
-          services.map((service) => <ServiceCard data={service} />)}
+          services.map((service) => <ServiceCard data={service} />)} */}
+        {typeof services === "object" && (
+          <HexagonsContainer services={services} />
+        )}
       </div>
+      <Test />
     </PageBannerLayout>
   );
 }

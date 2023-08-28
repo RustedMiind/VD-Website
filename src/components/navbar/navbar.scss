@@ -26,8 +26,8 @@ nav.navbar {
     transition: 300ms;
   }
   .logo-link {
-    width: 2.6rem;
-    height: 2.6rem;
+    width: 3.4rem;
+    height: 3.4rem;
     display: none;
     align-items: center;
     justify-content: center;
@@ -41,13 +41,13 @@ nav.navbar {
     }
   }
   .menu-btn {
-    font-size: 1.6rem;
+    font-size: 2.2rem;
     vertical-align: middle;
     align-items: center;
     justify-content: center;
-    padding: 0.4rem;
-    margin: 0;
-    border: 1px solid rgba(128, 128, 128, 0.26);
+    padding: 0rem;
+    margin: 0.2rem;
+    // border: 1px solid rgba(128, 128, 128, 0.26);
     border-radius: 0.2rem;
     background-color: var(--bg-light);
     display: none;
@@ -69,9 +69,11 @@ nav.navbar {
     margin: 0;
     border-radius: 0;
     background-color: var(--bg-light);
+    padding: 0.4rem;
     padding-left: 1rem;
     padding-right: 1rem;
     flex-wrap: nowrap;
+    justify-content: space-between;
     .logo-link {
       display: flex;
     }

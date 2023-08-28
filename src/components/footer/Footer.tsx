@@ -1,4 +1,5 @@
 import { NavLink } from "react-router-dom";
+import { useState } from "react";
 import logo from "assets/images/logo-vision.png";
 import "./footer.scss";
 import {
@@ -15,11 +16,18 @@ import { getValueByKey } from "types/SettingsType";
 import storage from "methods/storage";
 import { navigationRoutes } from "methods/data/navigationRoutes";
 import { useTranslation } from "react-i18next";
+import axios from "axios";
+import api from "methods/api";
+import Toaster from "components/toaster/Toaster";
 
 function Footer() {
   const state = useSelector((state: { settings: SettingsStateType }) => state);
   const { t } = useTranslation();
   const getvalue = getValueByKey(state.settings);
+  const [newsValue, setNewsValue] = useState("");
+  const [newsFormStatus, setNewsFormStatus] = useState<
+    "none" | "success" | "error"
+  >("none");
   const logo = getvalue("logo") as undefined | string[];
   const phones = getvalue("phones") as undefined | string[];
   const name = getvalue("name") as undefined | string;
@@ -137,12 +145,45 @@ function Footer() {
           <div className="card-content">
             <div className="title">النشرة الاخبارية</div>
             <div className="section-content news-letter">
-              <form action="">
+              <form
+                onSubmit={(e) => {
+                  e.preventDefault();
+                  axios
+                    .post(api("client/subscribe"), { email: newsValue })
+                    .then(() => {
+                      setNewsValue("");
+                      setNewsFormStatus("success");
+                    })
+                    .catch(() => {
+                      setNewsFormStatus("error");
+                    });
+                }}
+              >
                 <div className="input-wrapper">
-                  <input type="text" placeholder="البريد الالكتروني" />
+                  <input
+                    type="text"
+                    value={newsValue}
+                    onChange={(e) => {
+                      setNewsValue(e.target.value);
+                    }}
+                    placeholder="البريد الالكتروني"
+                  />
                   <button type="submit">اشتراك</button>
                 </div>
               </form>
+              {newsFormStatus === "success" && (
+                <Toaster
+                  toaster={{
+                    status: "success",
+                    message: "تم الاشتراك في النشرة الاخبارية بنجاح",
+                  }}
+                />
+              )}
+              {newsFormStatus === "error" && (
+                <Toaster
+                  toaster={{ status: "error", message: "فشل في في الارسال." }}
+                />
+              )}
             </div>
           </div>
         </div>

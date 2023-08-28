@@ -1,5 +1,6 @@
 import { Search } from "react-bootstrap-icons";
 import "./page-banner-layout.scss";
+import { NavLink } from "react-router-dom";
 
 function PageBannerLayout({ data, children }: PropsType) {
   return (
@@ -15,6 +16,18 @@ function PageBannerLayout({ data, children }: PropsType) {
       >
         <div className="overlay">
           <h2>{data.title}</h2>
+          {typeof data.subtitle === "object" &&
+            data.subtitle.type === "paragraph" && (
+              <p className="subtitle">{data.subtitle.paragraph}</p>
+            )}
+          {typeof data.subtitle === "object" &&
+            data.subtitle.type === "navigate" && (
+              <div className="navigate">
+                {data.subtitle.links.map((link) => (
+                  <NavLink to={link.path}>{link.title}</NavLink>
+                ))}
+              </div>
+            )}
         </div>
       </div>
       {/* {data.search && (
@@ -39,6 +52,15 @@ type PropsType = {
 export type PageBannerDataType = {
   bgImage: string | { gradient: boolean };
   title: string;
+  subtitle?:
+    | {
+        type: "navigate";
+        links: { title: string; path: string }[];
+      }
+    | {
+        type: "paragraph";
+        paragraph: string;
+      };
   search?: boolean;
   filter?: boolean;
 };

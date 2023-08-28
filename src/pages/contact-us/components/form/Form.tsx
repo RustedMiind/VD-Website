@@ -71,6 +71,7 @@ function ContactForm() {
       onSubmit={(e) => {
         e.preventDefault();
         console.log(state);
+        setError(initialState);
         const formData = new FormData();
         for (let i in state) {
           formData.append(i, state[i as keyof typeof state]);

@@ -23,6 +23,19 @@ function Projects() {
       "https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8Y2l0eXxlbnwwfHwwfHx8MA%3D%3D&w=1000&q=80",
     title: t("links.projects"),
     search: true,
+    // subtitle: {
+    //   type: "paragraph",
+    //   paragraph:
+    //     "لا تتردد في الاتصال بنا في اي وقت اذا كنت بحاجة لاستشارة فورية او لديك اي استفسارات",
+    // },
+    subtitle: {
+      type: "navigate",
+      links: [
+        { title: "الرئيسية", path: "/" },
+        { title: "المشاريع", path: "/projects" },
+        { title: "الرئيسية", path: "/" },
+      ],
+    },
   };
   const [search, setSearch] = useState("");
   const [type, setType] = useState("");
@@ -88,14 +101,14 @@ function Projects() {
         {/* Error */}
         {projects.projects === "error" && projects.projects && (
           <div className="projects-cards-container">
-            <h2>فشل التحميل</h2>
+            <h2>فشل تحميل المشاريع</h2>
           </div>
         )}
         {/* Loading */}
         {projects.projects === "loading" && projects.projects && (
-          <div className="projects-cards-container">
-            <PlaceHolder />
-          </div>
+          // <div className="projects-cards-container">
+          <PlaceHolder />
+          // </div>
         )}
       </div>
       {/* {(!projects.projects.length || !projects) && <PlaceHolder />} */}

@@ -8,19 +8,25 @@ import { useSelector } from "react-redux";
 import { SettingsStateType } from "redux/reducers/settingsSlice";
 import { useTranslation } from "react-i18next";
 import { getValueByKey } from "types/SettingsType";
+import MapWrapper from "./components/map-wrapper/MapWrapper";
+import { useState, useEffect } from "react";
+import { LatLngType, getLatLngFromStr } from "methods/getLatLng";
 // import { serialize } from "v8";
 
 function ContactUsPage() {
   const data = { bgImage: { gradient: true }, title: "تواصل معنا" };
   const state = useSelector((state: { settings: SettingsStateType }) => state);
   const { t } = useTranslation();
+
   const getvalue = getValueByKey(state.settings);
   const address = getvalue("address") as
     | undefined
     | {
         address: string;
         link: string;
+        longLat: string;
       }[];
+
   const social = getvalue("social") as
     | undefined
     | {
@@ -30,6 +36,16 @@ function ContactUsPage() {
       };
   const emails = getvalue("emails") as undefined | string[];
   const whatsapp = getvalue("whatsapp") as undefined | [string];
+  const [coOrdinates, setCoOrdinates] = useState<LatLngType>(
+    getLatLngFromStr(
+      typeof address === "object" && address[0] ? address[0].longLat : "0,0"
+    )
+  );
+  useEffect(() => {
+    if (typeof address === "object" && address[0]) {
+      setCoOrdinates(getLatLngFromStr(address[0].longLat));
+    }
+  }, [state]);
   return (
     <PageBannerLayout data={data}>
       <div className="contact-us-page">
@@ -61,27 +77,42 @@ function ContactUsPage() {
                         <GeoAltFill />
                       </div>
                       <div className="content">
-                        <h5 className="title">البريد الالكتروني</h5>
+                        <h5 className="title">العناوين</h5>
                         {address.map((address) => (
-                          <p>{address.address}</p>
+                          <p
+                            onClick={() => {
+                              setCoOrdinates(getLatLngFromStr(address.longLat));
+                            }}
+                            className="address-change"
+                            key={address.longLat}
+                          >
+                            {address.address}
+                          </p>
                         ))}
                       </div>
                     </div>
                   )}
                 </div>
                 {/* Link With Links */}
-                <LinksShape />
-              </div>
-              <div className="map-container">
-                <GoogleMap
-                  coOrdinates={{
-                    // lat: 30.067358909951952,
-                    // lng: 31.356044271558698,
-                    lat: 21.626874490305553,
-                    lng: 39.128184993865666,
+                <LinksShape
+                  links={{
+                    whatsapp:
+                      "https://wa.me/" +
+                      (whatsapp && whatsapp[0] ? whatsapp[0] : ""),
+                    facebook: social?.facebook || "",
+                    instagram: social?.instagram || "",
+                    snapchat: social?.snapchat || "",
                   }}
                 />
               </div>
+              <MapWrapper coOrdinates={coOrdinates} />
+              {/* <input
+                type="text"
+                value={temp}
+                onChange={(e) => {
+                  setTemp(e.target.value);
+                }}
+              /> */}
             </div>
           </div>
         </div>

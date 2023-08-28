@@ -22,6 +22,7 @@ export type SettingValueType =
       {
         address: string;
         link: string;
+        longLat: string;
       }[]
     >
   | kv<"logo", [string]>

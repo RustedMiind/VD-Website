@@ -1,0 +1,41 @@
+@import "../../../../sass/effects";
+@import "../../../../sass/breakpoints";
+
+.hexagon-shape {
+  position: relative;
+  width: 18rem;
+  height: 18rem;
+  overflow: hidden;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  @include ScaleHoverLg {
+    z-index: 20;
+  }
+  .shape {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+  }
+  .content {
+    width: 60%;
+    text-align: center;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    .title {
+      max-height: 3.3125rem;
+    }
+    .describtion {
+      max-height: 6.56rem;
+      overflow: hidden;
+    }
+  }
+}
