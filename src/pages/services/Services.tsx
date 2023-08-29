@@ -8,10 +8,10 @@ import { useEffect } from "react";
 import { requestSetServices } from "redux/middlewares/servicesMiddleware";
 import { useDispatch, useSelector } from "react-redux";
 import { ServicesStateType } from "redux/reducers/servicesSlice";
-import ServicePlaceHolder from "./components/placeholder/ServicesPlaceholder";
-import HexagonShape from "./components/hexagon-shape/HexagonShape";
+// import ServicePlaceHolder from "./components/placeholder/ServicesPlaceholder";
+// import HexagonShape from "./components/hexagon-shape/HexagonShape";
 import HexagonsContainer from "./components/hexagons-container/HexagonsContainer";
-import Test from "./components/test/Test";
+import CircleContainer from "./components/circle-container/CircleContainer";
 
 function Services() {
   const { t } = useTranslation();
@@ -23,9 +23,10 @@ function Services() {
   const { services } = useSelector(
     (state: { services: ServicesStateType }) => state.services
   );
+  console.log("services state: ", services);
   const dispatch = useDispatch();
   useEffect(() => {
-    requestSetServices(dispatch);
+    requestSetServices(dispatch).then(console.log).catch(console.log);
   }, []);
   return (
     <PageBannerLayout data={data}>
@@ -36,15 +37,17 @@ function Services() {
         {typeof services === "object" &&
           services.map((service) => (
             <>
+              {service.design === "hexagon" && (
+                <HexagonsContainer service={service} />
+              )}
               {service.design === "circle" && (
-                <HexagonsContainer services={service.services} />
+                <CircleContainer service={service} />
               )}
             </>
           ))}
         {services === "loading" && <h2>Loading</h2>}
         {services === "error" && <h2>Error Fetching Data</h2>}
       </div>
-      {/* <Test /> */}
     </PageBannerLayout>
   );
 }

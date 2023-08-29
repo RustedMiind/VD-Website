@@ -1,0 +1,17 @@
+@import "../../../../sass/breakpoints";
+.circle-container {
+  width: 100%;
+  overflow-x: hidden;
+  overflow-y: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 4rem;
+  margin-bottom: 2rem;
+
+  @include Mobile {
+    align-items: unset;
+    overflow-x: auto;
+    // overflow-y: auto;
+  }
+}

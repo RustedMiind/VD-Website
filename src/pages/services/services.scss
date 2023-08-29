@@ -1,4 +1,18 @@
 .services-page {
   padding: 4rem 0;
   width: 100%;
+  .service-section-about {
+    width: 40rem;
+    max-width: 100%;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    p {
+      width: 80%;
+      font-size: 1.2em;
+    }
+    margin-bottom: 1rem;
+  }
 }

@@ -1,14 +1,32 @@
-.hexagons-container {
+@import "../../../../sass/breakpoints";
+
+.hexagon-shape-container {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 1rem;
-  padding-top: 4rem;
-  .hexagons-row {
+  .hexagons-container {
     display: flex;
+    flex-direction: column;
     align-items: center;
-    justify-content: center;
     gap: 1rem;
-    margin-top: -4rem;
+    padding-top: 4rem;
+    .hexagons-row {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1rem;
+      margin-top: -4rem;
+    }
+  }
+  @include TabletOrLess {
+    .hexagons-row {
+      flex-direction: column;
+      .empty {
+        display: none;
+      }
+    }
+  }
+  .hexagons-row {
+    margin-top: 0 !important;
   }
 }

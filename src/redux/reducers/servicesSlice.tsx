@@ -10,7 +10,7 @@ export const servicesSlice = createSlice({
   initialState,
   reducers: {
     setServices: (state: ServicesStateType, action): ServicesStateType => {
-      return action.payload.services;
+      return { services: action.payload.services };
     },
     setServicesError: (): ServicesStateType => {
       return { services: "error" };
@@ -30,12 +30,13 @@ export type ServiceType = {
   order_id: number;
 };
 
-export type ServicesSectionsType = {
+export type ServicesSectionType = {
   title: string;
   description: string;
   design: string;
   services: ServiceType[];
-}[];
+};
+export type ServicesSectionsType = ServicesSectionType[];
 
 export const initialService: ServiceType = {
   id: 0,

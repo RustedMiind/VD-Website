@@ -13,12 +13,12 @@ export function requestSetServices(dispatch: Dispatch<AnyAction>) {
     axios
       .get<ApiResponse<ServiceType[]>>(api("client/service-page"))
       .then((res) => {
-        dispatch(setServices({ services: { services: res.data.data } }));
+        dispatch(setServices({ services: res.data.data }));
         resolve(res.data);
       })
       .catch((err) => {
-        reject(err);
         dispatch(setServicesError());
+        reject(err);
       });
   });
 }

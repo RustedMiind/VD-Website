@@ -5,11 +5,12 @@
   align-items: center;
   justify-content: center;
   z-index: 1000;
+  min-width: 10vw;
   .item {
     position: absolute !important;
     // left: 0;
     top: 0;
-    height: 31.25rem;
+    height: 26.25rem;
     transform-origin: bottom;
     position: relative;
     pointer-events: none;
@@ -18,18 +19,32 @@
     }
     .top-image {
       width: 100%;
-      height: 60%;
+      height: 50%;
+      min-height: 18rem;
       display: flex;
       justify-content: center;
       align-items: center;
+      position: relative;
+      .link-with-arrow {
+        opacity: 0;
+        position: absolute;
+        top: 100%;
+        margin-top: 2rem;
+        pointer-events: none;
+      }
       @include ScaleHoverLg {
         z-index: 1001;
+        .link-with-arrow {
+          margin-top: -0.8rem;
+          opacity: 1;
+          pointer-events: all;
+        }
       }
       position: relative;
       img {
-        width: 85%;
+        width: 80%;
         height: 100%;
-        max-width: 28.125rem;
+        // max-width: 18.125rem;
         object-fit: contain;
         position: absolute;
         // z-index: 1;
@@ -39,9 +54,9 @@
         width: 50%;
         height: 50%;
         max-height: 33.333rem;
-        max-width: 33.333rem;
+        max-width: 12rem;
         position: absolute;
-        margin-top: -3.1rem;
+        margin-top: -3.5rem;
         display: flex;
         align-items: center;
         flex-direction: column;
