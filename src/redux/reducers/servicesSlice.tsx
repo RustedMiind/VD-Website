@@ -1,19 +1,20 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-export type ServicesStateType = ServicesType;
+export type ServicesStateType = {
+  services: ServicesSectionsType | "error" | "loading";
+};
 
-const initialState: ServicesStateType = "loading";
+const initialState: ServicesStateType = { services: "loading" };
 export const servicesSlice = createSlice({
   name: "services",
   initialState,
   reducers: {
-    setServices: (state: ServicesStateType, action) => {
-      console.log("state from reducer: ", state);
+    setServices: (state: ServicesStateType, action): ServicesStateType => {
       return action.payload.services;
     },
-    // setServicesError: (state: ServicesStateType) => {
-    //   return "loading";
-    // },
+    setServicesError: (): ServicesStateType => {
+      return { services: "error" };
+    },
   },
 });
 
@@ -29,6 +30,13 @@ export type ServiceType = {
   order_id: number;
 };
 
+export type ServicesSectionsType = {
+  title: string;
+  description: string;
+  design: string;
+  services: ServiceType[];
+}[];
+
 export const initialService: ServiceType = {
   id: 0,
   name: "Loading...",
@@ -41,7 +49,7 @@ export const initialService: ServiceType = {
   order_id: 0,
 };
 
-export type ServicesType = ServiceType[] | "error" | "loading";
+// export type ServicesType = ServiceType[] | "error" | "loading";
 
-export const { setServices } = servicesSlice.actions;
+export const { setServices, setServicesError } = servicesSlice.actions;
 export default servicesSlice.reducer;

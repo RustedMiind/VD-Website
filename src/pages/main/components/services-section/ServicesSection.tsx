@@ -49,7 +49,6 @@ function ServicesSection() {
   useEffect(() => {
     setTimeout(() => {
       if (enablePlay) handleIncrementAutoplay();
-      console.log(enablePlay);
     }, 5000);
   }, [indexes, main]);
   return (

@@ -1,7 +1,7 @@
 import "./test.scss";
 import shape from "assets/images/Group 716.png";
 
-const items = [1, 2, 3, 1, 1, 1, 1, 2, 2];
+const items = [1, 2, 3, 1, 1, 2, 3, 2, 2];
 const bi = 3.14159;
 function Test() {
   const count = items.length,

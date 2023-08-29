@@ -28,11 +28,9 @@ function ServicePage() {
       .get<ApiResponse<ServiceType>>(api(`client/services/${serviceId}`))
       .then((result) => {
         setService(result.data.data);
-        console.log(result);
       })
       .catch((err) => {
         setService("error");
-        console.log(err);
       });
   }, []);
   return (

@@ -9,7 +9,6 @@ import {
 } from "methods/keyValToObject";
 
 export function requestSetAbout(dispatch: Dispatch<AnyAction>) {
-  console.log("Request Called");
   return new Promise((resolve, reject) => {
     axios
       .post<ApiResponse<AboutResType>>(api("client/about-page"))
@@ -23,12 +22,10 @@ export function requestSetAbout(dispatch: Dispatch<AnyAction>) {
           })
         );
         resolve(res.data);
-        console.log(res);
       })
       .catch((err) => {
         reject(err);
         // dispatch(setProjectsError());
-        console.log(err);
       });
   });
 }

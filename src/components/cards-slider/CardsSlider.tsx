@@ -41,7 +41,6 @@ function CardsSlider(props: PropsType) {
                 setTimeout(() => {
                   swiper.slideNext(1000);
                 }, 2000);
-                console.log(swiper);
               }}
               slidesPerView={2}
               coverflowEffect={{

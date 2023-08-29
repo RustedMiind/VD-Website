@@ -9,7 +9,6 @@ export const newsSlice = createSlice({
   initialState,
   reducers: {
     setNews: (state: newsStateType, action) => {
-      console.log("state from reducer: ", state);
       return action.payload.news;
     },
     setNewsError: (state) => {

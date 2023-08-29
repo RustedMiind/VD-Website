@@ -30,12 +30,9 @@ function Project() {
         api(`client/company-projects/${projectId}`)
       )
       .then((result) => {
-        console.log(result);
         setProject(result.data.data);
       })
-      .catch((err) => {
-        console.log(err);
-      });
+      .catch((err) => {});
   }, []);
 
   return (

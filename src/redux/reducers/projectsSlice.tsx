@@ -15,7 +15,6 @@ export const projectsSlice = createSlice({
   initialState,
   reducers: {
     setProjects: (state: projectsStateType, action) => {
-      console.log("state from reducer: ", state);
       return action.payload.projects;
     },
     setProjectsError: (state) => {

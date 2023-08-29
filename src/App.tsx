@@ -41,10 +41,9 @@ i18n.use(initReactI18next).init({
 function App() {
   const dispatch = useDispatch();
   useEffect(() => {
-    requestSetSettings(dispatch).then((res) => {
-      console.log("res from disptatch", res);
-    });
-    console.log("Settings Requested");
+    requestSetSettings(dispatch)
+      .then((res) => {})
+      .catch((err) => {});
   }, []);
   return (
     <React.Suspense fallback="Loading...">

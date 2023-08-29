@@ -30,7 +30,6 @@ function IconsSlider(props: PropsType) {
                 setTimeout(() => {
                   swiper.slideNext(1000);
                 }, 5000);
-                console.log(swiper);
               }}
               // onSlideChange={() => console.log("slide change")}
               // onSwiper={(swiper) => console.log(swiper)}

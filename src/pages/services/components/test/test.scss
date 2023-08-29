@@ -9,7 +9,7 @@
     position: absolute !important;
     // left: 0;
     top: 0;
-    height: 500px;
+    height: 31.25rem;
     transform-origin: bottom;
     position: relative;
     pointer-events: none;
@@ -29,7 +29,7 @@
       img {
         width: 85%;
         height: 100%;
-        max-width: 450px;
+        max-width: 28.125rem;
         object-fit: contain;
         position: absolute;
         // z-index: 1;
@@ -38,12 +38,10 @@
         pointer-events: all;
         width: 50%;
         height: 50%;
-        max-height: 200px;
-        max-width: 200px;
+        max-height: 33.333rem;
+        max-width: 33.333rem;
         position: absolute;
-        // z-index: 4;
-        // top: 10%;
-        margin-top: -50px;
+        margin-top: -3.1rem;
         display: flex;
         align-items: center;
         flex-direction: column;
@@ -54,7 +52,7 @@
           overflow: hidden;
         }
         p {
-          max-height: 78px;
+          max-height: 4.875rem;
           overflow: hidden;
         }
       }

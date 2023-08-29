@@ -18,9 +18,7 @@ function NewsPage() {
 
   let newNews = undefined;
   let allNews = undefined;
-  console.log("News State test ", news);
   if (Array.isArray(news)) {
-    console.log("news", news);
     newNews = news.slice(0, 4);
     allNews = news.slice(4);
   }

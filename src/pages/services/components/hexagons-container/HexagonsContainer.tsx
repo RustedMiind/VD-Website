@@ -15,7 +15,7 @@ function HexagonsContainer(props: PropsType) {
         <HexagonShape
           bgImg={blueTop}
           service={props.services[0]}
-          empty={true}
+          //   empty={true}
         />
         <HexagonShape bgImg={orangeTop} service={props.services[0]} />
       </div>

@@ -70,7 +70,6 @@ function ContactForm() {
       id="contactForm"
       onSubmit={(e) => {
         e.preventDefault();
-        console.log(state);
         setError(initialState);
         const formData = new FormData();
         for (let i in state) {
@@ -82,7 +81,6 @@ function ContactForm() {
           .post<ApiResponse<State>>(api("client/contact"), formData)
           // .then((response) => response.json())
           .then((data) => {
-            console.log(data);
             dispatch({
               type: "RESET_FORM",
             });

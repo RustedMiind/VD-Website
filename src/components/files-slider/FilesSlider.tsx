@@ -17,7 +17,6 @@ function FilesSlider(props: PropsType) {
   const repeat = (arr: any[], n: number): any[] => Array(n).fill(arr).flat();
   const slides: FileType[] =
     typeof props.files === "object" ? repeat(props.files, 5) : [];
-  console.log("files ", slides);
 
   return (
     <>
@@ -40,7 +39,6 @@ function FilesSlider(props: PropsType) {
                 setTimeout(() => {
                   swiper.slideNext(1000);
                 }, 2000);
-                console.log(swiper);
               }}
               slidesPerView={2}
               coverflowEffect={{

@@ -9,7 +9,6 @@ export const servicesSlice = createSlice({
   initialState,
   reducers: {
     setAbout: (state: AboutStateType, action) => {
-      console.log("state from reducer: ", state);
       return action.payload;
     },
     // setServicesError: (state: ServicesStateType) => {

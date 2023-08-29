@@ -12,7 +12,6 @@ import { AttachmentType } from "redux/reducers/projectsSlice";
 function TrippleSlider(props: PropsType) {
   const repeat = (arr: any[], n: number): any[] => Array(n).fill(arr).flat();
   const slides: any[] = props.images ? repeat(props.images, 5) : [];
-  console.log(slides);
   return (
     <div className="swiper-custom rtl">
       <div className="container">
@@ -32,7 +31,6 @@ function TrippleSlider(props: PropsType) {
             setTimeout(() => {
               swiper.slideNext(1000);
             }, 1000);
-            console.log(swiper);
           }}
           slidesPerView={2.2}
           coverflowEffect={{

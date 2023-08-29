@@ -37,7 +37,6 @@ export type SettingValueType =
     >;
 
 export function getValueByKey(arr: SettingValueType[] | undefined) {
-  console.log("arr ----", arr, typeof arr);
   if (typeof arr === "object") {
     return function (key: string) {
       const find = arr.find((element) => {
@@ -48,7 +47,8 @@ export function getValueByKey(arr: SettingValueType[] | undefined) {
       });
       return find?.value;
     };
-  } else console.log("Get value Called");
+  }
+
   return function () {
     return "";
   };

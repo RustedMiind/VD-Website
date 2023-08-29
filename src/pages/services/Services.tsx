@@ -21,10 +21,9 @@ function Services() {
     title: t("links.services"),
   };
   const { services } = useSelector(
-    (state: { services: ServicesStateType }) => state
+    (state: { services: ServicesStateType }) => state.services
   );
   const dispatch = useDispatch();
-  console.log(services);
   useEffect(() => {
     requestSetServices(dispatch);
   }, []);
@@ -34,11 +33,18 @@ function Services() {
         {/* {services === "loading" && <ServicePlaceHolder />}
         {typeof services === "object" &&
           services.map((service) => <ServiceCard data={service} />)} */}
-        {typeof services === "object" && (
-          <HexagonsContainer services={services} />
-        )}
+        {typeof services === "object" &&
+          services.map((service) => (
+            <>
+              {service.design === "circle" && (
+                <HexagonsContainer services={service.services} />
+              )}
+            </>
+          ))}
+        {services === "loading" && <h2>Loading</h2>}
+        {services === "error" && <h2>Error Fetching Data</h2>}
       </div>
-      <Test />
+      {/* <Test /> */}
     </PageBannerLayout>
   );
 }
