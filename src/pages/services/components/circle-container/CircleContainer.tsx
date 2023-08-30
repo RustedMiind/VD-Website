@@ -4,7 +4,7 @@ import "./circle-container.scss";
 
 function CircleContainer(props: PropsType) {
   return (
-    <div className="circle-container">
+    <div className={`circle-container ${props.addClass}`}>
       <div className="service-section-about">
         <h3>{props.service.title}</h3>
         <p>{props.service.description}</p>
@@ -16,6 +16,7 @@ function CircleContainer(props: PropsType) {
 
 type PropsType = {
   service: ServicesSectionType;
+  addClass: string;
 };
 
 export default CircleContainer;

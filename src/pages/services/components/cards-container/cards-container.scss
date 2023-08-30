@@ -1,0 +1,72 @@
+@import "../../../../sass/effects";
+@import "../../../../sass/breakpoints";
+
+.services-cards-section {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 100% !important;
+}
+.services-cards-container2 {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 5rem;
+  .service-card-2 {
+    width: calc(30% - 1rem);
+    background: linear-gradient(360deg, #c9d8e8 0%, #ffffff 99.94%);
+    padding: 2rem 3rem;
+    border-radius: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    border: 1px solid var(--main);
+    height: 30rem;
+    overflow: auto;
+    max-width: 100%;
+    position: relative;
+    .link-with-arrow {
+      opacity: 0;
+      position: absolute;
+      bottom: 0rem;
+      pointer-events: none;
+    }
+
+    @include SmallScreenOrLess {
+      width: calc(50% - 1rem);
+    }
+    @include Mobile {
+      width: 28rem;
+    }
+    @include ScaleHoverSm {
+      box-shadow: 0 0 1rem var(--main);
+      .link-with-arrow {
+        bottom: 2rem;
+        opacity: 1;
+        pointer-events: all;
+      }
+    }
+    .card-head {
+      border-radius: 1.6rem;
+      width: 100%;
+      padding: 1.4rem;
+      background: linear-gradient(180deg, #004693 0%, #2e83df 100%);
+      color: white;
+      margin-bottom: 1rem;
+    }
+    .service-card-content {
+      width: 80%;
+    }
+    &:nth-of-type(2n) {
+      background: linear-gradient(0deg, #e3f0fd 0%, #ffffff 100%);
+      border-color: #2b81de;
+      .card-head {
+        background: linear-gradient(180deg, #93c8ff 0%, #cde6ff 100%);
+      }
+    }
+  }
+}

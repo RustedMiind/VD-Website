@@ -16,7 +16,7 @@ function HexagonsContainer(props: PropsType) {
   }
 
   return (
-    <div className="hexagon-shape-container">
+    <div className={`hexagon-shape-container ${props.addClass}`}>
       <div className="service-section-about">
         <h3>{props.service.title}</h3>
         <p>{props.service.description}</p>
@@ -46,5 +46,6 @@ function HexagonsContainer(props: PropsType) {
 
 type PropsType = {
   service: ServicesSectionType;
+  addClass: string;
 };
 export default HexagonsContainer;

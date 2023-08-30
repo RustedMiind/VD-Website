@@ -12,12 +12,21 @@ import { ServicesStateType } from "redux/reducers/servicesSlice";
 // import HexagonShape from "./components/hexagon-shape/HexagonShape";
 import HexagonsContainer from "./components/hexagons-container/HexagonsContainer";
 import CircleContainer from "./components/circle-container/CircleContainer";
+import ServicesCardsContainer from "./components/cards-container/CardsContainer";
+import HalfCircleContainer from "./components/half-circle/HalfCircleContainer";
+import { ArrowLeftCircleFill, Whatsapp } from "react-bootstrap-icons";
+import { SettingsStateType } from "redux/reducers/settingsSlice";
+import { getValueByKey } from "types/SettingsType";
 
 function Services() {
   const { t } = useTranslation();
+  const settings = useSelector(
+    (state: { settings: SettingsStateType }) => state.settings
+  );
+  const getvalue = getValueByKey(settings);
+  const whatsapp = getvalue("whatsapp") as undefined | [string];
   const data: PageBannerDataType = {
-    bgImage:
-      "https://i0.wp.com/digital-photography-school.com/wp-content/uploads/2019/11/street-photography-exercises-16.jpg?fit=1500%2C919&ssl=1",
+    bgImage: { gradient: true },
     title: t("links.services"),
   };
   const { services } = useSelector(
@@ -35,18 +44,41 @@ function Services() {
         {typeof services === "object" &&
           services.map((service) => <ServiceCard data={service} />)} */}
         {typeof services === "object" &&
-          services.map((service) => (
-            <>
-              {service.design === "hexagon" && (
-                <HexagonsContainer service={service} />
-              )}
-              {service.design === "circle" && (
-                <CircleContainer service={service} />
-              )}
-            </>
-          ))}
+          services.map((service, index) => {
+            const className = "bg-main-transparent";
+            return (
+              <>
+                {service.design === "hexagon" && (
+                  <HexagonsContainer service={service} addClass={className} />
+                )}
+                {service.design === "circle" && (
+                  <CircleContainer service={service} addClass={className} />
+                )}
+                {service.design === "circle" && (
+                  <HalfCircleContainer service={service} addClass={className} />
+                )}
+                {service.design === "circle" && (
+                  <ServicesCardsContainer
+                    service={service}
+                    addClass={className}
+                  />
+                )}
+              </>
+            );
+          })}
         {services === "loading" && <h2>Loading</h2>}
         {services === "error" && <h2>Error Fetching Data</h2>}
+
+        {whatsapp && whatsapp[0] && (
+          <a
+            className="link-with-arrow custom"
+            target="_blank"
+            href={"https://wa.me/" + whatsapp[0]}
+          >
+            تواصل عبر الواتس اب
+            <Whatsapp />
+          </a>
+        )}
       </div>
     </PageBannerLayout>
   );

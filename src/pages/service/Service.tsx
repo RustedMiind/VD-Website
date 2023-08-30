@@ -19,9 +19,8 @@ function ServicePage() {
     "loading"
   );
   const data: PageBannerDataType = {
-    bgImage:
-      "https://i0.wp.com/digital-photography-school.com/wp-content/uploads/2019/11/street-photography-exercises-16.jpg?fit=1500%2C919&ssl=1",
     title: typeof service === "object" ? service.name : t("titles.service"),
+    bgImage: { gradient: true },
   };
   useEffect(() => {
     axios

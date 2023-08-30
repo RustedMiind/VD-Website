@@ -14,7 +14,7 @@ import { requestSetAbout } from "redux/middlewares/aboutMiddleware";
 import { AboutStateType } from "redux/reducers/aboutSlice";
 import storage from "methods/storage";
 import FilesSlider from "components/files-slider/FilesSlider";
-import { sum, sumByKey } from "methods/sumByKey";
+import { sum } from "methods/sumByKey";
 
 function AboutUs() {
   const about: AboutStateType = useSelector(

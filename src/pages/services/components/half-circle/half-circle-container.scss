@@ -1,0 +1,131 @@
+@import "../../../../sass/breakpoints";
+@import "../../../../sass/effects";
+
+.half-circle-container {
+  position: relative;
+  overflow: hidden;
+  padding-bottom: 250px;
+}
+.half-circle-shape {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  //   margin-top: 2rem;
+  @include TabletOrLess {
+    width: fit-content;
+  }
+}
+.services-cards-section.half-circle-section {
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+  margin-bottom: 5rem;
+  display: flex;
+  gap: 6rem;
+  flex-direction: column;
+  align-items: center;
+  //   height: 800px;
+  @include TabletOrLess {
+    // width: fit-content;
+    align-items: start !important;
+    overflow-x: scroll !important;
+  }
+  .service-section-about {
+    margin-bottom: 5rem;
+  }
+  .half-circle-items-container {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+  }
+  .large-circle {
+    width: 705px;
+    height: 705px;
+    top: calc(100% - 270px);
+    border-radius: 1000rem;
+    position: absolute;
+    z-index: 100;
+    background: linear-gradient(0deg, #bad5f4 0%, #ffffff 100%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 6rem;
+    border: 0.7rem solid var(--main);
+    h4 {
+      font-size: 1.8rem;
+    }
+  }
+  .circle-title {
+    // text-align: start;
+  }
+  .half-circle-item {
+    width: 150px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: end;
+
+    .circle-describtion {
+      max-height: 8rem;
+      font-size: 0.9em;
+      overflow: hidden;
+    }
+    .number-circle {
+      --circle-color: var(--main);
+      position: relative;
+      width: 120px;
+      height: 120px;
+      font-size: 3rem;
+      border-radius: 300rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: var(--circle-color);
+      z-index: 100;
+      margin-top: 32px;
+      color: var(--font-light);
+      &.light-blue {
+        --circle-color: #2b81de;
+      }
+      &.orange {
+        --circle-color: var(--third);
+      }
+      &.light-orange {
+        --circle-color: #ffd691;
+      }
+      &::after,
+      &::before {
+        content: "";
+        border-radius: inherit;
+        background-color: var(--circle-color);
+        position: absolute;
+        z-index: -1;
+      }
+      &::before {
+        width: calc(100% + 16px);
+        height: calc(100% + 16px);
+        opacity: 0.8;
+      }
+      &::after {
+        width: calc(100% + 32px);
+        height: calc(100% + 32px);
+        opacity: 0.6;
+        z-index: -2;
+      }
+    }
+    @include ScaleHover {
+      //   z-index: 200;
+      transform: translateY(-4rem) scale(1.1);
+      * {
+        transition: 200ms;
+      }
+      .number-circle::after {
+        box-shadow: 0 0 2rem var(--circle-color);
+      }
+      .number-circle::before {
+        box-shadow: 0 0 2rem var(--circle-color);
+      }
+    }
+  }
+}
