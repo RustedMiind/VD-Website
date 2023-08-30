@@ -28,6 +28,12 @@ export type ServiceType = {
   image: string;
   category_id: number;
   order_id: number;
+  examples: ServiceExample[];
+};
+
+export type ServiceExample = {
+  path: string;
+  description: string;
 };
 
 export type ServicesSectionType = {
@@ -48,6 +54,7 @@ export const initialService: ServiceType = {
   image: "Loading...",
   category_id: 0,
   order_id: 0,
+  examples: [],
 };
 
 // export type ServicesType = ServiceType[] | "error" | "loading";

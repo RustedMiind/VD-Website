@@ -1,10 +1,8 @@
 import { NavLink } from "react-router-dom";
 import { useState } from "react";
-import logo from "assets/images/logo-vision.png";
 import "./footer.scss";
 import {
   Facebook,
-  GooglePlay,
   Instagram,
   Snapchat,
   TelephoneFill,
@@ -95,7 +93,11 @@ function Footer() {
                 </div>
                 <div className="small-title-content">
                   <div className="small-title">متوفر علي </div>
-                  <a target="_blank" href={apps?.play_store_link}>
+                  <a
+                    target="_blank"
+                    rel="noreferrer"
+                    href={apps?.play_store_link}
+                  >
                     متجر بلاي ستور
                   </a>
                 </div>
@@ -117,7 +119,11 @@ function Footer() {
                 </div>
                 <div className="small-title-content">
                   <div className="small-title">متوفر علي </div>
-                  <a target="_blank" href={apps?.app_store_link}>
+                  <a
+                    target="_blank"
+                    rel="noreferrer"
+                    href={apps?.app_store_link}
+                  >
                     متجر اب ستور
                   </a>
                 </div>
@@ -192,7 +198,9 @@ function Footer() {
             <div className="title">الروابط المهمة</div>
             <div className="section-content">
               {navigationRoutes.map((item) => (
-                <NavLink to={item.path}>{t(item.name)}</NavLink>
+                <NavLink key={item.path} to={item.path}>
+                  {t(item.name)}
+                </NavLink>
               ))}
             </div>
           </div>
@@ -206,7 +214,12 @@ function Footer() {
             <div className="title">عنواننا</div>
             <div className="section-content max-w-2 adresses">
               {address?.map((item) => (
-                <a target="_blank" href={item.link} key={item.link}>
+                <a
+                  target="_blank"
+                  rel="noreferrer"
+                  href={item.link}
+                  key={item.link}
+                >
                   {item.address}
                 </a>
               ))}
@@ -216,22 +229,26 @@ function Footer() {
             <div className="title">التواصل</div>
             <div className="section-content">
               {whatsapp && whatsapp[0] && (
-                <a target="_blank" href={"https://wa.me/" + whatsapp[0]}>
+                <a
+                  target="_blank"
+                  rel="noreferrer"
+                  href={"https://wa.me/" + whatsapp[0]}
+                >
                   <Whatsapp />
                 </a>
               )}
               {social && social.instagram && (
-                <a target="_blank" href={social.instagram}>
+                <a target="_blank" rel="noreferrer" href={social.instagram}>
                   <Instagram />
                 </a>
               )}
               {social && social.snapchat && (
-                <a target="_blank" href={social.snapchat}>
+                <a target="_blank" rel="noreferrer" href={social.snapchat}>
                   <Snapchat />
                 </a>
               )}
               {social && social.facebook && (
-                <a target="_blank" href={social.facebook}>
+                <a target="_blank" rel="noreferrer" href={social.facebook}>
                   <Facebook />
                 </a>
               )}

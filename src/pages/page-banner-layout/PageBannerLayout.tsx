@@ -1,4 +1,3 @@
-import { Search } from "react-bootstrap-icons";
 import "./page-banner-layout.scss";
 import { NavLink } from "react-router-dom";
 
@@ -24,7 +23,12 @@ function PageBannerLayout({ data, children }: PropsType) {
             data.subtitle.type === "navigate" && (
               <div className="navigate">
                 {data.subtitle.links.map((link) => (
-                  <NavLink to={link.path}>{link.title}</NavLink>
+                  <NavLink
+                    to={link.path}
+                    className={link.active ? "is-active" : ""}
+                  >
+                    {link.title}
+                  </NavLink>
                 ))}
               </div>
             )}
@@ -55,7 +59,7 @@ export type PageBannerDataType = {
   subtitle?:
     | {
         type: "navigate";
-        links: { title: string; path: string }[];
+        links: { title: string; path: string; active?: boolean }[];
       }
     | {
         type: "paragraph";

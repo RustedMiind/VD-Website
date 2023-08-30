@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import ProjectCard from "./compontents/project-card/ProjectCard";
 import "./projects.scss";
-import { Filter, Search } from "react-bootstrap-icons";
 import { useDispatch, useSelector } from "react-redux/es/exports";
 import { requestSetProjects } from "redux/middlewares/projectsMiddleware";
 import { projectsStateType } from "redux/reducers/projectsSlice";
@@ -28,14 +27,6 @@ function Projects() {
     //   paragraph:
     //     "لا تتردد في الاتصال بنا في اي وقت اذا كنت بحاجة لاستشارة فورية او لديك اي استفسارات",
     // },
-    subtitle: {
-      type: "navigate",
-      links: [
-        { title: "الرئيسية", path: "/" },
-        { title: "المشاريع", path: "/projects" },
-        { title: "الرئيسية", path: "/" },
-      ],
-    },
   };
   const [search, setSearch] = useState("");
   const [type, setType] = useState("");

@@ -63,8 +63,10 @@
         justify-content: center;
         text-align: center;
         .item-title {
-          max-height: 2.2rem;
+          // max-height: 2.2rem;
           overflow: hidden;
+          font-size: 1.1rem;
+          max-height: 3.5rem;
         }
         p {
           max-height: 4.875rem;

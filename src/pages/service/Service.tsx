@@ -36,10 +36,10 @@ function ServicePage() {
   return (
     <PageBannerLayout data={data}>
       <div className="service-page tight-section">
-        <button className="link-with-arrow custom">
+        {/* <button className="link-with-arrow custom">
           اطلب خدمة فورية
           <ArrowLeftCircleFill />
-        </button>
+        </button> */}
         {typeof service === "object" && (
           <>
             <div className="section">
@@ -50,6 +50,15 @@ function ServicePage() {
               <h3 className="section-title">وصف الخدمة</h3>
               <div className="section-content">{service.description}</div>
             </div>
+            <div className="section">
+              <h3 className="section-title">الاعمال السابقة</h3>
+              <TrippleSlider
+                images={service.examples.map((item) => ({
+                  ...item,
+                  describtion: item.description,
+                }))}
+              />
+            </div>
           </>
         )}
         {service === "error" && (
@@ -58,7 +67,6 @@ function ServicePage() {
           </div>
         )}
       </div>
-      {/* <TrippleSlider  /> */}
     </PageBannerLayout>
   );
 }

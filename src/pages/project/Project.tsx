@@ -10,12 +10,9 @@ import { ProjectType } from "redux/reducers/projectsSlice";
 import axios from "axios";
 import api from "methods/api";
 import ApiResponse from "types/ApiResponse";
-import { useContext } from "react";
-import { LangContext } from "contexts/LangContext";
 import { useTranslation } from "react-i18next";
 
 function Project() {
-  const { lang } = useContext(LangContext);
   const { projectId } = useParams();
   const [project, setProject] = useState<ProjectType | undefined>();
   const { t } = useTranslation();
@@ -23,6 +20,18 @@ function Project() {
   const data: PageBannerDataType = {
     bgImage: project?.["main-image"] || "",
     title: project?.title || `المشروع ${projectId}`,
+    subtitle: {
+      type: "navigate",
+      links: [
+        { title: "الرئيسية", path: "/" },
+        { title: "المشاريع", path: "/projects" },
+        {
+          title: project?.title || `المشروع ${projectId}`,
+          path: `/projects/${projectId}`,
+          active: true,
+        },
+      ],
+    },
   };
   useEffect(() => {
     axios
@@ -31,6 +40,7 @@ function Project() {
       )
       .then((result) => {
         setProject(result.data.data);
+        console.log("project : ", result.data);
       })
       .catch((err) => {});
   }, []);
@@ -44,9 +54,11 @@ function Project() {
             <p>{project?.title}</p>
           </div>
         </section>
-        <section className="">
-          <TrippleSlider images={project?.attachments} />
-        </section>
+        {project?.attachments && (
+          <section className="">
+            <TrippleSlider images={project.attachments} />
+          </section>
+        )}
         <section className="section">
           <h3 className="section-title">{t("project.describtion")}</h3>
           <div className="section-content">
@@ -58,10 +70,7 @@ function Project() {
           <div className="section-content">
             <div className="work-areas-container">
               {project?.workZones.map((zone) => (
-                <div
-                  className="work-area-card"
-                  key={`${zone.zone}${zone.name}`}
-                >
+                <div key={`${Math.random()}`} className="work-area-card">
                   <div className="title">{zone.name}</div>
                   <div className="content">{zone.zone}</div>
                 </div>
