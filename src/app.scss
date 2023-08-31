@@ -1,4 +1,6 @@
 @import "sass/breakpoints";
+// @import "node_modules/swiper/swiper";
+// @import "node_modules/swiper/components/effect-fade/effect-fade";
 :root {
   --main: #292283;
   --main: #004693;
@@ -95,6 +97,10 @@ body {
 
 .padding-2 {
   padding: 1rem;
+}
+
+.w-100 {
+  width: 100% !important;
 }
 
 .link-with-arrow {

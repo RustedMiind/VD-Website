@@ -9,6 +9,7 @@ import whiteHeader from "assets/images/white-header.png";
 import CardsSlider from "components/cards-slider/CardsSlider";
 import { useSelector } from "react-redux";
 import { MainStateType } from "redux/reducers/mainSlice";
+import { NavLink } from "react-router-dom";
 
 function AboutSection() {
   const { main } = useSelector((state: { main: MainStateType }) => state);
@@ -28,9 +29,9 @@ function AboutSection() {
         <div className="content-container">
           <CardsSlider />
           <div className="two-links-container">
-            <a href="" className="third">
+            <NavLink to="about" className="third">
               تعرف علينا
-            </a>
+            </NavLink>
             {typeof main == "object" && main.file && (
               <a
                 href={main.file}
