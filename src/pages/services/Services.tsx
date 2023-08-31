@@ -54,10 +54,10 @@ function Services() {
                 {service.design === "circle" && (
                   <CircleContainer service={service} addClass={className} />
                 )}
-                {service.design === "circle" && (
+                {service.design === "half_circle" && (
                   <HalfCircleContainer service={service} addClass={className} />
                 )}
-                {service.design === "circle" && (
+                {service.design === "cards" && (
                   <ServicesCardsContainer
                     service={service}
                     addClass={className}

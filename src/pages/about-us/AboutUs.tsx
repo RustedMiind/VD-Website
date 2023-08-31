@@ -193,9 +193,16 @@ function AboutUs() {
                           <div className="counters">
                             {projectsCounts &&
                               projectsCounts.map((projectcount) => (
-                                <div className="item">
+                                <div className="item" key={projectcount.name}>
                                   <div className="count-number">
-                                    {projectcount.num}
+                                    {counterRan ? (
+                                      <CountUp
+                                        duration={3}
+                                        end={parseInt(projectcount.num)}
+                                      />
+                                    ) : (
+                                      0
+                                    )}
                                   </div>
                                   <div>{projectcount.name}</div>
                                 </div>
