@@ -17,6 +17,7 @@ const EnTranslation = {
     projects: "Projects",
     login: "Login",
     services: "Services",
+    service: "Service",
     aboutUs: "About Us",
     contact: "Contact Us",
     news: "Latest News",

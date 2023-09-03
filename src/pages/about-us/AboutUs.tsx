@@ -155,7 +155,7 @@ function AboutUs() {
             about.icons.icons[0] && (
               <div className="about-icons-container wide-section">
                 <IconsSlider
-                  title="شهاداتنا"
+                  title={about.icons.type}
                   className="tight-section"
                   icons={about.icons.icons?.map((item) => item.logo)}
                 />
@@ -217,13 +217,14 @@ function AboutUs() {
             </ScrollAnimation>
           </div>
 
-          <PartnersSectionAbout
-            icons={
-              condition && about.icons
-                ? about.partners.map((item) => item.logo)
-                : [""]
-            }
-          />
+          {condition && (
+            <PartnersSectionAbout
+              // title={about.partners..type}
+              icons={
+                about.icons ? about.partners.map((item) => item.logo) : [""]
+              }
+            />
+          )}
 
           {condition && about.files && about.files[0] && (
             <div className="files-slider-container">

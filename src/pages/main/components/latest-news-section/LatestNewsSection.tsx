@@ -25,7 +25,6 @@ function LatestNewsSection() {
           modules={[Autoplay, EffectCube]}
           spaceBetween={0}
           speed={1000}
-          width={1920}
           fadeEffect={{ crossFade: false }}
           slidesPerView={1}
           loop={true}

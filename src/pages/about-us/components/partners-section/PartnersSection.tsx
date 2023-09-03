@@ -5,10 +5,10 @@ function PartnersSectionAbout(props: PropsType) {
     <div className="partners-section-about tight-section centered-paragraph">
       <div className="header">
         <h4>عملاء الشركة</h4>
-        <p>
+        {/* <p>
           هذا النص هو مثال لنص يمكن أن يستبدل في نفس المساحة، لقد تم توليد هذا
           النص من مولد النص العربى، حيث يمكنك أن تولد مثل هذا.{" "}
-        </p>
+        </p> */}
       </div>
       <PartnersIconsContainer icons={props.icons} />
     </div>

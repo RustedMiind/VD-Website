@@ -19,7 +19,7 @@ function ServicePage() {
     "loading"
   );
   const data: PageBannerDataType = {
-    title: typeof service === "object" ? service.name : t("titles.service"),
+    title: typeof service === "object" ? service.name : t("links.service"),
     bgImage: { gradient: true },
   };
   useEffect(() => {
@@ -49,15 +49,17 @@ function ServicePage() {
               <h3 className="section-title">وصف الخدمة</h3>
               <div className="section-content">{service.description}</div>
             </div>
-            <div className="section">
-              <h3 className="section-title">الاعمال السابقة</h3>
-              <TrippleSlider
-                images={service.examples.map((item) => ({
-                  ...item,
-                  describtion: item.description,
-                }))}
-              />
-            </div>
+            {service.examples.length > 0 && (
+              <div className="section">
+                <h3 className="section-title">الاعمال السابقة</h3>
+                <TrippleSlider
+                  images={service.examples.map((item) => ({
+                    ...item,
+                    describtion: item.description,
+                  }))}
+                />
+              </div>
+            )}
           </>
         )}
         {service === "error" && (

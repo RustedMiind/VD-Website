@@ -18,7 +18,8 @@ function PartnersSection() {
         {typeof main === "object" &&
           main.icons &&
           main.icons.type &&
-          main.icons.icons && (
+          main.icons.icons &&
+          main.icons.icons.length && (
             <IconsSlider
               icons={main.icons.icons.map((icon) => icon.logo)}
               title={main.icons.type}

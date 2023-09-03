@@ -21,13 +21,16 @@
         height: 5rem;
         border-radius: 50rem;
         border: 2px solid var(--third);
+        // background-color: var(--main);
         overflow: hidden;
         padding: 0.6rem;
         display: flex;
         align-items: center;
         box-shadow: 0px 0px 2rem 0px #f9ca8780;
         justify-content: center;
-        @include ScaleHoverLg;
+        @include ScaleHoverLg {
+          transform: scale(1.4);
+        }
         img {
           display: flex;
           width: 100%;
@@ -35,6 +38,7 @@
           align-items: center;
           justify-content: center;
           object-fit: contain;
+          // filter: drop-shadow(0 0 2px var(--font-light));
         }
       }
     }

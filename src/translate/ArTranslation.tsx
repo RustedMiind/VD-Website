@@ -17,6 +17,7 @@ const ArTranslation = {
     projects: "مشاريعنا",
     login: "تسجيل الدخول",
     services: "خدماتنا",
+    service: "الخدمة",
     aboutUs: "نبذة عنا",
     contact: "تواصل معنا",
     news: "أخبارنا",

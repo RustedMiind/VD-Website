@@ -29,15 +29,15 @@ function NewsPage() {
   };
   return (
     <PageBannerLayout data={data}>
-      <div className="news-page tight-section">
-        {newNews && <h2 className="news-section-header">احدث اخبارنا</h2>}
-        <div className="news-grid-layout">
-          {newNews && newNews[0] && (
-            <div className="news-grid-item">
-              <NewNewsCard data={newNews[0]} />
-            </div>
-          )}
-          {typeof newNews === "object" && newNews.length >= 2 && (
+      {typeof newNews === "object" && newNews.length >= 2 ? (
+        <div className="news-page tight-section">
+          {newNews && <h2 className="news-section-header">احدث اخبارنا</h2>}
+          <div className="news-grid-layout">
+            {newNews && newNews[0] && (
+              <div className="news-grid-item">
+                <NewNewsCard data={newNews[0]} />
+              </div>
+            )}
             <div className="news-grid-item">
               <div className="new-news-cards-container">
                 <NewNewsCard data={newNews[1]} className="row-1-of-2" />
@@ -49,33 +49,35 @@ function NewsPage() {
                 )}
               </div>
             </div>
-          )}
-        </div>
-        {Array.isArray(allNews) && allNews.length >= 1 && (
-          <h2 className="news-section-header">كل الاخبار</h2>
-        )}
-        <div className="news-grid-layout">
+          </div>
           {Array.isArray(allNews) && allNews.length >= 1 && (
-            <div className="news-grid-item">
-              <div className="news-three-cards-container">
-                <MainNewsCard data={allNews[0]} isInline={true} />
-                {allNews[1] && (
-                  <MainNewsCard data={allNews[1]} isInline={true} />
-                )}
-                {allNews[2] && (
-                  <MainNewsCard data={allNews[2]} isInline={true} />
-                )}
-              </div>
-            </div>
+            <h2 className="news-section-header">كل الاخبار</h2>
           )}
-          {Array.isArray(allNews) &&
-            allNews.slice(3).map((news) => (
+          <div className="news-grid-layout">
+            {Array.isArray(allNews) && allNews.length >= 1 && (
               <div className="news-grid-item">
-                <MainNewsCard data={news} />
+                <div className="news-three-cards-container">
+                  <MainNewsCard data={allNews[0]} isInline={true} />
+                  {allNews[1] && (
+                    <MainNewsCard data={allNews[1]} isInline={true} />
+                  )}
+                  {allNews[2] && (
+                    <MainNewsCard data={allNews[2]} isInline={true} />
+                  )}
+                </div>
               </div>
-            ))}
+            )}
+            {Array.isArray(allNews) &&
+              allNews.slice(3).map((news) => (
+                <div className="news-grid-item">
+                  <MainNewsCard data={news} />
+                </div>
+              ))}
+          </div>
         </div>
-      </div>
+      ) : (
+        <h3>لا يوجد اخبار جديدة في الوقت الحالى</h3>
+      )}
     </PageBannerLayout>
   );
 }
