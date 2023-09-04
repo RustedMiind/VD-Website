@@ -1,15 +1,12 @@
 import "./files-slider.scss";
 import { Swiper, SwiperSlide } from "swiper/react";
-import topRightBorder from "assets/images/1.png";
-import bottomLeftBorder from "assets/images/2.png";
+import fileImage from "assets/images/file-image.png";
 import {
   EffectCoverflow,
   Pagination,
   Navigation,
   Autoplay,
 } from "swiper/modules";
-import { useSelector } from "react-redux";
-import { MainStateType, MembersType } from "redux/reducers/mainSlice";
 import { Download } from "react-bootstrap-icons";
 import { FileType } from "redux/reducers/aboutSlice";
 
@@ -63,6 +60,7 @@ function FilesSlider(props: PropsType) {
                       backgroundImage: `linear-gradient(259.28deg, #004693 0%, #29285E 100%)`,
                     }}
                   >
+                    <img src={fileImage} className="file-bg-image" alt="" />
                     <div className="card-content">
                       <div className="right-side">
                         <h4>{file.original_name}</h4>

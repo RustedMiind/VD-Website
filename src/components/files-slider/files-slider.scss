@@ -1,6 +1,14 @@
 @import "../../sass/breakpoints";
 
 .swiper-custom-files {
+  .file-bg-image {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 30%;
+    left: 0;
+    object-fit: contain;
+  }
   // width: 100%;
   @include Mobile {
     max-width: none !important;

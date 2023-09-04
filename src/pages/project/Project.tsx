@@ -14,25 +14,40 @@ import { useTranslation } from "react-i18next";
 
 function Project() {
   const { projectId } = useParams();
-  const [project, setProject] = useState<ProjectType | undefined>();
+  const [project, setProject] = useState<ProjectType | "error" | "loading">(
+    "loading"
+  );
   const { t } = useTranslation();
 
-  const data: PageBannerDataType = {
-    bgImage: project?.["main-image"] || "",
-    title: project?.title || `المشروع ${projectId}`,
-    subtitle: {
-      type: "navigate",
-      links: [
-        { title: "الرئيسية", path: "/" },
-        { title: "المشاريع", path: "/projects" },
-        {
+  const data: PageBannerDataType =
+    typeof project === "object"
+      ? {
+          bgImage: project?.["main-image"] || "",
           title: project?.title || `المشروع ${projectId}`,
-          path: `/projects/${projectId}`,
-          active: true,
-        },
-      ],
-    },
-  };
+          subtitle: {
+            type: "navigate",
+            links: [
+              { title: "الرئيسية", path: "/" },
+              { title: "المشاريع", path: "/projects" },
+              {
+                title: project?.title || `المشروع ${projectId}`,
+                path: `/projects/${projectId}`,
+                active: true,
+              },
+            ],
+          },
+        }
+      : {
+          bgImage: "",
+          title: project === "loading" ? "جار تحميل المشروع" : "فشل التحميل",
+          subtitle: {
+            type: "navigate",
+            links: [
+              { title: "الرئيسية", path: "/" },
+              { title: "المشاريع", path: "/projects" },
+            ],
+          },
+        };
   useEffect(() => {
     axios
       .get<ApiResponse<ProjectType>>(
@@ -47,38 +62,40 @@ function Project() {
 
   return (
     <PageBannerLayout data={data}>
-      <div className="project-page tight-section">
-        <section className="section">
-          <h3 className="section-title">{t("project.name")}</h3>
-          <div className="section-content">
-            <p>{project?.title}</p>
-          </div>
-        </section>
-        {project?.attachments && (
-          <section className="">
-            <TrippleSlider images={project.attachments} />
-          </section>
-        )}
-        <section className="section">
-          <h3 className="section-title">{t("project.describtion")}</h3>
-          <div className="section-content">
-            <p>{project?.description}</p>
-          </div>
-        </section>
-        <section className="section">
-          <h3 className="section-title">{t("project.zone")}</h3>
-          <div className="section-content">
-            <div className="work-areas-container">
-              {project?.workZones.map((zone) => (
-                <div key={`${Math.random()}`} className="work-area-card">
-                  <div className="title">{zone.name}</div>
-                  <div className="content">{zone.zone}</div>
-                </div>
-              ))}
+      {typeof project === "object" && (
+        <div className="project-page tight-section">
+          <section className="section">
+            <h3 className="section-title">{t("project.name")}</h3>
+            <div className="section-content">
+              <p>{project?.title}</p>
             </div>
-          </div>
-        </section>
-      </div>
+          </section>
+          {project?.attachments && (
+            <section className="">
+              <TrippleSlider images={project.attachments} />
+            </section>
+          )}
+          <section className="section">
+            <h3 className="section-title">{t("project.describtion")}</h3>
+            <div className="section-content">
+              <p>{project?.description}</p>
+            </div>
+          </section>
+          <section className="section">
+            <h3 className="section-title">{t("project.zone")}</h3>
+            <div className="section-content">
+              <div className="work-areas-container">
+                {project?.workZones.map((zone) => (
+                  <div key={`${Math.random()}`} className="work-area-card">
+                    <div className="title">{zone.name}</div>
+                    <div className="content">{zone.zone}</div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </section>
+        </div>
+      )}
     </PageBannerLayout>
   );
 }

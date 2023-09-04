@@ -1,6 +1,6 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import "./navbar.scss";
-import { List, LockFill } from "react-bootstrap-icons";
+import { List } from "react-bootstrap-icons";
 import { NavLink } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { useSelector } from "react-redux";
@@ -8,9 +8,11 @@ import { SettingsStateType } from "redux/reducers/settingsSlice";
 import { getValueByKey } from "types/SettingsType";
 import logo from "assets/images/logo-vision.png";
 import { navigationRoutes } from "methods/data/navigationRoutes";
+import { changeLanguage } from "i18next";
+import { LangContext } from "contexts/LangContext";
 
 function Navbar() {
-  // const { changeLang } = useContext(LangContext);
+  const { changeLang } = useContext(LangContext);
   const state = useSelector((state: { settings: SettingsStateType }) => state);
   const getvalue = getValueByKey(state.settings);
   const name = getvalue("slogan");
@@ -42,18 +44,18 @@ function Navbar() {
           <NavLink to="/services">{t("links.services")}</NavLink>
         </li> */}
 
-        {/* <li>
+        <li>
           <a
             className="active"
             role="button"
             onClick={() => {
-              changeLang("en");
               changeLanguage("en");
+              changeLang("en");
             }}
           >
             تغيير اللغة
           </a>
-        </li> */}
+        </li>
       </ul>
       <div className="left">
         <NavLink to={"/"} className="logo-link">
