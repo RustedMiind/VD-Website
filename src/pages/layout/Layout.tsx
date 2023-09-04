@@ -24,9 +24,7 @@ function Layout() {
     window.scrollTo(0, 0);
   }, [pathname]);
   return (
-    <div
-      className={`layout ${lang({ ar: "ar", en: "en" }) === "en" ? "ltr" : ""}`}
-    >
+    <div className={`layout ${lang() === "en" ? "ltr" : "rtl"}`}>
       <NavbarContainers />
       <div className="main-view">
         <Routes>

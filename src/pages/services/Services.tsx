@@ -4,7 +4,7 @@ import PageBannerLayout, {
 import "./services.scss";
 import { useTranslation } from "react-i18next";
 import ServiceCard from "./components/service-card/ServiceCard";
-import { useEffect } from "react";
+import { useEffect, useContext } from "react";
 import { requestSetServices } from "redux/middlewares/servicesMiddleware";
 import { useDispatch, useSelector } from "react-redux";
 import { ServicesStateType } from "redux/reducers/servicesSlice";
@@ -17,6 +17,7 @@ import HalfCircleContainer from "./components/half-circle/HalfCircleContainer";
 import { ArrowLeftCircleFill, Whatsapp } from "react-bootstrap-icons";
 import { SettingsStateType } from "redux/reducers/settingsSlice";
 import { getValueByKey } from "types/SettingsType";
+import { LangContext } from "contexts/LangContext";
 
 function Services() {
   const { t } = useTranslation();
@@ -32,11 +33,13 @@ function Services() {
   const { services } = useSelector(
     (state: { services: ServicesStateType }) => state.services
   );
+  const langContext = useContext(LangContext);
+  const lang = langContext.lang();
   console.log("services state: ", services);
   const dispatch = useDispatch();
   useEffect(() => {
     requestSetServices(dispatch).then(console.log).catch(console.log);
-  }, []);
+  }, [lang]);
   return (
     <PageBannerLayout data={data}>
       <div className="services-page tight-section">

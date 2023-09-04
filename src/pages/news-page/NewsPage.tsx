@@ -1,19 +1,33 @@
 import "./news-page.scss";
 import PageBannerLayout from "pages/page-banner-layout/PageBannerLayout";
-import { useEffect, useState } from "react";
+import { useEffect, useContext, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useDispatch, useSelector } from "react-redux";
 import { requestSetNews } from "redux/middlewares/newsMiddleware";
-import { newsStateType } from "redux/reducers/newsSlice";
+import { NewsType, newsStateType } from "redux/reducers/newsSlice";
 import NewNewsCard from "./NewNewsCard";
 import MainNewsCard from "./MainNewsCard";
+import { LangContext } from "contexts/LangContext";
+import NewsPopup from "./news-popup/NewsPopup";
 
 function NewsPage() {
   const { t } = useTranslation();
   const dispatch = useDispatch();
+  const [popup, setPopup] = useState<NewsType>({
+    id: 0,
+    title: "string",
+    content: "string",
+    category_id: 0,
+    category: "string",
+    image: "string",
+    published_at: "string",
+  });
+  const [showPopup, setShowPopup] = useState<boolean>(false);
+  const langContext = useContext(LangContext);
+  const lang = langContext.lang();
   useEffect(() => {
     requestSetNews(dispatch);
-  }, []);
+  }, [lang]);
   const news = useSelector((state: { news: newsStateType }) => state.news);
 
   let newNews = undefined;
@@ -29,8 +43,9 @@ function NewsPage() {
   };
   return (
     <PageBannerLayout data={data}>
-      {typeof newNews === "object" && newNews.length >= 2 ? (
+      {typeof newNews === "object" && newNews.length >= 1 ? (
         <div className="news-page tight-section">
+          {<NewsPopup show={showPopup} news={popup} />}
           {newNews && <h2 className="news-section-header">احدث اخبارنا</h2>}
           <div className="news-grid-layout">
             {newNews && newNews[0] && (
@@ -40,7 +55,9 @@ function NewsPage() {
             )}
             <div className="news-grid-item">
               <div className="new-news-cards-container">
-                <NewNewsCard data={newNews[1]} className="row-1-of-2" />
+                {newNews[1] && (
+                  <NewNewsCard data={newNews[1]} className="row-1-of-2" />
+                )}
                 {newNews[2] && (
                   <NewNewsCard data={newNews[2]} className="row-1-of-2" />
                 )}
@@ -80,6 +97,10 @@ function NewsPage() {
       )}
     </PageBannerLayout>
   );
+  function showPopupHandler(data: NewsType) {
+    setShowPopup(true);
+    setPopup(data);
+  }
 }
 
 export default NewsPage;

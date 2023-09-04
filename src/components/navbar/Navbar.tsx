@@ -12,7 +12,7 @@ import { changeLanguage } from "i18next";
 import { LangContext } from "contexts/LangContext";
 
 function Navbar() {
-  const { changeLang } = useContext(LangContext);
+  const { changeLang, lang } = useContext(LangContext);
   const state = useSelector((state: { settings: SettingsStateType }) => state);
   const getvalue = getValueByKey(state.settings);
   const name = getvalue("slogan");
@@ -44,18 +44,20 @@ function Navbar() {
           <NavLink to="/services">{t("links.services")}</NavLink>
         </li> */}
 
-        <li>
+        {/* <li>
           <a
             className="active"
             role="button"
             onClick={() => {
-              changeLanguage("en");
-              changeLang("en");
+              const current = lang();
+              if (current === "en") changeLang("ar");
+              else if (current === "ar") changeLang("en");
+              console.log(current, "Currentxxxxxxxxxxxx");
             }}
           >
             تغيير اللغة
           </a>
-        </li>
+        </li> */}
       </ul>
       <div className="left">
         <NavLink to={"/"} className="logo-link">

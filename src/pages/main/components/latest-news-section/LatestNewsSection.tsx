@@ -5,14 +5,12 @@ import { useSelector } from "react-redux";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, EffectCube } from "swiper/modules";
 import { MainStateType } from "redux/reducers/mainSlice";
-import {
-  ProjectType,
-  ProjectsListType,
-  ProjectsType,
-} from "redux/reducers/projectsSlice";
+import { ProjectType, ProjectsListType } from "redux/reducers/projectsSlice";
+import { useTranslation } from "react-i18next";
 
 function LatestNewsSection() {
   const main = useSelector((state: { main: MainStateType }) => state.main);
+  const { t } = useTranslation();
 
   const projects: ProjectsListType =
     typeof main === "object" ? main.projects : [];
@@ -45,7 +43,9 @@ function LatestNewsSection() {
               >
                 <div className="latest-news-section">
                   <div className="content-container  tight-section">
-                    <h2 className="section-title">أهم المشاريع</h2>
+                    <h2 className="section-title">
+                      {t("titles.importantProjects")}
+                    </h2>
                     <div className="content">
                       <div className="image">
                         <div className="image-container-16-9">
@@ -59,7 +59,7 @@ function LatestNewsSection() {
                         <p>{project.description}</p>
                         <div className="read-more-button-container">
                           <NavLink to={"/projects"}>
-                            المزيد
+                            {t("buttons.more")}
                             <ArrowLeftCircleFill />
                           </NavLink>
                         </div>

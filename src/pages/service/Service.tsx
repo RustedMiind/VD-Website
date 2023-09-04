@@ -3,14 +3,14 @@ import "./service.scss";
 import PageBannerLayout, {
   PageBannerDataType,
 } from "pages/page-banner-layout/PageBannerLayout";
-import { ArrowLeftCircleFill } from "react-bootstrap-icons";
 import { useTranslation } from "react-i18next";
 import { useParams } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { useEffect, useContext, useState } from "react";
 import { ServiceType, initialService } from "redux/reducers/servicesSlice";
 import axios from "axios";
 import api from "methods/api";
 import ApiResponse from "types/ApiResponse";
+import { LangContext } from "contexts/LangContext";
 
 function ServicePage() {
   const { t } = useTranslation();
@@ -18,6 +18,8 @@ function ServicePage() {
   const [service, setService] = useState<ServiceType | "error" | "loading">(
     "loading"
   );
+  const langContext = useContext(LangContext);
+  const lang = langContext.lang();
   const data: PageBannerDataType = {
     title: typeof service === "object" ? service.name : t("links.service"),
     bgImage: { gradient: true },
@@ -31,7 +33,7 @@ function ServicePage() {
       .catch((err) => {
         setService("error");
       });
-  }, []);
+  }, [lang]);
   return (
     <PageBannerLayout data={data}>
       <div className="service-page tight-section">

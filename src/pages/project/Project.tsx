@@ -5,12 +5,13 @@ import PageBannerLayout, {
 } from "pages/page-banner-layout/PageBannerLayout";
 
 import { useParams } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import { ProjectType } from "redux/reducers/projectsSlice";
 import axios from "axios";
 import api from "methods/api";
 import ApiResponse from "types/ApiResponse";
 import { useTranslation } from "react-i18next";
+import { LangContext } from "contexts/LangContext";
 
 function Project() {
   const { projectId } = useParams();
@@ -19,6 +20,8 @@ function Project() {
   );
   const { t } = useTranslation();
 
+  const langContext = useContext(LangContext);
+  const lang = langContext.lang();
   const data: PageBannerDataType =
     typeof project === "object"
       ? {
@@ -58,7 +61,7 @@ function Project() {
         console.log("project : ", result.data);
       })
       .catch((err) => {});
-  }, []);
+  }, [lang]);
 
   return (
     <PageBannerLayout data={data}>

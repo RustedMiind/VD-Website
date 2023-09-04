@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import ProjectCard from "./compontents/project-card/ProjectCard";
 import "./projects.scss";
 import { useDispatch, useSelector } from "react-redux/es/exports";
@@ -10,6 +10,7 @@ import PageBannerLayout, {
 import PlaceHolder from "./compontents/placeholder/Placeholder";
 import SearchAndFilter from "components/search-and-filter/SearchAndFilter";
 import { useTranslation } from "react-i18next";
+import { LangContext } from "contexts/LangContext";
 
 function Projects() {
   const dispatch = useDispatch();
@@ -28,11 +29,13 @@ function Projects() {
     //     "لا تتردد في الاتصال بنا في اي وقت اذا كنت بحاجة لاستشارة فورية او لديك اي استفسارات",
     // },
   };
+  const langContext = useContext(LangContext);
+  const lang = langContext.lang();
   const [search, setSearch] = useState("");
   const [type, setType] = useState("");
   useEffect(() => {
     requestSetProjects(dispatch);
-  }, []);
+  }, [lang]);
   const toShow =
     typeof projects.projects === "object" &&
     projects.projects &&

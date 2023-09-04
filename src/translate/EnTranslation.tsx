@@ -22,6 +22,27 @@ const EnTranslation = {
     contact: "Contact Us",
     news: "Latest News",
   },
+  buttons: {
+    more: "More",
+    orderService: "Order Service",
+    downloadProfile: "Download Profile",
+  },
+  titles: {
+    partners: "Partners",
+    prominentServices: "Our most prominent services",
+    getToKnowUs: "Get To Know Us",
+    importantProjects: "The most important projects",
+    downloadApplications: "Download Applications",
+    phoneNumbers: "Contact Numbers",
+    news: "The News",
+    importantLinks: "Important Links",
+    addresses: "Adressess",
+    contact: "Contact",
+    whoAreWe: "Who Are We",
+  },
+  projects: {
+    total: "Total Projects",
+  },
 };
 
 export default EnTranslation;

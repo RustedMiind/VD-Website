@@ -10,13 +10,11 @@ import { MainStateType } from "redux/reducers/mainSlice";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, EffectCube } from "swiper/modules";
 import splitArray from "methods/splitArray";
+import { useTranslation } from "react-i18next";
 
 function ServicesSection() {
-  const [indexes, setIndexes] = useState<number[]>([0, 1]);
-  const [enablePlay, setEnablePlay] = useState<boolean>(true);
+  const { t } = useTranslation();
   const main = useSelector((state: { main: MainStateType }) => state.main);
-  const navigationPrevRef = useRef(null);
-  const navigationNextRef = useRef(null);
   const services: ServiceType[] =
     typeof main === "object" ? main.services : [initialService];
   const twoServicesArr = splitArray(services, 2);
@@ -26,27 +24,8 @@ function ServicesSection() {
       <img src={topRightShape} className="top-right-shape" />
       <img src={medLedtShape} className="med-left-shape" />
       <div className="tight-section">
-        <h3>أبرز خدماتنا</h3>
+        <h3>{t("titles.prominentServices")}</h3>
         <div className="services-cards-container">
-          {/* {typeof services === "object" && services[1] ? (
-            indexes.map((index, i) => (
-              <ServicesSectionCard
-                key={services[i].id}
-                services={services}
-                index={index}
-              />
-            ))
-          ) : (
-            <>
-              {services[0] && (
-                <ServicesSectionCard
-                  key={services[0].id}
-                  services={services}
-                  index={0}
-                />
-              )}
-            </>
-          )} */}
           <Swiper
             modules={[Autoplay, EffectCube]}
             spaceBetween={0}

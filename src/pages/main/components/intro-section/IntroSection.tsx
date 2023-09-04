@@ -6,9 +6,11 @@ import { NavLink } from "react-router-dom";
 import { ArrowLeftCircleFill } from "react-bootstrap-icons";
 import { useSelector } from "react-redux";
 import { MainStateType } from "redux/reducers/mainSlice";
+import { useTranslation } from "react-i18next";
 
 function IntroSection() {
   const main = useSelector((state: { main: MainStateType }) => state.main);
+  const { t } = useTranslation();
   const mainDescribtion =
     main && typeof main === "object" && main.main_description
       ? main.main_description
@@ -24,12 +26,12 @@ function IntroSection() {
       {/* <img src={bgImage} className="intro-background" alt="" /> */}
       <div className="page-content">
         <a href="#" className="request-service">
-          اطلب خدمتك
+          {t("buttons.orderService")}
         </a>
         <div className="intro-small-card">
           <p>{mainDescribtion && mainDescribtion}</p>
           <NavLink to="about" className="icon-text-hover">
-            المزيد
+            {t("buttons.more")}
             <ArrowLeftCircleFill />
           </NavLink>
         </div>

@@ -10,8 +10,10 @@ import CardsSlider from "components/cards-slider/CardsSlider";
 import { useSelector } from "react-redux";
 import { MainStateType } from "redux/reducers/mainSlice";
 import { NavLink } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 function AboutSection() {
+  const { t } = useTranslation();
   const { main } = useSelector((state: { main: MainStateType }) => state);
 
   return (
@@ -25,12 +27,12 @@ function AboutSection() {
         <div className="header-image">
           <img src={whiteHeader} alt="" />
         </div>
-        <h3 className="">تعرف علينا</h3>
+        <h3 className="">{t("titles.getToKnowUs")}</h3>
         <div className="content-container">
           <CardsSlider />
           <div className="two-links-container">
             <NavLink to="about" className="third">
-              تعرف علينا
+              {t("titles.getToKnowUs")}
             </NavLink>
             {typeof main == "object" && main.file && (
               <a
@@ -40,7 +42,7 @@ function AboutSection() {
                 rel="noreferrer"
               >
                 <Download />
-                تحميل الملف التعريفي
+                {t("buttons.downloadProfile")}
               </a>
             )}
           </div>

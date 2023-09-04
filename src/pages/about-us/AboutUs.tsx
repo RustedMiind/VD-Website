@@ -9,17 +9,20 @@ import IconsSlider from "components/icons-slider/IconsSlider";
 import { Bullseye, EyeFill, RocketTakeoffFill } from "react-bootstrap-icons";
 import PartnersSectionAbout from "./components/partners-section/PartnersSection";
 import { useDispatch, useSelector } from "react-redux";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import { requestSetAbout } from "redux/middlewares/aboutMiddleware";
 import { AboutStateType } from "redux/reducers/aboutSlice";
 import storage from "methods/storage";
 import FilesSlider from "components/files-slider/FilesSlider";
 import { sum } from "methods/sumByKey";
+import { LangContext } from "contexts/LangContext";
+import { useTranslation } from "react-i18next";
 
 function AboutUs() {
   const about: AboutStateType = useSelector(
     (state: { about: AboutStateType }) => state.about
   );
+  const { t } = useTranslation();
   const settingsCondition =
     about && typeof about === "object" && about.settings;
   const condition = about && typeof about === "object";
@@ -30,31 +33,24 @@ function AboutUs() {
       about.settings.about_page_image[0]
         ? storage(about.settings.about_page_image[0])
         : "",
-    title: false || "نبذة عنا",
+    title: t("links.aboutUs"),
   };
   const [counterRan, setCounterRan] = useState(false);
   const projectsCounts =
     condition && about.projects ? about.projects : undefined;
   const dispatch = useDispatch();
+  const langContext = useContext(LangContext);
+  const lang = langContext.lang();
   useEffect(() => {
     requestSetAbout(dispatch);
-  }, []);
+  }, [lang]);
   return (
     <PageBannerLayout data={data}>
       <div className="about-us-page">
         <div className="tight-section">
           <ScrollAnimation animateIn="animate-fade-to-left">
-            {/* {({ isVisible }: { isVisible: boolean }) => ( */}
             <div className="about-us-content">
               <div className="right">
-                {/* <h4>
-                    اكملنا اكثر من
-                    <span className="text-third">
-                      {" "}
-                      {isVisible ? <CountUp duration={4} end={4000} /> : 0}{" "}
-                    </span>
-                    مشروع
-                  </h4> */}
                 <div className="image-container-21-9">
                   <img
                     src={
@@ -67,54 +63,14 @@ function AboutUs() {
                     alt=""
                   />
                 </div>
-                {/* <div className="counters-container">
-                  <div className="counter-item">
-                    <div className="val">
-                      {true ? <CountUp duration={4} end={23} /> : 0}
-                    </div>
-                    <div className="name">مراقبة جودة</div>
-                  </div>
-                </div> */}
               </div>
               <div className="left">
-                <h4 className="text-third">من نحن</h4>
+                <h4 className="text-third">{t("titles.whoAreWe")}</h4>
                 <p>{settingsCondition && about.settings.about_us}</p>
-                {/* <div className="two-paragraphs-container">
-                  <div className="paragraph">
-                    <h4 className="text-third">الرؤية</h4>
-                    <p>
-                      لنص من مولد النص العربى، حيث يمكنك أن تولد مثل هذا النص أو
-                      العديد من
-                    </p>
-                  </div>
-                  <div className="paragraph">
-                    <h4 className="text-third">الهدف</h4>
-                    <p>
-                      لنص من مولد النص العربى، حيث يمكنك أن تولد مثل هذا النص أو
-                      العديد من
-                    </p>
-                  </div>
-                </div>
-                <div className="centered-paragraph">
-                  <h4 className="text-third">الرسالة</h4>
-                  <p>
-                    ن تولد مثل هذا النص أو العديد منن تولد مثل هذا النص أو
-                    العديد منن تولد مثل هذا النص أو العديد من
-                  </p>
-                </div> */}
               </div>
             </div>
-            {/* )}
-          </ReactVisibilitySensor> */}
           </ScrollAnimation>
         </div>
-        {/* <ReactVisibilitySensor partialVisibility offset={{ bottom: 200 }}>
-          {({ isVisible }: { isVisible: boolean }) => (
-            <div style={{ height: 100 }}>
-              {isVisible ? <CountUp duration={3} end={1000} /> : 0}
-            </div>
-          )}
-        </ReactVisibilitySensor> */}
         <div className="wide-section bg-container">
           <div className="tight-section">
             <ScrollAnimation animateIn="animate-fade-to-left">
@@ -169,7 +125,7 @@ function AboutUs() {
                   isVisible && setCounterRan(true);
 
                   return (
-                    <div className="statistics-container tight-section">
+                    <div className="statistics-container tight-section rtl">
                       <div className="total">
                         <h3>
                           {projectsCounts &&
@@ -186,7 +142,7 @@ function AboutUs() {
                             0
                           )}
                         </h3>
-                        <div>اجمالي عدد المشاريع</div>
+                        <div>{t("projects.total")}</div>
                       </div>
                       <div className="padding-2">
                         <div className="border-wrapper">
@@ -219,7 +175,6 @@ function AboutUs() {
 
           {condition && (
             <PartnersSectionAbout
-              // title={about.partners..type}
               icons={
                 about.icons ? about.partners.map((item) => item.logo) : [""]
               }

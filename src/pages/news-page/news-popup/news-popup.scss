@@ -1,0 +1,24 @@
+.news-wrapper {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 10000;
+  background-color: rgba(0, 0, 0, 0.411);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  .news-popup {
+    width: 80vw;
+    height: 80vh;
+    padding: 1rem;
+    overflow-x: hidden;
+    overflow-y: auto;
+    background-color: var(--font-light);
+    .news-popup-image {
+      width: 100%;
+      border-radius: 0.6rem;
+    }
+  }
+}
