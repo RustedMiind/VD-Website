@@ -23,6 +23,7 @@ function NewsPage() {
     published_at: "string",
     thumbnail: "string",
   });
+  const [popupExist, setPopupExist] = useState<boolean>(false);
   const [showPopup, setShowPopup] = useState<boolean>(false);
   const langContext = useContext(LangContext);
   const lang = langContext.lang();
@@ -46,7 +47,14 @@ function NewsPage() {
     <PageBannerLayout data={data}>
       {typeof newNews === "object" && newNews.length >= 1 ? (
         <div className="news-page tight-section">
-          <NewsPopup show={showPopup} news={popup} hide={hidePopupHandler} />
+          {popupExist && (
+            <NewsPopup
+              terminate={terminatePopup}
+              show={showPopup}
+              news={popup}
+              hide={hidePopupHandler}
+            />
+          )}
           {newNews && <h2 className="news-section-header">احدث اخبارنا</h2>}
           <div className="news-grid-layout">
             {newNews && newNews[0] && (
@@ -132,10 +140,14 @@ function NewsPage() {
   );
   function showPopupHandler(data: NewsType) {
     setShowPopup(true);
+    setPopupExist(true);
     setPopup(data);
   }
   function hidePopupHandler() {
     setShowPopup(false);
+  }
+  function terminatePopup() {
+    setPopupExist(false);
   }
 }
 

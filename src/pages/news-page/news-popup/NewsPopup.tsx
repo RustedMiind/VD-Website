@@ -9,7 +9,7 @@ function NewsPopup(props: PropsType) {
       setShow(props.show);
     }, 1);
     if (!props.show) {
-      setTimeout(props.hide, 500);
+      setTimeout(props.terminate, 400);
     }
   }, [props.show]);
   return (
@@ -30,6 +30,7 @@ type PropsType = {
   news: NewsType;
   show: boolean;
   hide: () => void;
+  terminate: () => void;
 };
 
 export default NewsPopup;
