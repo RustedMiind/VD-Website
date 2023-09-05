@@ -10,6 +10,6 @@ export const navigationRoutes: NavigationRoutesType = [
   { name: "links.aboutUs", path: "/about" },
   { name: "links.projects", path: "/projects" },
   { name: "links.services", path: "/services" },
-  { name: "links.contact", path: "/contact" },
   { name: "links.news", path: "/news" },
+  { name: "links.contact", path: "/contact" },
 ];

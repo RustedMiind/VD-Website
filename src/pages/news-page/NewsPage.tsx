@@ -21,6 +21,7 @@ function NewsPage() {
     category: "string",
     image: "string",
     published_at: "string",
+    thumbnail: "string",
   });
   const [showPopup, setShowPopup] = useState<boolean>(false);
   const langContext = useContext(LangContext);
@@ -74,6 +75,7 @@ function NewsPage() {
                     data={newNews[3]}
                     show={showPopupHandler}
                     className="row-1-of-1"
+                    thumbnail={true}
                   />
                 )}
               </div>
@@ -90,12 +92,14 @@ function NewsPage() {
                     data={allNews[0]}
                     isInline={true}
                     show={showPopupHandler}
+                    thumbnail={true}
                   />
                   {allNews[1] && (
                     <MainNewsCard
                       data={allNews[1]}
                       isInline={true}
                       show={showPopupHandler}
+                      thumbnail={true}
                     />
                   )}
                   {allNews[2] && (
@@ -103,6 +107,7 @@ function NewsPage() {
                       data={allNews[2]}
                       isInline={true}
                       show={showPopupHandler}
+                      thumbnail={true}
                     />
                   )}
                 </div>
@@ -111,7 +116,11 @@ function NewsPage() {
             {Array.isArray(allNews) &&
               allNews.slice(3).map((news) => (
                 <div className="news-grid-item">
-                  <MainNewsCard data={news} show={showPopupHandler} />
+                  <MainNewsCard
+                    thumbnail={true}
+                    data={news}
+                    show={showPopupHandler}
+                  />
                 </div>
               ))}
           </div>

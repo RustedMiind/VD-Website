@@ -4,7 +4,13 @@ function NewNewsCard(props: PropsType) {
   return (
     <div
       className={`new-news-card ${props.className || ""}`}
-      style={{ backgroundImage: `url("${props.data.image}")` }}
+      style={{
+        backgroundImage: `url("${
+          props.thumbnail && props.data.thumbnail
+            ? props.data.thumbnail
+            : props.data.image
+        }")`,
+      }}
       onClick={() => {
         props.show(props.data);
       }}
@@ -21,6 +27,7 @@ type PropsType = {
   className?: string;
   data: NewsType;
   show: (data: NewsType) => void;
+  thumbnail?: boolean;
 };
 
 export default NewNewsCard;

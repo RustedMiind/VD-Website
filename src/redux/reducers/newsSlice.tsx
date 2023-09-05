@@ -24,6 +24,7 @@ export type NewsType = {
   category_id: number;
   category: string;
   image: string;
+  thumbnail: string;
   published_at: string;
 };
 

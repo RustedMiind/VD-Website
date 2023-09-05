@@ -8,7 +8,14 @@ function MainNewsCard(props: PropsType) {
         props.show(props.data);
       }}
     >
-      <img className="card-image" src={props.data.image} />
+      <img
+        className="card-image"
+        src={
+          props.thumbnail && props.data.thumbnail
+            ? props.data.thumbnail
+            : props.data.image
+        }
+      />
       <div className="content-container">
         <div>
           <h4 className="title">{props.data.title}</h4>
@@ -24,5 +31,7 @@ type PropsType = {
   isInline?: boolean;
   data: NewsType;
   show: (data: NewsType) => void;
+
+  thumbnail?: boolean;
 };
 export default MainNewsCard;
