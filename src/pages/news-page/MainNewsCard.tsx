@@ -2,7 +2,12 @@ import { NewsType } from "redux/reducers/newsSlice";
 
 function MainNewsCard(props: PropsType) {
   return (
-    <div className={`inline-card ${props.isInline ? "" : "main-card"}`}>
+    <div
+      className={`inline-card ${props.isInline ? "" : "main-card"}`}
+      onClick={() => {
+        props.show(props.data);
+      }}
+    >
       <img className="card-image" src={props.data.image} />
       <div className="content-container">
         <div>
@@ -18,5 +23,6 @@ function MainNewsCard(props: PropsType) {
 type PropsType = {
   isInline?: boolean;
   data: NewsType;
+  show: (data: NewsType) => void;
 };
 export default MainNewsCard;

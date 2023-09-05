@@ -25,9 +25,9 @@ function IntroSection() {
       </video>
       {/* <img src={bgImage} className="intro-background" alt="" /> */}
       <div className="page-content">
-        <a href="#" className="request-service">
+        <NavLink to="contact" className="request-service">
           {t("buttons.orderService")}
-        </a>
+        </NavLink>
         <div className="intro-small-card">
           <p>{mainDescribtion && mainDescribtion}</p>
           <NavLink to="about" className="icon-text-hover">

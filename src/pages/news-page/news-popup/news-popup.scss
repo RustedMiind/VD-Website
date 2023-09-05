@@ -5,20 +5,47 @@
   width: 100vw;
   height: 100vh;
   z-index: 10000;
-  background-color: rgba(0, 0, 0, 0.411);
   display: flex;
   align-items: center;
   justify-content: center;
-  .news-popup {
+  transition: 500ms;
+  opacity: 0;
+  pointer-events: none;
+  transform: scale(1.15);
+  &.show {
+    opacity: 1;
+    transform: none;
+    pointer-events: all;
+  }
+  .news-background {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.411);
+  }
+  .news-popup-container {
+    border-radius: 0.6rem;
+    padding: 1rem;
+    z-index: 10;
     width: 80vw;
     height: 80vh;
-    padding: 1rem;
-    overflow-x: hidden;
-    overflow-y: auto;
+    overflow: hidden;
     background-color: var(--font-light);
-    .news-popup-image {
+    .news-popup {
+      padding: 1rem;
       width: 100%;
-      border-radius: 0.6rem;
+      height: 100%;
+      overflow-x: hidden;
+      overflow-y: auto;
+      .news-popup-image {
+        width: 100%;
+        border-radius: 0.6rem;
+      }
+      .title {
+        margin-bottom: 0.8rem;
+      }
     }
   }
 }

@@ -45,24 +45,36 @@ function NewsPage() {
     <PageBannerLayout data={data}>
       {typeof newNews === "object" && newNews.length >= 1 ? (
         <div className="news-page tight-section">
-          {<NewsPopup show={showPopup} news={popup} />}
+          <NewsPopup show={showPopup} news={popup} hide={hidePopupHandler} />
           {newNews && <h2 className="news-section-header">احدث اخبارنا</h2>}
           <div className="news-grid-layout">
             {newNews && newNews[0] && (
               <div className="news-grid-item">
-                <NewNewsCard data={newNews[0]} />
+                <NewNewsCard data={newNews[0]} show={showPopupHandler} />
               </div>
             )}
             <div className="news-grid-item">
               <div className="new-news-cards-container">
                 {newNews[1] && (
-                  <NewNewsCard data={newNews[1]} className="row-1-of-2" />
+                  <NewNewsCard
+                    data={newNews[1]}
+                    show={showPopupHandler}
+                    className="row-1-of-2"
+                  />
                 )}
                 {newNews[2] && (
-                  <NewNewsCard data={newNews[2]} className="row-1-of-2" />
+                  <NewNewsCard
+                    data={newNews[2]}
+                    show={showPopupHandler}
+                    className="row-1-of-2"
+                  />
                 )}
                 {newNews[3] && (
-                  <NewNewsCard data={newNews[3]} className="row-1-of-1" />
+                  <NewNewsCard
+                    data={newNews[3]}
+                    show={showPopupHandler}
+                    className="row-1-of-1"
+                  />
                 )}
               </div>
             </div>
@@ -74,12 +86,24 @@ function NewsPage() {
             {Array.isArray(allNews) && allNews.length >= 1 && (
               <div className="news-grid-item">
                 <div className="news-three-cards-container">
-                  <MainNewsCard data={allNews[0]} isInline={true} />
+                  <MainNewsCard
+                    data={allNews[0]}
+                    isInline={true}
+                    show={showPopupHandler}
+                  />
                   {allNews[1] && (
-                    <MainNewsCard data={allNews[1]} isInline={true} />
+                    <MainNewsCard
+                      data={allNews[1]}
+                      isInline={true}
+                      show={showPopupHandler}
+                    />
                   )}
                   {allNews[2] && (
-                    <MainNewsCard data={allNews[2]} isInline={true} />
+                    <MainNewsCard
+                      data={allNews[2]}
+                      isInline={true}
+                      show={showPopupHandler}
+                    />
                   )}
                 </div>
               </div>
@@ -87,7 +111,7 @@ function NewsPage() {
             {Array.isArray(allNews) &&
               allNews.slice(3).map((news) => (
                 <div className="news-grid-item">
-                  <MainNewsCard data={news} />
+                  <MainNewsCard data={news} show={showPopupHandler} />
                 </div>
               ))}
           </div>
@@ -100,6 +124,9 @@ function NewsPage() {
   function showPopupHandler(data: NewsType) {
     setShowPopup(true);
     setPopup(data);
+  }
+  function hidePopupHandler() {
+    setShowPopup(false);
   }
 }
 

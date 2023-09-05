@@ -10,9 +10,9 @@ import orangeLeft from "assets/images/shapes/Shape Hexagon-LeftORANGE.png";
 import repeatArr from "methods/repeatArr";
 
 function HexagonsContainer(props: PropsType) {
-  let data = props.service.services.slice(0, 5);
-  if (props.service.services.length < 5) {
-    data = repeatArr(props.service.services, 5).slice(0, 5);
+  let data = props.service.services.slice(0, 6);
+  if (props.service.services.length < 6) {
+    data = repeatArr(props.service.services, 6).slice(0, 6);
   }
 
   return (
@@ -28,7 +28,7 @@ function HexagonsContainer(props: PropsType) {
             service={data[0]}
             //   empty={true}
           />
-          <HexagonShape bgImg={orangeTop} service={data[0]} />
+          <HexagonShape bgImg={orangeTop} service={data[5]} />
         </div>
         <div className="hexagons-row">
           <HexagonShape bgImg={orangeLeft} service={data[1]} />
