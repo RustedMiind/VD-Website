@@ -1,6 +1,9 @@
+import { useTranslation } from "react-i18next";
 import { NewsType } from "redux/reducers/newsSlice";
 
 function NewNewsCard(props: PropsType) {
+  const { t } = useTranslation();
+
   return (
     <div
       className={`new-news-card ${props.className || ""}`}
@@ -16,7 +19,7 @@ function NewNewsCard(props: PropsType) {
       }}
     >
       <div className="content-container">
-        <p className="new-icon">جديد</p>
+        <p className="new-icon">{t("titles.new")}</p>
         <h6 className="card-title">{props.data.content}</h6>
       </div>
     </div>

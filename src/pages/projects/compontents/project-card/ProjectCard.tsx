@@ -2,16 +2,12 @@ import { ProjectType } from "redux/reducers/projectsSlice";
 import { NavLink } from "react-router-dom";
 import "./project-card.scss";
 import wave from "assets/images/wave.png";
-import {
-  ArrowBarLeft,
-  ArrowLeft,
-  ArrowLeftCircleFill,
-} from "react-bootstrap-icons";
-import { useContext } from "react";
-import { LangContext } from "contexts/LangContext";
+import { ArrowLeftCircleFill } from "react-bootstrap-icons";
+import { useTranslation } from "react-i18next";
 
 function ProjectCard({ project }: PropsType) {
-  const { lang } = useContext(LangContext);
+  const t = useTranslation().t;
+
   return (
     <div
       className="project-card"
@@ -24,8 +20,11 @@ function ProjectCard({ project }: PropsType) {
       </div>
       <div className="info" style={{ backgroundImage: `url("${wave}")` }}>
         <div className="name">{project.name}</div>
-        <NavLink className="link-with-arrow" to={project.id.toString()}>
-          <div>عرض المشروع</div>
+        <NavLink
+          className="link-with-arrow flip-ltr"
+          to={project.id.toString()}
+        >
+          <div>{t("buttons.showProject")}</div>
           <ArrowLeftCircleFill />
         </NavLink>
       </div>

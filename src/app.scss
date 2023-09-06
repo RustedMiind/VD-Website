@@ -75,6 +75,14 @@ body {
   max-width: 100%;
 }
 
+.ltr {
+  .flip-ltr {
+    svg {
+      transform: rotate(180deg) !important;
+    }
+  }
+}
+
 .section-header {
   color: var(--font-light);
   margin-bottom: 1.6em;

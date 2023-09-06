@@ -26,12 +26,12 @@ function Project() {
     typeof project === "object"
       ? {
           bgImage: project?.["main-image"] || "",
-          title: project?.title || `المشروع ${projectId}`,
+          title: project?.title || `${t("titles.project")} ${projectId}`,
           subtitle: {
             type: "navigate",
             links: [
-              { title: "الرئيسية", path: "/" },
-              { title: "المشاريع", path: "/projects" },
+              { title: t("links.home"), path: "/" },
+              { title: t("links.projects"), path: "/projects" },
               {
                 title: project?.title || `المشروع ${projectId}`,
                 path: `/projects/${projectId}`,
@@ -42,12 +42,13 @@ function Project() {
         }
       : {
           bgImage: "",
-          title: project === "loading" ? "جار تحميل المشروع" : "فشل التحميل",
+          title:
+            project === "loading" ? t("project.loading") : t("project.loading"),
           subtitle: {
             type: "navigate",
             links: [
-              { title: "الرئيسية", path: "/" },
-              { title: "المشاريع", path: "/projects" },
+              { title: t("links.home"), path: "/" },
+              { title: t("links.projects"), path: "/projects" },
             ],
           },
         };

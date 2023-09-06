@@ -80,7 +80,7 @@ function AboutUs() {
                     <div className="icon-head">
                       <Bullseye />
                     </div>
-                    <h4>الرؤية</h4>
+                    <h4>{t("titles.vision")}</h4>
                     <p>{about.settings.vision}</p>
                   </div>
                 )}
@@ -89,7 +89,7 @@ function AboutUs() {
                     <div className="icon-head">
                       <RocketTakeoffFill />
                     </div>
-                    <h4>الهدف</h4>
+                    <h4>{t("titles.goal")}</h4>
                     <p>{about.settings.goal}</p>
                   </div>
                 )}
@@ -98,7 +98,7 @@ function AboutUs() {
                     <div className="icon-head">
                       <EyeFill />
                     </div>
-                    <h4>الشعار</h4>
+                    <h4>{t("titles.slogan")}</h4>
                     <p>{about.settings.about_slogan}</p>
                   </div>
                 )}
@@ -183,7 +183,7 @@ function AboutUs() {
 
           {condition && about.files && about.files[0] && (
             <div className="files-slider-container">
-              <h3>اهم الملفات</h3>
+              <h3>{t("titles.files")}</h3>
               <FilesSlider files={about.files} />
             </div>
           )}

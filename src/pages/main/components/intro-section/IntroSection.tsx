@@ -30,7 +30,7 @@ function IntroSection() {
         </NavLink>
         <div className="intro-small-card">
           <p>{mainDescribtion && mainDescribtion}</p>
-          <NavLink to="about" className="icon-text-hover">
+          <NavLink to="about" className="icon-text-hover flip-ltr">
             {t("buttons.more")}
             <ArrowLeftCircleFill />
           </NavLink>

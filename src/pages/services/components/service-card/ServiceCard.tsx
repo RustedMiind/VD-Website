@@ -12,7 +12,7 @@ function ServiceCard({ data }: PropsType) {
       <div className="content">
         <h4>{data.name}</h4>
         <div className="describtion">{data.description}</div>
-        <NavLink to={data.id.toString()} className="link-with-arrow">
+        <NavLink to={data.id.toString()} className="link-with-arrow flip-ltr">
           طلب الخدمة
           <ArrowLeftCircleFill />
         </NavLink>

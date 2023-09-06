@@ -11,6 +11,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, EffectCube } from "swiper/modules";
 import splitArray from "methods/splitArray";
 import { useTranslation } from "react-i18next";
+import ForceRerender from "components/force-rerender/ForceRerender";
 
 function ServicesSection() {
   const { t } = useTranslation();
@@ -26,34 +27,38 @@ function ServicesSection() {
       <div className="tight-section">
         <h3>{t("titles.prominentServices")}</h3>
         <div className="services-cards-container">
-          <Swiper
-            modules={[Autoplay, EffectCube]}
-            spaceBetween={0}
-            speed={1000}
-            fadeEffect={{ crossFade: false }}
-            slidesPerView={1}
-            loop={true}
-            autoplay={{
-              delay: 5000,
-              disableOnInteraction: false,
-              stopOnLastSlide: false,
-            }}
-            className="slider-services-container"
-          >
-            {twoServicesArr.map((twoServices) => (
-              <SwiperSlide key={twoServices.map((item) => item.id).join("!@#")}>
-                <div className="services-cards-container">
-                  {twoServices.map((service) => (
-                    <ServicesSectionCard
-                      key={services[0].id}
-                      service={service}
-                      index={0}
-                    />
-                  ))}
-                </div>
-              </SwiperSlide>
-            ))}
-          </Swiper>
+          <ForceRerender condition={twoServicesArr}>
+            <Swiper
+              modules={[Autoplay, EffectCube]}
+              spaceBetween={0}
+              speed={1000}
+              fadeEffect={{ crossFade: false }}
+              slidesPerView={1}
+              loop={true}
+              autoplay={{
+                delay: 5000,
+                disableOnInteraction: false,
+                stopOnLastSlide: false,
+              }}
+              className="slider-services-container"
+            >
+              {twoServicesArr.map((twoServices) => (
+                <SwiperSlide
+                  key={twoServices.map((item) => item.id).join("!@#")}
+                >
+                  <div className="services-cards-container">
+                    {twoServices.map((service) => (
+                      <ServicesSectionCard
+                        key={services[0].id}
+                        service={service}
+                        index={0}
+                      />
+                    ))}
+                  </div>
+                </SwiperSlide>
+              ))}
+            </Swiper>
+          </ForceRerender>
         </div>
 
         {/* <div className="change-slide-buttons">

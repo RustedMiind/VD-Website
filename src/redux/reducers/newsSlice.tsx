@@ -1,18 +1,21 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-export type newsStateType = NewsListType | "loading" | "error";
+export type newsStateType = { news: NewsListType };
 
-const initialState: newsStateType = "loading";
+const initialState: newsStateType = { news: "loading" };
 
 export const newsSlice = createSlice({
   name: "news",
   initialState,
   reducers: {
-    setNews: (state: newsStateType, action) => {
-      return action.payload.news;
+    setNews: (
+      state: newsStateType,
+      action: { payload: { news: NewsType[] } }
+    ) => {
+      return { news: action.payload.news };
     },
     setNewsError: (state) => {
-      return "loading";
+      return { news: "error" };
     },
   },
 });
@@ -28,7 +31,7 @@ export type NewsType = {
   published_at: string;
 };
 
-export type NewsListType = NewsType[];
+export type NewsListType = NewsType[] | "error" | "loading";
 
 export const { setNews, setNewsError } = newsSlice.actions;
 export default newsSlice.reducer;
