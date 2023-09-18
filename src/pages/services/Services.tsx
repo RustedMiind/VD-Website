@@ -69,7 +69,7 @@ function Services() {
               </>
             );
           })}
-        {services === "loading" && <h2>Loading</h2>}
+        {/* {services === "loading" && <h2>Loading</h2>} */}
         {services === "error" && <h2>Error Fetching Data</h2>}
 
         {whatsapp && whatsapp[0] && (

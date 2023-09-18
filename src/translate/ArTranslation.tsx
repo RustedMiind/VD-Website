@@ -44,5 +44,15 @@ const ArTranslation = {
   projects: {
     total: "اجمالي عدد المشاريع",
   },
+  errors: {
+    "404": {
+      error: "خطأ كود 404",
+      message: "الصفحة غير موجودة",
+      code: "404",
+    },
+  },
+  redirect: {
+    home: "العودة للرئيسية",
+  },
 };
 export default ArTranslation;

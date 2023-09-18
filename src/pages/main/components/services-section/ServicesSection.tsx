@@ -1,6 +1,5 @@
 import "./services-section.scss";
-import { useState, useRef } from "react";
-import topShape from "assets/images/services-header2.png";
+import topShape from "assets/images/services-header2-blue.png";
 import topRightShape from "assets/images/home-vector-right.png";
 import medLedtShape from "assets/images/home-vector-left.png";
 import { ServiceType, initialService } from "redux/reducers/servicesSlice";

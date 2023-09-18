@@ -16,6 +16,7 @@ import ReactVisibilitySensor from "react-visibility-sensor";
 import PrivacyPage from "pages/privacy/Privacy";
 import ContactUsPage from "pages/contact-us/ContactUsPage";
 import NewsPage from "pages/news-page/NewsPage";
+import Error404 from "pages/404/Error404";
 
 function Layout() {
   const { lang } = useContext(LangContext);
@@ -41,6 +42,7 @@ function Layout() {
             <Route path="" element={<Projects />} />
             <Route path=":projectId" element={<Project />} />
           </Route>
+          <Route path="/*" element={<Error404 />} />
         </Routes>
       </div>
 

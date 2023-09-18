@@ -47,9 +47,7 @@ function HalfCircleContainer(props: PropsType) {
             />
           </div>
 
-          <div className="large-circle">
-            <h4>خدمات التصميم</h4>
-          </div>
+          <div className="large-circle">{/* <h4>خدمات التصميم</h4> */}</div>
         </div>
       </div>
     </div>

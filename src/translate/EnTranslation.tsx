@@ -43,6 +43,16 @@ const EnTranslation = {
   projects: {
     total: "Total Projects",
   },
+  errors: {
+    "404": {
+      error: "Error 404",
+      message: "Page Not Found",
+      code: "404",
+    },
+  },
+  redirect: {
+    home: "Ridirect to Main Page",
+  },
 };
 
 export default EnTranslation;

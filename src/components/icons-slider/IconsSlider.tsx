@@ -12,7 +12,7 @@ function IconsSlider(props: PropsType) {
     <>
       <ScrollAnimation animateIn="animate-fade-to-left">
         <div className={`partners-wrapper ${props.className}`}>
-          <h3 className="section-header">{props.title}</h3>
+          <h3 className="section-header text-main">{props.title}</h3>
 
           <div className="swiper-container">
             <Swiper
