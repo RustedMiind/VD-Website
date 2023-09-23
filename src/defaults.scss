@@ -22,6 +22,12 @@ button {
   direction: rtl !important;
 }
 
+.icon-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .center-head {
   width: 100%;
   text-align: center;
@@ -62,30 +68,30 @@ h6 {
   font-size: 1.15rem;
 }
 
-@for $i from 0 through 8 {
-  $marginValue: $i/4;
+// @for $i from 0 through 8 {
+//   $marginValue: $i/4;
 
-  .m-#{$i} {
-    margin: #{$marginValue}rem !important;
-  }
-  .my-#{$i} {
-    margin-bottom: #{$marginValue}rem !important;
-    margin-top: #{$marginValue}rem !important;
-  }
-  .mx-#{$i} {
-    margin-left: #{$marginValue}rem !important;
-    margin-right: #{$marginValue}rem !important;
-  }
-  .mt-#{$i} {
-    margin-top: #{$marginValue}rem !important;
-  }
-  .mr-#{$i} {
-    margin-right: #{$marginValue}rem !important;
-  }
-  .ml-#{$i} {
-    margin-left: #{$marginValue}rem !important;
-  }
-  .mb-#{$i} {
-    margin-bottom: #{$marginValue}rem !important;
-  }
-}
+//   .m-#{$i} {
+//     margin: #{$marginValue}rem !important;
+//   }
+//   .my-#{$i} {
+//     margin-bottom: #{$marginValue}rem !important;
+//     margin-top: #{$marginValue}rem !important;
+//   }
+//   .mx-#{$i} {
+//     margin-left: #{$marginValue}rem !important;
+//     margin-right: #{$marginValue}rem !important;
+//   }
+//   .mt-#{$i} {
+//     margin-top: #{$marginValue}rem !important;
+//   }
+//   .mr-#{$i} {
+//     margin-right: #{$marginValue}rem !important;
+//   }
+//   .ml-#{$i} {
+//     margin-left: #{$marginValue}rem !important;
+//   }
+//   .mb-#{$i} {
+//     margin-bottom: #{$marginValue}rem !important;
+//   }
+// }

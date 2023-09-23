@@ -1,6 +1,7 @@
 import PageBannerLayout from "pages/page-banner-layout/PageBannerLayout";
-import Advantages from "./components/Advantages";
+import Advantages from "./components/advantages/Advantages";
 import "./design-service.scss";
+import Filters from "./components/filters/Filters";
 
 function DesignService() {
   return (
@@ -9,7 +10,9 @@ function DesignService() {
     >
       <div className="design-service">
         <Advantages />
-        semmmfasd
+        <div className="d-flex flex-wrap">
+          <Filters />
+        </div>
       </div>
     </PageBannerLayout>
   );
