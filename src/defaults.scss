@@ -61,3 +61,31 @@ h5 {
 h6 {
   font-size: 1.15rem;
 }
+
+@for $i from 0 through 8 {
+  $marginValue: $i/4;
+
+  .m-#{$i} {
+    margin: #{$marginValue}rem !important;
+  }
+  .my-#{$i} {
+    margin-bottom: #{$marginValue}rem !important;
+    margin-top: #{$marginValue}rem !important;
+  }
+  .mx-#{$i} {
+    margin-left: #{$marginValue}rem !important;
+    margin-right: #{$marginValue}rem !important;
+  }
+  .mt-#{$i} {
+    margin-top: #{$marginValue}rem !important;
+  }
+  .mr-#{$i} {
+    margin-right: #{$marginValue}rem !important;
+  }
+  .ml-#{$i} {
+    margin-left: #{$marginValue}rem !important;
+  }
+  .mb-#{$i} {
+    margin-bottom: #{$marginValue}rem !important;
+  }
+}
