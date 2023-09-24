@@ -1,6 +1,7 @@
 import React, { useEffect, useContext } from "react";
 import Layout from "./pages/layout/Layout";
 import "./app.scss";
+import "./app.css";
 import "./defaults.scss";
 import axios from "axios";
 import i18n from "i18next";

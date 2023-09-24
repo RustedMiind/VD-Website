@@ -3,6 +3,7 @@ import { useReducer, useState } from "react";
 import axios from "axios";
 import ApiResponse from "types/ApiResponse";
 import Toaster from "components/toaster/Toaster";
+import { useTranslation } from "react-i18next";
 
 interface State {
   first_name: string;
@@ -49,6 +50,7 @@ const reducer = (state: State, action: Action): State => {
 };
 
 function ContactForm() {
+  const t = useTranslation().t;
   const [state, dispatch] = useReducer(reducer, initialState);
   const [error, setError] = useState<State>(initialState);
   const [status, setStatus] = useState<
@@ -96,7 +98,7 @@ function ContactForm() {
       {/* <input type="text" name="test" /> */}
       <div className="input-container third">
         <label htmlFor="name">
-          الاسم الاول
+          {t("form.fName")}
           <span className="text-error">{error.first_name}</span>
         </label>
         <input
@@ -104,12 +106,12 @@ function ContactForm() {
           name="first_name"
           value={state.first_name}
           onChange={handleInputChange}
-          placeholder="الاسم الاول"
+          placeholder={t("form.fName")}
         />
       </div>
       <div className="input-container third">
         <label htmlFor="name">
-          الاسم الاخير
+          {t("form.lName")}
           <span className="text-error">{error.last_name}</span>
         </label>
         <input
@@ -117,12 +119,12 @@ function ContactForm() {
           type="text"
           value={state.last_name}
           onChange={handleInputChange}
-          placeholder="الاسم الاخير"
+          placeholder={t("form.lName")}
         />
       </div>
       <div className="input-container third">
         <label htmlFor="name">
-          رقم الجوال
+          {t("form.phone")}
           <span className="text-error">{error.phone}</span>
         </label>
         <input
@@ -130,12 +132,12 @@ function ContactForm() {
           type="text"
           value={state.phone}
           onChange={handleInputChange}
-          placeholder="رقم الجوال"
+          placeholder={t("form.phone")}
         />
       </div>
       <div className="input-container third">
         <label htmlFor="name">
-          البريد الالكتروني
+          {t("form.email")}
           <span className="text-error">{error.email}</span>
         </label>
         <input
@@ -143,12 +145,12 @@ function ContactForm() {
           type="text"
           value={state.email}
           onChange={handleInputChange}
-          placeholder="البريد الالكتروني"
+          placeholder={t("form.email")}
         />
       </div>
       <div className="input-container third">
         <label htmlFor="name">
-          عنوان الرسالة
+          {t("form.subject")}
           <span className="text-error">{error.title}</span>
         </label>
         <input
@@ -156,24 +158,24 @@ function ContactForm() {
           type="text"
           value={state.title}
           onChange={handleInputChange}
-          placeholder="عنوان الرسالة"
+          placeholder={t("form.subject")}
         />
       </div>
       <div className="input-container third">
         <label htmlFor="name">
-          رسالتك
+          {t("form.message")}
           <span className="text-error">{error.content}</span>
         </label>
         <textarea
           name="content"
           value={state.content}
           onChange={handleInputChange}
-          placeholder="رسالتك"
+          placeholder={t("form.message")}
         />
       </div>
       {/* <div className="sdf">{error}</div> */}
       <button className="submit-btn" type="submit">
-        تواصل معنا
+        {t("links.contact")}
       </button>
       {status === "loading" && (
         <div className="loading-container">
@@ -181,10 +183,10 @@ function ContactForm() {
         </div>
       )}
       {status === "success" && (
-        <Toaster toaster={{ status: "success", message: "تم الارسال بنجاح" }} />
+        <Toaster toaster={{ status: "success", message: t("send.success") }} />
       )}
       {status === "error" && (
-        <Toaster toaster={{ status: "error", message: "فشل في الارسال." }} />
+        <Toaster toaster={{ status: "error", message: t("send.error") }} />
       )}
     </form>
   );

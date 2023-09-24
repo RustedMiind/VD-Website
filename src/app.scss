@@ -78,6 +78,14 @@ body {
   max-width: 100%;
 }
 
+.ltr {
+  .flip-ltr {
+    svg {
+      transform: rotate(180deg) !important;
+    }
+  }
+}
+
 .section-header {
   color: var(--font-light);
   margin-bottom: 1.6em;
@@ -261,7 +269,6 @@ body {
     font-size: 1rem;
     display: block;
     color: var(--main-fixed);
-    min-width: 80%;
     font-family: inherit;
     transition: 200ms;
     &:focus {
@@ -276,7 +283,14 @@ body {
     min-height: 8rem;
   }
 }
-
+.double {
+  display: flex;
+  width: 100%;
+  gap: 1rem;
+  > * {
+    width: calc(50% - 0.5rem);
+  }
+}
 @include Mobile {
   html {
     font-size: 14px;

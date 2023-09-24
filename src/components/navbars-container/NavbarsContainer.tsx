@@ -2,7 +2,7 @@ import "./navbars-container.scss";
 import Navbar from "components/navbar/Navbar";
 import TopNavbar from "components/top-navbar/TopNavbar";
 import { useEffect, useState } from "react";
-import { ArrowUpCircle, ArrowUpCircleFill } from "react-bootstrap-icons";
+import { ArrowUpCircleFill } from "react-bootstrap-icons";
 
 function NavbarContainers() {
   const [navClass, setNavClass] = useState<NavClassesType>("");

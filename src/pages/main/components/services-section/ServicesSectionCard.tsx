@@ -5,14 +5,6 @@ import { ServiceType } from "redux/reducers/servicesSlice";
 function ServicesSectionCard(props: PropsType) {
   const [index, setIndex] = useState<IndexStateType>({ value: 0, state: "ok" });
   const service = props.service;
-  // useEffect(() => {
-  //   setTimeout(() => {
-  //     setIndex({ ...index, state: "loading" });
-  //     setTimeout(() => {
-  //       setIndex({ state: "ok", value: props.index });
-  //     }, 500);
-  //   }, Math.floor(500));
-  // }, [props.index, props.services]);
   return (
     <div
       className={`service-card-main-page  ${

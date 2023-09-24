@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/anchor-is-valid */
 import { useContext, useState } from "react";
 import "./navbar.scss";
 import { List } from "react-bootstrap-icons";
@@ -13,6 +14,7 @@ import { LangContext } from "contexts/LangContext";
 
 function Navbar() {
   const { changeLang, lang } = useContext(LangContext);
+  const currentLang = lang();
   const state = useSelector((state: { settings: SettingsStateType }) => state);
   const getvalue = getValueByKey(state.settings);
   const name = getvalue("slogan");
@@ -44,9 +46,9 @@ function Navbar() {
           <NavLink to="/services">{t("links.services")}</NavLink>
         </li> */}
 
-        {/* <li>
+        <li>
           <a
-            className="active"
+            className="lang-btn"
             role="button"
             onClick={() => {
               const current = lang();
@@ -55,9 +57,10 @@ function Navbar() {
               console.log(current, "Currentxxxxxxxxxxxx");
             }}
           >
-            تغيير اللغة
+            {currentLang === "ar" && "EN"}
+            {currentLang === "en" && "العربية"}
           </a>
-        </li> */}
+        </li>
       </ul>
       <div className="left">
         <NavLink to={"/"} className="logo-link">

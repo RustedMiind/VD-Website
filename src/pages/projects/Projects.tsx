@@ -61,7 +61,7 @@ function Projects() {
                 setType("");
               }}
             >
-              الكل
+              {t("titles.all")}
             </div>
             {projects.projectTypes.map((projectType) => (
               <div
@@ -87,7 +87,7 @@ function Projects() {
               ))
             ) : (
               <h2>
-                {search ? "لا يوجد المشروع الذي تبحث عنه" : "لا يوجد مشاريع"}
+                {search ? t("projects.notFound") : t("projects.noProjects")}
               </h2>
             )}
           </div>
@@ -95,7 +95,7 @@ function Projects() {
         {/* Error */}
         {projects.projects === "error" && projects.projects && (
           <div className="projects-cards-container">
-            <h2>فشل تحميل المشاريع</h2>
+            <h2>{t("projects.error")}</h2>
           </div>
         )}
         {/* Loading */}

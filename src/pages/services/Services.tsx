@@ -3,18 +3,15 @@ import PageBannerLayout, {
 } from "pages/page-banner-layout/PageBannerLayout";
 import "./services.scss";
 import { useTranslation } from "react-i18next";
-import ServiceCard from "./components/service-card/ServiceCard";
 import { useEffect, useContext } from "react";
 import { requestSetServices } from "redux/middlewares/servicesMiddleware";
 import { useDispatch, useSelector } from "react-redux";
 import { ServicesStateType } from "redux/reducers/servicesSlice";
-// import ServicePlaceHolder from "./components/placeholder/ServicesPlaceholder";
-// import HexagonShape from "./components/hexagon-shape/HexagonShape";
 import HexagonsContainer from "./components/hexagons-container/HexagonsContainer";
 import CircleContainer from "./components/circle-container/CircleContainer";
 import ServicesCardsContainer from "./components/cards-container/CardsContainer";
 import HalfCircleContainer from "./components/half-circle/HalfCircleContainer";
-import { ArrowLeftCircleFill, Whatsapp } from "react-bootstrap-icons";
+import { Whatsapp } from "react-bootstrap-icons";
 import { SettingsStateType } from "redux/reducers/settingsSlice";
 import { getValueByKey } from "types/SettingsType";
 import { LangContext } from "contexts/LangContext";
@@ -76,9 +73,10 @@ function Services() {
           <a
             className="link-with-arrow custom"
             target="_blank"
+            rel="noreferrer"
             href={"https://wa.me/" + whatsapp[0]}
           >
-            تواصل عبر الواتس اب
+            {t("contact.whatsapp")}
             <Whatsapp />
           </a>
         )}

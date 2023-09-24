@@ -62,7 +62,13 @@ nav.navbar {
       border-radius: 2rem;
     }
   }
-
+  .lang-btn {
+    cursor: pointer;
+    font-weight: 900;
+    &:hover {
+      color: var(--third);
+    }
+  }
   @include Mobile {
     width: 100%;
     max-width: 100%;

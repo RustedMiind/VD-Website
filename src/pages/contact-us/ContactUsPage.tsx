@@ -14,9 +14,9 @@ import { LatLngType, getLatLngFromStr } from "methods/getLatLng";
 // import { serialize } from "v8";
 
 function ContactUsPage() {
-  const data = { bgImage: { gradient: true }, title: "تواصل معنا" };
-  const state = useSelector((state: { settings: SettingsStateType }) => state);
   const { t } = useTranslation();
+  const state = useSelector((state: { settings: SettingsStateType }) => state);
+  const data = { bgImage: { gradient: true }, title: t("links.contact") };
 
   const getvalue = getValueByKey(state.settings);
   const address = getvalue("address") as
@@ -56,7 +56,7 @@ function ContactUsPage() {
               <div className="contact-about-container">
                 <div className="info-container">
                   <h4 className="main-section-title">
-                    مواقع التواصل الاجتماعي
+                    {t("titles.socialMedia")}
                   </h4>
                   {Array.isArray(emails) && (
                     <div className="info-item">
@@ -64,7 +64,7 @@ function ContactUsPage() {
                         <EnvelopeFill />
                       </div>
                       <div className="content">
-                        <h5 className="title">البريد الالكتروني</h5>
+                        <h5 className="title">{t("form.email")}</h5>
                         {emails.map((email) => (
                           <p>{email}</p>
                         ))}
@@ -77,7 +77,7 @@ function ContactUsPage() {
                         <GeoAltFill />
                       </div>
                       <div className="content">
-                        <h5 className="title">العناوين</h5>
+                        <h5 className="title">{t("titles.addresses")}</h5>
                         {address.map((address) => (
                           <p
                             onClick={() => {

@@ -36,3 +36,12 @@
     }
   }
 }
+
+.ltr {
+  .search-bar {
+    svg {
+      left: unset;
+      right: 2rem;
+    }
+  }
+}

@@ -61,7 +61,7 @@ function Footer() {
         )}
         <div className="top-section">
           <div className="card-content">
-            <div className="title">تحميل التطبيقات</div>
+            <div className="title">{t("titles.downloadApplications")}</div>
             <div className="section-content icons-with-data">
               <div className="icon-with-data">
                 <div className="icon">
@@ -143,7 +143,7 @@ function Footer() {
             </div>
           </div>
           <div className="card-content">
-            <div className="title">ارقام الاتصال</div>
+            <div className="title">{t("titles.phoneNumbers")}</div>
             <div className="section-content icons-with-data">
               <div className="icon-with-data">
                 <div className="icon">
@@ -161,7 +161,7 @@ function Footer() {
             </div>
           </div>
           <div className="card-content">
-            <div className="title">النشرة الاخبارية</div>
+            <div className="title">{t("titles.news")}</div>
             <div className="section-content news-letter">
               <form
                 onSubmit={(e) => {
@@ -184,22 +184,22 @@ function Footer() {
                     onChange={(e) => {
                       setNewsValue(e.target.value);
                     }}
-                    placeholder="البريد الالكتروني"
+                    placeholder={t("form.email")}
                   />
-                  <button type="submit">اشتراك</button>
+                  <button type="submit">{t("buttons.subscribe")}</button>
                 </div>
               </form>
               {newsFormStatus === "success" && (
                 <Toaster
                   toaster={{
                     status: "success",
-                    message: "تم الاشتراك في النشرة الاخبارية بنجاح",
+                    message: t("newsForm.success"),
                   }}
                 />
               )}
               {newsFormStatus === "error" && (
                 <Toaster
-                  toaster={{ status: "error", message: "فشل في في الارسال." }}
+                  toaster={{ status: "error", message: t("newsForm.error") }}
                 />
               )}
             </div>
@@ -207,7 +207,7 @@ function Footer() {
         </div>
         <div className="bottom-section">
           <div className="card-content">
-            <div className="title">الروابط المهمة</div>
+            <div className="title">{t("titles.importantLinks")}</div>
             <div className="section-content">
               {navigationRoutes.map((item) => (
                 <NavLink key={item.path} to={item.path}>
@@ -223,7 +223,7 @@ function Footer() {
             </div>
           </div>
           <div className="card-content">
-            <div className="title">عنواننا</div>
+            <div className="title">{t("titles.addresses")}</div>
             <div className="section-content max-w-2 adresses">
               {address?.map((item) => (
                 <a
@@ -238,7 +238,7 @@ function Footer() {
             </div>
           </div>
           <div className="card-content link-icons">
-            <div className="title">التواصل</div>
+            <div className="title">{t("titles.contact")}</div>
             <div className="section-content">
               {whatsapp && whatsapp[0] && (
                 <a

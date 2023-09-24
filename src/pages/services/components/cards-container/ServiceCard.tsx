@@ -1,7 +1,4 @@
-import {
-  ArrowDownLeftCircleFill,
-  ArrowLeftCircleFill,
-} from "react-bootstrap-icons";
+import { ArrowLeftCircleFill } from "react-bootstrap-icons";
 import { NavLink } from "react-router-dom";
 import { ServiceType } from "redux/reducers/servicesSlice";
 
@@ -16,7 +13,7 @@ function ServiceCard(props: PropsType) {
       </div>
       <NavLink
         to={props.service.id.toString()}
-        className="service-link link-with-arrow"
+        className="service-link link-with-arrow flip-ltr"
       >
         المزيد
         <ArrowLeftCircleFill />

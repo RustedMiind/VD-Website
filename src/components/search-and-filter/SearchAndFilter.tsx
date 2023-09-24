@@ -1,14 +1,16 @@
 import React, { Dispatch, SetStateAction } from "react";
 import { Search } from "react-bootstrap-icons";
 import "./search-and-filter.scss";
+import { useTranslation } from "react-i18next";
 
 function SearchAndFilter(props: PropsType) {
+  const t = useTranslation().t;
   return (
     <div className="filter-container">
       <div className={`search-bar ${props.filter.filter && "with-filter"}`}>
         <input
           type="text"
-          placeholder="بحث"
+          placeholder={t("titles.search")}
           value={props.filter.value[0]}
           onChange={(e) => {
             props.filter.value[1](e.target.value);

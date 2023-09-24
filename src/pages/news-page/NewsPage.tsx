@@ -30,7 +30,9 @@ function NewsPage() {
   useEffect(() => {
     requestSetNews(dispatch);
   }, [lang]);
-  const news = useSelector((state: { news: newsStateType }) => state.news);
+  const news = useSelector(
+    (state: { news: { news: newsStateType } }) => state.news.news
+  );
 
   let newNews = undefined;
   let allNews = undefined;
@@ -45,7 +47,7 @@ function NewsPage() {
   };
   return (
     <PageBannerLayout data={data}>
-      {typeof newNews === "object" && newNews.length >= 1 ? (
+      {typeof newNews === "object" && newNews.length >= 1 && (
         <div className="news-page tight-section">
           {popupExist && (
             <NewsPopup
@@ -55,7 +57,9 @@ function NewsPage() {
               hide={hidePopupHandler}
             />
           )}
-          {newNews && <h2 className="news-section-header">احدث اخبارنا</h2>}
+          {newNews && (
+            <h2 className="news-section-header">{t("titles.newestNews")}</h2>
+          )}
           <div className="news-grid-layout">
             {newNews && newNews[0] && (
               <div className="news-grid-item">
@@ -90,7 +94,7 @@ function NewsPage() {
             </div>
           </div>
           {Array.isArray(allNews) && allNews.length >= 1 && (
-            <h2 className="news-section-header">كل الاخبار</h2>
+            <h2 className="news-section-header">{t("titles.allNews")}</h2>
           )}
           <div className="news-grid-layout">
             {Array.isArray(allNews) && allNews.length >= 1 && (
@@ -133,9 +137,9 @@ function NewsPage() {
               ))}
           </div>
         </div>
-      ) : (
-        <h3>لا يوجد اخبار جديدة في الوقت الحالى</h3>
       )}
+      {typeof news === "string" && news === "loading" && <h2>Loading</h2>}
+      {typeof news === "string" && news === "error" && <h2>Error</h2>}
     </PageBannerLayout>
   );
   function showPopupHandler(data: NewsType) {
