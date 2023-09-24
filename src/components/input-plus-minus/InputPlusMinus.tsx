@@ -1,5 +1,5 @@
 import "./input-plus-minus.scss";
-import { useState } from "react";
+import { DetailedHTMLProps, InputHTMLAttributes, useState } from "react";
 import { DashCircle, PlusCircle } from "react-bootstrap-icons";
 
 function InputPlusMinus(props: PropsType) {
@@ -7,33 +7,41 @@ function InputPlusMinus(props: PropsType) {
   const value = props.value;
   const setValue = props.setValue;
 
+  // const [value, setValue] = useState("");
+  const numberValue = parseInt(value);
+
+  function valueHandler(num: number) {
+    let newVal = numberValue + num;
+    if (newVal && newVal >= 0) setValue(newVal.toString());
+    else setValue((0).toString());
+    // setValue((numberValue + num).toString());
+  }
   function plusHandler() {
-    setValue(value + 1);
+    valueHandler(1);
   }
   function minusHandler() {
-    if (value > 0) {
-      setValue(value - 1);
-    }
+    valueHandler(-1);
   }
   function changeHandler(e: React.ChangeEvent<HTMLInputElement>) {
     const newVal = e.target.value;
     if (newVal.length === 0) {
-      setValue(0);
-    } else if (value === 0) {
+      setValue("");
+    } else if (numberValue === 0) {
       const noZero = newVal.replaceAll("0", "");
       if (noZero === parseInt(noZero).toString()) {
-        setValue(parseInt(noZero.replaceAll("0", "")));
+        setValue(parseInt(noZero.replaceAll("0", "")).toString());
       }
     } else if (newVal === parseInt(newVal).toString()) {
-      setValue(parseInt(newVal));
+      setValue(parseInt(newVal).toString());
     }
   }
   return (
     <div className="input-plus-minus">
       <input
+        {...props}
         type="text"
-        className="ltr"
         value={value}
+        {...(props.handlers && { style: { textAlign: "center" } })}
         onChange={changeHandler}
         onClick={(e) => {
           e.preventDefault();
@@ -54,10 +62,14 @@ function InputPlusMinus(props: PropsType) {
   );
 }
 
-type PropsType = {
-  value: number;
-  setValue: (n: number) => void;
+interface PropsType
+  extends DetailedHTMLProps<
+    InputHTMLAttributes<HTMLInputElement>,
+    HTMLInputElement
+  > {
+  value: string;
+  setValue: (n: string) => void;
   handlers?: boolean;
-};
+}
 
 export default InputPlusMinus;

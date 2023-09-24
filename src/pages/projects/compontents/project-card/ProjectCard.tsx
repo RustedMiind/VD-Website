@@ -16,7 +16,7 @@ function ProjectCard({ project }: PropsType) {
       // }}
     >
       <div className="card-image">
-        <img src={project["main-image"]} alt="" />
+        <img loading="lazy" src={project["main-image"]} alt="" />
       </div>
       <div className="info" style={{ backgroundImage: `url("${wave}")` }}>
         <div className="name">{project.name}</div>

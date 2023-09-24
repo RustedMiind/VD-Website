@@ -68,27 +68,31 @@ const ArTranslation = {
   },
   redirect: {
     home: "العودة للرئيسية",
-    form: {
-      email: "البريد الالكتروني",
-      phone: "رقم الجوال",
-      name: "الاسم",
-      fName: "الاسم الاول",
-      lName: "الاسم الاخير",
-      message: "الرسالة",
-      subject: "العنوان",
-      address: "العنوان",
-    },
+  },
+  form: {
+    email: "البريد الالكتروني",
+    phone: "رقم الجوال",
+    name: "الاسم",
+    fName: "الاسم الاول",
+    lName: "الاسم الاخير",
+    message: "الرسالة",
+    subject: "العنوان",
+    address: "العنوان",
+  },
+  service: {
+    name: "اسم الحدمة",
+    describtion: "وصف الخدمة",
+    previousWorks: "الأعمال السابقة",
+  },
 
-    file: {
-      size: "حجم الملف",
-      type: "نوع الملف",
-      download: "تحميل الملف",
-    },
-    loading: {
-      error: "فشل التحميل",
-      loading: "جار التحميل",
-    },
+  file: {
+    size: "حجم الملف",
+    type: "نوع الملف",
+    download: "تحميل الملف",
+  },
+  loading: {
+    error: "فشل التحميل",
+    loading: "جار التحميل",
   },
 };
-
 export default ArTranslation;

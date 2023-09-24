@@ -17,7 +17,8 @@ import PrivacyPage from "pages/privacy/Privacy";
 import ContactUsPage from "pages/contact-us/ContactUsPage";
 import NewsPage from "pages/news-page/NewsPage";
 import Error404 from "pages/404/Error404";
-import DesignService from "pages/service/DesignService/DesignService";
+import DesignService from "pages/service/DesignService/pages/main/DesignService";
+import DesignBeforePreview from "pages/service/DesignService/pages/design-before-preview/DesignBeforePreview";
 
 function Layout() {
   const { lang } = useContext(LangContext);
@@ -38,6 +39,7 @@ function Layout() {
           <Route path="services">
             <Route path="" element={<Services />} />
             <Route path="design" element={<DesignService />} />
+            <Route path="design2" element={<DesignBeforePreview />} />
             <Route path=":serviceId" element={<ServicePage />} />
           </Route>
           <Route path="projects">
