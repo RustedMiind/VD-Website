@@ -8,13 +8,14 @@ import {
   XOctagonFill,
 } from "react-bootstrap-icons";
 
-function Toaster({ toaster }: PropsType) {
+function Toaster({ toaster, onClose }: PropsType) {
   const [visible, setVisible] = useState(true);
   const [show, setShow] = useState(false);
   const [willHide, setWillHide] = useState(false);
   if (willHide) {
     setTimeout(() => {
       setVisible(false);
+      setTimeout(onClose, 500);
     }, 1000);
   }
   useEffect(() => {
@@ -52,6 +53,7 @@ function Toaster({ toaster }: PropsType) {
 
 type PropsType = {
   toaster: ToasterType;
+  onClose: () => void;
 };
 
 type ToasterType = {

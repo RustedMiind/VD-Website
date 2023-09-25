@@ -29,11 +29,15 @@ function IntroSection() {
           {t("buttons.orderService")}
         </NavLink>
         <div className="intro-small-card">
-          <p>{mainDescribtion && mainDescribtion}</p>
-          <NavLink to="about" className="icon-text-hover flip-ltr">
+          {/* <p>{mainDescribtion && mainDescribtion}</p> */}
+          <a
+            href={mainDescribtion}
+            target="_blank"
+            className="icon-text-hover flip-ltr"
+          >
             {t("buttons.more")}
             <ArrowLeftCircleFill />
-          </NavLink>
+          </a>
         </div>
       </div>
     </div>

@@ -9,6 +9,7 @@ import NewNewsCard from "./NewNewsCard";
 import MainNewsCard from "./MainNewsCard";
 import { LangContext } from "contexts/LangContext";
 import NewsPopup from "./news-popup/NewsPopup";
+import NewPlaceHolder from "./PlaceHolder";
 
 function NewsPage() {
   const { t } = useTranslation();
@@ -138,7 +139,14 @@ function NewsPage() {
           </div>
         </div>
       )}
-      {typeof news === "string" && news === "loading" && <h2>Loading</h2>}
+      {typeof news === "string" && news === "loading" && (
+        <>
+          <div className="news-page tight-section">
+            <h2 className="news-section-header">{t("titles.newestNews")}</h2>
+            <NewPlaceHolder />
+          </div>
+        </>
+      )}
       {typeof news === "string" && news === "error" && <h2>Error</h2>}
     </PageBannerLayout>
   );

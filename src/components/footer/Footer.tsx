@@ -195,11 +195,17 @@ function Footer() {
                     status: "success",
                     message: t("newsForm.success"),
                   }}
+                  onClose={() => {
+                    setNewsFormStatus("none");
+                  }}
                 />
               )}
               {newsFormStatus === "error" && (
                 <Toaster
                   toaster={{ status: "error", message: t("newsForm.error") }}
+                  onClose={() => {
+                    setNewsFormStatus("none");
+                  }}
                 />
               )}
             </div>

@@ -46,7 +46,7 @@ function Navbar() {
           <NavLink to="/services">{t("links.services")}</NavLink>
         </li> */}
 
-        <li>
+        {/* <li>
           <a
             className="lang-btn"
             role="button"
@@ -60,7 +60,7 @@ function Navbar() {
             {currentLang === "ar" && "EN"}
             {currentLang === "en" && "العربية"}
           </a>
-        </li>
+        </li> */}
       </ul>
       <div className="left">
         <NavLink to={"/"} className="logo-link">

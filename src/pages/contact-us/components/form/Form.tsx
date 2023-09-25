@@ -183,10 +183,20 @@ function ContactForm() {
         </div>
       )}
       {status === "success" && (
-        <Toaster toaster={{ status: "success", message: t("send.success") }} />
+        <Toaster
+          onClose={() => {
+            setStatus("none");
+          }}
+          toaster={{ status: "success", message: t("send.success") }}
+        />
       )}
       {status === "error" && (
-        <Toaster toaster={{ status: "error", message: t("send.error") }} />
+        <Toaster
+          onClose={() => {
+            setStatus("none");
+          }}
+          toaster={{ status: "error", message: t("send.error") }}
+        />
       )}
     </form>
   );
