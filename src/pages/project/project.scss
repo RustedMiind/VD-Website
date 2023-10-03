@@ -1,6 +1,12 @@
 @import "../../sass/breakpoints";
 
 .project-page {
+  .section-content {
+    &,
+    & * {
+      text-align: justify;
+    }
+  }
   .work-areas-container {
     display: flex;
     flex-direction: column;
@@ -8,11 +14,13 @@
     .work-area-card {
       gap: 1rem;
       display: flex;
-      height: 10rem;
+      // min-height: 10rem;
+      align-items: center;
       .title,
       .content {
         height: 100%;
         border-radius: 0.6rem;
+        min-height: 10rem;
       }
       .title {
         width: 10rem;
@@ -41,7 +49,7 @@
         .content {
           height: fit-content;
           border-radius: 0.6rem;
-          max-height: 15rem;
+          // max-height: 15rem;
         }
         .title {
           width: fit-content;

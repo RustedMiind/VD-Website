@@ -44,6 +44,13 @@
     background-size: 100% 100%;
     font-weight: 600;
     font-size: 1.05rem;
+    .name {
+      max-height: 80%;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      overflow: hidden;
+      max-width: 100%;
+    }
   }
   .link-with-arrow {
     // height: 0;

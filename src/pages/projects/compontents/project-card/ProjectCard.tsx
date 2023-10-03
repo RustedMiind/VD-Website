@@ -9,7 +9,8 @@ function ProjectCard({ project }: PropsType) {
   const t = useTranslation().t;
 
   return (
-    <div
+    <NavLink
+      to={project.id.toString()}
       className="project-card"
       // style={{
       //   backgroundImage: `url("${project["main-image"]}")`,
@@ -20,15 +21,15 @@ function ProjectCard({ project }: PropsType) {
       </div>
       <div className="info" style={{ backgroundImage: `url("${wave}")` }}>
         <div className="name">{project.name}</div>
-        <NavLink
+        {/* <NavLink
           className="link-with-arrow flip-ltr"
           to={project.id.toString()}
         >
           <div>{t("buttons.showProject")}</div>
           <ArrowLeftCircleFill />
-        </NavLink>
+        </NavLink> */}
       </div>
-    </div>
+    </NavLink>
   );
 }
 

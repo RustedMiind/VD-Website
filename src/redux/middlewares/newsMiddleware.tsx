@@ -9,8 +9,15 @@ export function requestSetNews(dispatch: Dispatch<AnyAction>) {
     axios
       .get<ApiResponse<NewsType[]>>(api("client/news"))
       .then((res) => {
-        dispatch(setNews({ news: res.data.data }));
-        resolve(res.data);
+        const sorted = res.data.data.sort((f, s) => {
+          return -1;
+        });
+
+        console.log("sorted", sorted);
+        console.log("default", res.data.data);
+
+        dispatch(setNews({ news: sorted }));
+        resolve(sorted);
       })
       .catch((err) => {
         reject(err);

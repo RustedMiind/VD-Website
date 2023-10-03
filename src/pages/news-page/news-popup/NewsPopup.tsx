@@ -18,6 +18,8 @@ function NewsPopup(props: PropsType) {
       <div className="news-popup-container">
         <div className="news-popup">
           <img className="news-popup-image" src={props.news.image} alt="" />
+
+          <div className="date text-gray-400"> {props.news.published_at} </div>
           <h5 className="title">{props.news.title}</h5>
           <div className="describtion">{props.news.content}</div>
         </div>
