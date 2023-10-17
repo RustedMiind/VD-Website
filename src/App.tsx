@@ -16,7 +16,7 @@ import EnTranslation from "translate/EnTranslation";
 import { getLangCookie } from "methods/getLangCookie";
 // import "./App.scss";
 // import * as colors from "@mui/material/colors";
-import { ThemeProvider, createTheme } from "@mui/material";
+import { ThemeProvider, colors, createTheme } from "@mui/material";
 import { store } from "./redux/store";
 
 const theme = createTheme({
@@ -46,33 +46,34 @@ const theme = createTheme({
       default: "#F1F1F1",
     },
     text: {
-      primary: "#444850",
-      secondary: "#444850",
+      primary: "#004693",
+      secondary: colors.grey[600],
       disabled: "#444850",
     },
   },
-  // components: {
-  //   MuiTypography: {
-  //     styleOverrides: {
-  //       root: {
-  //         color: "#004693",
-  //         fontFamily: "TheSans",
-  //       },
-  //     },
-  //   },
-  //   // MuiCssBaseline: {
-  //   //   styleOverrides: `
-  //   //     @font-face {
-  //   //       font-family: 'TheSans';
-  //   //       font-style: normal;
-  //   //       font-display: swap;
-  //   //       font-weight: 400;
-  //   //       src: local('TheSans'), local('TheSans-Regular'), url(${TheSansWoff2}) format('woff2');
-  //   //       unicodeRange: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF;
-  //   //     }
-  //   //   `,
-  //   // },
-  // },
+  components: {
+    MuiTypography: {
+      styleOverrides: {
+        root: {
+          color: "#004693",
+          fontFamily: "TheSans",
+        },
+      },
+    },
+
+    // MuiCssBaseline: {
+    //   styleOverrides: `
+    //     @font-face {
+    //       font-family: 'TheSans';
+    //       font-style: normal;
+    //       font-display: swap;
+    //       font-weight: 400;
+    //       src: local('TheSans'), local('TheSans-Regular'), url(${TheSansWoff2}) format('woff2');
+    //       unicodeRange: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF;
+    //     }
+    //   `,
+    // },
+  },
 });
 
 const translationsEn = EnTranslation;

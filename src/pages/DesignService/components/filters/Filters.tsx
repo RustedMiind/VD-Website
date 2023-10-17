@@ -1,5 +1,6 @@
 import InputPlusMinus from "components/input-plus-minus/InputPlusMinus";
 import { useState } from "react";
+import { Select, TextField, Typography, MenuItem } from "@mui/material";
 
 function Filters() {
   const [tempVal, setTempVal] = useState("");
@@ -9,9 +10,11 @@ function Filters() {
       <form className="flex flex-col gap-4">
         <div className="input-container third">
           <label htmlFor="code">كود البناء</label>
-          <select name="code">
-            <option value="1">1</option>
-          </select>
+
+          <Select fullWidth>
+            <MenuItem>كود بناء مصر</MenuItem>
+            <MenuItem>كود بناء السعودية</MenuItem>
+          </Select>
         </div>
         <div className="input-container third">
           <label htmlFor="area">المساحة</label>
