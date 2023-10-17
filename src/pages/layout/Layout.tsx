@@ -1,6 +1,5 @@
 import NavbarContainers from "components/navbars-container/NavbarsContainer";
 import { Routes, Route, useLocation } from "react-router-dom";
-import TopNavbar from "../../components/top-navbar/TopNavbar";
 import "./layout.scss";
 import MainPage from "pages/main/Main";
 import Projects from "pages/projects/Projects";
@@ -11,14 +10,12 @@ import Services from "pages/services/Services";
 import ServicePage from "pages/service/Service";
 import Footer from "components/footer/Footer";
 import AboutUs from "pages/about-us/AboutUs";
-import CountUp from "react-countup";
-import ReactVisibilitySensor from "react-visibility-sensor";
 import PrivacyPage from "pages/privacy/Privacy";
 import ContactUsPage from "pages/contact-us/ContactUsPage";
 import NewsPage from "pages/news-page/NewsPage";
 import Error404 from "pages/404/Error404";
-import DesignService from "pages/service/DesignService/pages/main/DesignService";
-import DesignBeforePreview from "pages/service/DesignService/pages/design-before-preview/DesignBeforePreview";
+import DesignService from "pages/DesignService/pages/main/DesignService";
+import DesignBeforePreview from "pages/DesignService/pages/design-before-preview/DesignBeforePreview";
 
 function Layout() {
   const { lang } = useContext(LangContext);

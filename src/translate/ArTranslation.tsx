@@ -80,7 +80,7 @@ const ArTranslation = {
     address: "العنوان",
   },
   service: {
-    name: "اسم الحدمة",
+    name: "اسم الخدمة",
     describtion: "وصف الخدمة",
     previousWorks: "الأعمال السابقة",
   },

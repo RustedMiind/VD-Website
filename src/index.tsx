@@ -6,15 +6,31 @@ import { Provider } from "react-redux";
 import { store } from "redux/store";
 import LangContextProvider from "contexts/LangContext";
 
+import rtlPlugin from "stylis-plugin-rtl";
+import { CacheProvider } from "@emotion/react";
+import createCache from "@emotion/cache";
+import { prefixer } from "stylis";
+
+const cacheRtl = createCache({
+  key: "muirtl",
+  stylisPlugins: [prefixer, rtlPlugin],
+});
+
+function RTL(props: { children: React.ReactNode }) {
+  return <CacheProvider value={cacheRtl}>{props.children}</CacheProvider>;
+}
+
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
 );
 root.render(
   <BrowserRouter>
-    <LangContextProvider>
-      <Provider store={store}>
-        <App />
-      </Provider>
-    </LangContextProvider>
+    <CacheProvider value={cacheRtl}>
+      <LangContextProvider>
+        <Provider store={store}>
+          <App />
+        </Provider>
+      </LangContextProvider>
+    </CacheProvider>
   </BrowserRouter>
 );

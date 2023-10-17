@@ -3,6 +3,7 @@ import Advantages from "../../components/advantages/Advantages";
 import "./design-service.scss";
 import Filters from "../../components/filters/Filters";
 import Cards from "../../components/cards/Cards";
+import { TextField } from "@mui/material";
 
 function DesignService() {
   return (
@@ -10,6 +11,7 @@ function DesignService() {
       data={{ title: "خدمات التربة", bgImage: { gradient: true } }}
     >
       <div className="tight-section">
+        <TextField label="مرحبا بكم في مواي" />
         <div className="design-service">
           <Advantages />
           <div className="flex flex-wrap">
