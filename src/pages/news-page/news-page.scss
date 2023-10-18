@@ -44,7 +44,7 @@
           // background-color: transparent;
         }
         @include ScaleHoverSm {
-          z-index: 1000;
+          z-index: 2;
           box-shadow: 0 0 0.8rem 0.2rem rgba(0, 0, 0, 0.418);
           &::before {
             background-color: transparent;

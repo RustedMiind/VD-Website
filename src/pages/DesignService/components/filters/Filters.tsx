@@ -20,16 +20,26 @@ function Filters() {
     <div className="lg:w-1/3 xl:w-1/4  w-full ">
       <Stack component="form" direction="column" spacing={2}>
         <Box>
-          <FormControl hiddenLabel fullWidth>
-            <InputLabel>كود البناء</InputLabel>
-            <Select label="كود البناء">
-              <MenuItem value="1">كود بناء مصر</MenuItem>
-              <MenuItem value="2">كود بناء السعودية</MenuItem>
+          <FormControl fullWidth variant="outlined">
+            <InputLabel
+              variant="outlined"
+              id="demo-simple-select-outlined-label"
+            >
+              كود البناء
+            </InputLabel>
+            <Select
+              labelId="demo-simple-select-outlined-label"
+              id="demo-simple-select-outlined"
+              label="كود البناء"
+            >
+              <MenuItem value="">الكل</MenuItem>
+              <MenuItem value={10}>كود بناء مصر</MenuItem>
+              <MenuItem value={20}>كود بناء السعودية</MenuItem>
             </Select>
           </FormControl>
         </Box>
         <Box>
-          <TextField label="المساحة" fullWidth />
+          <TextField variant="outlined" label="المساحة" fullWidth />
         </Box>
         <Box>
           <Typography variant="body1" gutterBottom fontWeight="bold">
@@ -81,15 +91,15 @@ function Filters() {
         </Box>
 
         <Box>
-          <TextField label="عرض الارض" fullWidth />
+          <TextField variant="outlined" label="عرض الارض" fullWidth />
         </Box>
 
         <Box>
-          <TextField label="طول الارض" fullWidth />
+          <TextField variant="outlined" label="طول الارض" fullWidth />
         </Box>
 
         <Box>
-          <TextField label="عرض الشارع الامامي" fullWidth />
+          <TextField variant="outlined" label="عرض الشارع الامامي" fullWidth />
         </Box>
       </Stack>
     </div>
