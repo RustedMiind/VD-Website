@@ -55,7 +55,7 @@ const theme = createTheme({
     MuiTypography: {
       styleOverrides: {
         root: {
-          color: "#004693",
+          // color: "#004693",
           fontFamily: "TheSans",
         },
       },
