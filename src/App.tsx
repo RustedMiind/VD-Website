@@ -33,6 +33,9 @@ const theme = createTheme({
   //   },
   // },
   direction: "rtl",
+  shape: {
+    borderRadius: 10,
+  },
   palette: {
     primary: {
       main: "#f19b02",
