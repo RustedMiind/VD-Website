@@ -5,7 +5,8 @@ function AspectRatioImage(props: PropsType) {
     <div
       className={props.className}
       style={{
-        width: props.width || 172,
+        width: "100%",
+        borderRadius: props.rounded ? 10 : undefined,
         position: "relative",
         paddingBottom: `${(1 / (props.ratio || 1)) * 100}%`,
         overflow: "hidden",
@@ -38,7 +39,7 @@ type PropsType = {
   src: string;
   alt?: string;
   className?: string;
-  width?: number | string;
+  rounded?: boolean;
 };
 
 export default AspectRatioImage;

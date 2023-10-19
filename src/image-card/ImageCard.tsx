@@ -1,15 +1,21 @@
+import AspectRatioImage from "components/aspect-ratio-image/AspectRatioImage";
 import ShowMoreButton from "./ShowMoreButton";
 import "./image-card.scss";
 
 function ImageCard() {
   return (
     <div className="image-card">
-      <div className="image-container-16-9">
+      {/* <div className="image-container-16-9">
         <img
           src="https://img.freepik.com/premium-photo/modern-corporate-architecture-can-be-seen-cityscape-office-buildings_410516-276.jpg"
           alt=""
         />
-      </div>
+      </div> */}
+
+      <AspectRatioImage
+        ratio={16 / 9}
+        src="https://img.freepik.com/premium-photo/modern-corporate-architecture-can-be-seen-cityscape-office-buildings_410516-276.jpg"
+      />
       <div className="content p-4">
         <h5>اسم البناء</h5>
         <p>هذا النص هو مثال لنص يمكن أن يستبدل في</p>

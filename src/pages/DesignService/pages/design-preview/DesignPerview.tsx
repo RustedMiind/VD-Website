@@ -1,10 +1,10 @@
 import PageBannerLayout from "pages/page-banner-layout/PageBannerLayout";
 import InfoWithImage from "../../components/info-with-image/InfoWithImage";
 
-function DesignBeforePreview() {
+function DesignPreview() {
   return (
     <PageBannerLayout
-      data={{ title: "خدمات التربة", bgImage: { gradient: true } }}
+      data={{ title: "خدمة التصميم", bgImage: { gradient: true } }}
     >
       <div className="tight-section">
         <div className="design-before-preview">
@@ -15,4 +15,4 @@ function DesignBeforePreview() {
   );
 }
 
-export default DesignBeforePreview;
+export default DesignPreview;
