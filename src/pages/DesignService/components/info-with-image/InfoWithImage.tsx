@@ -1,5 +1,6 @@
 import { Button, Typography, Box, Stack } from "@mui/material";
 import AspectRatioImage from "components/aspect-ratio-image/AspectRatioImage";
+import FileOpenIcon from "@mui/icons-material/FileOpen";
 import FourImagesPreview from "components/four-images-preview/FourIMagesPreview";
 
 function InfoWithImage() {
@@ -44,6 +45,17 @@ function InfoWithImage() {
               "https://plus.unsplash.com/premium_photo-1680157071241-034d017884ca?auto=format&fit=crop&q=60&w=500&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OXx8YnVpbGRpbmd8ZW58MHx8MHx8fDA%3D",
             ]}
           />
+          <Box mt={0.5}>
+            <Button
+              disableElevation
+              variant="contained"
+              sx={{ display: "flex", gap: 6 }}
+              size="large"
+              endIcon={<FileOpenIcon />}
+            >
+              عرض الكتيب
+            </Button>
+          </Box>
         </Stack>
       </div>
     </div>

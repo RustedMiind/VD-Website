@@ -20,18 +20,6 @@ import { ThemeProvider, colors, createTheme } from "@mui/material";
 import { store } from "./redux/store";
 
 const theme = createTheme({
-  // palette: {
-  //   primary: {
-  //     main: blueGrey[900],
-  //   },
-  //   secondary: {
-  //     main: pink[500],
-  //   },
-  //   background: {
-  //     paper: grey[100],
-  //     default: grey[300],
-  //   },
-  // },
   direction: "rtl",
   shape: {
     borderRadius: 10,
