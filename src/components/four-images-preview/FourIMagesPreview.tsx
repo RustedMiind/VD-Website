@@ -30,7 +30,7 @@ function FourImagesPreview(props: PropsType) {
     let run = true;
     if (autoPlay) {
       setTimeout(() => {
-        if (run) UpdateImages(undefined, 500);
+        if (run) UpdateImages(undefined, 600);
       }, 5000);
     }
     return () => {
@@ -42,7 +42,7 @@ function FourImagesPreview(props: PropsType) {
     <Stack
       sx={{
         width: "100%",
-        transition: autoPlay ? "500ms" : "150ms",
+        transition: autoPlay ? "600ms" : "150ms",
         transitionTimingFunction: "ease-in-out",
         opacity: willChange ? 0 : 1,
       }}
