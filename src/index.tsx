@@ -16,10 +16,6 @@ const cacheRtl = createCache({
   stylisPlugins: [prefixer, rtlPlugin],
 });
 
-function RTL(props: { children: React.ReactNode }) {
-  return <CacheProvider value={cacheRtl}>{props.children}</CacheProvider>;
-}
-
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
 );
