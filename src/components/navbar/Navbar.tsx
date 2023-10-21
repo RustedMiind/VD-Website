@@ -18,6 +18,7 @@ function Navbar() {
   const { changeLang, lang } = useContext(LangContext);
   const currentLang = lang();
   const [loginOpen, setLoginOpen] = useState(false);
+  const [navDialog, setNavDialog] = useState<NavDialogTypes>("login");
   const state = useSelector((state: { settings: SettingsStateType }) => state);
   const getvalue = getValueByKey(state.settings);
   const { t } = useTranslation();
@@ -70,20 +71,37 @@ function Navbar() {
           <Button
             variant="contained"
             onClick={() => {
+              setNavDialog("login");
               setLoginOpen(true);
             }}
             color="secondary"
           >
             تسجيل الدخول
           </Button>
+          <Button
+            variant="outlined"
+            onClick={() => {
+              setNavDialog("register");
+              setLoginOpen(true);
+            }}
+            color="secondary"
+          >
+            التسجيل
+          </Button>
           <NavLink to={"/"} className="logo-link">
             <img src={logo} alt="" />
           </NavLink>
         </div>
       </nav>
-      <LoginRegister open={loginOpen} onClose={handleLoginClose} />
+      <LoginRegister
+        type="register"
+        open={loginOpen}
+        onClose={handleLoginClose}
+      />
     </>
   );
 }
+
+type NavDialogTypes = "login" | "register";
 
 export default Navbar;
