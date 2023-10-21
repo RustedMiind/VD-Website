@@ -11,16 +11,8 @@ import logo from "assets/images/logo-vision.png";
 import { navigationRoutes } from "methods/data/navigationRoutes";
 import { changeLanguage } from "i18next";
 import { LangContext } from "contexts/LangContext";
-import {
-  Button,
-  Dialog,
-  DialogTitle,
-  DialogContent,
-  DialogContentText,
-  DialogActions,
-  TextField,
-  Box,
-} from "@mui/material";
+import { Button } from "@mui/material";
+import LoginRegister from "sections/login-register/LoginRegister";
 
 function Navbar() {
   const { changeLang, lang } = useContext(LangContext);
@@ -30,6 +22,10 @@ function Navbar() {
   const getvalue = getValueByKey(state.settings);
   const { t } = useTranslation();
   const [navVisibilty, setNavVisibilty] = useState<"show" | "hide">("hide");
+
+  function handleLoginClose() {
+    setLoginOpen(false);
+  }
   return (
     <>
       <nav className="navbar tight-section">
@@ -85,28 +81,7 @@ function Navbar() {
           </NavLink>
         </div>
       </nav>
-      <Dialog
-        maxWidth="md"
-        fullWidth
-        open={loginOpen}
-        onClose={() => {
-          setLoginOpen(false);
-        }}
-      >
-        <DialogTitle>تسجيل الدخول</DialogTitle>
-        <DialogContent>
-          {/* <DialogContentText>
-          </DialogContentText> */}
-          <Box py={3}>
-            <TextField fullWidth label="رقم الهوية الوطنية/ الاقامة" />
-          </Box>
-        </DialogContent>
-        <DialogActions sx={{ px: 3, pb: 3 }}>
-          <Button size="large" variant="contained" color="primary" fullWidth>
-            تسجيل الدخول
-          </Button>
-        </DialogActions>
-      </Dialog>
+      <LoginRegister open={loginOpen} onClose={handleLoginClose} />
     </>
   );
 }
