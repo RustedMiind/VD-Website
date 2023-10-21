@@ -6,7 +6,20 @@ import FourImagesPreview from "components/four-images-preview/FourIMagesPreview"
 function InfoWithImage() {
   return (
     <div className="advantages my-4 p-8 flex flex-wrap">
-      <div className="pe-8  w-full md:w-1/3">
+      <Stack
+        className="pe-8  w-full md:w-1/3"
+        sx={{
+          pr: {
+            xs: 0,
+            lg: 4,
+          },
+          width: {
+            xs: 1,
+            md: 1 / 2,
+            lg: 1 / 3,
+          },
+        }}
+      >
         <Typography variant="h5" fontWeight={"bold"}>
           عنوان الفيلا
         </Typography>
@@ -35,8 +48,23 @@ function InfoWithImage() {
         <Button variant="contained" sx={{ px: 4, mt: 2 }}>
           شراء الآن
         </Button>
-      </div>
-      <div className="ps-8 w-full md:w-2/3">
+      </Stack>
+      <Stack
+        sx={{
+          width: {
+            xs: 1,
+            lg: 2 / 3,
+          },
+          pl: {
+            xs: 0,
+            lg: 4,
+          },
+          mt: {
+            xs: 4,
+            lg: 0,
+          },
+        }}
+      >
         <Stack>
           <FourImagesPreview
             images={[
@@ -57,7 +85,7 @@ function InfoWithImage() {
             </Button>
           </Box>
         </Stack>
-      </div>
+      </Stack>
     </div>
   );
 }
