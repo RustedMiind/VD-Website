@@ -1,6 +1,7 @@
 import { Button, TextField, Typography, Stack } from "@mui/material";
 import { current } from "@reduxjs/toolkit";
 import OTPInput from "react-otp-input";
+import "./login-otp.scss";
 
 function OtpInputContainer(props: PropsType) {
   return (
@@ -33,26 +34,12 @@ function OtpInputContainer(props: PropsType) {
         error={!!props.error}
         helperText={props.error}
       /> */}
-      <Stack className="ltr">
+      <Stack className="ltr login-otp">
         <OTPInput
           value={props.value}
           onChange={props.onChange}
           numInputs={6}
           renderInput={(props) => <input {...props} />}
-          containerStyle={{
-            display: "flex",
-            gap: 8,
-            alignItems: "center",
-            justifyContent: "center",
-          }}
-          inputStyle={{
-            padding: ".5rem",
-            width: 45,
-            height: 45,
-            borderRadius: 8,
-            border: props.current ? "2px solid var(--third)" : "2px solid gray",
-            fontSize: 18,
-          }}
         />
       </Stack>
       <Typography>

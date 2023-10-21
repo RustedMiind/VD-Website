@@ -1,0 +1,28 @@
+@import "../../../../../sass/breakpoints";
+
+.login-otp {
+  & > div {
+    gap: 12px;
+    justify-content: center;
+    @include Mobile {
+      gap: 4px;
+    }
+  }
+  input {
+    padding: 0.5rem;
+    width: 3rem !important;
+    height: 3rem !important;
+    border-radius: 8px;
+    border: 2px solid var(--third);
+    font-size: 1.2rem;
+    transition: 200ms;
+    @include Mobile {
+      width: 2.4rem !important;
+      height: 2.4rem !important;
+    }
+    &:focus {
+      border-color: var(--third);
+      box-shadow: 0 0 8px 2px var(--third);
+    }
+  }
+}
