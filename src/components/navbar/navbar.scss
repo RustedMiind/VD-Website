@@ -17,10 +17,13 @@ nav.navbar {
   //   color: var(--font-light);
   .right,
   .left {
-    gap: 4rem;
+    gap: 2rem;
     display: flex;
     align-items: center;
     justify-content: center;
+  }
+  .left {
+    gap: 1rem;
   }
   .right * {
     transition: 300ms;
