@@ -8,6 +8,7 @@ import {
   TextField,
 } from "@mui/material";
 import Login from "./tabs/login/Login";
+import Register from "./tabs/register/Register";
 
 function LoginRegister(props: PropsType) {
   switch (props.type) {
@@ -15,7 +16,7 @@ function LoginRegister(props: PropsType) {
       return <Login open={props.open} onClose={props.onClose} />;
 
     case "register":
-      return <Login open={props.open} onClose={props.onClose} />;
+      return <Register open={props.open} onClose={props.onClose} />;
 
     default:
       break;

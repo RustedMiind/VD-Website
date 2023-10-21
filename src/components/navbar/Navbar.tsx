@@ -94,7 +94,7 @@ function Navbar() {
         </div>
       </nav>
       <LoginRegister
-        type="register"
+        type={navDialog}
         open={loginOpen}
         onClose={handleLoginClose}
       />
