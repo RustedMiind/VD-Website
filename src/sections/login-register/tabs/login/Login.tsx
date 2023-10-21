@@ -74,10 +74,9 @@ function Login(props: PropsType) {
     const condition = isStringAllNumbers(e.target.value);
     if (condition) setNationalNumber(e.target.value);
   }
-  function handleOtpChange(e: React.ChangeEvent<HTMLInputElement>) {
-    const condition =
-      e.target.value.length <= 6 && isStringAllNumbers(e.target.value);
-    if (condition) setOtp(e.target.value);
+  function handleOtpChange(e: string) {
+    const condition = e.length <= 6 && isStringAllNumbers(e);
+    if (condition) setOtp(e);
   }
   function submitHandler(e: React.FormEvent<HTMLFormElement | HTMLDivElement>) {
     e.preventDefault();
