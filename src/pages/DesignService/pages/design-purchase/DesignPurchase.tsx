@@ -9,10 +9,11 @@ import Stack from "@mui/material/Stack";
 import Button from "@mui/material/Button";
 import Step1 from "./steps/Step1";
 import { useState } from "react";
+import Step2 from "./steps/Step2";
 
 const steps: StepType[] = [
   { name: "التصاميم الخارجية", element: <Step1 /> },
-  { name: "التصاميم 2", element: <div>Hello to step 2</div> },
+  { name: "التصاميم 2", element: <Step2 /> },
   { name: "التصاميم 3", element: <div>Hello to step 3</div> },
   { name: "التصاميم 4", element: <div>Hello to step 4</div> },
 ];
@@ -42,7 +43,7 @@ function DesignPurchase() {
             ))}
           </Stepper>
         </Box>
-        <Stack>{steps[currentStep].element}</Stack>
+        <Stack sx={{ minHeight: "300px" }}>{steps[currentStep].element}</Stack>
         <Stack direction={"row"} gap={2}>
           <Button
             variant="outlined"
