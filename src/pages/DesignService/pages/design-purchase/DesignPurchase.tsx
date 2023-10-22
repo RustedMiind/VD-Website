@@ -10,11 +10,12 @@ import Button from "@mui/material/Button";
 import Step1 from "./steps/Step1";
 import { useState } from "react";
 import Step2 from "./steps/Step2";
+import Step3 from "./steps/Setp3";
 
 const steps: StepType[] = [
   { name: "التصاميم الخارجية", element: <Step1 /> },
   { name: "التصاميم 2", element: <Step2 /> },
-  { name: "التصاميم 3", element: <div>Hello to step 3</div> },
+  { name: "التصاميم 3", element: <Step3 /> },
   { name: "التصاميم 4", element: <div>Hello to step 4</div> },
 ];
 
