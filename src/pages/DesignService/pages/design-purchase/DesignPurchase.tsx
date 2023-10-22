@@ -1,68 +1,75 @@
 import PageBannerLayout from "pages/page-banner-layout/PageBannerLayout";
-import * as React from "react";
 import Box from "@mui/material/Box";
 import Stepper from "@mui/material/Stepper";
 import Step from "@mui/material/Step";
 import StepLabel from "@mui/material/StepLabel";
 import ChoiceCard from "components/choice-card/ChoiceCard";
 import Grid from "@mui/material/Grid";
+import Stack from "@mui/material/Stack";
+import Button from "@mui/material/Button";
+import Step1 from "./steps/Step1";
+import { useState } from "react";
 
-const steps = ["التصاميم الخارجية", "نوع الخدمة", "ملخص الطلب", "الدفع"];
+const steps: StepType[] = [
+  { name: "التصاميم الخارجية", element: <Step1 /> },
+  { name: "التصاميم 2", element: <div>Hello to step 2</div> },
+  { name: "التصاميم 3", element: <div>Hello to step 3</div> },
+  { name: "التصاميم 4", element: <div>Hello to step 4</div> },
+];
 
 function DesignPurchase() {
+  const [currentStep, setCurrentStep] = useState(0);
+
+  function handleValueChange(delta: number = 1) {
+    const newValue = currentStep + delta;
+    if (newValue < 0 || newValue >= steps.length) {
+      return;
+    }
+    setCurrentStep(newValue);
+  }
+
   return (
     <PageBannerLayout
       data={{ title: "عنوان التصميم", bgImage: { gradient: true } }}
     >
       <div className="tight-section my-4">
         <Box sx={{ width: 1 }}>
-          <Stepper activeStep={2} alternativeLabel>
-            {steps.map((label) => (
-              <Step key={label}>
-                <StepLabel>{label}</StepLabel>
+          <Stepper activeStep={currentStep} alternativeLabel>
+            {steps.map(({ name }) => (
+              <Step key={name}>
+                <StepLabel>{name}</StepLabel>
               </Step>
             ))}
           </Stepper>
         </Box>
-        <Box py={2}>
-          <Grid container>
-            <Grid item xs={12} md={6} lg={4} xl={3} p={1}>
-              <ChoiceCard
-                // current
-                title="test"
-                description="Test2"
-                price="1236 رس"
-              />
-            </Grid>
-            <Grid item xs={12} md={6} lg={4} xl={3} p={1}>
-              <ChoiceCard
-                current
-                title="test"
-                description="Test2"
-                price="1236 رس"
-              />
-            </Grid>
-            <Grid item xs={12} md={6} lg={4} xl={3} p={1}>
-              <ChoiceCard
-                // current
-                title="test"
-                description="Test2"
-                price="1236 رس"
-              />
-            </Grid>
-            <Grid item xs={12} md={6} lg={4} xl={3} p={1}>
-              <ChoiceCard
-                // current
-                title="test"
-                description="Test2"
-                price="1236 رس"
-              />
-            </Grid>
-          </Grid>
-        </Box>
+        <Stack>{steps[currentStep].element}</Stack>
+        <Stack direction={"row"} gap={2}>
+          <Button
+            variant="outlined"
+            color="secondary"
+            onClick={() => {
+              handleValueChange(-1);
+            }}
+            disabled={currentStep === 0}
+          >
+            السابق
+          </Button>
+          <Button
+            variant="contained"
+            color="secondary"
+            onClick={() => {
+              handleValueChange(1);
+            }}
+            disabled={currentStep === steps.length - 1}
+          >
+            التالي
+          </Button>
+        </Stack>
       </div>
     </PageBannerLayout>
   );
 }
+
+type StepType = { name: string; element: React.ReactElement };
 
 export default DesignPurchase;
