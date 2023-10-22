@@ -39,7 +39,7 @@ const theme = createTheme({
     text: {
       primary: "#004693",
       secondary: colors.grey[600],
-      disabled: "#444850",
+      disabled: colors.grey[600],
     },
   },
   components: {
