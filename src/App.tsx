@@ -17,7 +17,8 @@ import { getLangCookie } from "methods/getLangCookie";
 // import "./App.scss";
 // import * as colors from "@mui/material/colors";
 import { ThemeProvider, colors, createTheme } from "@mui/material";
-import { store } from "./redux/store";
+import { LocalizationProvider } from "@mui/x-date-pickers";
+import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 
 const theme = createTheme({
   direction: "rtl",
@@ -98,11 +99,13 @@ function App() {
   return (
     // <React.Suspense fallback="Loading...">
 
-    <ThemeProvider theme={theme}>
-      <div className="App">
-        <Layout />
-      </div>
-    </ThemeProvider>
+    <LocalizationProvider dateAdapter={AdapterDayjs}>
+      <ThemeProvider theme={theme}>
+        <div className="App">
+          <Layout />
+        </div>
+      </ThemeProvider>
+    </LocalizationProvider>
     // </React.Suspense>
   );
 }
