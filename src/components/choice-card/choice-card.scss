@@ -1,0 +1,22 @@
+.choice-card {
+  width: 100%;
+  border-radius: 0.8rem;
+  border: 1px solid transparent;
+  border-color: var(--gray);
+  overflow: hidden;
+  .card-head {
+    background: var(--gray);
+    padding: 0.3rem 0;
+  }
+  &.current {
+    border-color: var(--third);
+    .card-head {
+      background: linear-gradient(
+        267.76deg,
+        #f19b02 -1.97%,
+        rgba(241, 155, 2, 0.45) 99.68%
+      );
+      padding: 0.3rem 0;
+    }
+  }
+}
