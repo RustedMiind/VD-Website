@@ -11,7 +11,7 @@ import logo from "assets/images/logo-vision.png";
 import { navigationRoutes } from "methods/data/navigationRoutes";
 import { changeLanguage } from "i18next";
 import { LangContext } from "contexts/LangContext";
-import { Button } from "@mui/material";
+import { Button, Menu, MenuItem, MenuList, Paper } from "@mui/material";
 import LoginRegister from "sections/login-register/LoginRegister";
 
 function Navbar() {
@@ -49,7 +49,16 @@ function Navbar() {
               <NavLink to={link.path}>{t(link.name)}</NavLink>
             </li>
           ))}
-
+          <li className="has-dropdown-on-hover">
+            <span>الخدمات الالكترونية</span>
+            <Paper className="menu">
+              <MenuList sx={{ width: 200 }}>
+                <MenuItem component={NavLink} to="/e-services/design">
+                  التصاميم
+                </MenuItem>
+              </MenuList>
+            </Paper>
+          </li>
           {/* <li>
           <a
           className="lang-btn"
