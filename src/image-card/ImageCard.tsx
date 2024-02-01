@@ -2,7 +2,7 @@ import AspectRatioImage from "components/aspect-ratio-image/AspectRatioImage";
 import ShowMoreButton from "./ShowMoreButton";
 import "./image-card.scss";
 
-function ImageCard() {
+function ImageCard(props: PropsType) {
   return (
     <div className="image-card">
       {/* <div className="image-container-16-9">
@@ -12,19 +12,29 @@ function ImageCard() {
         />
       </div> */}
 
-      <AspectRatioImage
-        ratio={16 / 9}
-        src="https://img.freepik.com/premium-photo/modern-corporate-architecture-can-be-seen-cityscape-office-buildings_410516-276.jpg"
-      />
+      <AspectRatioImage ratio={16 / 9} src={props.image || ""} />
       <div className="content p-4">
-        <h5>اسم البناء</h5>
-        <p>هذا النص هو مثال لنص يمكن أن يستبدل في</p>
-        <p className="mt-2 text-gray-400">يبدأ السعر من</p>
-        <h4 className="text-third">4,000 ر.س</h4>
+        <h5>{props.title}</h5>
+        <p>{props.description}</p>
+        {props.price && (
+          <p className="mt-2 text-gray-400">
+            {props.priceLabel || "يبدأ السعر من"}
+          </p>
+        )}
+        <h4 className="text-third">{props.price}</h4>
       </div>
-      <ShowMoreButton />
+      <ShowMoreButton to={props.path} />
     </div>
   );
 }
+
+type PropsType = {
+  image?: string;
+  title: string;
+  description?: string;
+  price?: string;
+  path?: string;
+  priceLabel?: string;
+};
 
 export default ImageCard;

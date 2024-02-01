@@ -1,11 +1,12 @@
 import { ArrowLeftCircleFill } from "react-bootstrap-icons";
+import { NavLink } from "react-router-dom";
 
-function ShowMoreButton() {
+function ShowMoreButton({ to }: { to?: string }) {
   return (
-    <button type="button" className="icon-btn show-more-button">
+    <NavLink to={to || ""} type="button" className="icon-btn show-more-button">
       <div>عرض ملف تعريف التصميم</div>
       <ArrowLeftCircleFill />
-    </button>
+    </NavLink>
   );
 }
 

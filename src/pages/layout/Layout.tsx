@@ -40,8 +40,14 @@ function Layout() {
               <Route path="" element={<DesignService />} />
               <Route path=":designId" element={<DesignPurchase />} />
             </Route>
-            <Route path="design2" element={<DesignPreview />} />
             <Route path=":serviceId" element={<ServicePage />} />
+          </Route>
+          <Route path="e-services">
+            <Route path="design">
+              <Route path="" element={<DesignService />} />
+              <Route path=":designId" element={<DesignPreview />} />
+              <Route path="purchase/:designId" element={<DesignPurchase />} />
+            </Route>
           </Route>
           <Route path="projects">
             <Route path="" element={<Projects />} />

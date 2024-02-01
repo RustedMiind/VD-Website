@@ -34,8 +34,8 @@ const theme = createTheme({
       main: "#004693",
     },
     background: {
-      paper: "#FFFFFF",
-      default: "#F1F1F1",
+      default: "#FFFFFF",
+      paper: "#F1F1F1",
     },
     text: {
       primary: "#004693",
@@ -50,6 +50,9 @@ const theme = createTheme({
           fontFamily: "TheSans",
         },
       },
+    },
+    MuiPaper: {
+      defaultProps: { elevation: 4 },
     },
   },
   typography: {

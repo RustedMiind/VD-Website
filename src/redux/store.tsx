@@ -5,6 +5,7 @@ import settingsSlice from "./reducers/settingsSlice";
 import mainSlice from "./reducers/mainSlice";
 import aboutSlice from "./reducers/aboutSlice";
 import newsSlice from "./reducers/newsSlice";
+import designsSlice from "./reducers/designsSlice";
 
 export const store = configureStore({
   reducer: {
@@ -14,5 +15,6 @@ export const store = configureStore({
     main: mainSlice,
     news: newsSlice,
     about: aboutSlice,
+    designs: designsSlice,
   },
 });
