@@ -1,6 +1,7 @@
 import AspectRatioImage from "components/aspect-ratio-image/AspectRatioImage";
 import ShowMoreButton from "./ShowMoreButton";
 import "./image-card.scss";
+import AltImage from "assets/images/card-image-placeholder.png";
 
 function ImageCard(props: PropsType) {
   return (
@@ -12,7 +13,7 @@ function ImageCard(props: PropsType) {
         />
       </div> */}
 
-      <AspectRatioImage ratio={16 / 9} src={props.image || ""} />
+      <AspectRatioImage ratio={16 / 9} src={props.image || AltImage} />
       <div className="content p-4">
         <h5>{props.title}</h5>
         <p>{props.description}</p>
