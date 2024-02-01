@@ -19,9 +19,11 @@ import api from "methods/api";
 import Toaster from "components/toaster/Toaster";
 
 function Footer() {
-  const state = useSelector((state: { settings: SettingsStateType }) => state);
+  const settings = useSelector(
+    (state: { settings: SettingsStateType }) => state.settings
+  );
   const { t } = useTranslation();
-  const getvalue = getValueByKey(state.settings);
+  const getvalue = getValueByKey(settings);
   const [newsValue, setNewsValue] = useState("");
   const [newsFormStatus, setNewsFormStatus] = useState<
     "none" | "success" | "error"

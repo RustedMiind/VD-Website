@@ -11,7 +11,7 @@ function ServicesCardsContainer(props: PropsType) {
       </div>
       <div className="services-cards-container2">
         {props.service.services.map((service) => (
-          <ServiceCard service={service} />
+          <ServiceCard key={service.id} service={service} />
         ))}
       </div>
     </div>

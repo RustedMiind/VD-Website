@@ -3,7 +3,7 @@ import PageBannerLayout, {
 } from "pages/page-banner-layout/PageBannerLayout";
 import "./services.scss";
 import { useTranslation } from "react-i18next";
-import { useEffect, useContext } from "react";
+import React, { useEffect, useContext } from "react";
 import { requestSetServices } from "redux/middlewares/servicesMiddleware";
 import { useDispatch, useSelector } from "react-redux";
 import { ServicesStateType } from "redux/reducers/servicesSlice";
@@ -32,10 +32,11 @@ function Services() {
   );
   const langContext = useContext(LangContext);
   const lang = langContext.lang();
-  console.log("services state: ", services);
   const dispatch = useDispatch();
   useEffect(() => {
-    requestSetServices(dispatch).then(console.log).catch(console.log);
+    requestSetServices(dispatch)
+      .then(() => {})
+      .catch(() => {});
   }, [lang]);
   return (
     <PageBannerLayout data={data}>
@@ -47,7 +48,7 @@ function Services() {
           services.map((service, index) => {
             const className = "bg-main-transparent";
             return (
-              <>
+              <React.Fragment key={service.services.map((s) => s.id).join()}>
                 {service.design === "hexagon" && (
                   <HexagonsContainer service={service} addClass={className} />
                 )}
@@ -63,7 +64,7 @@ function Services() {
                     addClass={className}
                   />
                 )}
-              </>
+              </React.Fragment>
             );
           })}
         {/* {services === "loading" && <h2>Loading</h2>} */}

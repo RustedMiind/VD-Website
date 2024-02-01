@@ -19,8 +19,10 @@ function Navbar() {
   const currentLang = lang();
   const [loginOpen, setLoginOpen] = useState(false);
   const [navDialog, setNavDialog] = useState<NavDialogTypes>("login");
-  const state = useSelector((state: { settings: SettingsStateType }) => state);
-  const getvalue = getValueByKey(state.settings);
+  const settings = useSelector(
+    (state: { settings: SettingsStateType }) => state.settings
+  );
+  const getvalue = getValueByKey(settings);
   const { t } = useTranslation();
   const [navVisibilty, setNavVisibilty] = useState<"show" | "hide">("hide");
 
@@ -67,7 +69,6 @@ function Navbar() {
             const current = lang();
             if (current === "en") changeLang("ar");
             else if (current === "ar") changeLang("en");
-            console.log(current, "Currentxxxxxxxxxxxx");
           }}
           >
           {currentLang === "ar" && "EN"}

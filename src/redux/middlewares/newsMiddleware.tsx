@@ -13,9 +13,6 @@ export function requestSetNews(dispatch: Dispatch<AnyAction>) {
           return -1;
         });
 
-        console.log("sorted", sorted);
-        console.log("default", res.data.data);
-
         dispatch(setNews({ news: sorted }));
         resolve(sorted);
       })

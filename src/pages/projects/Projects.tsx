@@ -65,6 +65,7 @@ function Projects() {
             </div>
             {projects.projectTypes.map((projectType) => (
               <div
+                key={projectType.id}
                 className={`type ${
                   type === projectType.id.toString() ? "current" : ""
                 }`}

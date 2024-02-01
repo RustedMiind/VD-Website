@@ -11,8 +11,10 @@ import { getValueByKey } from "types/SettingsType";
 function TopNavbar() {
   const [navClass, setNavClass] = useState<"" | "hide-top">("");
 
-  const state = useSelector((state: { settings: SettingsStateType }) => state);
-  const getvalue = getValueByKey(state.settings);
+  const settings = useSelector(
+    (state: { settings: SettingsStateType }) => state.settings
+  );
+  const getvalue = getValueByKey(settings);
   const name = getvalue("name") as undefined | string,
     slogan = getvalue("slogan") as undefined | string,
     social = getvalue("social") as

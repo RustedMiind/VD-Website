@@ -94,7 +94,6 @@ function App() {
   const langContext = useContext(LangContext);
   const lang = langContext.lang();
   useEffect(() => {
-    console.log("useEffect on change lang ran", langContext);
     requestSetSettings(dispatch)
       .then((res) => {})
       .catch((err) => {});

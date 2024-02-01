@@ -13,13 +13,14 @@ import AboutSection from "./about-section/AboutSection";
 function DesignService() {
   const dispatch = useDispatch();
   useEffect(() => {
-    requestSetDesigns(dispatch).then(console.log).catch(console.log);
+    requestSetDesigns(dispatch)
+      .then(() => {})
+      .catch(() => {});
   }, [dispatch]);
 
   const designs = useSelector(
     (state: { designs: designsStateType }) => state.designs.designs
   );
-  console.log("designs", designs);
 
   return (
     <PageBannerLayout

@@ -59,7 +59,6 @@ function Project() {
       )
       .then((result) => {
         setProject(result.data.data);
-        console.log("project : ", result.data);
       })
       .catch((err) => {});
   }, [lang]);

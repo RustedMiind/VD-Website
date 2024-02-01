@@ -33,8 +33,6 @@ function IconsSlider(props: PropsType) {
                     swiper.slideNext(1000);
                   }, 5000);
                 }}
-                // onSlideChange={() => console.log("slide change")}
-                // onSwiper={(swiper) => console.log(swiper)}
               >
                 {slides.map((slide) => (
                   <SwiperSlide key={Math.random()}>

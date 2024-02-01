@@ -20,15 +20,12 @@ function CardsContainer() {
   const designs = useSelector(
     (state: { designs: designsStateType }) => state.designs.designs
   );
-  if (Array.isArray(designs)) {
-    console.log(designs.filter((des, index) => !!des.mainImage?.length));
-  }
 
   return (
     <Grid container rowSpacing={2}>
       {Array.isArray(designs) &&
         designs.map((design) => (
-          <GridItem>
+          <GridItem key={design.id}>
             <DesignCard design={design} />
           </GridItem>
         ))}

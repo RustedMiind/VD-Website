@@ -26,6 +26,7 @@ function PageBannerLayout({ data, children }: PropsType) {
                   <NavLink
                     to={link.path}
                     className={link.active ? "is-active" : ""}
+                    key={link.path + link.title}
                   >
                     {link.title}
                   </NavLink>

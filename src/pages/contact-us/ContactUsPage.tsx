@@ -15,10 +15,12 @@ import { LatLngType, getLatLngFromStr } from "methods/getLatLng";
 
 function ContactUsPage() {
   const { t } = useTranslation();
-  const state = useSelector((state: { settings: SettingsStateType }) => state);
+  const settings = useSelector(
+    (state: { settings: SettingsStateType }) => state.settings
+  );
   const data = { bgImage: { gradient: true }, title: t("links.contact") };
 
-  const getvalue = getValueByKey(state.settings);
+  const getvalue = getValueByKey(settings);
   const address = getvalue("address") as
     | undefined
     | {
@@ -45,7 +47,7 @@ function ContactUsPage() {
     if (typeof address === "object" && address[0]) {
       setCoOrdinates(getLatLngFromStr(address[0].longLat));
     }
-  }, [state]);
+  }, [settings]);
   return (
     <PageBannerLayout data={data}>
       <div className="contact-us-page">
@@ -66,7 +68,7 @@ function ContactUsPage() {
                       <div className="content">
                         <h5 className="title">{t("form.email")}</h5>
                         {emails.map((email) => (
-                          <p>{email}</p>
+                          <p key={email}>{email}</p>
                         ))}
                       </div>
                     </div>

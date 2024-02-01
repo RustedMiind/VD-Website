@@ -32,7 +32,6 @@ function NavbarContainers() {
     const BREAK_POINT2 = window.innerHeight;
     const element = window;
     const scrollTop = element.scrollY;
-    // console.log("ScrollTop :", scrollTop);
     if (scrollTop > BREAK_POINT) {
       setNavClass("hide-top");
     } else {

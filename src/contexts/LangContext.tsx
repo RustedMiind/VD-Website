@@ -5,7 +5,6 @@ import axios from "axios";
 import { changeLanguage } from "i18next";
 
 const currentLang = getLangCookie();
-console.log("getLangCookie", currentLang);
 
 export const LangContext = createContext<{
   lang: () => string;
@@ -24,9 +23,6 @@ function LangContextProvider({ children }: PropsType) {
   );
 
   function lang(): string {
-    console.log(
-      `language contect ${language}, cookie language ${currentLang}, lang ${lang}`
-    );
     return language;
   }
 
