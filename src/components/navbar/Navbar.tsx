@@ -77,7 +77,7 @@ function Navbar() {
         </li> */}
         </ul>
 
-        <div className="left">
+        {/* <div className="left">
           <Button
             variant="contained"
             onClick={() => {
@@ -101,7 +101,7 @@ function Navbar() {
           <NavLink to={"/"} className="logo-link">
             <img src={logo} alt="" />
           </NavLink>
-        </div>
+        </div> */}
       </nav>
       <LoginRegister
         type={navDialog}
