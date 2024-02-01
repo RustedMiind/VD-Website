@@ -1,5 +1,6 @@
 import { DB_Boolean } from "../DB_Boolean";
 import { Media } from "../Media";
+import { Attachment } from "./Attachment";
 
 type DesignType = {
   id: number;
@@ -31,12 +32,12 @@ type DesignType = {
   kitchen: number;
   name: string;
   desc: string;
-  subImages: unknown[];
+  subImages: Media[];
   booklet: Media[];
-  engImage: unknown[];
+  engImage: Media[];
   mainImage: Media[];
-  engImageIdea: unknown[];
-  attachments: unknown[];
+  engImageIdea: Media[];
+  attachments: Attachment[];
   utilities: unknown[];
   media: Media[];
 };

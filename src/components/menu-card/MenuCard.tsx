@@ -3,6 +3,7 @@ import {
   ListItemIcon,
   ListItemText,
   MenuItem,
+  MenuItemProps,
   MenuList,
   Paper,
   Typography,
@@ -19,7 +20,7 @@ function MenuCard(props: PropsType) {
       </Typography>
       <MenuList>
         {props.items.map((item) => (
-          <MenuItem>
+          <MenuItem key={`${item.name}-${item.value}`} {...item.menuItemProps}>
             {props.checkIcons && (
               <ListItemIcon>
                 <TaskAltIcon color="primary" fontSize="small" />
@@ -39,12 +40,16 @@ function MenuCard(props: PropsType) {
 }
 
 type PropsType = {
-  title: string;
+  title: React.ReactNode;
   items: ItemType[];
   checkIcons?: boolean;
   gutterBottom?: boolean;
 };
 
-type ItemType = { name: string; value?: string };
+type ItemType = {
+  name?: React.ReactNode;
+  value?: React.ReactNode;
+  menuItemProps?: MenuItemProps;
+};
 
 export default MenuCard;
