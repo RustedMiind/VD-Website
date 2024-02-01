@@ -8,6 +8,7 @@ import { useEffect } from "react";
 import { requestSetDesigns } from "redux/middlewares/designsMiddleware";
 import { designsStateType } from "redux/reducers/designsSlice";
 import CardsContainer from "./CardsContainer";
+import AboutSection from "./about-section/AboutSection";
 
 function DesignService() {
   const dispatch = useDispatch();
@@ -26,7 +27,7 @@ function DesignService() {
     >
       <div className="tight-section">
         <div className="design-service">
-          <Advantages />
+          <AboutSection />
           <Box mb={1}>
             <Typography mb={3} variant="h6">
               ابحث عن تصميمك
