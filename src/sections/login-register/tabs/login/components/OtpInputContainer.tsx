@@ -42,6 +42,9 @@ function OtpInputContainer(props: PropsType) {
           renderInput={(props) => <input {...props} />}
         />
       </Stack>
+      <Typography variant="body2" color="error">
+        {props.error}
+      </Typography>
       <Typography>
         لم يصلك كود الدخول؟
         <Button>اعد الارسال</Button>

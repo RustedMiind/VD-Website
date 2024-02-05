@@ -22,8 +22,9 @@ import {
   TableCell,
 } from "@mui/material";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
+import { Design } from "types/Design/Design";
 
-function Step4() {
+function Step4({ design }: { design?: Design }) {
   return (
     <Box py={4}>
       <Typography variant="h5">ملخص الفاتورة</Typography>

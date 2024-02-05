@@ -18,15 +18,11 @@ nav.navbar {
     position: relative;
     .menu {
       opacity: 0;
-      pointer-events: none;
       position: absolute;
       top: 100%;
     }
-    &:hover {
-      .menu {
-        opacity: 1;
-        pointer-events: all;
-      }
+    &:hover .menu {
+      opacity: 1;
     }
   }
   //   color: var(--font-light);

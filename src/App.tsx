@@ -19,6 +19,7 @@ import { getLangCookie } from "methods/getLangCookie";
 import { ThemeProvider, colors, createTheme } from "@mui/material";
 import { LocalizationProvider } from "@mui/x-date-pickers";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
+import { checkUser } from "redux/middlewares/userMiddleware";
 
 const theme = createTheme({
   direction: "rtl",
@@ -94,6 +95,7 @@ function App() {
   const langContext = useContext(LangContext);
   const lang = langContext.lang();
   useEffect(() => {
+    checkUser(dispatch);
     requestSetSettings(dispatch)
       .then((res) => {})
       .catch((err) => {});

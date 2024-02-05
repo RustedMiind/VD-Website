@@ -10,15 +10,46 @@ import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 
 import TableCell, { tableCellClasses } from "@mui/material/TableCell";
+import { Design } from "types/Design/Design";
+import { Media } from "types/Media";
+import { useState } from "react";
+import axios from "axios";
+import api from "methods/api";
+import { LoadingButton } from "@mui/lab";
 
-const rows: RowType[] = [
-  { name: "name1", value: "value1" },
-  { name: "name2", value: "value2" },
-  { name: "name3", value: "value3" },
-  { name: "name4", value: "value4" },
-];
-type RowType = { name: string; value: string };
-function Step2() {
+type RowType = { name: string; value?: string | number };
+function Step2({ design }: { design?: Design }) {
+  const [status, setStatus] = useState<"loading" | "none" | "error">("none");
+  const submitPurchase = () => {
+    if (design) {
+      setStatus("loading");
+      axios
+        .post(api("client/design/pay-cash"), { design_id: design.id })
+        .then(() => {
+          setStatus("none");
+        })
+        .catch(() => {
+          setStatus("error");
+        });
+    }
+  };
+
+  const rows: RowType[] = [
+    { name: "سعر التصميم قبل الخصم", value: design?.price_before },
+    {
+      name: "سعر التصميم بعد الخصم",
+      value: design?.price_after || design?.price_after,
+    },
+  ];
+
+  let images: Media[] = [];
+  if (design?.mainImage && Array.isArray(design?.mainImage)) {
+    images = images.concat(design.mainImage);
+  }
+  if (design?.subImages && Array.isArray(design?.subImages)) {
+    images = images.concat(design.subImages);
+  }
+
   return (
     <Stack py={4} direction={"row"} flexWrap={"wrap"}>
       <Stack
@@ -36,12 +67,10 @@ function Step2() {
         }}
       >
         <Typography variant="h5" fontWeight={"bold"}>
-          عنوان الفيلا
+          {design?.name}
         </Typography>
         <Typography variant="body1" gutterBottom>
-          هذا النص هو مثال لنص يمكن أن يستبدل في نفس المساحة، لقد تم توليد هذا
-          النص من مولد النص العربى، حيث يمكنك أن تولد مثل هذا النص أو العديد من
-          النصوص الأخرى إضافة
+          {design?.desc}
         </Typography>
         <Typography variant="h5" fontWeight={"bold"}>
           تفاصيل السعر
@@ -81,8 +110,23 @@ function Step2() {
         </Typography>
 
         <Typography variant="h6" color={"primary.main"} fontWeight={"bold"}>
-          6,000 ر.س
+          {design?.price_after} ر.س
         </Typography>
+
+        <Typography variant="body1" color={"gray"}>
+          طريقة الدفع : نقديا
+        </Typography>
+
+        <LoadingButton
+          onClick={submitPurchase}
+          sx={{ mt: 2 }}
+          fullWidth
+          variant="contained"
+          size="large"
+          loading={status === "loading"}
+        >
+          تأكيد الطلب
+        </LoadingButton>
       </Stack>
       <Stack
         sx={{
@@ -101,23 +145,24 @@ function Step2() {
         }}
       >
         <Stack>
-          <FourImagesPreview
-            images={[
-              "https://images.unsplash.com/photo-1471039497385-b6d6ba609f9c?auto=format&fit=crop&q=60&w=500&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTB8fGJ1aWxkaW5nfGVufDB8fDB8fHww",
-              "https://images.unsplash.com/photo-1470075801209-17f9ec0cada6?auto=format&fit=crop&q=60&w=500&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OHx8YnVpbGRpbmd8ZW58MHx8MHx8fDA%3D",
-              "https://plus.unsplash.com/premium_photo-1680157071241-034d017884ca?auto=format&fit=crop&q=60&w=500&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OXx8YnVpbGRpbmd8ZW58MHx8MHx8fDA%3D",
-            ]}
-          />
+          <FourImagesPreview images={images.map((i) => i.original_url)} />
           <Box mt={0.5}>
-            <Button
-              disableElevation
-              variant="contained"
-              sx={{ display: "flex", gap: 6 }}
-              size="large"
-              endIcon={<FileOpenIcon />}
-            >
-              عرض الكتيب
-            </Button>
+            {design?.booklet && design?.booklet[0] && (
+              <Box mt={0.5}>
+                <Button
+                  disableElevation
+                  variant="contained"
+                  sx={{ display: "flex", minWidth: 250, width: "fit-content" }}
+                  size="large"
+                  endIcon={<FileOpenIcon />}
+                  component={"a"}
+                  target="_blank"
+                  href={design.booklet[0].original_url}
+                >
+                  عرض الكتيب
+                </Button>
+              </Box>
+            )}
           </Box>
         </Stack>
       </Stack>
