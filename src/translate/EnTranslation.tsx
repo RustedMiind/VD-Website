@@ -29,6 +29,15 @@ const EnTranslation = {
     contact: "Contact Us",
     news: "Latest News",
   },
+  InfrastructureProjects: {
+    mainPageTitle: "Infrastructure Projects",
+    subTitles: {
+      all: "All",
+      specialCharts: "Special Charts",
+      waterStudies: "Water Studies",
+      categoryTitle: "Category Title",
+    }
+  },
   buttons: {
     more: "More",
     orderService: "Order Service",

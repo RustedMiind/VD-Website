@@ -13,6 +13,15 @@ const ArTranslation = {
     loading: "جار تحميل المشروع",
     error: "فشل تحميل المشروع",
   },
+  InfrastructureProjects:{
+    mainPageTitle: "مشاريع البنية التحتية",
+    subTitles:{
+      all:"الكل",
+      specialCharts:"المخططات الخاصة",
+      waterStudies:"دراسات المياه",
+      categoryTitle:"عنوان التصنيف",
+    }
+  },
   vision: { name: "أبعاد الرؤية", for: "للاستشارات الهندسية" },
   links: {
     home: "الرئيسية",
@@ -84,7 +93,6 @@ const ArTranslation = {
     describtion: "وصف الخدمة",
     previousWorks: "الأعمال السابقة",
   },
-
   file: {
     size: "حجم الملف",
     type: "نوع الملف",
