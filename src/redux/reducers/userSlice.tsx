@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { User } from "types/User";
 
 export enum UserState {
   USER = "user",
@@ -7,10 +8,10 @@ export enum UserState {
   LOADING = "loading",
 }
 
-const initialState: UserStateType = { userState: UserState.UNKNOWN };
+const initialState: UserStateType = { user: { userState: UserState.UNKNOWN } };
 
 export const UserSlice = createSlice({
-  name: "settings",
+  name: "user",
   initialState,
   reducers: {
     setUser: (state: UserStateType, action) => {
@@ -20,12 +21,16 @@ export const UserSlice = createSlice({
 });
 
 export type UserStateType = {
-  user?: any;
-  userState: UserState;
+  user: {
+    user?: User;
+    userState: UserState;
+  };
 };
 
 export const initalUser: UserStateType = {
-  userState: UserState.UNKNOWN,
+  user: {
+    userState: UserState.UNKNOWN,
+  },
 };
 
 export const { setUser } = UserSlice.actions;

@@ -15,7 +15,10 @@ export const designsSlice = createSlice({
     ) => {
       return { designs: action.payload.designs };
     },
-    setNewsError: (state) => {
+    setDesignsLoading: (state: designsStateType, action) => {
+      return { designs: "loading" };
+    },
+    setDesignsError: (state) => {
       return { designs: "error" };
     },
   },
@@ -34,5 +37,6 @@ export type NewsType = {
 
 export type designsListType = Design[] | "error" | "loading" | "none";
 
-export const { setDesigns, setNewsError } = designsSlice.actions;
+export const { setDesigns, setDesignsError, setDesignsLoading } =
+  designsSlice.actions;
 export default designsSlice.reducer;

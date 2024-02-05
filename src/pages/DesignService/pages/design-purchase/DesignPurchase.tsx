@@ -8,17 +8,17 @@ import Grid from "@mui/material/Grid";
 import Stack from "@mui/material/Stack";
 import Button from "@mui/material/Button";
 import Step1 from "./steps/Step1";
-import { useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import Step2 from "./steps/Step2";
 import Step3 from "./steps/Setp3";
 import Step4 from "./steps/Step4";
-
-const steps: StepType[] = [
-  { name: "التصاميم الخارجية", element: <Step1 /> },
-  { name: "التصاميم 2", element: <Step2 /> },
-  { name: "التصاميم 3", element: <Step3 /> },
-  { name: "التصاميم 4", element: <Step4 /> },
-];
+import { Design } from "types/Design/Design";
+import { KeyValueType } from "methods/objectToArray";
+import { useParams } from "react-router-dom";
+import { isStringAllNumbers } from "methods/isStringAllNumbers";
+import axios from "axios";
+import api from "methods/api";
+import { useSnackbar } from "notistack";
 
 function DesignPurchase() {
   const [currentStep, setCurrentStep] = useState(0);
@@ -30,6 +30,44 @@ function DesignPurchase() {
     }
     setCurrentStep(newValue);
   }
+  const { enqueueSnackbar } = useSnackbar();
+
+  const [design, setDesign] = useState<undefined | Design>(undefined);
+  const [status, setStatus] = useState<StatusType>("none");
+  const { designId } = useParams();
+  useEffect(() => {
+    setDesign(undefined);
+    if (designId && isStringAllNumbers(designId)) {
+      setStatus("loading");
+
+      // Get Design Data
+      axios
+        .get<{ design: Design }>(api("client/design/" + designId))
+        .then(({ data }) => {
+          setDesign(data.design);
+          setStatus("none");
+        })
+        .catch((err) => {
+          setStatus("error");
+          enqueueSnackbar(
+            err.response?.data?.message ||
+              err.response?.data?.msg ||
+              "تعذر في تحميل بيانات التصميم",
+            { variant: "error" }
+          );
+        });
+    }
+  }, [designId]);
+
+  const steps: StepType[] = useMemo(
+    () => [
+      { name: "التصاميم الخارجية", element: <Step1 design={design} /> },
+      { name: "ملخص الطلب", element: <Step2 design={design} /> },
+      // { name: "التصاميم 3", element: <Step3 design={design} /> },
+      // { name: "التصاميم 4", element: <Step4 design={design} /> },
+    ],
+    [designId, design?.id]
+  );
 
   return (
     <PageBannerLayout
@@ -72,6 +110,8 @@ function DesignPurchase() {
     </PageBannerLayout>
   );
 }
+
+type StatusType = "loading" | "error" | "none";
 
 type StepType = { name: string; element: React.ReactElement };
 

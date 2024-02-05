@@ -12,12 +12,16 @@ function ChoiceCard(props: PropsType) {
             control={
               <Radio color="secondary" size="small" checked={props.current} />
             }
-            label="التصميم فقط"
+            label={props.title}
           />
         </Stack>
       </div>
       <Box px={3} py={2}>
-        <Typography color={props.current ? undefined : "text.disabled"}>
+        <Typography
+          sx={{ mb: 3 }}
+          variant="body2"
+          color={props.current ? undefined : "text.disabled"}
+        >
           {props.description}
         </Typography>
         <Typography

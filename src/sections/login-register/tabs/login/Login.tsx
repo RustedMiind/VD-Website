@@ -15,6 +15,10 @@ import { useDispatch } from "react-redux";
 import NationalIdInput from "./components/NationalIdInput";
 import OtpInputContainer from "./components/OtpInputContainer";
 import { isStringAllNumbers } from "methods/isStringAllNumbers";
+import axios from "axios";
+import api from "methods/api";
+import { setTokenCookie, setUserState } from "redux/middlewares/userMiddleware";
+import { User } from "types/User";
 
 function Login(props: PropsType) {
   const [state, setState] = useState<
@@ -28,47 +32,48 @@ function Login(props: PropsType) {
 
   // functions
   function nationalNumberSubmit() {
+    // setState("loading");
+    // setTimeout(() => {
+    //   setState("show");
+    // }, 2000);
     setState("loading");
-    setTimeout(() => {
-      setState("show");
-    }, 2000);
-    // axios
-    //   .post(api("check"), {
-    //     token: "token",
-    //     imei: "1423425",
-    //     device_type: "ios",
-    //     id: nationalNumber,
-    //     type: "individual",
-    //   })
-    //   .then(() => setState("show"))
-    //   .catch((err) => {
-    //     setState("hide");
-    //     console.log("Raw Err", err);
-    //     setError(err.response.data.message.message);
-    //   });
+    axios
+      .post(api("check"), {
+        token: "token",
+        imei: "1423425",
+        device_type: "ios",
+        id: nationalNumber,
+        type: "individual",
+      })
+      .then(() => setState("show"))
+      .catch((err) => {
+        setState("hide");
+        console.log("Raw Err", err);
+        setError(err.response.data.message.message);
+      });
   }
   function otpSubmit() {
     setState("loading-only");
     setTimeout(() => {
       setState("show");
     }, 2000);
-    // requestSetUser(dispatch, {
-    //   otp,
-    //   token: "token",
-    //   imei: "1423425",
-    //   device_type: "ios",
-    //   id: parseInt(nationalNumber),
-    //   type: "individual",
-    // })
-    //   .then((res) => {
-    //     setState("show");
-    //     console.log("response", res);
-    //   })
-    //   .catch((err) => {
-    //     setState("show");
-    //     console.log(err);
-    //     setOtpError(err.response.data.message);
-    //   });
+    setState("loading-only");
+    axios
+      .post<{ data: { token: string; client: User } }>(api("confirm"), {
+        otp,
+        id: nationalNumber,
+        type: "individual",
+        token: "123",
+      })
+      .then(({ data }) => {
+        setState("hide");
+        setUserState({ user: data.data.client }, dispatch);
+        setTokenCookie(data.data.token);
+      })
+      .catch((err) => {
+        setState("show");
+        setOtpError(err.response.data.message);
+      });
   }
   function handleNationalIdChange(e: React.ChangeEvent<HTMLInputElement>) {
     const condition = isStringAllNumbers(e.target.value);

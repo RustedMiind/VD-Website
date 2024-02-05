@@ -1,4 +1,14 @@
-import { Button, Typography, Box, Grid, Paper } from "@mui/material";
+import {
+  Button,
+  Typography,
+  Box,
+  Grid,
+  Paper,
+  ButtonProps,
+  Tooltip,
+  StackProps,
+  BoxProps,
+} from "@mui/material";
 import FileOpenIcon from "@mui/icons-material/FileOpen";
 import FourImagesPreview from "components/four-images-preview/FourIMagesPreview";
 import { useContext } from "react";
@@ -6,6 +16,18 @@ import { DesignContext } from "./context";
 import { Media } from "types/Media";
 import { NavLink } from "react-router-dom";
 import MainDataPlaceholder from "./PlaceHolders/MainData";
+import { useSelector } from "react-redux";
+import { UserState, UserStateType } from "redux/reducers/userSlice";
+import { Stack } from "react-bootstrap-icons";
+
+const TooltipBox = ({ tooltip, ...props }: BoxProps & { tooltip?: string }) =>
+  tooltip ? (
+    <Tooltip arrow title={tooltip}>
+      <Box width={"fit-content"} {...props} />
+    </Tooltip>
+  ) : (
+    <Box {...props} />
+  );
 
 function MainDataSection() {
   const { design, status } = useContext(DesignContext);
@@ -18,6 +40,8 @@ function MainDataSection() {
   if (design?.subImages && Array.isArray(design?.subImages)) {
     images = images.concat(design.subImages);
   }
+
+  const user = useSelector((state: UserStateType) => state.user);
 
   return (
     <Grid container sx={{ p: 4, my: 2 }} rowGap={8} component={Paper}>
@@ -69,15 +93,23 @@ function MainDataSection() {
               </Typography>
             )}
 
-            <Button
-              variant="contained"
-              component={NavLink}
-              disabled={!design?.id}
-              to={"../purchase/" + design?.id}
-              sx={{ px: 4, mt: 2 }}
+            <TooltipBox
+              tooltip={
+                user.userState === UserState.USER
+                  ? undefined
+                  : "يجب عليك تسجيل الدخول لاتمام عملية الشراء"
+              }
             >
-              شراء الآن
-            </Button>
+              <Button
+                variant="contained"
+                component={NavLink}
+                disabled={user.userState !== UserState.USER}
+                to={"../purchase/" + design?.id}
+                sx={{ px: 4, mt: 2 }}
+              >
+                شراء الآن
+              </Button>
+            </TooltipBox>
           </Grid>
 
           <Grid

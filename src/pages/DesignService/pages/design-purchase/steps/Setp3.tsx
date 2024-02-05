@@ -16,8 +16,9 @@ import {
   OutlinedInput,
 } from "@mui/material";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
+import { Design } from "types/Design/Design";
 
-function Step3() {
+function Step3({ design }: { design?: Design }) {
   return (
     <Box py={4}>
       <Typography variant="h5">الدفع</Typography>
