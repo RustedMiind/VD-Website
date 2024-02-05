@@ -18,6 +18,7 @@ import { useParams } from "react-router-dom";
 import { isStringAllNumbers } from "methods/isStringAllNumbers";
 import axios from "axios";
 import api from "methods/api";
+import { useSnackbar } from "notistack";
 
 function DesignPurchase() {
   const [currentStep, setCurrentStep] = useState(0);
@@ -29,6 +30,7 @@ function DesignPurchase() {
     }
     setCurrentStep(newValue);
   }
+  const { enqueueSnackbar } = useSnackbar();
 
   const [design, setDesign] = useState<undefined | Design>(undefined);
   const [status, setStatus] = useState<StatusType>("none");
@@ -45,8 +47,14 @@ function DesignPurchase() {
           setDesign(data.design);
           setStatus("none");
         })
-        .catch(() => {
+        .catch((err) => {
           setStatus("error");
+          enqueueSnackbar(
+            err.response?.data?.message ||
+              err.response?.data?.msg ||
+              "تعذر في تحميل بيانات التصميم",
+            { variant: "error" }
+          );
         });
     }
   }, [designId]);

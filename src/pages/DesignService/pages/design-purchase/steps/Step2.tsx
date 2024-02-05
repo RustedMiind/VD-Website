@@ -16,10 +16,12 @@ import { useState } from "react";
 import axios from "axios";
 import api from "methods/api";
 import { LoadingButton } from "@mui/lab";
+import { useSnackbar } from "notistack";
 
 type RowType = { name: string; value?: string | number };
 function Step2({ design }: { design?: Design }) {
   const [status, setStatus] = useState<"loading" | "none" | "error">("none");
+  const { enqueueSnackbar } = useSnackbar();
   const submitPurchase = () => {
     if (design) {
       setStatus("loading");
@@ -27,9 +29,16 @@ function Step2({ design }: { design?: Design }) {
         .post(api("client/design/pay-cash"), { design_id: design.id })
         .then(() => {
           setStatus("none");
+          enqueueSnackbar("تم تنفيذ الطلب بنجاح وسيتم التواصل معك في اقرب وقت");
         })
-        .catch(() => {
+        .catch((err) => {
           setStatus("error");
+          enqueueSnackbar(
+            err.response?.data?.message ||
+              err.response?.data?.msg ||
+              "تعذر اتمام طلبك برجاء المحاولة في وقت لاحق",
+            { variant: "error" }
+          );
         });
     }
   };

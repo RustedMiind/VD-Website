@@ -14,9 +14,10 @@ import "assets/styles/custom-onscroll-animations.scss";
 import ArTranslation from "translate/ArTranslation";
 import EnTranslation from "translate/EnTranslation";
 import { getLangCookie } from "methods/getLangCookie";
+import { SnackbarProvider } from "notistack";
 // import "./App.scss";
 // import * as colors from "@mui/material/colors";
-import { ThemeProvider, colors, createTheme } from "@mui/material";
+import { ThemeProvider, colors, createTheme, Grow } from "@mui/material";
 import { LocalizationProvider } from "@mui/x-date-pickers";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { checkUser } from "redux/middlewares/userMiddleware";
@@ -102,12 +103,19 @@ function App() {
   }, [lang]);
   return (
     // <React.Suspense fallback="Loading...">
-
     <LocalizationProvider dateAdapter={AdapterDayjs}>
       <ThemeProvider theme={theme}>
-        <div className="App">
-          <Layout />
-        </div>
+        <SnackbarProvider
+          transitionDuration={{ appear: 500, exit: 500, enter: 300 }}
+          anchorOrigin={{ horizontal: "left", vertical: "bottom" }}
+          TransitionComponent={Grow}
+          variant="success"
+          autoHideDuration={10000}
+        >
+          <div className="App">
+            <Layout />
+          </div>
+        </SnackbarProvider>
       </ThemeProvider>
     </LocalizationProvider>
     // </React.Suspense>

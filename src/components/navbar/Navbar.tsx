@@ -14,6 +14,7 @@ import { LangContext } from "contexts/LangContext";
 import { Button, Menu, MenuItem, MenuList, Paper } from "@mui/material";
 import LoginRegister from "sections/login-register/LoginRegister";
 import { UserState, UserStateType } from "redux/reducers/userSlice";
+import api from "methods/api";
 
 function Navbar() {
   const { changeLang, lang } = useContext(LangContext);
@@ -67,7 +68,7 @@ function Navbar() {
               </MenuList>
             </Paper>
           </li>
-          <li>
+          {/* <li>
             <a
               className="lang-btn"
               role="button"
@@ -80,13 +81,14 @@ function Navbar() {
               {currentLang === "ar" && "EN"}
               {currentLang === "en" && "العربية"}
             </a>
-          </li>
+          </li> */}
         </ul>
 
         {user.user.userState === UserState.NOT_USER && (
           <div className="left">
             <Button
               variant="contained"
+              size="small"
               onClick={() => {
                 setNavDialog("login");
                 setLoginOpen(true);
@@ -95,7 +97,8 @@ function Navbar() {
             >
               تسجيل الدخول
             </Button>
-            <Button
+            {/* <Button
+              size="small"
               variant="outlined"
               onClick={() => {
                 setNavDialog("register");
@@ -104,7 +107,7 @@ function Navbar() {
               color="secondary"
             >
               التسجيل
-            </Button>
+            </Button> */}
             <NavLink to={"/"} className="logo-link">
               <img src={logo} alt="" />
             </NavLink>
