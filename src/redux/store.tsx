@@ -6,6 +6,7 @@ import mainSlice from "./reducers/mainSlice";
 import aboutSlice from "./reducers/aboutSlice";
 import newsSlice from "./reducers/newsSlice";
 import designsSlice from "./reducers/designsSlice";
+import userSlice from "./reducers/userSlice";
 
 export const store = configureStore({
   reducer: {
@@ -16,5 +17,6 @@ export const store = configureStore({
     news: newsSlice,
     about: aboutSlice,
     designs: designsSlice,
+    user: userSlice,
   },
 });

@@ -3,8 +3,9 @@ import ImageCard from "image-card/ImageCard";
 import DesignCard from "pages/DesignService/components/design-card/DesignCard";
 import { useSelector } from "react-redux";
 import { designsStateType } from "redux/reducers/designsSlice";
+import CardPlaceholder from "./CardPlaceholder";
 
-const GridItem = (props: GridProps) => (
+export const CardGridItem = (props: GridProps) => (
   <Grid
     item
     xs={12}
@@ -23,11 +24,12 @@ function CardsContainer() {
 
   return (
     <Grid container rowSpacing={2}>
+      {designs === "loading" && <CardPlaceholder />}
       {Array.isArray(designs) &&
         designs.map((design) => (
-          <GridItem key={design.id}>
+          <CardGridItem key={design.id}>
             <DesignCard design={design} />
-          </GridItem>
+          </CardGridItem>
         ))}
     </Grid>
   );

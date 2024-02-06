@@ -1,12 +1,3 @@
-import {
-  Box,
-  Button,
-  Dialog,
-  DialogActions,
-  DialogContent,
-  DialogTitle,
-  TextField,
-} from "@mui/material";
 import Login from "./tabs/login/Login";
 import Register from "./tabs/register/Register";
 

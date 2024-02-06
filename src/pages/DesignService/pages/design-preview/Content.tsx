@@ -6,10 +6,12 @@ import MainDataSection from "./MainDataSection";
 import { useContext } from "react";
 import { DesignContext } from "./context";
 import CardsPlaceholder from "./PlaceHolders/Cards";
+import { useSnackbar } from "notistack";
+import api from "methods/api";
 
 function Content() {
   const { design, attachmentsOptions, status } = useContext(DesignContext);
-
+  const { enqueueSnackbar } = useSnackbar();
   return (
     <PageBannerLayout
       data={{ title: "خدمة التصميم", bgImage: { gradient: true } }}
@@ -47,6 +49,22 @@ function Content() {
                 items={
                   attachmentsOptions?.map((option) => ({
                     name: option.key,
+                    menuItemProps: {
+                      onClick: () => {
+                        fetch(api("client/design/zip/53/3"), {
+                          headers: { from: "website" },
+                        }) // FETCH BLOB FROM IT
+                          .then((response) => response.blob())
+                          .then((blob) => {
+                            // RETRIEVE THE BLOB AND CREATE LOCAL URL
+                            var _url = window.URL.createObjectURL(blob);
+                            window.open(_url, "_blank")?.focus(); // window.open + focus
+                          })
+                          .catch((err) => {
+                            enqueueSnackbar("تعذر في فتح الملف المطلوب");
+                          });
+                      },
+                    },
                   })) || []
                 }
               />
