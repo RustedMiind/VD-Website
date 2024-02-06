@@ -1,0 +1,10 @@
+.showProjectInfoRowOfdata {
+  min-height: 5rem;
+}
+
+.showProjectInfoRowOfdata:nth-child(even) {
+  background-color: #fff9ef;
+  border: 1px solid #f19b027a;
+  border-left: none;
+  border-right: none;
+}

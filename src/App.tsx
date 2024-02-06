@@ -14,6 +14,7 @@ import "assets/styles/custom-onscroll-animations.scss";
 import ArTranslation from "translate/ArTranslation";
 import EnTranslation from "translate/EnTranslation";
 import { getLangCookie } from "methods/getLangCookie";
+
 // import "./App.scss";
 // import * as colors from "@mui/material/colors";
 import { ThemeProvider, colors, createTheme } from "@mui/material";
