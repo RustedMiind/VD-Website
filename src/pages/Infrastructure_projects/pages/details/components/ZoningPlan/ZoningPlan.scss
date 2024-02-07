@@ -1,0 +1,81 @@
+#LProgressBar {
+  span.MuiLinearProgress-root.MuiLinearProgress-colorPrimary.MuiLinearProgress-determinate.muirtl-1pr1g40-MuiLinearProgress-root {
+    height: 30px;
+    border-radius: 21px;
+    border: 1px solid #fff;
+  }
+
+  span.MuiLinearProgress-bar.MuiLinearProgress-barColorPrimary.MuiLinearProgress-bar1Determinate.muirtl-1hvloty-MuiLinearProgress-bar1 {
+    background: linear-gradient(263.01deg, #ffc860 -2.17%, #ff5f1e 99.77%);
+    border-radius: 12px;
+  }
+}
+
+#ZoningPlanTable1 {
+  table td,
+  table th {
+    border: 3.3px solid #f19b02;
+    text-align: center;
+    border-bottom: 3.3px solid lightgray;
+  }
+
+  .topCell {
+    border-top: none;
+    border-bottom: 3.3px solid #f19b02;
+  }
+
+  .rightCell {
+    border-right: none;
+  }
+
+  .leftCell {
+    border-left: none;
+  }
+
+  .buttomCell {
+    border-bottom: none;
+  }
+
+  table {
+    border-collapse: collapse;
+  }
+
+  table tr {
+    height: 70px;
+  }
+}
+
+#ZoningPlanTable2 {
+  table td,
+  table th {
+    border: 3.3px solid #f19b02;
+    text-align: center;
+    border-bottom: 3.3px solid lightgray;
+    padding: 3px;
+  }
+
+  .topCell {
+    border-top: none;
+    border-bottom: 3.3px solid #f19b02;
+  }
+
+  .rightCell {
+    border-right: none;
+  }
+
+  .leftCell {
+    border-left: none;
+  }
+
+  .buttomCell {
+    border-bottom: none;
+  }
+
+  table {
+    border-collapse: collapse;
+  }
+
+  table tr {
+    height: 150px;
+  }
+}

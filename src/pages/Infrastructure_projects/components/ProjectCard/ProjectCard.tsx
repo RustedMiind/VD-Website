@@ -1,8 +1,10 @@
 import { Box, Button, Card, Typography } from '@mui/material';
 import Img from '../../../../assets/images/IPB.png';
 import './ProjectCard.scss';
+import { useNavigate } from 'react-router-dom';
 
 const ProjectCard = (props: propsType) => {
+    const Navigator = useNavigate();
     let { id, name } = props;
 
     return (
@@ -18,10 +20,10 @@ const ProjectCard = (props: propsType) => {
                     alignItems: 'end'
                 }}>
                 <Box className='projectDivHover'>
-                    <Button variant='contained' style={{backgroundColor:'#f19b02',color:'#fff'}}>الاستعراض</Button>
-                    <Button variant='contained' style={{backgroundColor:'#fff',color:'#004693'}}>التفاصيل</Button>
+                    <Button onClick={() => Navigator(`/Infrastructure_projects/show/${id}`)} variant='contained' style={{ backgroundColor: '#f19b02', color: '#fff' }}>الاستعراض</Button>
+                    <Button onClick={() => Navigator(`/Infrastructure_projects/details/${id}`)} variant='contained' style={{ backgroundColor: '#fff', color: '#004693' }}>التفاصيل</Button>
                 </Box>
-                <Typography color='white' style={{padding:'3px'}} className='ProjectName'>Project Name</Typography>
+                <Typography color='white' style={{ padding: '3px' }} className='ProjectName'>Project Name</Typography>
             </Box>
         </Card>
     )
