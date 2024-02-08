@@ -1,6 +1,7 @@
 import { Box, Button, CircularProgress, Grid, Slider, Typography } from '@mui/material';
 import KeyboardArrowLeftIcon from '@mui/icons-material/KeyboardArrowLeft';
 import './CompletionRates.scss';
+import { useNavigate } from 'react-router-dom';
 
 const RateGridItem = ({ title, val }: { title: string, val: number }) => {
     return <Grid item xs={12}>
@@ -38,10 +39,14 @@ const RateGridItem = ({ title, val }: { title: string, val: number }) => {
     </Grid>
 }
 const ShowMoreBtn = () => {
+    const Navigator = useNavigate();
+
     return (
         <Grid item xs={12}>
             <Box sx={{ width: '100%', display: 'flex', justifyContent: 'end', padding: '3px 0' }}>
-                <Button style={{ float: 'right', color: '#004693' }}>
+                <Button
+                    onClick={() => Navigator('/Infrastructure_projects/moredetails/9')}
+                    style={{ float: 'right', color: '#004693' }}>
                     عرض المزيد
                     <KeyboardArrowLeftIcon />
                 </Button>

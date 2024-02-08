@@ -1,8 +1,11 @@
 import { Button, Grid, Typography } from '@mui/material'
 import GoOgleMap from './GoogleMap'
 import ImagesGallery from './ImagesGallery'
+import { useNavigate } from 'react-router-dom'
 
 const MapAndImagesPart = () => {
+    const navigator = useNavigate();
+
     return (
         <Grid container style={{
             width: '100%',
@@ -19,6 +22,7 @@ const MapAndImagesPart = () => {
                             backgroundColor: '#3169a7',
                             float: 'right'
                         }}
+                        onClick={() => navigator('/Infrastructure_projects/details/9')}
                         variant='contained'>
                         عرض جميع التفاصيل
                     </Button>

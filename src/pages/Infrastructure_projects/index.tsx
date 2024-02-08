@@ -6,11 +6,16 @@ import SearchOutlinedIcon from '@mui/icons-material/SearchOutlined';
 import './index.scss';
 import { useTranslation } from "react-i18next";
 
-
+const searchLabelVal: JSX.Element = (<Box style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+    <SearchOutlinedIcon />
+    <span>بحث</span>
+</Box>);
 const Infrastructure_projects_Page = () => {
     // declare state
     const [activeSubTitle, setActiveSubTitle] = useState<string>('all');
     const { t } = useTranslation();
+    const [searchLabel, setSearchLabel] = useState<JSX.Element | string>(searchLabelVal);
+    const [searchKey, setSearchKey] = useState<string>('');
     const subTitles = [
         { id: 1, title: t("InfrastructureProjects.subTitles.all"), tag: 'all' },
         { id: 2, title: t("InfrastructureProjects.subTitles.specialCharts"), tag: 'all1' },
@@ -47,12 +52,17 @@ const Infrastructure_projects_Page = () => {
                 <Box style={{ display: 'flex', width: '90%', justifyContent: 'space-between', alignItems: 'center', margin: '3rem 0' }}>
                     <Typography variant="h4" sx={{ fontWeight: 800 }}>عرض جميع المخططات</Typography>
                     <TextField
-                        label={
-                            <Box style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-                                <SearchOutlinedIcon />
-                                <span>بحث</span>
-                            </Box>
-                        }
+                        label={searchLabel}
+                        onFocus={() => {
+                            setSearchLabel('');
+                        }}
+                        onBlur={() => {
+                            if (searchKey.trim().length === 0)
+                                setSearchLabel(searchLabelVal)
+                            else
+                                setSearchKey('')
+                        }}
+                        onChange={e => setSearchKey(e.target.value)}
                         sx={{
                             borderRadius: '35px',
                             height: ' 50px',

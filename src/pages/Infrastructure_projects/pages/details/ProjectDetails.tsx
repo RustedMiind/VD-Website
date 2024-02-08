@@ -10,6 +10,7 @@ import ChatBox from "pages/Infrastructure_projects/components/Chat/ChatBox";
 
 const ProjectDetails = () => {
   const [showChatBox, setShowChatBox] = useState<Boolean>(false);
+  
   return (
     <Box
       id='ProjectInfrestructureDetailsPage'
