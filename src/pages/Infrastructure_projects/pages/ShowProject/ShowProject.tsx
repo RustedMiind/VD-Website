@@ -28,7 +28,7 @@ const ShowProject = () => {
                     alignItems: 'center'
                 }}
             >
-                <Typography variant='h3' color='white' sx={{ fontWeight: 800 }}>{project.name}</Typography>
+                <Typography variant='h3' color='white' sx={{ fontWeight: 800 }} fontSize={'2.88rem'}>{project.name}</Typography>
             </div>
             <Box style={{
                 width: '100%',

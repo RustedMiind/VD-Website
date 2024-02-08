@@ -14,7 +14,7 @@ const RateGridItem = ({ title, val }: { title: string, val: number }) => {
             <Grid item xs={4} sx={{
                 paddingRight: '5px',
                 display: 'flex',
-                justifyContent: 'center',
+                justifyContent: 'start',
                 alignItems: 'end',
             }}>
                 <Typography variant='body2' fontWeight={700}>{title}</Typography>
@@ -22,8 +22,9 @@ const RateGridItem = ({ title, val }: { title: string, val: number }) => {
             <Grid item xs={8}>
                 <Slider
                     aria-label="Always visible"
-                    defaultValue={val}
+                    value={val}
                     valueLabelDisplay="on"
+                    onChange={() => { }}
                     sx={{
                         fontWeight: 400,
                         display: 'flex',
@@ -81,6 +82,7 @@ const DoneAndReminder = ({ column }: { column?: boolean }) => {
 const CompletionRates = () => {
     return (
         <Grid container
+            id='CompletionRatesDiv'
             sx={{
                 backgroundColor: '#fff',
                 borderRadius: '17px',
@@ -91,7 +93,7 @@ const CompletionRates = () => {
             {/* Complete rates in Gada */}
             <>
                 <Grid item xs={12} sx={{ marginY: '0.5rem' }}>
-                    <Typography fontWeight={700} variant='h6'>نسب انجاز الاعمال بأمانة جدة</Typography>
+                    <Typography fontWeight={700} fontSize={'1.2rem'} variant='h6'>نسب انجاز الاعمال بأمانة جدة</Typography>
                 </Grid>
                 <DoneAndReminder />
                 {/* Rates */}

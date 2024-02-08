@@ -20,6 +20,7 @@ import DesignPurchase from "pages/DesignService/pages/design-purchase/DesignPurc
 import Infrastructure_projects_Page from "pages/Infrastructure_projects";
 import ShowProject from "pages/Infrastructure_projects/pages/ShowProject/ShowProject";
 import ProjectDetails from "pages/Infrastructure_projects/pages/details/ProjectDetails";
+import ProjectMoreDetails from "pages/Infrastructure_projects/pages/moreDetails/ProjectMoreDetails";
 
 function Layout() {
   const { lang } = useContext(LangContext);
@@ -40,6 +41,7 @@ function Layout() {
           <Route path="Infrastructure_projects" element={<Infrastructure_projects_Page />} />
           <Route path="Infrastructure_projects/show/:projectId" element={<ShowProject />} />
           <Route path="Infrastructure_projects/details/:projectId" element={<ProjectDetails />} />
+          <Route path="Infrastructure_projects/moredetails/:projectId" element={<ProjectMoreDetails />} />
           <Route path="services">
             <Route path="" element={<Services />} />
             <Route path="design">

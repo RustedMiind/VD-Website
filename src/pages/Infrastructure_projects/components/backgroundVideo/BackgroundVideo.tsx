@@ -7,7 +7,7 @@ import { useTranslation } from 'react-i18next';
 const BackgroundVideo: React.FC = () => {
     const { t } = useTranslation();
     return (
-        <div className="intro-section">
+        <div id='infrestructrueVideoIntroID' className="intro-section">
             <video className="intro-background screen" loop autoPlay muted>
                 <source src={introVideo} type="video/mp4" />
             </video>

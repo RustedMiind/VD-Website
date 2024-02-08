@@ -4,10 +4,15 @@ import CompletionRates from "./components/CompletionRates/CompletionRates";
 import ZoningPlan from "./components/ZoningPlan/ZoningPlan";
 import { Printer } from "react-bootstrap-icons";
 import QuestionAnswerOutlinedIcon from '@mui/icons-material/QuestionAnswerOutlined';
+import KeyboardArrowDownOutlinedIcon from '@mui/icons-material/KeyboardArrowDownOutlined';
+import { useState } from "react";
+import ChatBox from "pages/Infrastructure_projects/components/Chat/ChatBox";
 
 const ProjectDetails = () => {
+  const [showChatBox, setShowChatBox] = useState<Boolean>(false);
   return (
     <Box
+      id='ProjectInfrestructureDetailsPage'
       sx={{
         backgroundImage: `url(${bgImg})`,
         width: '100%',
@@ -33,7 +38,7 @@ const ProjectDetails = () => {
           display: 'flex',
           justifyContent: 'center'
         }}>
-          <Typography variant="h3" fontWeight={700}>تفاصيل المشروع مخطط 604</Typography>
+          <Typography variant="h3" sx={{ fontSize: '2.5rem' }} fontWeight={700}>تفاصيل المشروع مخطط 604</Typography>
         </Grid>
         {/* Details */}
         <Grid container sx={{ marginY: '2rem', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
@@ -55,12 +60,12 @@ const ProjectDetails = () => {
                 <table style={{ width: '98%' }}>
                   {/* header */}
                   <thead>
-                    <tr style={{ height: '90px' }}>
+                    <tr style={{ height: '60px' }}>
                       <th className="topCell rightCell">
-                        <Typography variant="h6" fontWeight={700}>المعاملة</Typography>
+                        <Typography variant="h6" fontSize='1.2rem' fontWeight={700}>المعاملة</Typography>
                       </th>
                       <th className="topCell leftCell">
-                        <Typography variant="h6" fontWeight={700}>الحالة الحالية</Typography>
+                        <Typography variant="h6" fontSize='1.2rem' fontWeight={700}>الحالة الحالية</Typography>
                       </th>
                     </tr>
                   </thead>
@@ -68,7 +73,7 @@ const ProjectDetails = () => {
                   <tbody>
                     <tr>
                       <td className="rightCell">
-                        <Typography variant="h6" fontWeight={600}>الشركة السعودية للكهرباء</Typography>
+                        <Typography variant="h6" fontSize={'1rem'} fontWeight='bolder'>الشركة السعودية للكهرباء</Typography>
                       </td>
                       <td className="leftCell">
                         <Typography variant="body2" fontWeight={400}>المعاملة بالاعتماد النهائي <br />210123-322-444</Typography>
@@ -76,7 +81,7 @@ const ProjectDetails = () => {
                     </tr>
                     <tr>
                       <td className="rightCell">
-                        <Typography variant="h6" fontWeight={600}>الشركة السعودية للكهرباء</Typography>
+                        <Typography variant="h6" fontSize={'1rem'} fontWeight='bolder'>الشركة السعودية للكهرباء</Typography>
                       </td>
                       <td className="leftCell">
                         <Typography variant="body2" fontWeight={400}>المعاملة بالاعتماد النهائي <br />210123-322-444</Typography>
@@ -84,7 +89,7 @@ const ProjectDetails = () => {
                     </tr>
                     <tr>
                       <td className="rightCell">
-                        <Typography variant="h6" fontWeight={600}>الشركة السعودية للكهرباء</Typography>
+                        <Typography variant="h6" fontSize={'1rem'} fontWeight='bolder'>الشركة السعودية للكهرباء</Typography>
                       </td>
                       <td className="leftCell">
                         <Typography variant="body2" fontWeight={400}>المعاملة بالاعتماد النهائي <br />210123-322-444</Typography>
@@ -92,7 +97,7 @@ const ProjectDetails = () => {
                     </tr>
                     <tr>
                       <td className="rightCell">
-                        <Typography variant="h6" fontWeight={600}>الشركة السعودية للكهرباء</Typography>
+                        <Typography variant="h6" fontSize={'1rem'} fontWeight='bolder'>الشركة السعودية للكهرباء</Typography>
                       </td>
                       <td className="leftCell">
                         <Typography variant="body2" fontWeight={400}>المعاملة بالاعتماد النهائي <br />210123-322-444</Typography>
@@ -102,10 +107,10 @@ const ProjectDetails = () => {
                   {/* bottom */}
                   <tfoot>
                     <tr>
-                      <td className="buttomCell rightCell">
-                        <Typography variant="h6" fontWeight={600}>الشركة السعودية للكهرباء</Typography>
+                      <td className="rightCell">
+                        <Typography variant="h6" fontSize={'1rem'} fontWeight='bolder'>الشركة السعودية للكهرباء</Typography>
                       </td>
-                      <td className="buttomCell leftCell">
+                      <td className="leftCell">
                         <Typography variant="body2" fontWeight={400}>المعاملة بالاعتماد النهائي <br />210123-322-444</Typography>
                       </td>
                     </tr>
@@ -142,9 +147,30 @@ const ProjectDetails = () => {
           justifyContent: 'end',
           alignItems: 'start',
           marginY: '2rem',
+          position: 'relative'
         }}>
+          {
+            showChatBox && <>
+              <ChatBox />
+              <Button
+                onClick={() => setShowChatBox(false)}
+                sx={{
+                  position: 'absolute',
+                  bottom: '120%',
+                  left: '90%',
+                  background: '#f19b02',
+                  borderRadius: '50%',
+                  width: '50px',
+                  height: '50px',
+                  color: '#fff'
+                }}>
+                <KeyboardArrowDownOutlinedIcon />
+              </Button>
+            </>
+          }
           <Button
             variant="contained"
+            onClick={() => setShowChatBox(true)}
             sx={{
               backgroundColor: '#f19b02',
               width: '10rem',

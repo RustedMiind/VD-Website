@@ -13,13 +13,13 @@ const ZoningPlan = () => {
             minHeight: '999px'
         }}>
             <Grid item xs={12} sx={{ marginY: '0.5rem', textAlign: 'center' }}>
-                <Typography fontWeight={800} variant='h4'>المخطط التقسيمي</Typography>
+                <Typography fontSize={'1.58rem'} fontWeight={800} variant='h4'>المخطط التقسيمي</Typography>
             </Grid>
             <Grid item xs={12}>
                 <img src={imgSrc} width='100%' style={{ borderRadius: '9px' }} height='330px' alt="project details" />
             </Grid>
             <Grid item xs={12} id='LProgressBar'>
-                <Typography fontWeight={700} sx={{ marginY: '0.3rem' }} variant='h5'>الخريطة الزمنية للمشروع</Typography>
+                <Typography fontWeight={700} fontSize={'1.4rem'} sx={{ marginY: '0.3rem' }} variant='h5'>الخريطة الزمنية للمشروع</Typography>
                 <Box
                     sx={{
                         height: '35px',
@@ -82,7 +82,7 @@ const ZoningPlan = () => {
                 </Box>
             </Grid>
             <Grid item xs={12} sx={{ marginY: '1rem' }}>
-                <Typography fontWeight={600} variant='h5'>أرقام المعاملات لدى أمانة جدة وحالتها</Typography>
+                <Typography fontWeight={600} fontSize={'1.3rem'} variant='h5'>أرقام المعاملات لدى أمانة جدة وحالتها</Typography>
             </Grid>
             <Grid item xs={12} sx={{ marginY: '1rem' }} id='ZoningPlanTable1'>
                 <table style={{ width: '95%' }}>
@@ -90,13 +90,13 @@ const ZoningPlan = () => {
                     <thead>
                         <tr>
                             <th className="topCell rightCell">
-                                <Typography variant="h6" fontWeight={700}>المعاملة</Typography>
+                                <Typography variant="h6" fontSize={'1.2rem'} fontWeight={800}>المعاملة</Typography>
                             </th>
                             <th className="topCell">
-                                <Typography variant="h6" fontWeight={700}>رقمها</Typography>
+                                <Typography variant="h6" fontSize={'1.2rem'} fontWeight={800}>رقمها</Typography>
                             </th>
                             <th className="topCell leftCell">
-                                <Typography variant="h6" fontWeight={700}>الحالة الحالية</Typography>
+                                <Typography variant="h6" fontSize={'1.2rem'} fontWeight={800}>الحالة الحالية</Typography>
                             </th>
                         </tr>
                     </thead>
@@ -104,7 +104,7 @@ const ZoningPlan = () => {
                     <tbody>
                         <tr>
                             <td className="rightCell">
-                                <Typography variant="h6" fontWeight={500}>الشركة السعودية للكهرباء</Typography>
+                                <Typography variant="h6" fontSize={'1rem'} fontWeight='bolder'>الشركة السعودية للكهرباء</Typography>
                             </td>
                             <td className="">
                                 <Typography variant="body2" fontWeight={400}>المعاملة بالاعتماد النهائي <br />210123-322-444</Typography>
@@ -115,7 +115,7 @@ const ZoningPlan = () => {
                         </tr>
                         <tr>
                             <td className="rightCell">
-                                <Typography variant="h6" fontWeight={500}>الشركة السعودية للكهرباء</Typography>
+                                <Typography variant="h6" fontSize={'1rem'} fontWeight='bolder'>الشركة السعودية للكهرباء</Typography>
                             </td>
                             <td className="">
                                 <Typography variant="body2" fontWeight={400}>المعاملة بالاعتماد النهائي <br />210123-322-444</Typography>
@@ -126,7 +126,7 @@ const ZoningPlan = () => {
                         </tr>
                         <tr>
                             <td className="rightCell">
-                                <Typography variant="h6" fontWeight={500}>الشركة السعودية للكهرباء</Typography>
+                                <Typography variant="h6" fontSize={'1rem'} fontWeight='bolder'>الشركة السعودية للكهرباء</Typography>
                             </td>
                             <td className="">
                                 <Typography variant="body2" fontWeight={400}>المعاملة بالاعتماد النهائي <br />210123-322-444</Typography>
@@ -139,13 +139,13 @@ const ZoningPlan = () => {
                     {/* bottom */}
                     <tfoot>
                         <tr>
-                            <td className="buttomCell rightCell">
-                                <Typography variant="h6" fontWeight={500}>الشركة السعودية للكهرباء</Typography>
+                            <td className="rightCell">
+                                <Typography variant="h6" fontSize={'1rem'} fontWeight='bolder'>الشركة السعودية للكهرباء</Typography>
                             </td>
-                            <td className="buttomCell">
+                            <td className="">
                                 <Typography variant="body2" fontWeight={400}>المعاملة بالاعتماد النهائي <br />210123-322-444</Typography>
                             </td>
-                            <td className="buttomCell leftCell">
+                            <td className="leftCell">
                                 <Typography variant="body2" fontWeight={400}>المعاملة بالاعتماد النهائي <br />210123-322-444</Typography>
                             </td>
                         </tr>

@@ -1,58 +1,60 @@
-.InfrastructureProjectsSubTitlesContainer {
-  width: 100%;
-  display: flex;
-  justify-content: center;
-}
-.InfrastructureProjectsSubTitles {
-  width: 90%;
-  height: 106px;
-  background-color: #f3f5f7;
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  margin: 2rem 0px;
-  border-radius: 0.8rem;
-}
+#InfrestructrueMainPage {
+  .InfrastructureProjectsSubTitlesContainer {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+  .InfrastructureProjectsSubTitles {
+    width: 90%;
+    height: 106px;
+    background-color: #f3f5f7;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin: 2rem 0px;
+    border-radius: 0.8rem;
+  }
 
-.InfrastructureProjectsSubTitles button {
-  color: #3169a7;
-  transition: all 0.25s;
-}
+  .InfrastructureProjectsSubTitles button {
+    color: #3169a7;
+    transition: all 0.25s;
+  }
 
-.InfrastructureProjectsSubTitles button.active {
-  background-color: #f19b02;
-  color: #fff;
-  border-radius: 24px;
-}
+  .InfrastructureProjectsSubTitles button.active {
+    background-color: #f19b02;
+    color: #fff;
+    border-radius: 24px;
+  }
 
-.InstractureProjectsSearchBtn {
-  border-radius: 35px;
-  height: 50px;
-  color: #004693;
-  border: 1px solid #004693;
-  outline: none;
-}
+  .InstractureProjectsSearchBtn {
+    border-radius: 35px;
+    height: 50px;
+    color: #004693;
+    border: 1px solid #004693;
+    outline: none;
+  }
 
-fieldset.MuiOutlinedInput-notchedOutline.muirtl-1d3z3hw-MuiOutlinedInput-notchedOutline {
-  border: none;
-  outline-color: #004693;
-}
+  fieldset.MuiOutlinedInput-notchedOutline.muirtl-1d3z3hw-MuiOutlinedInput-notchedOutline {
+    border: none;
+    outline-color: #004693;
+  }
 
-.pyramid-container {
-  text-align: center;
-  background: linear-gradient(263.01deg, #004693 -2.17%, #29285e 99.77%);
-}
+  .pyramid-container {
+    text-align: center;
+    background: linear-gradient(263.01deg, #004693 -2.17%, #29285e 99.77%);
+  }
 
-.pyramid-level {
-  position: relative;
-  height: 0;
-  border-left: 30px solid transparent;
-  border-right: 30px solid transparent;
-  margin-right: auto;
-  margin-left: auto;
-}
+  .pyramid-level {
+    position: relative;
+    height: 0;
+    border-left: 30px solid transparent;
+    border-right: 30px solid transparent;
+    margin-right: auto;
+    margin-left: auto;
+  }
 
-#pyramid-level-3 {
-  border-top: 40px solid #fff;
-  width: 0;
+  #pyramid-level-3 {
+    border-top: 40px solid #fff;
+    width: 0;
+  }
 }

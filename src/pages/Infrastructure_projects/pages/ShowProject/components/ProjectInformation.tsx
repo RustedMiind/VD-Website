@@ -165,7 +165,7 @@ const ProjectInformation = () => {
     return (
         <>
             <Box style={{ width: '100%' }}>
-                <Typography variant='h4' sx={{ marginY: '1rem' }} fontWeight={700}>استعراض مخطط 604</Typography>
+                <Typography variant='h4' sx={{ marginY: '1rem' }} fontSize={'1.88rem'} fontWeight={700}>استعراض مخطط 604</Typography>
             </Box>
             <Grid container style={{ width: '100%' }}>
                 <Grid container className='showProjectInfoRowOfdata'>

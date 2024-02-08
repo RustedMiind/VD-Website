@@ -33,7 +33,7 @@ const Infrastructure_projects_Page = () => {
             className={activeSubTitle === ele.tag ? 'active' : ''}>{ele?.title}</Button>
     });
     return (
-        <>
+        <Box id='InfrestructrueMainPage' sx={{ margin: 0, padding: 0 }}>
             <BackgroundVideo />
             {/* sub titles links */}
             <Box className='InfrastructureProjectsSubTitlesContainer'>
@@ -74,7 +74,7 @@ const Infrastructure_projects_Page = () => {
             <Box className="pyramid-container">
                 <Box id="pyramid-level-3" className="pyramid-level"></Box>
             </Box>
-        </>
+        </Box>
     )
 }
 
