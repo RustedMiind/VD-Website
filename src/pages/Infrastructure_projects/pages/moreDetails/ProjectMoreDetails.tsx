@@ -4,11 +4,30 @@ import MoreDetailsInformation from './MoreDetailsInformation';
 import { Printer } from "react-bootstrap-icons";
 import QuestionAnswerOutlinedIcon from '@mui/icons-material/QuestionAnswerOutlined';
 import KeyboardArrowDownOutlinedIcon from '@mui/icons-material/KeyboardArrowDownOutlined';
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import ChatBox from 'pages/Infrastructure_projects/components/Chat/ChatBox';
+import { useSelector } from 'react-redux';
+import { SettingsStateType } from 'redux/reducers/settingsSlice';
+import { UserState, UserStateType } from 'redux/reducers/userSlice';
+import { useNavigate } from 'react-router-dom';
 
 const ProjectMoreDetails = () => {
   const [showChatBox, setShowChatBox] = useState<Boolean>(false);
+  const Naviator = useNavigate();
+  const { user } = useSelector(
+    (state: { settings: SettingsStateType; user: UserStateType }) => ({
+      settings: state.settings,
+      user: state.user,
+    })
+  );
+
+  useEffect(() => {
+    console.log("User101", user)
+    if (user.user.userState === UserState.NOT_USER) {
+      return Naviator('/');
+    }
+  }, []);
+
   return (
     <Box
       sx={{
