@@ -8,9 +8,11 @@ import { useEffect, useState } from "react";
 import { requestSetDesigns } from "redux/middlewares/designsMiddleware";
 import { designsStateType } from "redux/reducers/designsSlice";
 import CardsContainer from "./CardsContainer";
-import AboutSection from "./about-section/AboutSection";
+import AboutSection, { AboutType } from "./about-section/AboutSection";
 import { useSnackbar } from "notistack";
 import CenteredPagination from "components/CenteredPagination";
+import api from "methods/api";
+import axios from "axios";
 
 function DesignService() {
   const { enqueueSnackbar } = useSnackbar();
@@ -51,8 +53,25 @@ function DesignService() {
     designFilters.floors_num,
     designFilters.height_floor,
     designFilters.width_floor,
-    designFilters.width_floor,
+    designFilters.width_front_street,
+    designFilters.bathroom_num,
+    designFilters.utilities?.length,
   ]);
+  const [about, setAbout] = useState<AboutType | "error" | "loading" | "none">(
+    "none"
+  );
+
+  useEffect(() => {
+    setAbout("loading");
+    axios
+      .get<{ strucre_designs: AboutType }>(api("client/strucre-design"))
+      .then(({ data }) => {
+        setAbout(data.strucre_designs);
+      })
+      .catch((err) => {
+        setAbout("error");
+      });
+  }, []);
 
   const designs = useSelector(
     (state: { designs: designsStateType }) => state.designs.designs
@@ -60,11 +79,22 @@ function DesignService() {
 
   return (
     <PageBannerLayout
-      data={{ title: "خدمات التصاميم", bgImage: { gradient: true } }}
+      data={{
+        title: "خدمات التصاميم",
+        subtitle: {
+          type: "paragraph",
+          paragraph:
+            typeof about === "object" && about.vision ? about.vision : "",
+        },
+        bgImage:
+          typeof about === "object" && about.media && about.media[0]
+            ? about.media[0].original_url
+            : { gradient: true },
+      }}
     >
       <div className="tight-section">
         <div className="design-service">
-          <AboutSection />
+          <AboutSection about={about} />
           <Box mb={1}>
             <Typography mb={3} variant="h6">
               ابحث عن تصميمك

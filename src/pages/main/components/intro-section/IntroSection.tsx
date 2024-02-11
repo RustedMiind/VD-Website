@@ -1,6 +1,6 @@
 import "./intro-section.scss";
-import introVideo from "assets/videos/new-bg.mp4";
-import introVideoMobile from "assets/videos/new-bg.mp4";
+import introVideo from "assets/videos/./bg-video.mp4";
+import introVideoMobile from "assets/videos/bg-mobile.mp4";
 import { NavLink } from "react-router-dom";
 import { ArrowLeftCircleFill } from "react-bootstrap-icons";
 import { useSelector } from "react-redux";

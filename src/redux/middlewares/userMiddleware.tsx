@@ -23,9 +23,8 @@ export function setUserState(
 export function setNotUserState(dispatch: Dispatch<AnyAction>) {
   dispatch(
     setUser({
-      user: {
-        userState: UserState.NOT_USER,
-      },
+      user: undefined,
+      userState: UserState.NOT_USER,
     })
   );
 }
@@ -33,9 +32,8 @@ export function setNotUserState(dispatch: Dispatch<AnyAction>) {
 export function setLoadingUserState(dispatch: Dispatch<AnyAction>) {
   dispatch(
     setUser({
-      user: {
-        userState: UserState.LOADING,
-      },
+      user: undefined,
+      userState: UserState.LOADING,
     })
   );
 }
@@ -73,4 +71,10 @@ export function checkUser(dispatch: Dispatch<AnyAction>) {
     .catch((err) => {
       setNotUserState(dispatch);
     });
+}
+
+export function logout(dispatch: Dispatch<AnyAction>) {
+  setNotUserState(dispatch);
+  deleteTokenCookie();
+  axios.defaults.headers.common.Authorization = null;
 }
