@@ -1,7 +1,9 @@
+import { useTranslation } from 'react-i18next';
 import imgSrc from '../../../../../assets/images/IPB.png';
 import { Box, Grid, Typography } from '@mui/material';
 
 const ImagesGallery = () => {
+    const { t } = useTranslation();
     let images = [
         { id: 1, src: imgSrc },
         { id: 2, src: imgSrc },
@@ -55,7 +57,7 @@ const ImagesGallery = () => {
                             <Typography variant='body2'>
                                 <span style={{ fontWeight: 700, fontSize: '1.2rem' }}>5+</span>
                                 <br />
-                                المزيد
+                                {t("InfrastructureProjects.showPage.more")}
                             </Typography>
                         </Box>
                     </Box>

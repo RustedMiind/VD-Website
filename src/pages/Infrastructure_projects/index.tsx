@@ -6,16 +6,17 @@ import SearchOutlinedIcon from '@mui/icons-material/SearchOutlined';
 import './index.scss';
 import { useTranslation } from "react-i18next";
 
-const searchLabelVal: JSX.Element = (<Box style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-    <SearchOutlinedIcon />
-    <span>بحث</span>
-</Box>);
 const Infrastructure_projects_Page = () => {
     // declare state
     const [activeSubTitle, setActiveSubTitle] = useState<string>('all');
-    const { t } = useTranslation();
-    const [searchLabel, setSearchLabel] = useState<JSX.Element | string>(searchLabelVal);
     const [searchKey, setSearchKey] = useState<string>('');
+    const { t } = useTranslation();
+    const searchLabelVal: JSX.Element = (<Box style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+        <SearchOutlinedIcon />
+        <span>{t("InfrastructureProjects.buttons.search")}</span>
+    </Box>);
+    const [searchLabel, setSearchLabel] = useState<JSX.Element | string>(searchLabelVal);
+
     const subTitles = [
         { id: 1, title: t("InfrastructureProjects.subTitles.all"), tag: 'all' },
         { id: 2, title: t("InfrastructureProjects.subTitles.specialCharts"), tag: 'all1' },
@@ -30,13 +31,13 @@ const Infrastructure_projects_Page = () => {
         { id: 5, name: 'project 5' },
         { id: 6, name: 'project 6' },
     ];
-
     let singleLink = subTitles.map(ele => {
         return <Button
             onClick={() => setActiveSubTitle(ele.tag)}
             variant={activeSubTitle === ele.tag ? 'contained' : 'text'}
             className={activeSubTitle === ele.tag ? 'active' : ''}>{ele?.title}</Button>
     });
+
     return (
         <Box id='InfrestructrueMainPage' sx={{ margin: 0, padding: 0 }}>
             <BackgroundVideo />
@@ -50,7 +51,7 @@ const Infrastructure_projects_Page = () => {
             {/* header and search field */}
             <Box sx={{ width: '100%', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
                 <Box style={{ display: 'flex', width: '90%', justifyContent: 'space-between', alignItems: 'center', margin: '3rem 0' }}>
-                    <Typography variant="h4" sx={{ fontWeight: 800 }}>عرض جميع المخططات</Typography>
+                    <Typography variant="h4" sx={{ fontWeight: 800 }}>{t("InfrastructureProjects.buttons.showAllPlans")}</Typography>
                     <TextField
                         label={searchLabel}
                         onFocus={() => {

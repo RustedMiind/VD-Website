@@ -8,6 +8,7 @@ import WaterImage from '../../../../../assets/images/infrestructurePeojectsImage
 import outsidePartnerImg1 from '../../../../../assets/images/infrestructurePeojectsImages/outsidePartner1.png';
 import outsidePartnerImg2 from '../../../../../assets/images/infrestructurePeojectsImages/outsidePartner2.png';
 import outsidePartnerImg3 from '../../../../../assets/images/infrestructurePeojectsImages/outsidePartner3.png';
+import { useTranslation } from 'react-i18next';
 // import { CircularProgressbar } from 'react-circular-progressbar';
 
 const GridItem = ({ title, val, mdw, sxw, fullLine }: { title: string, val: string, mdw: number, sxw: number, fullLine: boolean }) => {
@@ -150,6 +151,7 @@ const GridItemInDetails = ({ title, subTitile, items }: { title: string, subTiti
 }
 
 const ProjectInformation = () => {
+    const { t } = useTranslation();
     let workItems = [
         { id: 1, title: 'الاسفلت', val: 80, src: WayImage },
         { id: 2, title: 'الانارة', val: 50, src: lightImage },
@@ -162,40 +164,42 @@ const ProjectInformation = () => {
         { id: 2, val: 50, src: outsidePartnerImg2, short: true },
         { id: 3, val: 100, src: outsidePartnerImg3, short: true },
     ];
+    let name = 'مخطط 604';
+
     return (
         <>
             <Box style={{ width: '100%' }}>
-                <Typography variant='h4' sx={{ marginY: '1rem' }} fontSize={'1.88rem'} fontWeight={700}>استعراض مخطط 604</Typography>
+                <Typography variant='h4' sx={{ marginY: '1rem' }} fontSize={'1.88rem'} fontWeight={700}>{t("InfrastructureProjects.showPage.showStatment")} {name}</Typography>
             </Box>
             <Grid container style={{ width: '100%' }}>
                 <Grid container className='showProjectInfoRowOfdata'>
-                    <GridItem fullLine={false} title='اسم المخطط' val='اسم المشروع' mdw={6} sxw={12} />
-                    <GridItem fullLine={false} title='عدد القطع' val='12' mdw={6} sxw={12} />
+                    <GridItem fullLine={false} title={t("InfrastructureProjects.showPage.planName")} val='اسم المشروع' mdw={6} sxw={12} />
+                    <GridItem fullLine={false} title={t("InfrastructureProjects.showPage.numberOfPieces")} val='12' mdw={6} sxw={12} />
                 </Grid>
                 <Grid container className='showProjectInfoRowOfdata'>
-                    <GridItem fullLine={false} title='الموقع' val='الشمالية - مدينة جدة' mdw={6} sxw={12} />
-                    <GridItem fullLine={false} title='رقم داعم' val='12' mdw={6} sxw={12} />
+                    <GridItem fullLine={false} title={t("InfrastructureProjects.showPage.location")} val='الشمالية - مدينة جدة' mdw={6} sxw={12} />
+                    <GridItem fullLine={false} title={t("InfrastructureProjects.showPage.supportNumber")} val='12' mdw={6} sxw={12} />
                 </Grid>
                 <Grid container className='showProjectInfoRowOfdata'>
-                    <GridItem fullLine={true} title='المساحة' val='12' mdw={12} sxw={12} />
+                    <GridItem fullLine={true} title={t("InfrastructureProjects.showPage.area")} val='12' mdw={12} sxw={12} />
                 </Grid>
                 <Grid container className='showProjectInfoRowOfdata'>
-                    <GridItem fullLine={true} title='نظام البناء' val='تقليدي' mdw={12} sxw={12} />
+                    <GridItem fullLine={true} title={t("InfrastructureProjects.showPage.buildingSystem")} val='تقليدي' mdw={12} sxw={12} />
                 </Grid>
                 <Grid container className='showProjectInfoRowOfdata'>
-                    <GridItem fullLine={true} title='المالك' val='مساحة لكتابة اسم' mdw={12} sxw={12} />
+                    <GridItem fullLine={true} title={t("InfrastructureProjects.showPage.owner")} val='مساحة لكتابة اسم' mdw={12} sxw={12} />
                 </Grid>
                 <Grid container className='showProjectInfoRowOfdata'>
-                    <GridItem fullLine={true} title='المكتب الهندسي' val='مساحة لكتابة اسم' mdw={12} sxw={12} />
+                    <GridItem fullLine={true} title={t("InfrastructureProjects.showPage.engineeringOffice")} val='مساحة لكتابة اسم' mdw={12} sxw={12} />
                 </Grid>
                 <Grid container className='showProjectInfoRowOfdata'>
-                    <GridItem fullLine={true} title='المقاول المنفذ' val='كتابة خط وهمي هنا' mdw={12} sxw={12} />
+                    <GridItem fullLine={true} title={t("InfrastructureProjects.showPage.implementingContractor")} val='كتابة خط وهمي هنا' mdw={12} sxw={12} />
                 </Grid>
                 <Grid container className='showProjectInfoRowOfdata'>
-                    <GridItemInDetails title='الاعمال' subTitile='نسبة الانجاز' items={workItems} />
+                    <GridItemInDetails title={t("InfrastructureProjects.showPage.works")} subTitile={t("InfrastructureProjects.showPage.CompletionRate")} items={workItems} />
                 </Grid>
                 <Grid container className='showProjectInfoRowOfdata'>
-                    <GridItemInDetails title='الجهات الخارجية' items={workItems2} />
+                    <GridItemInDetails title={t("InfrastructureProjects.showPage.ThirdParty")} items={workItems2} />
                 </Grid>
                 <Grid container className='showProjectInfoRowOfdata'>
                     <Grid item
@@ -206,7 +210,7 @@ const ProjectInformation = () => {
                             alignItems: 'center'
                         }}>
                         <Box sx={{
-                            width: '33%',
+                            width: '30%',
                             display: 'flex',
                             justifyContent: 'start',
                             paddingLeft: '1.6rem'
@@ -216,7 +220,7 @@ const ProjectInformation = () => {
                                 fontSize: '21.5px',
                                 fontFamily: 'Cairo'
                             }} variant='h5'>
-                                نسبة الإنجاز الكلية <br />للتنفيذ
+                                {t("InfrastructureProjects.showPage.OverallCompletionRateOfImplementation")}
                             </Typography>
                         </Box>
                         <Box sx={{
@@ -240,7 +244,7 @@ const ProjectInformation = () => {
                     </Grid>
                 </Grid>
                 <Grid container className='showProjectInfoRowOfdata'>
-                    <GridItem fullLine={true} title='الاعمال المتبقية / اخر اجراء' val='كتابة خط وهمي هنا' mdw={12} sxw={12} />
+                    <GridItem fullLine={true} title={t("InfrastructureProjects.showPage.RemainingWorkLastAction")} val='كتابة خط وهمي هنا' mdw={12} sxw={12} />
                 </Grid>
                 <Grid container>
                     <Button variant="contained" sx={{
@@ -249,7 +253,7 @@ const ProjectInformation = () => {
                         backgroundColor: '#3169a7'
                     }}>
                         <Printer />
-                        <Typography sx={{ marginX: '0.4rem' }} variant='body2'>طباعة</Typography>
+                        <Typography sx={{ marginX: '0.4rem' }} variant='body2'>{t("InfrastructureProjects.buttons.print")}</Typography>
                     </Button>
                     <Box
                         sx={{
@@ -258,9 +262,9 @@ const ProjectInformation = () => {
                             textAlign: 'center',
                             marginTop: '2rem'
                         }}>
-                        <Typography variant='h6'>تواصل معنا</Typography>
+                        <Typography variant='h6'>{t("InfrastructureProjects.showPage.contactUs")}</Typography>
                         <Typography variant='body2'>
-                            اضغط على الزر و اكتب استفسارك مباشرة على الواتساب وسيقوم فريق العمل بالرد عليك في اقرب وقت
+                            {t("InfrastructureProjects.showPage.contactUsStatment")}
                         </Typography>
                     </Box>
                     <Button variant="contained" sx={{

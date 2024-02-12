@@ -2,8 +2,10 @@ import { Button, Grid, Typography } from '@mui/material'
 import GoOgleMap from './GoogleMap'
 import ImagesGallery from './ImagesGallery'
 import { useNavigate } from 'react-router-dom'
+import { useTranslation } from 'react-i18next'
 
 const MapAndImagesPart = () => {
+    const { t } = useTranslation();
     const navigator = useNavigate();
 
     return (
@@ -24,11 +26,11 @@ const MapAndImagesPart = () => {
                         }}
                         onClick={() => navigator('/Infrastructure_projects/details/9')}
                         variant='contained'>
-                        عرض جميع التفاصيل
+                        {t("InfrastructureProjects.buttons.showAllDetails")}
                     </Button>
                 </Grid>
                 <Grid sx={{ marginY: '0.5rem' }} item xs={12}>
-                    <Typography sx={{ marginY: '0.3rem', paddingX: '0.3rem' }} variant='h5' fontWeight={700}>الخريطة</Typography>
+                    <Typography sx={{ marginY: '0.3rem', paddingX: '0.3rem' }} variant='h5' fontWeight={700}>{t("InfrastructureProjects.showPage.map")}</Typography>
                 </Grid>
                 <Grid item xs={12}>
                     {/* <MapWrapper coOrdinates={{ lat: 21.422510, lng: 39.826168 }} /> */}
