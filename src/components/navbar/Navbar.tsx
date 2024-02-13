@@ -26,12 +26,11 @@ import LoginRegister from "sections/login-register/LoginRegister";
 import { UserState, UserStateType } from "redux/reducers/userSlice";
 import api from "methods/api";
 import { logout } from "redux/middlewares/userMiddleware";
+import { AuthContext } from "contexts/Auth";
 
 function Navbar() {
   const { changeLang, lang } = useContext(LangContext);
   const currentLang = lang();
-  const [loginOpen, setLoginOpen] = useState(false);
-  const [navDialog, setNavDialog] = useState<NavDialogTypes>("login");
   const [anchorElUser, setAnchorElUser] = useState<null | HTMLElement>(null);
   const dispatch = useDispatch();
 
@@ -42,10 +41,10 @@ function Navbar() {
     })
   );
 
-  const getvalue = getValueByKey(settings);
   const { t } = useTranslation();
   const [navVisibilty, setNavVisibilty] = useState<"show" | "hide">("hide");
-
+  const { openLoginDialog, openRegisterDialog, closeDialog } =
+    useContext(AuthContext);
   const handleOpenUserMenu = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorElUser(event.currentTarget);
   };
@@ -53,10 +52,6 @@ function Navbar() {
   const handleCloseUserMenu = () => {
     setAnchorElUser(null);
   };
-
-  function handleLoginClose() {
-    setLoginOpen(false);
-  }
 
   console.log("user", user);
 
@@ -113,25 +108,19 @@ function Navbar() {
             <Button
               variant="contained"
               size="small"
-              onClick={() => {
-                setNavDialog("login");
-                setLoginOpen(true);
-              }}
+              onClick={openLoginDialog}
               color="secondary"
             >
               تسجيل الدخول
             </Button>
-            {/* <Button
+            <Button
               size="small"
               variant="outlined"
-              onClick={() => {
-                setNavDialog("register");
-                setLoginOpen(true);
-              }}
+              onClick={openRegisterDialog}
               color="secondary"
             >
               التسجيل
-            </Button> */}
+            </Button>
             <NavLink to={"/"} className="logo-link">
               <img src={logo} alt="" />
             </NavLink>
@@ -178,15 +167,8 @@ function Navbar() {
           </>
         )}
       </nav>
-      <LoginRegister
-        type={navDialog}
-        open={loginOpen && user?.userState === UserState.NOT_USER}
-        onClose={handleLoginClose}
-      />
     </>
   );
 }
-
-type NavDialogTypes = "login" | "register";
 
 export default Navbar;

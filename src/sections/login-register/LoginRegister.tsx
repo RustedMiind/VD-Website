@@ -1,3 +1,4 @@
+import { AuthDialogType } from "contexts/Auth";
 import Login from "./tabs/login/Login";
 import Register from "./tabs/register/Register";
 
@@ -10,14 +11,14 @@ function LoginRegister(props: PropsType) {
       return <Register open={props.open} onClose={props.onClose} />;
 
     default:
-      break;
+      return <></>;
   }
 }
 
 type PropsType = {
   open: boolean;
   onClose: () => void;
-  type: "register" | "login";
+  type: AuthDialogType;
 };
 
 export default LoginRegister;

@@ -68,6 +68,10 @@ body {
   border-radius: 1rem;
 }
 
+.filepond--credits {
+  display: none !important;
+}
+
 // body::-webkit-scrollbar,
 // html::-webkit-scrollbar,
 .table-container::-webkit-scrollbar,

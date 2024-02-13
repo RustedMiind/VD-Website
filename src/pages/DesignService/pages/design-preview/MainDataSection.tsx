@@ -19,6 +19,7 @@ import MainDataPlaceholder from "./PlaceHolders/MainData";
 import { useSelector } from "react-redux";
 import { UserState, UserStateType } from "redux/reducers/userSlice";
 import { Stack } from "react-bootstrap-icons";
+import { AuthContext } from "contexts/Auth";
 
 const TooltipBox = ({ tooltip, ...props }: BoxProps & { tooltip?: string }) =>
   tooltip ? (
@@ -42,6 +43,8 @@ function MainDataSection() {
   }
 
   const user = useSelector((state: UserStateType) => state.user);
+
+  const { openLoginDialog } = useContext(AuthContext);
 
   return (
     <Grid container sx={{ p: 4, my: 2 }} rowGap={8} component={Paper}>
@@ -93,23 +96,15 @@ function MainDataSection() {
               </Typography>
             )}
 
-            <TooltipBox
-              tooltip={
-                user.userState === UserState.USER
-                  ? undefined
-                  : "يجب عليك تسجيل الدخول لاتمام عملية الشراء"
-              }
+            <Button
+              variant="contained"
+              sx={{ px: 4, mt: 2 }}
+              {...(user.userState === UserState.USER
+                ? { component: NavLink, to: "../purchase/" + design?.id }
+                : { onClick: openLoginDialog })}
             >
-              <Button
-                variant="contained"
-                component={NavLink}
-                disabled={user.userState !== UserState.USER}
-                to={"../purchase/" + design?.id}
-                sx={{ px: 4, mt: 2 }}
-              >
-                شراء الآن
-              </Button>
-            </TooltipBox>
+              شراء الآن
+            </Button>
           </Grid>
 
           <Grid
