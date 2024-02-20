@@ -10,6 +10,8 @@ import {
   Grid,
   TextFieldProps,
   SxProps,
+  Typography,
+  TypographyProps,
 } from "@mui/material";
 import LoadingButton from "@mui/lab/LoadingButton";
 import { useContext, useState } from "react";
@@ -23,6 +25,10 @@ import { FileBondState } from "types/FileBondState";
 import { serialize } from "object-to-formdata";
 import { useSnackbar } from "notistack";
 
+const ErrorMessage = (props: TypographyProps) => (
+  <Typography variant="body2" color="error" {...props} />
+);
+
 type ClientForm = {
   type: "individual" | "company";
   name: string;
@@ -31,7 +37,6 @@ type ClientForm = {
   letter_head: string;
   email: string;
   register_image: string;
-  to_ts: string;
 };
 
 const GridItem = (props: GridProps) => (
@@ -56,11 +61,33 @@ function Register(props: PropsType) {
   const { closeDialog } = useContext(AuthContext);
   const [files, setFiles] = useState<FileBondState>([]);
   const { enqueueSnackbar } = useSnackbar();
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm<ClientForm>();
+  const { register, handleSubmit, watch } = useForm<ClientForm>();
+
+  const inputs: Partial<ClientForm> = watch();
+
+  const errors: Partial<ClientForm> = {};
+  if (tab === "company") {
+    if (
+      !(
+        inputs.card_id?.startsWith("4") ||
+        inputs.card_id?.startsWith("7") ||
+        inputs.card_id?.startsWith("1")
+      )
+    )
+      errors.card_id =
+        "يجب ان يكون رقم الهوية في حالة الشركة يبدأ ب 4 أو 7 أو 1";
+  } else {
+    if (!(inputs.card_id?.startsWith("10") || inputs.card_id?.startsWith("2")))
+      errors.card_id = "يجب ان يكون رقم الهوية في حالة الفرد يبدأ ب 10 أو 2";
+    else if (!(inputs.card_id.length === 10))
+      errors.card_id = "يجب ان يكون رقم الهوية للفرد 10 ارقام";
+  }
+  if (!inputs.phone?.startsWith("5"))
+    errors.phone = "يجب ان يبدأ رقم الهاتف ب5";
+  else if (!(inputs.phone.length === 9))
+    errors.phone = "يجب ان يكون عدد الارقام 9 ارقام";
+  console.log(inputs);
+
   const submit = handleSubmit((data) => {
     console.log(data, errors);
     setStatus("loading");
@@ -96,6 +123,14 @@ function Register(props: PropsType) {
       });
   });
 
+  let disabled = false;
+
+  for (let index in errors) {
+    const i = index as keyof typeof errors;
+    if (!!errors[i]) disabled = true;
+  }
+  if (!files.length) disabled = true;
+
   const visibilityStyles: (type: AccountType) => SxProps = (type) => ({
     display: type === tab ? undefined : "none",
   });
@@ -130,6 +165,7 @@ function Register(props: PropsType) {
           <GridItem>
             <AddLabelToEl label="البريد الالكتروني">
               <TextField
+                type="email"
                 {...textFieldProps}
                 {...register("email", {
                   required: true,
@@ -141,27 +177,31 @@ function Register(props: PropsType) {
           <GridItem>
             <AddLabelToEl label="رقم الهوية">
               <TextField
+                type="number"
                 {...textFieldProps}
                 {...register("card_id", {
                   required: true,
                 })}
                 label="رقم الهوية"
               />
+              <ErrorMessage>{inputs.card_id && errors.card_id}</ErrorMessage>
             </AddLabelToEl>
           </GridItem>
           <GridItem>
             <AddLabelToEl label="رقم الجوال">
               <TextField
+                type="number"
                 {...textFieldProps}
                 {...register("phone", {
                   required: true,
                 })}
                 label="رقم الجوال"
               />
+              <ErrorMessage>{inputs.phone && errors.phone}</ErrorMessage>
             </AddLabelToEl>
           </GridItem>
           <GridItem>
-            <AddLabelToEl label="رقم الجوال">
+            <AddLabelToEl label="عنوان المراسلات">
               <TextField
                 {...textFieldProps}
                 {...register("letter_head", {
@@ -197,6 +237,7 @@ function Register(props: PropsType) {
           loadingPosition="start"
           variant="contained"
           fullWidth
+          disabled={disabled}
         >
           انشاء الحساب
         </LoadingButton>

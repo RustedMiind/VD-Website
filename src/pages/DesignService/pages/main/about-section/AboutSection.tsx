@@ -1,11 +1,25 @@
-import { Stack, Paper, Box, Typography } from "@mui/material";
-import { Dispatch, SetStateAction, useEffect, useState } from "react";
+import {
+  Stack,
+  Paper,
+  Box,
+  Typography,
+  ListItem,
+  List,
+  ListItemText,
+  ListItemIcon,
+} from "@mui/material";
+import ArrowLeftIcon from "@mui/icons-material/ArrowLeft";
 import AboutPlaceholder from "./AboutPlaceholder";
 import axios from "axios";
 import api from "methods/api";
 import { Media } from "types/Media";
 
 function AboutSection({ about }: PropsType) {
+  let features: string[] = [];
+  if (typeof about === "object" && typeof about.feature === "string") {
+    features = about.feature.split("*0*");
+  }
+
   return (
     <Stack
       component={Paper}
@@ -25,8 +39,15 @@ function AboutSection({ about }: PropsType) {
               <Typography variant="h6" fontWeight={700}>
                 المميزات
               </Typography>
-
-              <Typography>{about.feature}</Typography>
+              <Box sx={{ pl: 2 }}>
+                <List sx={{ listStyleType: "disc" }}>
+                  {features.map((feature) => (
+                    <ListItem key={feature} sx={{ display: "list-item", p: 0 }}>
+                      <ListItemText>{feature}</ListItemText>
+                    </ListItem>
+                  ))}
+                </List>
+              </Box>
             </Box>
           </>
         )}

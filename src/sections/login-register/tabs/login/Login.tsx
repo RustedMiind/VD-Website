@@ -25,6 +25,7 @@ function Login(props: PropsType) {
   const [state, setState] = useState<
     "show" | "loading-only" | "hide" | "loading"
   >("hide");
+  const [disabled, setDisabled] = useState(true);
   const [nationalNumber, setNationalNumber] = useState("");
   const [error, setError] = useState("");
   const [otpError, setOtpError] = useState("");
@@ -79,8 +80,36 @@ function Login(props: PropsType) {
       });
   }
   function handleNationalIdChange(e: React.ChangeEvent<HTMLInputElement>) {
-    const condition = isStringAllNumbers(e.target.value);
-    if (condition) setNationalNumber(e.target.value);
+    const value = e.target.value;
+    const condition = isStringAllNumbers(value);
+    if (condition) {
+      setNationalNumber(value);
+      let error: undefined | string;
+      if (
+        !(
+          value.startsWith("10") ||
+          value.startsWith("2") ||
+          value.startsWith("7") ||
+          value.startsWith("4")
+        )
+      ) {
+        error =
+          "يجب ان يكون رقم الهوية يبدأ ب 10 او 2 في حالة الفرد, 7 أو 4 في حالة الشركة";
+      } else if (!value.length) {
+        error =
+          "يجب ان يكون رقم الهوية يبدأ ب 10 او 2 في حالة الفرد, 7 أو 4 في حالة الشركة";
+      } else {
+        error = "";
+      }
+
+      if (error) {
+        setError(error);
+        setDisabled(true);
+      } else {
+        setError("");
+        setDisabled(false);
+      }
+    }
   }
   function handleOtpChange(e: string) {
     const condition = e.length <= 6 && isStringAllNumbers(e);
@@ -128,6 +157,7 @@ function Login(props: PropsType) {
             size="large"
             loading={state === "loading" || state === "loading-only"}
             loadingPosition="start"
+            disabled={disabled}
             // startIcon={<SaveIcon />}
             variant="contained"
             fullWidth
