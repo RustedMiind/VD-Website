@@ -84,6 +84,9 @@ function Navbar() {
                 <MenuItem component={NavLink} to="/e-services/design">
                   التصاميم
                 </MenuItem>
+                <MenuItem component={NavLink} to="/infrastructure_projects">
+                  البنية التحتية
+                </MenuItem>
               </MenuList>
             </Paper>
           </li>

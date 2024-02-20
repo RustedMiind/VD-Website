@@ -29,6 +29,45 @@ const EnTranslation = {
     contact: "Contact Us",
     news: "Latest News",
   },
+  InfrastructureProjects: {
+    mainPageTitle: "Infrastructure Projects",
+    subTitles: {
+      all: "All",
+      specialCharts: "Special Charts",
+      waterStudies: "Water Studies",
+      categoryTitle: "Category Title",
+    },
+    buttons: {
+      showAllPlans: 'Show All Plans',
+      search: 'Search',
+      print: 'Print',
+      showAllDetails: 'Show All Details'
+    },
+    texts: {
+      showStatment: 'Show',
+    },
+    showPage: {
+      showStatment: 'Show',
+      more: "More",
+      planName: 'Plan Name',
+      numberOfPieces: 'Number Of Pieces',
+      location: 'Location',
+      supportNumber: 'Support Number',
+      area: 'Area',
+      buildingSystem: 'Building System',
+      owner: 'Owner',
+      engineeringOffice: 'Engineering Office',
+      implementingContractor: 'Implementing Contractor',
+      works: 'Works',
+      CompletionRate: 'Completion Rate',
+      ThirdParty: 'Third Party',
+      OverallCompletionRateOfImplementation: 'Overall Completion Rate Of Implementation',
+      RemainingWorkLastAction: 'Remaining Work Last Action',
+      map: 'Map',
+      contactUs: 'Contact US',
+      contactUsStatment: 'Click the button and write your inquiry directly on WhatsApp, and the work team will respond to you as soon as possible'
+    }
+  },
   buttons: {
     more: "More",
     orderService: "Order Service",

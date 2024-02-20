@@ -13,6 +13,45 @@ const ArTranslation = {
     loading: "جار تحميل المشروع",
     error: "فشل تحميل المشروع",
   },
+  InfrastructureProjects: {
+    mainPageTitle: "مشاريع البنية التحتية",
+    subTitles: {
+      all: "الكل",
+      specialCharts: "المخططات الخاصة",
+      waterStudies: "دراسات المياه",
+      categoryTitle: "عنوان التصنيف",
+    },
+    buttons: {
+      showAllPlans: 'عرض جميع المخططات',
+      search: 'بحث',
+      print: 'طباعة',
+      showAllDetails: 'عرض جميع التفاصيل'
+    },
+    texts: {
+      showStatment: 'استعراض',
+    },
+    showPage: {
+      showStatment: 'استعراض',
+      more: "المزيد",
+      planName: 'اسم المخطط',
+      numberOfPieces: 'عدد القطع',
+      location: 'الموقع',
+      supportNumber: 'رقم داعم',
+      area: 'المساحة',
+      buildingSystem: 'نظام البناء',
+      owner: 'المالك',
+      engineeringOffice: 'المكتب الهندسي',
+      implementingContractor: 'المقاول المنفذ',
+      works: 'الاعمال',
+      CompletionRate: 'نسبة الانجاز',
+      ThirdParty: 'الجهات الخارجية',
+      OverallCompletionRateOfImplementation: 'نسبة الإنجاز الكلية للتنفيذ',
+      RemainingWorkLastAction: 'الاعمال المتبقية / اخر اجراء',
+      map: 'الخريطة',
+      contactUs: 'تواصل معنا',
+      contactUsStatment: 'اضغط على الزر و اكتب استفسارك مباشرة على الواتساب وسيقوم فريق العمل بالرد عليك في اقرب وقت'
+    }
+  },
   vision: { name: "أبعاد الرؤية", for: "للاستشارات الهندسية" },
   links: {
     home: "الرئيسية",
@@ -84,7 +123,6 @@ const ArTranslation = {
     describtion: "وصف الخدمة",
     previousWorks: "الأعمال السابقة",
   },
-
   file: {
     size: "حجم الملف",
     type: "نوع الملف",
