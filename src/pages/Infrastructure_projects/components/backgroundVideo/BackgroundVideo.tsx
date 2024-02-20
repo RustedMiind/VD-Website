@@ -1,25 +1,69 @@
-import React from 'react';
-import introVideo from "assets/videos/bg-video.mp4";
-import introVideoMobile from "assets/videos/bg-mobile.mp4";
-import { Typography } from '@mui/material';
-import { useTranslation } from 'react-i18next';
+import React, { useRef, useEffect } from "react";
+import bgImg from "assets/images/infrestructurePeojectsImages/Infrastructure_projects_minPageBG.png";
+import { Box, Button, Typography } from "@mui/material";
+import { useTranslation } from "react-i18next";
+import ParticlesBG from "./Particles";
 
-const BackgroundVideo: React.FC = () => {
-    const { t } = useTranslation();
+const BackgroundVideo = ({ activeSubTitle, setActiveSubTitle }: propsType) => {
+  const { t } = useTranslation();
+  const subTitles = [
+    { id: 1, title: t("InfrastructureProjects.subTitles.all"), tag: "all" },
+    {
+      id: 2,
+      title: t("InfrastructureProjects.subTitles.specialCharts"),
+      tag: "all1",
+    },
+    {
+      id: 3,
+      title: t("InfrastructureProjects.subTitles.waterStudies"),
+      tag: "all2",
+    },
+    {
+      id: 4,
+      title: t("InfrastructureProjects.subTitles.categoryTitle"),
+      tag: "all3",
+    },
+  ];
+  let singleLink = subTitles.map((ele) => {
     return (
-        <div id='infrestructrueVideoIntroID' className="intro-section">
-            <video className="intro-background screen" loop autoPlay muted>
-                <source src={introVideo} type="video/mp4" />
-            </video>
-            <video className="intro-background mobile" loop autoPlay muted>
-                <source src={introVideoMobile} type="video/mp4" />
-            </video>
-            {/* <img src={bgImage} className="intro-background" alt="" /> */}
-            <div className="intro-page-content" style={{ position: 'absolute', width: '100%', height: '100%', zIndex: 1000, display: 'flex', justifyContent: 'center', alignItems: 'center', color: '#fff' }}>
-                <Typography variant="h2">{t("InfrastructureProjects.mainPageTitle")}</Typography>
-            </div>
-        </div>
+      <Button
+        onClick={() => setActiveSubTitle(ele.tag)}
+        variant={activeSubTitle === ele.tag ? "contained" : "text"}
+        className={activeSubTitle === ele.tag ? "active" : ""}
+      >
+        {ele?.title}
+      </Button>
     );
+  });
+
+  return (
+    <>
+      <Box
+        sx={{
+          width: "100%",
+          // backgroundImage: `url(${bgImg})`,
+          backgroundSize: "100% 100%",
+          height: "100vh",
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "end",
+          paddingBottom: "4rem",
+          position: "relative",
+        }}
+      >
+        {/* particles-js */}
+        <ParticlesBG />
+        {/* sub titles links */}
+        <Box className="InfrastructureProjectsSubTitlesContainer">
+          <Box className="InfrastructureProjectsSubTitles">{singleLink}</Box>
+        </Box>
+      </Box>
+    </>
+  );
 };
 
+type propsType = {
+  activeSubTitle: string;
+  setActiveSubTitle: React.Dispatch<string>;
+};
 export default BackgroundVideo;

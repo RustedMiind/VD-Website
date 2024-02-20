@@ -22,12 +22,12 @@ const GridItem = ({ title, val, mdw, sxw, fullLine }: { title: string, val: stri
             }}>
             <Typography sx={{
                 fontWeight: 700,
-                fontSize: '21.5px',
+                fontSize: '20px',
                 fontFamily: 'Cairo'
             }} variant='h5'>{title}</Typography>
             <Typography sx={{
                 fontWeight: 400,
-                fontSize: '21.5px',
+                fontSize: '18px',
                 fontFamily: 'Cairo'
             }} variant='body2'>{val}</Typography>
         </Grid>;
@@ -47,7 +47,7 @@ const GridItem = ({ title, val, mdw, sxw, fullLine }: { title: string, val: stri
         }}>
             <Typography sx={{
                 fontWeight: 700,
-                fontSize: '21.5px',
+                fontSize: '20px',
                 fontFamily: 'Cairo'
             }} variant='h5'>{title}</Typography>
         </Box>
@@ -58,7 +58,7 @@ const GridItem = ({ title, val, mdw, sxw, fullLine }: { title: string, val: stri
         }}>
             <Typography sx={{
                 fontWeight: 400,
-                fontSize: '21.5px',
+                fontSize: '18px',
                 fontFamily: 'Cairo'
             }} variant='body2'>{val}</Typography>
         </Box>
@@ -78,18 +78,19 @@ const GridItemInDetails = ({ title, subTitile, items }: { title: string, subTiti
             flexDirection: 'column',
             justifyContent: 'space-around',
             height: '100%',
-            paddingLeft: '1.6rem'
+            paddingLeft: '1.6rem',
+            paddingY: '1rem'
         }}>
             <Typography sx={{
                 fontWeight: 700,
-                fontSize: '21.5px',
+                fontSize: '20px',
                 fontFamily: 'Cairo'
             }} variant='h5'>{title}</Typography>
             {
                 subTitile && <>
                     <Typography sx={{
                         fontWeight: 700,
-                        fontSize: '21.5px',
+                        fontSize: '18px',
                         fontFamily: 'Cairo'
                     }} variant='h5'>{subTitile}</Typography>
                 </>
@@ -98,7 +99,8 @@ const GridItemInDetails = ({ title, subTitile, items }: { title: string, subTiti
         <Box sx={{
             width: '65%',
             display: 'flex',
-            justifyContent: 'space-around'
+            justifyContent: 'space-around',
+            paddingY:'1rem'
         }}>
             {
                 items.map(ele => {
@@ -106,13 +108,13 @@ const GridItemInDetails = ({ title, subTitile, items }: { title: string, subTiti
                         <Box key={ele?.id} sx={{
                             display: 'flex',
                             flexDirection: 'column',
-                            justifyContent: 'space-between',
+                            justifyContent: 'space-around',
                             alignItems: 'center'
                         }}>
                             {
                                 !ele.short && <Typography fontSize={16} fontWeight={400}>{ele.title}</Typography>
                             }
-                            <Box sx={{ height: '70px' }}>
+                            <Box sx={{ height: '60px' }}>
                                 <Box sx={{
                                     position: 'relative',
                                     display: 'flex',
@@ -213,11 +215,12 @@ const ProjectInformation = () => {
                             width: '30%',
                             display: 'flex',
                             justifyContent: 'start',
-                            paddingLeft: '1.6rem'
+                            paddingLeft: '1.6rem',
+                            paddingY:'2rem'
                         }}>
                             <Typography sx={{
                                 fontWeight: 700,
-                                fontSize: '21.5px',
+                                fontSize: '20px',
                                 fontFamily: 'Cairo'
                             }} variant='h5'>
                                 {t("InfrastructureProjects.showPage.OverallCompletionRateOfImplementation")}

@@ -26,7 +26,7 @@ const ImagesGallery = () => {
                                 src={ele.src}
                                 style={{ margin: '4px', borderRadius: '12px' }}
                                 width='100%'
-                                height='240px'
+                                height='220px'
                                 alt='Image' />
                         </Grid>
                     );
@@ -36,7 +36,7 @@ const ImagesGallery = () => {
                 more &&
                 <Grid item xs={12} md={6} sx={{ padding: '0.2rem' }}>
                     <Box style={{
-                        height: '240px',
+                        height: '220px',
                         width: '100%',
                         margin: '4px',
                         borderRadius: '12px',
