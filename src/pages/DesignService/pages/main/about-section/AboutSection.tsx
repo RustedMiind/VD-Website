@@ -1,26 +1,11 @@
 import { Stack, Paper, Box, Typography } from "@mui/material";
-import { useEffect, useState } from "react";
+import { Dispatch, SetStateAction, useEffect, useState } from "react";
 import AboutPlaceholder from "./AboutPlaceholder";
 import axios from "axios";
 import api from "methods/api";
+import { Media } from "types/Media";
 
-function AboutSection() {
-  const [about, setAbout] = useState<AboutType | "error" | "loading" | "none">(
-    "none"
-  );
-
-  useEffect(() => {
-    setAbout("loading");
-    axios
-      .get<{ strucre_designs: AboutType }>(api("client/strucre-design"))
-      .then(({ data }) => {
-        setAbout(data.strucre_designs);
-      })
-      .catch((err) => {
-        setAbout("error");
-      });
-  }, []);
-
+function AboutSection({ about }: PropsType) {
   return (
     <Stack
       component={Paper}
@@ -50,7 +35,7 @@ function AboutSection() {
   );
 }
 
-type AboutType = {
+export type AboutType = {
   id?: number;
   vision_ar?: string;
   vision_en?: string;
@@ -63,6 +48,11 @@ type AboutType = {
   vision?: string;
   about?: string;
   feature?: string;
+  media?: Media[];
+};
+
+type PropsType = {
+  about: "error" | AboutType | "loading" | "none";
 };
 
 export default AboutSection;

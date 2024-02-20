@@ -4,37 +4,56 @@ import "./navbar.scss";
 import { List } from "react-bootstrap-icons";
 import { NavLink } from "react-router-dom";
 import { useTranslation } from "react-i18next";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { SettingsStateType } from "redux/reducers/settingsSlice";
 import { getValueByKey } from "types/SettingsType";
 import logo from "assets/images/logo-vision.png";
 import { navigationRoutes } from "methods/data/navigationRoutes";
 import { changeLanguage } from "i18next";
 import { LangContext } from "contexts/LangContext";
-import { Button, Menu, MenuItem, MenuList, Paper } from "@mui/material";
+import {
+  Avatar,
+  Button,
+  IconButton,
+  Menu,
+  MenuItem,
+  MenuList,
+  Paper,
+  Tooltip,
+  Typography,
+} from "@mui/material";
 import LoginRegister from "sections/login-register/LoginRegister";
 import { UserState, UserStateType } from "redux/reducers/userSlice";
 import api from "methods/api";
+import { logout } from "redux/middlewares/userMiddleware";
+import { AuthContext } from "contexts/Auth";
 
 function Navbar() {
   const { changeLang, lang } = useContext(LangContext);
   const currentLang = lang();
-  const [loginOpen, setLoginOpen] = useState(false);
-  const [navDialog, setNavDialog] = useState<NavDialogTypes>("login");
+  const [anchorElUser, setAnchorElUser] = useState<null | HTMLElement>(null);
+  const dispatch = useDispatch();
+
   const { settings, user } = useSelector(
-    (state: { settings: SettingsStateType; user: UserStateType }) => ({
+    (state: { settings: SettingsStateType } & UserStateType) => ({
       settings: state.settings,
       user: state.user,
     })
   );
 
-  const getvalue = getValueByKey(settings);
   const { t } = useTranslation();
   const [navVisibilty, setNavVisibilty] = useState<"show" | "hide">("hide");
+  const { openLoginDialog, openRegisterDialog, closeDialog } =
+    useContext(AuthContext);
+  const handleOpenUserMenu = (event: React.MouseEvent<HTMLElement>) => {
+    setAnchorElUser(event.currentTarget);
+  };
 
-  function handleLoginClose() {
-    setLoginOpen(false);
-  }
+  const handleCloseUserMenu = () => {
+    setAnchorElUser(null);
+  };
+
+  console.log("user", user);
 
   return (
     <>
@@ -87,45 +106,72 @@ function Navbar() {
           </li> */}
         </ul>
 
-        {user.user.userState === UserState.NOT_USER && (
+        {user.userState === UserState.NOT_USER && (
           <div className="left">
             <Button
               variant="contained"
               size="small"
-              onClick={() => {
-                setNavDialog("login");
-                setLoginOpen(true);
-              }}
+              onClick={openLoginDialog}
               color="secondary"
             >
               تسجيل الدخول
             </Button>
-            {/* <Button
+            <Button
               size="small"
               variant="outlined"
-              onClick={() => {
-                setNavDialog("register");
-                setLoginOpen(true);
-              }}
+              onClick={openRegisterDialog}
               color="secondary"
             >
               التسجيل
-            </Button> */}
+            </Button>
             <NavLink to={"/"} className="logo-link">
               <img src={logo} alt="" />
             </NavLink>
           </div>
         )}
+        {user.userState === UserState.USER && (
+          <>
+            <Tooltip title={"مرحبا, " + user.user?.name}>
+              <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
+                <Avatar alt={user.user?.name} src={user.user?.image} />
+              </IconButton>
+            </Tooltip>
+            <Menu
+              sx={{ mt: "45px" }}
+              id="menu-appbar"
+              anchorEl={anchorElUser}
+              anchorOrigin={{
+                vertical: "top",
+                horizontal: "right",
+              }}
+              keepMounted
+              transformOrigin={{
+                vertical: "top",
+                horizontal: "right",
+              }}
+              open={Boolean(anchorElUser)}
+              onClose={handleCloseUserMenu}
+            >
+              <MenuItem key={"user"} disabled>
+                <Typography textAlign="center">
+                  مرحبا, {user.user?.name}
+                </Typography>
+              </MenuItem>
+              <MenuItem
+                key={"setting"}
+                onClick={() => {
+                  handleCloseUserMenu();
+                  logout(dispatch);
+                }}
+              >
+                <Typography textAlign="center">تسجيل الخروج</Typography>
+              </MenuItem>
+            </Menu>
+          </>
+        )}
       </nav>
-      <LoginRegister
-        type={navDialog}
-        open={loginOpen && user.user.userState === UserState.NOT_USER}
-        onClose={handleLoginClose}
-      />
     </>
   );
 }
-
-type NavDialogTypes = "login" | "register";
 
 export default Navbar;

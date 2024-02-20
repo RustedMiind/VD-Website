@@ -17,11 +17,15 @@ import axios from "axios";
 import api from "methods/api";
 import { LoadingButton } from "@mui/lab";
 import { useSnackbar } from "notistack";
+import domain from "methods/domain";
+import { useSelector } from "react-redux";
+import { UserState, UserStateType } from "redux/reducers/userSlice";
 
 type RowType = { name: string; value?: string | number };
 function Step2({ design }: { design?: Design }) {
   const [status, setStatus] = useState<"loading" | "none" | "error">("none");
   const { enqueueSnackbar } = useSnackbar();
+  const user = useSelector((state: UserStateType) => state.user);
   const submitPurchase = () => {
     if (design) {
       setStatus("loading");
@@ -127,12 +131,17 @@ function Step2({ design }: { design?: Design }) {
         </Typography>
 
         <LoadingButton
-          onClick={submitPurchase}
           sx={{ mt: 2 }}
           fullWidth
           variant="contained"
           size="large"
           loading={status === "loading"}
+          component="a"
+          target="_blank"
+          disabled={user.userState !== UserState.USER}
+          href={domain(
+            `admin/design/payment-gateway/${design?.id}/${user.user?.id}`
+          )}
         >
           تأكيد الطلب
         </LoadingButton>

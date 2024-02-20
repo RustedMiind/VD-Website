@@ -10,7 +10,7 @@ import {
 } from "@mui/material";
 import SaveIcon from "@mui/icons-material/Save";
 import LoadingButton from "@mui/lab/LoadingButton";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { useDispatch } from "react-redux";
 import NationalIdInput from "./components/NationalIdInput";
 import OtpInputContainer from "./components/OtpInputContainer";
@@ -19,6 +19,7 @@ import axios from "axios";
 import api from "methods/api";
 import { setTokenCookie, setUserState } from "redux/middlewares/userMiddleware";
 import { User } from "types/User";
+import { AuthContext } from "contexts/Auth";
 
 function Login(props: PropsType) {
   const [state, setState] = useState<
@@ -29,6 +30,7 @@ function Login(props: PropsType) {
   const [otpError, setOtpError] = useState("");
   const [otp, setOtp] = useState("");
   const dispatch = useDispatch();
+  const { openRegisterDialog } = useContext(AuthContext);
 
   // functions
   function nationalNumberSubmit() {
@@ -50,6 +52,7 @@ function Login(props: PropsType) {
         setState("hide");
         console.log("Raw Err", err);
         setError(err.response.data.message.message);
+        openRegisterDialog();
       });
   }
   function otpSubmit() {

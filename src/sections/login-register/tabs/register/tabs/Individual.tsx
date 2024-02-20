@@ -10,9 +10,7 @@ import {
 function Individual() {
   return (
     <Stack>
-      <DialogContent sx={{ height: "fit-content" }}>
-        {/* <DialogContentText>
-</DialogContentText> */}
+      <DialogContent>
         <Grid container>
           <Grid item xs={12} md={6} p={1}>
             <TextField size="small" fullWidth label="الاسم" />

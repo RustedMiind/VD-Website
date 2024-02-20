@@ -24,6 +24,14 @@
   --gray: rgb(175, 175, 175);
 }
 
+.swiper-wrapper {
+  display: flex;
+}
+
+.swiper-slide {
+  display: table;
+}
+
 /* Hide Increment Decrement Arrows From Input Number */
 /* Chrome, Safari, Edge, Opera */
 input::-webkit-outer-spin-button,
@@ -58,6 +66,10 @@ body {
 *::-webkit-scrollbar-thumb {
   background-color: var(--third);
   border-radius: 1rem;
+}
+
+.filepond--credits {
+  display: none !important;
 }
 
 // body::-webkit-scrollbar,

@@ -1,28 +1,104 @@
 import {
-  Box,
-  Button,
   Dialog,
   DialogActions,
   DialogContent,
   DialogTitle,
-  Stack,
+  GridProps,
   Tab,
   Tabs,
   TextField,
+  Grid,
+  TextFieldProps,
+  SxProps,
 } from "@mui/material";
-import SaveIcon from "@mui/icons-material/Save";
 import LoadingButton from "@mui/lab/LoadingButton";
-import { useState } from "react";
-import { useDispatch } from "react-redux";
-import { isStringAllNumbers } from "methods/isStringAllNumbers";
-import Individual from "./tabs/Individual";
-import Company from "./tabs/company";
+import { useContext, useState } from "react";
+import { useForm } from "react-hook-form";
+import AddLabelToElComponent from "components/AddLabelToEl";
+import CustomFilePond from "components/CustomFilePond";
+import axios from "axios";
+import api from "methods/api";
+import { AuthContext } from "contexts/Auth";
+import { FileBondState } from "types/FileBondState";
+import { serialize } from "object-to-formdata";
+import { useSnackbar } from "notistack";
+
+type ClientForm = {
+  type: "individual" | "company";
+  name: string;
+  card_id: string;
+  phone: string;
+  letter_head: string;
+  email: string;
+  register_image: string;
+  to_ts: string;
+};
+
+const GridItem = (props: GridProps) => (
+  <Grid item xs={12} md={6} p={1} {...props} />
+);
+
+const AddLabelToEl = (props: { label: string; children: React.ReactNode }) => (
+  <AddLabelToElComponent
+    labelTypographyProps={{ color: "primary.main" }}
+    {...props}
+  />
+);
+
+const textFieldProps: TextFieldProps = { size: "small", fullWidth: true };
 
 function Register(props: PropsType) {
-  const [tab, setTab] = useState(1);
-  const handleChange = (event: React.SyntheticEvent, newValue: number) => {
+  const [tab, setTab] = useState<AccountType>("individual");
+  const handleChange = (event: React.SyntheticEvent, newValue: AccountType) => {
     setTab(newValue);
   };
+  const [status, setStatus] = useState<"none" | "loading" | "error">("none");
+  const { closeDialog } = useContext(AuthContext);
+  const [files, setFiles] = useState<FileBondState>([]);
+  const { enqueueSnackbar } = useSnackbar();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<ClientForm>();
+  const submit = handleSubmit((data) => {
+    console.log(data, errors);
+    setStatus("loading");
+    axios
+      .post(
+        api("register"),
+        serialize({
+          ...data,
+          type: tab,
+          ...(tab === "individual"
+            ? { card_image: files[0] }
+            : {
+                register_image: files[0],
+                register_number: data.card_id,
+                agent_name: data.name,
+              }),
+        })
+      )
+      .then((res) => {
+        closeDialog();
+        setStatus("none");
+        enqueueSnackbar("تم ارسال طلبك. برجاء انتظار الموافقة");
+      })
+      .catch((err) => {
+        console.log(err);
+        setStatus("error");
+        enqueueSnackbar(
+          err?.response?.data?.message ||
+            err?.response?.data?.msg ||
+            "تعذر في ارسال طلب التسجيل",
+          { variant: "error" }
+        );
+      });
+  });
+
+  const visibilityStyles: (type: AccountType) => SxProps = (type) => ({
+    display: type === tab ? undefined : "none",
+  });
 
   return (
     <Dialog
@@ -31,15 +107,100 @@ function Register(props: PropsType) {
       open={props.open}
       onClose={props.onClose}
       component="form"
-      // onSubmit={submitHandler}
+      onSubmit={submit}
     >
       <DialogTitle>التسجيل</DialogTitle>
-      <Tabs value={tab} onChange={handleChange} aria-label="basic tabs example">
-        <Tab label="تسجيل حساب فرد" value={1} />
-        <Tab label="تسجيل حساب شركة" value={2} />
+      <Tabs value={tab} onChange={handleChange}>
+        <Tab label="تسجيل حساب فرد" value={"individual"} />
+        <Tab label="تسجيل حساب شركة" value={"company"} />
       </Tabs>
-      {tab === 1 && <Individual />}
-      {tab === 2 && <Company />}
+      <DialogContent>
+        <Grid container>
+          <GridItem>
+            <AddLabelToEl label="الاسم">
+              <TextField
+                {...textFieldProps}
+                {...register("name", {
+                  required: true,
+                })}
+                label="الاسم"
+              />
+            </AddLabelToEl>
+          </GridItem>
+          <GridItem>
+            <AddLabelToEl label="البريد الالكتروني">
+              <TextField
+                {...textFieldProps}
+                {...register("email", {
+                  required: true,
+                })}
+                label="البريد الالكتروني"
+              />
+            </AddLabelToEl>
+          </GridItem>
+          <GridItem>
+            <AddLabelToEl label="رقم الهوية">
+              <TextField
+                {...textFieldProps}
+                {...register("card_id", {
+                  required: true,
+                })}
+                label="رقم الهوية"
+              />
+            </AddLabelToEl>
+          </GridItem>
+          <GridItem>
+            <AddLabelToEl label="رقم الجوال">
+              <TextField
+                {...textFieldProps}
+                {...register("phone", {
+                  required: true,
+                })}
+                label="رقم الجوال"
+              />
+            </AddLabelToEl>
+          </GridItem>
+          <GridItem>
+            <AddLabelToEl label="رقم الجوال">
+              <TextField
+                {...textFieldProps}
+                {...register("letter_head", {
+                  required: true,
+                })}
+                label="عنوان المراسلات"
+              />
+            </AddLabelToEl>
+          </GridItem>
+          {/* placeholder for upload file component */}
+
+          <GridItem>
+            <AddLabelToEl
+              label={tab === "individual" ? "الهوية" : "السجل التجاري"}
+            >
+              <CustomFilePond
+                allowMultiple={false}
+                files={files}
+                onupdatefiles={(fileItems) => {
+                  setFiles(fileItems.map((fileItem) => fileItem.file));
+                }}
+              />
+            </AddLabelToEl>
+          </GridItem>
+        </Grid>
+      </DialogContent>
+      <DialogActions sx={{ px: 3, pb: 3 }}>
+        <LoadingButton
+          size="large"
+          loading={status === "loading"}
+          // startIcon={<SaveIcon />}
+          type="submit"
+          loadingPosition="start"
+          variant="contained"
+          fullWidth
+        >
+          انشاء الحساب
+        </LoadingButton>
+      </DialogActions>
     </Dialog>
   );
 }

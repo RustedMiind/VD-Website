@@ -21,6 +21,8 @@ import { ThemeProvider, colors, createTheme, Grow } from "@mui/material";
 import { LocalizationProvider } from "@mui/x-date-pickers";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { checkUser } from "redux/middlewares/userMiddleware";
+import AuthProvider from "contexts/Auth";
+import "filepond/dist/filepond.min.css";
 
 const theme = createTheme({
   direction: "rtl",
@@ -112,9 +114,11 @@ function App() {
           variant="success"
           autoHideDuration={10000}
         >
-          <div className="App">
-            <Layout />
-          </div>
+          <AuthProvider>
+            <div className="App">
+              <Layout />
+            </div>
+          </AuthProvider>
         </SnackbarProvider>
       </ThemeProvider>
     </LocalizationProvider>
