@@ -20,6 +20,7 @@ import { useSelector } from "react-redux";
 import { UserState, UserStateType } from "redux/reducers/userSlice";
 import { Stack } from "react-bootstrap-icons";
 import { AuthContext } from "contexts/Auth";
+import { useTranslation } from "react-i18next";
 
 const TooltipBox = ({ tooltip, ...props }: BoxProps & { tooltip?: string }) =>
   tooltip ? (
@@ -32,7 +33,7 @@ const TooltipBox = ({ tooltip, ...props }: BoxProps & { tooltip?: string }) =>
 
 function MainDataSection() {
   const { design, status } = useContext(DesignContext);
-
+  const { t } = useTranslation();
   const currentPrice = design?.price_after || design?.price_before;
   let images: Media[] = [];
   if (design?.mainImage && Array.isArray(design?.mainImage)) {
@@ -71,7 +72,7 @@ function MainDataSection() {
             </Typography>
             {currentPrice && (
               <Typography variant="h6" fontWeight={"bold"}>
-                يبدأ من
+                {t("design.title.priceStartFrom")}
               </Typography>
             )}
 
@@ -81,7 +82,7 @@ function MainDataSection() {
                 color={"primary.main"}
                 fontWeight={"bold"}
               >
-                {currentPrice} ر.س.
+                {currentPrice} {t("currency.sar")}
               </Typography>
             )}
             {design?.price_before && (
@@ -92,7 +93,7 @@ function MainDataSection() {
                 sx={{ textDecoration: "line-through" }}
                 gutterBottom
               >
-                {design.price_before} ر.س.
+                {design.price_before} {t("currency.sar")}
               </Typography>
             )}
 
@@ -103,7 +104,7 @@ function MainDataSection() {
                 ? { component: NavLink, to: "../purchase/" + design?.id }
                 : { onClick: openLoginDialog })}
             >
-              شراء الآن
+              {t("design.button.buy")}
             </Button>
           </Grid>
 
@@ -131,7 +132,7 @@ function MainDataSection() {
                   target="_blank"
                   href={design.booklet[0].original_url}
                 >
-                  عرض الكتيب
+                  {t("design.button.openBooklet")}
                 </Button>
               </Box>
             )}

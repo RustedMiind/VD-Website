@@ -13,6 +13,7 @@ import { useSnackbar } from "notistack";
 import CenteredPagination from "components/CenteredPagination";
 import api from "methods/api";
 import axios from "axios";
+import { useTranslation } from "react-i18next";
 
 function DesignService() {
   const { enqueueSnackbar } = useSnackbar();
@@ -24,6 +25,7 @@ function DesignService() {
   const [designFilters, setDesignFilters] = useState<
     Partial<DesignFiltersType>
   >({});
+  const { t } = useTranslation();
 
   function getDesignsData() {
     let paramsToSend = { page };
@@ -80,7 +82,7 @@ function DesignService() {
   return (
     <PageBannerLayout
       data={{
-        title: "خدمات التصاميم",
+        title: t("design.main"),
         subtitle: {
           type: "paragraph",
           paragraph:
@@ -97,10 +99,10 @@ function DesignService() {
           <AboutSection about={about} />
           <Box mb={1}>
             <Typography mb={3} variant="h6">
-              ابحث عن تصميمك
+              {t("design.title.search")}
             </Typography>
             <Typography variant="body1" color="GrayText">
-              البحث
+              {t("titles.search")}
             </Typography>
           </Box>
           <Grid container rowSpacing={2}>

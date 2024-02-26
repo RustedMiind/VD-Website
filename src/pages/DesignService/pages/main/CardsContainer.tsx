@@ -4,6 +4,7 @@ import { useSelector } from "react-redux";
 import { designsStateType } from "redux/reducers/designsSlice";
 import CardPlaceholder from "./CardPlaceholder";
 import EmptyItemsContainer from "components/EmptyItemsContainer";
+import { useTranslation } from "react-i18next";
 
 export const CardGridItem = (props: GridProps) => (
   <Grid
@@ -18,6 +19,7 @@ export const CardGridItem = (props: GridProps) => (
 );
 
 function CardsContainer() {
+  const { t } = useTranslation();
   const designs = useSelector(
     (state: { designs: designsStateType }) => state.designs.designs
   );
@@ -33,7 +35,7 @@ function CardsContainer() {
         ))
       ) : (
         <Box sx={{ width: 1, height: 500 }}>
-          <EmptyItemsContainer title="لا يوجد تصاميم متاحة" />
+          <EmptyItemsContainer title={t("design.title.empty")} />
         </Box>
       )}
     </Grid>

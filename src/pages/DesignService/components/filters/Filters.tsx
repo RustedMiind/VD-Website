@@ -16,6 +16,7 @@ import axios from "axios";
 import api from "methods/api";
 import TaskAltIcon from "@mui/icons-material/TaskAlt";
 import RadioButtonUncheckedIcon from "@mui/icons-material/RadioButtonUnchecked";
+import { useTranslation } from "react-i18next";
 
 type optionType = {
   id: number;
@@ -23,6 +24,7 @@ type optionType = {
 };
 
 function Filters({ setDesignFilters }: PropsType) {
+  const { t } = useTranslation();
   const [utilities, setUtilities] = useState<number[]>([]);
   const { register, handleSubmit, setValue, control } =
     useForm<DesignFiltersType>({});
@@ -74,7 +76,7 @@ function Filters({ setDesignFilters }: PropsType) {
         <TextField
           type="number"
           variant="outlined"
-          label="المساحة"
+          label={t("design.title.area")}
           fullWidth
           size="small"
           {...register("area")}
@@ -88,7 +90,7 @@ function Filters({ setDesignFilters }: PropsType) {
           gutterBottom
           fontWeight="bold"
         >
-          عدد الغرف
+          {t("design.title.roomsCount")}
         </Typography>
 
         <Controller
@@ -133,7 +135,7 @@ function Filters({ setDesignFilters }: PropsType) {
           gutterBottom
           fontWeight="bold"
         >
-          عدد الطوابق
+          {t("design.title.floorsCount")}
         </Typography>
         <Controller
           name="floors_num"
@@ -177,7 +179,7 @@ function Filters({ setDesignFilters }: PropsType) {
           variant="outlined"
           type="number"
           size="small"
-          label="عرض الارض"
+          label={t("design.title.groundWidth")}
           {...register("width_floor")}
           fullWidth
           onBlur={submit}
@@ -190,7 +192,7 @@ function Filters({ setDesignFilters }: PropsType) {
           variant="outlined"
           type="number"
           size="small"
-          label="طول الارض"
+          label={t("design.title.groundLength")}
           fullWidth
           onBlur={submit}
         />
@@ -200,7 +202,7 @@ function Filters({ setDesignFilters }: PropsType) {
         <TextField
           {...register("width_front_street")}
           variant="outlined"
-          label="عرض الشارع الامامي"
+          label={t("design.title.street")}
           type="number"
           size="small"
           onBlur={submit}
@@ -214,7 +216,7 @@ function Filters({ setDesignFilters }: PropsType) {
           gutterBottom
           fontWeight="bold"
         >
-          دورات المياه
+          {t("design.title.bathrooms")}
         </Typography>
         <Controller
           name="bathroom_num"

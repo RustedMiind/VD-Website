@@ -8,27 +8,29 @@ import { DesignContext } from "./context";
 import CardsPlaceholder from "./PlaceHolders/Cards";
 import { useSnackbar } from "notistack";
 import api from "methods/api";
+import { useTranslation } from "react-i18next";
 
 function Content() {
   const { design, attachmentsOptions, status } = useContext(DesignContext);
   const { enqueueSnackbar } = useSnackbar();
+  const { t } = useTranslation();
   return (
     <PageBannerLayout
-      data={{ title: "خدمة التصميم", bgImage: { gradient: true } }}
+      data={{ title: t("design.main"), bgImage: { gradient: true } }}
     >
       <div className="tight-section mb-4">
         <MainDataSection />
       </div>
       <div className="tight-section px-8">
         <Typography gutterBottom variant="h5">
-          معلومات التصميم
+          {t("design.title.aboutDesign")}
         </Typography>
         {status === "loading" && <CardsPlaceholder />}
         {status === "none" && (
           <Grid container spacing={2}>
             <Grid item xs={12} md={6} lg={4}>
               <MenuCard
-                title="معلومات التصميم"
+                title={t("design.title.aboutDesign")}
                 items={[
                   { name: "اسم المخطط", value: design?.engineering_name },
                   { name: "مطبخ", value: design?.kitchen },
@@ -45,15 +47,20 @@ function Content() {
             <Grid item xs={12} md={6} lg={4}>
               <MenuCard
                 checkIcons
-                title="محتويات ملف التصميم"
+                title={t("design.title.attachments")}
                 items={
                   attachmentsOptions?.map((option) => ({
                     name: option.key,
                     menuItemProps: {
                       onClick: () => {
-                        fetch(api("client/design/zip/53/3"), {
-                          headers: { from: "website" },
-                        }) // FETCH BLOB FROM IT
+                        fetch(
+                          api(
+                            `client/design/zip/${design?.id}/${option.value}`
+                          ),
+                          {
+                            headers: { from: "website" },
+                          }
+                        ) // FETCH BLOB FROM IT
                           .then((response) => response.blob())
                           .then((blob) => {
                             // RETRIEVE THE BLOB AND CREATE LOCAL URL
@@ -73,7 +80,7 @@ function Content() {
               <MenuCard
                 checkIcons
                 gutterBottom
-                title="مرافق الوحدة"
+                title={t("design.title.utilities")}
                 items={
                   design?.attachments?.map((attachment) => ({
                     name: attachment.typeName,
@@ -86,9 +93,12 @@ function Content() {
                 }
               />
               <MenuCard
-                title="عنوان الفيلا"
+                title={t("design.title.address")}
                 items={[
-                  { name: "عرض الشارع", value: design?.width_front_street },
+                  {
+                    name: t("design.title.street"),
+                    value: design?.width_front_street,
+                  },
                 ]}
               />
             </Grid>

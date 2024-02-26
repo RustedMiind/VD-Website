@@ -13,12 +13,14 @@ import AboutPlaceholder from "./AboutPlaceholder";
 import axios from "axios";
 import api from "methods/api";
 import { Media } from "types/Media";
+import { useTranslation } from "react-i18next";
 
 function AboutSection({ about }: PropsType) {
   let features: string[] = [];
   if (typeof about === "object" && typeof about.feature === "string") {
     features = about.feature.split("*0*");
   }
+  const { t } = useTranslation();
 
   return (
     <Stack
@@ -31,13 +33,13 @@ function AboutSection({ about }: PropsType) {
           <>
             <Box>
               <Typography variant="h6" fontWeight={700}>
-                خدمات التصميم
+                {t("design.main")}
               </Typography>
               <Typography>{about.about}</Typography>
             </Box>
             <Box>
               <Typography variant="h6" fontWeight={700}>
-                المميزات
+                {t("design.title.advantages")}
               </Typography>
               <Box sx={{ pl: 2 }}>
                 <List sx={{ listStyleType: "disc" }}>

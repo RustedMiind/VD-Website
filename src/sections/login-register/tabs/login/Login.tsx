@@ -68,6 +68,8 @@ function Login(props: PropsType) {
         id: nationalNumber,
         type: "individual",
         token: "123",
+        imei: "1423425",
+        device_type: "ios",
       })
       .then(({ data }) => {
         setState("hide");

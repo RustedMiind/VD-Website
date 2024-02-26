@@ -1,4 +1,6 @@
-const EnTranslation = {
+import { TranslationObjectType } from "./ArTranslation";
+
+const EnTranslation: TranslationObjectType = {
   test: "test",
   contact: {
     whatsapp: "Contact via Whatsapp",
@@ -29,6 +31,60 @@ const EnTranslation = {
     contact: "Contact Us",
     news: "Latest News",
   },
+  currency: {
+    sar: "SAR",
+    egp: "EGP",
+  },
+  auth: {
+    register: "Register",
+    login: "Login",
+    idNumber: "ID",
+    form: {
+      otp: "OTP",
+      name: "Name",
+      password: "password",
+      email: "Email Address",
+      phone: "Phone",
+      correspondenceAddress: "Correspondence Address",
+    },
+    title: {
+      registerIndividual: "Register as Individual",
+      registerCompany: "Register as Company",
+    },
+  },
+  design: {
+    main: "Designs Services",
+    title: {
+      search: "Search your design",
+      area: "Area",
+      roomsCount: "Rooms",
+      groundWidth: "Ground Width",
+      groundLength: "Ground Length",
+      street: "Street Width",
+      bathrooms: "Batrhooms",
+      advantages: "Advantages",
+      aboutDesign: "About Design",
+      attachments: "Attached Files",
+      utilities: "Utilites",
+      address: "Villa address",
+      designOnly: "Design Only",
+      designOnlyDescription: "",
+      priceNote: "The price includes added value",
+      priceTitle1: "Price details",
+      priceTitle2: "Total price (including VAT)",
+      priceBeforeDiscount: "Price Before Discount",
+      priceAfterDiscount: "Price After Discount",
+      paymentMethod: "Payment Method",
+      floorsCount: "Floors Count",
+      priceStartFrom: "Price Starts From",
+      empty: "No Designs Found",
+    },
+    button: {
+      buy: "Buy Now",
+      openBooklet: "Show Booklet",
+      explore: "Explore",
+    },
+  },
   InfrastructureProjects: {
     mainPageTitle: "Infrastructure Projects",
     subTitles: {
@@ -38,43 +94,48 @@ const EnTranslation = {
       categoryTitle: "Category Title",
     },
     buttons: {
-      showAllPlans: 'Show All Plans',
-      search: 'Search',
-      print: 'Print',
-      showAllDetails: 'Show All Details'
+      showAllPlans: "Show All Plans",
+      search: "Search",
+      print: "Print",
+      showAllDetails: "Show All Details",
     },
     texts: {
-      showStatment: 'Show',
+      showStatment: "Show",
     },
     showPage: {
-      showStatment: 'Show',
+      showStatment: "Show",
       more: "More",
-      planName: 'Plan Name',
-      numberOfPieces: 'Number Of Pieces',
-      location: 'Location',
-      supportNumber: 'Support Number',
-      area: 'Area',
-      buildingSystem: 'Building System',
-      owner: 'Owner',
-      engineeringOffice: 'Engineering Office',
-      implementingContractor: 'Implementing Contractor',
-      works: 'Works',
-      CompletionRate: 'Completion Rate',
-      ThirdParty: 'Third Party',
-      OverallCompletionRateOfImplementation: 'Overall Completion Rate Of Implementation',
-      RemainingWorkLastAction: 'Remaining Work Last Action',
-      map: 'Map',
-      contactUs: 'Contact US',
-      contactUsStatment: 'Click the button and write your inquiry directly on WhatsApp, and the work team will respond to you as soon as possible'
-    }
+      planName: "Plan Name",
+      numberOfPieces: "Number Of Pieces",
+      location: "Location",
+      supportNumber: "Support Number",
+      area: "Area",
+      buildingSystem: "Building System",
+      owner: "Owner",
+      engineeringOffice: "Engineering Office",
+      implementingContractor: "Implementing Contractor",
+      works: "Works",
+      CompletionRate: "Completion Rate",
+      ThirdParty: "Third Party",
+      OverallCompletionRateOfImplementation:
+        "Overall Completion Rate Of Implementation",
+      RemainingWorkLastAction: "Remaining Work Last Action",
+      map: "Map",
+      contactUs: "Contact US",
+      contactUsStatment:
+        "Click the button and write your inquiry directly on WhatsApp, and the work team will respond to you as soon as possible",
+    },
   },
   buttons: {
     more: "More",
     orderService: "Order Service",
     downloadProfile: "Download Profile",
-    downloadFile: "Download File",
+    // downloadFile: "Download File",
+    getToKnowUs: "",
     subscribe: "Subscribe",
     showProject: "Show Project",
+    next: "التالي",
+    previous: "السابق",
   },
   form: {
     email: "Email",
@@ -117,19 +178,16 @@ const EnTranslation = {
   },
   projects: {
     total: "Total Projects",
-    notFound: "The project you are searching for doesn't exist",
-    noProjects: "Currently There are no projects",
-    error: "Error Fetching Projects",
   },
 
-  newsForm: {
-    success: "Subscribed Successfully",
-    error: "Filed to subscribe",
-  },
-  send: {
-    error: "Error Sending Your Message",
-    success: "Your Message Sent Successfully",
-  },
+  // newsForm: {
+  //   success: "Subscribed Successfully",
+  //   error: "Filed to subscribe",
+  // },
+  // send: {
+  //   error: "Error Sending Your Message",
+  //   success: "Your Message Sent Successfully",
+  // },
   loading: {
     error: "Loading Failed",
     loading: "Loading",

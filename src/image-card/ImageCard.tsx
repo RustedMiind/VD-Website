@@ -2,8 +2,10 @@ import AspectRatioImage from "components/aspect-ratio-image/AspectRatioImage";
 import ShowMoreButton from "./ShowMoreButton";
 import "./image-card.scss";
 import AltImage from "assets/images/card-image-placeholder.png";
+import { useTranslation } from "react-i18next";
 
 function ImageCard(props: PropsType) {
+  const { t } = useTranslation();
   return (
     <div className="image-card">
       {/* <div className="image-container-16-9">
@@ -19,7 +21,7 @@ function ImageCard(props: PropsType) {
         <p>{props.description}</p>
         {props.price && (
           <p className="mt-2 text-gray-400">
-            {props.priceLabel || "يبدأ السعر من"}
+            {props.priceLabel || t("design.title.priceStartFrom")}
           </p>
         )}
         <h4 className="text-third">{props.price}</h4>

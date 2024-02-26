@@ -13,6 +13,60 @@ const ArTranslation = {
     loading: "جار تحميل المشروع",
     error: "فشل تحميل المشروع",
   },
+  currency: {
+    sar: "SAR",
+    egp: "EGP",
+  },
+  auth: {
+    register: "Register",
+    login: "Login",
+    idNumber: "ID",
+    form: {
+      otp: "OTP",
+      name: "Name",
+      password: "password",
+      email: "Email Address",
+      phone: "Phone",
+      correspondenceAddress: "Correspondence Address",
+    },
+    title: {
+      registerIndividual: "Register as Individual",
+      registerCompany: "Register as Company",
+    },
+  },
+  design: {
+    main: "Designs Services",
+    title: {
+      search: "Search your design",
+      area: "Area",
+      roomsCount: "Rooms",
+      groundWidth: "Ground Width",
+      groundLength: "Ground Length",
+      street: "Street Width",
+      bathrooms: "Batrhooms",
+      advantages: "Advantages",
+      aboutDesign: "About Design",
+      attachments: "Attached Files",
+      utilities: "Utilites",
+      address: "Villa address",
+      designOnly: "Design Only",
+      designOnlyDescription: "",
+      priceNote: "The price includes added value",
+      priceTitle1: "Price details",
+      priceTitle2: "Total price (including VAT)",
+      priceBeforeDiscount: "Price Before Discount",
+      priceAfterDiscount: "Price After Discount",
+      paymentMethod: "Payment Method",
+      floorsCount: "Floors Count",
+      priceStartFrom: "Price Starts From",
+      empty: "No Designs Found",
+    },
+    button: {
+      buy: "Buy Now",
+      openBooklet: "Show Booklet",
+      explore: "Explore",
+    },
+  },
   InfrastructureProjects: {
     mainPageTitle: "مشاريع البنية التحتية",
     subTitles: {
@@ -22,35 +76,36 @@ const ArTranslation = {
       categoryTitle: "عنوان التصنيف",
     },
     buttons: {
-      showAllPlans: 'عرض جميع المخططات',
-      search: 'بحث',
-      print: 'طباعة',
-      showAllDetails: 'عرض جميع التفاصيل'
+      showAllPlans: "عرض جميع المخططات",
+      search: "بحث",
+      print: "طباعة",
+      showAllDetails: "عرض جميع التفاصيل",
     },
     texts: {
-      showStatment: 'استعراض',
+      showStatment: "استعراض",
     },
     showPage: {
-      showStatment: 'استعراض',
+      showStatment: "استعراض",
       more: "المزيد",
-      planName: 'اسم المخطط',
-      numberOfPieces: 'عدد القطع',
-      location: 'الموقع',
-      supportNumber: 'رقم داعم',
-      area: 'المساحة',
-      buildingSystem: 'نظام البناء',
-      owner: 'المالك',
-      engineeringOffice: 'المكتب الهندسي',
-      implementingContractor: 'المقاول المنفذ',
-      works: 'الاعمال',
-      CompletionRate: 'نسبة الانجاز',
-      ThirdParty: 'الجهات الخارجية',
-      OverallCompletionRateOfImplementation: 'نسبة الإنجاز الكلية للتنفيذ',
-      RemainingWorkLastAction: 'الاعمال المتبقية / اخر اجراء',
-      map: 'الخريطة',
-      contactUs: 'تواصل معنا',
-      contactUsStatment: 'اضغط على الزر و اكتب استفسارك مباشرة على الواتساب وسيقوم فريق العمل بالرد عليك في اقرب وقت'
-    }
+      planName: "اسم المخطط",
+      numberOfPieces: "عدد القطع",
+      location: "الموقع",
+      supportNumber: "رقم داعم",
+      area: "المساحة",
+      buildingSystem: "نظام البناء",
+      owner: "المالك",
+      engineeringOffice: "المكتب الهندسي",
+      implementingContractor: "المقاول المنفذ",
+      works: "الاعمال",
+      CompletionRate: "نسبة الانجاز",
+      ThirdParty: "الجهات الخارجية",
+      OverallCompletionRateOfImplementation: "نسبة الإنجاز الكلية للتنفيذ",
+      RemainingWorkLastAction: "الاعمال المتبقية / اخر اجراء",
+      map: "الخريطة",
+      contactUs: "تواصل معنا",
+      contactUsStatment:
+        "اضغط على الزر و اكتب استفسارك مباشرة على الواتساب وسيقوم فريق العمل بالرد عليك في اقرب وقت",
+    },
   },
   vision: { name: "أبعاد الرؤية", for: "للاستشارات الهندسية" },
   links: {
@@ -70,6 +125,8 @@ const ArTranslation = {
     downloadProfile: "تحميل الملف التعريفي",
     subscribe: "اشترك",
     showProject: "عرض المشروع",
+    next: "التالي",
+    previous: "السابق",
   },
   titles: {
     partners: "الشركاء",
@@ -133,4 +190,7 @@ const ArTranslation = {
     loading: "جار التحميل",
   },
 };
+
+export type TranslationObjectType = typeof ArTranslation;
+
 export default ArTranslation;
