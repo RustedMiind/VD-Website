@@ -27,6 +27,7 @@ import { UserState, UserStateType } from "redux/reducers/userSlice";
 import api from "methods/api";
 import { logout } from "redux/middlewares/userMiddleware";
 import { AuthContext } from "contexts/Auth";
+import GTranslateIcon from "@mui/icons-material/GTranslate";
 
 function Navbar() {
   const { changeLang, lang } = useContext(LangContext);
@@ -51,6 +52,12 @@ function Navbar() {
 
   const handleCloseUserMenu = () => {
     setAnchorElUser(null);
+  };
+
+  const handleChangeLang = () => {
+    const current = lang();
+    if (current === "en") changeLang("ar");
+    else changeLang("en");
   };
 
   console.log("user", user);
@@ -78,11 +85,11 @@ function Navbar() {
             </li>
           ))}
           <li className="has-dropdown-on-hover">
-            <span>الخدمات الالكترونية</span>
+            <span>{t("links.eServices.main")}</span>
             <Paper className="menu">
               <MenuList>
                 <MenuItem component={NavLink} to="/e-services/design">
-                  التصاميم
+                  {t("links.eServices.design")}
                 </MenuItem>
                 <MenuItem component={NavLink} to="/infrastructure_projects">
                   البنية التحتية
@@ -90,20 +97,11 @@ function Navbar() {
               </MenuList>
             </Paper>
           </li>
-          {/* <li>
-            <a
-              className="lang-btn"
-              role="button"
-              onClick={() => {
-                const current = lang();
-                if (current === "en") changeLang("ar");
-                else if (current === "ar") changeLang("en");
-              }}
-            >
-              {currentLang === "ar" && "EN"}
-              {currentLang === "en" && "العربية"}
-            </a>
-          </li> */}
+          <li>
+            <IconButton>
+              <GTranslateIcon onClick={handleChangeLang} />
+            </IconButton>
+          </li>
         </ul>
 
         {/* {user.userState === UserState.NOT_USER && (

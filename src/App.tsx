@@ -1,4 +1,4 @@
-import React, { useEffect, useContext } from "react";
+import React, { useEffect, useContext, useMemo } from "react";
 import Layout from "./pages/layout/Layout";
 import "./app.scss";
 import "./app.css";
@@ -23,57 +23,14 @@ import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { checkUser } from "redux/middlewares/userMiddleware";
 import AuthProvider from "contexts/Auth";
 import "filepond/dist/filepond.min.css";
+import createCache from "@emotion/cache";
+import { prefixer } from "stylis";
+import rtlPlugin from "stylis-plugin-rtl";
+import { CacheProvider } from "@emotion/react";
 
-const theme = createTheme({
-  direction: "rtl",
-  shape: {
-    borderRadius: 10,
-  },
-  palette: {
-    primary: {
-      main: "#f19b02",
-      contrastText: "#FFFFFF",
-    },
-    secondary: {
-      main: "#004693",
-    },
-    background: {
-      default: "#FFFFFF",
-      paper: "#F1F1F1",
-    },
-    text: {
-      primary: "#004693",
-      secondary: colors.grey[600],
-      disabled: colors.grey[600],
-    },
-  },
-  components: {
-    MuiTypography: {
-      styleOverrides: {
-        root: {
-          fontFamily: "TheSans",
-        },
-      },
-    },
-    MuiPaper: {
-      defaultProps: { elevation: 4 },
-    },
-  },
-  typography: {
-    fontFamily: [
-      "TheSans",
-      "-apple-system",
-      "BlinkMacSystemFont",
-      '"Segoe UI"',
-      "Roboto",
-      '"Helvetica Neue"',
-      "Arial",
-      "sans-serif",
-      '"Apple Color Emoji"',
-      '"Segoe UI Emoji"',
-      '"Segoe UI Symbol"',
-    ].join(","),
-  },
+const cacheRtl = createCache({
+  key: "muirtl",
+  stylisPlugins: [prefixer, rtlPlugin],
 });
 
 const translationsEn = EnTranslation;
@@ -103,6 +60,62 @@ function App() {
       .then((res) => {})
       .catch((err) => {});
   }, [lang]);
+
+  const theme = useMemo(
+    () =>
+      createTheme({
+        direction: langContext.lang() === "en" ? "ltr" : "ltr",
+        shape: {
+          borderRadius: 10,
+        },
+        palette: {
+          primary: {
+            main: "#f19b02",
+            contrastText: "#FFFFFF",
+          },
+          secondary: {
+            main: "#004693",
+          },
+          background: {
+            default: "#FFFFFF",
+            paper: "#F1F1F1",
+          },
+          text: {
+            primary: "#004693",
+            secondary: colors.grey[600],
+            disabled: colors.grey[600],
+          },
+        },
+        components: {
+          MuiTypography: {
+            styleOverrides: {
+              root: {
+                fontFamily: "TheSans",
+              },
+            },
+          },
+          MuiPaper: {
+            defaultProps: { elevation: 4 },
+          },
+        },
+        typography: {
+          fontFamily: [
+            "TheSans",
+            "-apple-system",
+            "BlinkMacSystemFont",
+            '"Segoe UI"',
+            "Roboto",
+            '"Helvetica Neue"',
+            "Arial",
+            "sans-serif",
+            '"Apple Color Emoji"',
+            '"Segoe UI Emoji"',
+            '"Segoe UI Symbol"',
+          ].join(","),
+        },
+      }),
+    [langContext.lang()]
+  );
   return (
     // <React.Suspense fallback="Loading...">
     <LocalizationProvider dateAdapter={AdapterDayjs}>
@@ -115,9 +128,11 @@ function App() {
           autoHideDuration={10000}
         >
           <AuthProvider>
-            <div className="App">
-              <Layout />
-            </div>
+            <DirectionProvider>
+              <div className="App">
+                <Layout />
+              </div>
+            </DirectionProvider>
           </AuthProvider>
         </SnackbarProvider>
       </ThemeProvider>
@@ -125,5 +140,21 @@ function App() {
     // </React.Suspense>
   );
 }
+
+const DirectionProvider = ({ children }: { children: React.ReactNode }) => {
+  const langContext = useContext(LangContext);
+  const lang = langContext.lang();
+
+  const render = useMemo(() => {
+    switch (lang) {
+      case "en":
+        return children;
+      default:
+        return <CacheProvider value={cacheRtl}>{children}</CacheProvider>;
+    }
+  }, [lang]);
+
+  return render;
+};
 
 export default App;

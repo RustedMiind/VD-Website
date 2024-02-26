@@ -19,9 +19,11 @@ import { isStringAllNumbers } from "methods/isStringAllNumbers";
 import axios from "axios";
 import api from "methods/api";
 import { useSnackbar } from "notistack";
+import { useTranslation } from "react-i18next";
 
 function DesignPurchase() {
   const [currentStep, setCurrentStep] = useState(0);
+  const { t } = useTranslation();
 
   function handleValueChange(delta: number = 1) {
     const newValue = currentStep + delta;
@@ -61,8 +63,14 @@ function DesignPurchase() {
 
   const steps: StepType[] = useMemo(
     () => [
-      { name: "التصاميم الخارجية", element: <Step1 design={design} /> },
-      { name: "ملخص الطلب", element: <Step2 design={design} /> },
+      {
+        name: t("design.title.outerDesigns"),
+        element: <Step1 design={design} />,
+      },
+      {
+        name: t("design.title.requestSummary"),
+        element: <Step2 design={design} />,
+      },
       // { name: "التصاميم 3", element: <Step3 design={design} /> },
       // { name: "التصاميم 4", element: <Step4 design={design} /> },
     ],
@@ -70,9 +78,7 @@ function DesignPurchase() {
   );
 
   return (
-    <PageBannerLayout
-      data={{ title: "عنوان التصميم", bgImage: { gradient: true } }}
-    >
+    <PageBannerLayout data={{ title: "", bgImage: { gradient: true } }}>
       <div className="tight-section my-4">
         <Box sx={{ width: 1 }}>
           <Stepper activeStep={currentStep} alternativeLabel>
@@ -93,7 +99,7 @@ function DesignPurchase() {
             }}
             disabled={currentStep === 0}
           >
-            السابق
+            {t("buttons.previous")}
           </Button>
           <Button
             variant="contained"
@@ -103,7 +109,7 @@ function DesignPurchase() {
             }}
             disabled={currentStep === steps.length - 1}
           >
-            التالي
+            {t("buttons.next")}
           </Button>
         </Stack>
       </div>

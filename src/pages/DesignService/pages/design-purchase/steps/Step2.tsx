@@ -20,12 +20,14 @@ import { useSnackbar } from "notistack";
 import domain from "methods/domain";
 import { useSelector } from "react-redux";
 import { UserState, UserStateType } from "redux/reducers/userSlice";
+import { useTranslation } from "react-i18next";
 
 type RowType = { name: string; value?: string | number };
 function Step2({ design }: { design?: Design }) {
   const [status, setStatus] = useState<"loading" | "none" | "error">("none");
   const { enqueueSnackbar } = useSnackbar();
   const user = useSelector((state: UserStateType) => state.user);
+  const { t } = useTranslation();
   const submitPurchase = () => {
     if (design) {
       setStatus("loading");
@@ -48,10 +50,13 @@ function Step2({ design }: { design?: Design }) {
   };
 
   const rows: RowType[] = [
-    { name: "سعر التصميم قبل الخصم", value: design?.price_before },
     {
-      name: "سعر التصميم بعد الخصم",
-      value: design?.price_after || design?.price_after,
+      name: t("design.title.priceBeforeDiscount"),
+      value: design?.price_before,
+    },
+    {
+      name: t("design.title.priceAfterDiscount"),
+      value: design?.price_after,
     },
   ];
 
@@ -86,7 +91,7 @@ function Step2({ design }: { design?: Design }) {
           {design?.desc}
         </Typography>
         <Typography variant="h5" fontWeight={"bold"}>
-          تفاصيل السعر
+          {t("design.title.priceInfo")}
         </Typography>
         <TableContainer sx={{ width: 0.8, py: 1 }}>
           <Table
@@ -119,15 +124,15 @@ function Step2({ design }: { design?: Design }) {
           </Table>
         </TableContainer>
         <Typography variant="h6" fontWeight={"bold"}>
-          اجمالي السعر (شامل ضريبة القيمة المضافة)
+          {t("design.title.priceTitle2")}
         </Typography>
 
         <Typography variant="h6" color={"primary.main"} fontWeight={"bold"}>
-          {design?.price_after} ر.س
+          {design?.price_after} {t("currency.sar")}
         </Typography>
 
         <Typography variant="body1" color={"gray"}>
-          طريقة الدفع : نقديا
+          {t("design.title.paymentMethod")} : نقديا
         </Typography>
 
         <LoadingButton
@@ -143,7 +148,7 @@ function Step2({ design }: { design?: Design }) {
             `admin/design/payment-gateway/${design?.id}/${user.user?.id}`
           )}
         >
-          تأكيد الطلب
+          {t("design.title.confirmPurchase")}
         </LoadingButton>
       </Stack>
       <Stack
@@ -177,7 +182,7 @@ function Step2({ design }: { design?: Design }) {
                   target="_blank"
                   href={design.booklet[0].original_url}
                 >
-                  عرض الكتيب
+                  {t("design.title.showBooklet")}
                 </Button>
               </Box>
             )}

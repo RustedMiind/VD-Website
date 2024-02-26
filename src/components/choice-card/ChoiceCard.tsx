@@ -1,7 +1,10 @@
 import { Box, Stack, FormControlLabel, Radio, Typography } from "@mui/material";
 import "./choice-card.scss";
+import { useTranslation } from "react-i18next";
 
 function ChoiceCard(props: PropsType) {
+  const { t } = useTranslation();
+
   return (
     <div className={`choice-card ${props.current ? "current" : ""}`}>
       <div className="card-head">
@@ -32,7 +35,7 @@ function ChoiceCard(props: PropsType) {
         </Typography>
 
         <Typography color={"text.disabled"}>
-          {props.helperText || "السعر شامل القيمة المضافة"}
+          {props.helperText || t("design.title.priceTitle2")}
         </Typography>
       </Box>
     </div>
