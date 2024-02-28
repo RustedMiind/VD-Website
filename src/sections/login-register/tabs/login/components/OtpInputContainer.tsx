@@ -2,8 +2,10 @@ import { Button, TextField, Typography, Stack } from "@mui/material";
 import { current } from "@reduxjs/toolkit";
 import OTPInput from "react-otp-input";
 import "./login-otp.scss";
+import { useTranslation } from "react-i18next";
 
 function OtpInputContainer(props: PropsType) {
+  const { t } = useTranslation();
   return (
     <Stack
       sx={{
@@ -46,8 +48,8 @@ function OtpInputContainer(props: PropsType) {
         {props.error}
       </Typography>
       <Typography>
-        لم يصلك كود الدخول؟
-        <Button>اعد الارسال</Button>
+        {t("auth.form.didntRevieveCode")}
+        <Button>{t("auth.form.resend")}</Button>
       </Typography>
     </Stack>
   );

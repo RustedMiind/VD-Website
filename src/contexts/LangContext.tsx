@@ -1,6 +1,6 @@
 import { setCookie } from "methods/cookies";
 import { getLangCookie } from "methods/getLangCookie";
-import { useState, createContext } from "react";
+import { useState, createContext, useEffect } from "react";
 import axios from "axios";
 import { changeLanguage } from "i18next";
 
@@ -16,8 +16,13 @@ export const LangContext = createContext<{
 
 function LangContextProvider({ children }: PropsType) {
   const [language, setLanguage] = useState<LanguagesType>(currentLang);
+  useEffect(() => {
+    if (language === "ar") document.documentElement.setAttribute("dir", "rtl");
+    else document.documentElement.setAttribute("dir", "ltr");
+    document.documentElement.setAttribute("lang", language);
+  }, [language]);
   return (
-    <LangContext.Provider value={{ lang, changeLang }}>
+    <LangContext.Provider key={language} value={{ lang, changeLang }}>
       {children}
     </LangContext.Provider>
   );

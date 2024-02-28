@@ -21,6 +21,8 @@ const ArTranslation = {
     register: "التسجيل",
     login: "نسجيل الدخول",
     idNumber: "رقم الهوية",
+    id: "الهوية",
+    companyReferenceNumber: "السجل التجاري",
     form: {
       otp: "رقم التأكيد",
       name: "الاسم",
@@ -28,10 +30,12 @@ const ArTranslation = {
       email: "البريد الالكتروني",
       phone: "رقم الهاتف المحمول",
       correspondenceAddress: "عنوان المراسلات",
+      didntRecieveCode: "لم يصلك كود الدخول؟",
+      resend: "اعد الارسال",
     },
     title: {
-      registerIndividual: "تسجيل عميل",
-      registerCompany: "تسجيل شركة",
+      registerIndividual: "تسجيل حساب فرد",
+      registerCompany: "تسجيل حساب شركة",
     },
   },
   design: {

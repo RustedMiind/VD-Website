@@ -24,6 +24,7 @@ import { AuthContext } from "contexts/Auth";
 import { FileBondState } from "types/FileBondState";
 import { serialize } from "object-to-formdata";
 import { useSnackbar } from "notistack";
+import { useTranslation } from "react-i18next";
 
 const ErrorMessage = (props: TypographyProps) => (
   <Typography variant="body2" color="error" {...props} />
@@ -134,6 +135,7 @@ function Register(props: PropsType) {
   const visibilityStyles: (type: AccountType) => SxProps = (type) => ({
     display: type === tab ? undefined : "none",
   });
+  const { t } = useTranslation();
 
   return (
     <Dialog
@@ -144,70 +146,70 @@ function Register(props: PropsType) {
       component="form"
       onSubmit={submit}
     >
-      <DialogTitle>التسجيل</DialogTitle>
+      <DialogTitle>{t("auth.register")}</DialogTitle>
       <Tabs value={tab} onChange={handleChange}>
-        <Tab label="تسجيل حساب فرد" value={"individual"} />
-        <Tab label="تسجيل حساب شركة" value={"company"} />
+        <Tab label={t("auth.title.registerIndividual")} value={"individual"} />
+        <Tab label={t("auth.title.registerCompany")} value={"company"} />
       </Tabs>
       <DialogContent>
         <Grid container>
           <GridItem>
-            <AddLabelToEl label="الاسم">
+            <AddLabelToEl label={t("auth.form.name")}>
               <TextField
                 {...textFieldProps}
                 {...register("name", {
                   required: true,
                 })}
-                label="الاسم"
+                label={t("auth.form.name")}
               />
             </AddLabelToEl>
           </GridItem>
           <GridItem>
-            <AddLabelToEl label="البريد الالكتروني">
+            <AddLabelToEl label={t("auth.form.email")}>
               <TextField
                 type="email"
                 {...textFieldProps}
                 {...register("email", {
                   required: true,
                 })}
-                label="البريد الالكتروني"
+                label={t("auth.form.email")}
               />
             </AddLabelToEl>
           </GridItem>
           <GridItem>
-            <AddLabelToEl label="رقم الهوية">
+            <AddLabelToEl label={t("auth.idNumber")}>
               <TextField
                 type="number"
                 {...textFieldProps}
                 {...register("card_id", {
                   required: true,
                 })}
-                label="رقم الهوية"
+                label={t("auth.idNumber")}
               />
               <ErrorMessage>{inputs.card_id && errors.card_id}</ErrorMessage>
             </AddLabelToEl>
           </GridItem>
           <GridItem>
-            <AddLabelToEl label="رقم الجوال">
+            <AddLabelToEl label={t("auth.form.phone")}>
               <TextField
                 type="number"
                 {...textFieldProps}
                 {...register("phone", {
                   required: true,
                 })}
-                label="رقم الجوال"
+                label={t("auth.form.phone")}
               />
               <ErrorMessage>{inputs.phone && errors.phone}</ErrorMessage>
             </AddLabelToEl>
           </GridItem>
           <GridItem>
-            <AddLabelToEl label="عنوان المراسلات">
+            <AddLabelToEl label={t("auth.form.correspondenceAddress")}>
               <TextField
                 {...textFieldProps}
                 {...register("letter_head", {
                   required: true,
                 })}
-                label="عنوان المراسلات"
+                label={t("auth.form.correspondenceAddress")}
               />
             </AddLabelToEl>
           </GridItem>
@@ -215,7 +217,11 @@ function Register(props: PropsType) {
 
           <GridItem>
             <AddLabelToEl
-              label={tab === "individual" ? "الهوية" : "السجل التجاري"}
+              label={
+                tab === "individual"
+                  ? t("auth.id")
+                  : t("auth.companyReferenceNumber")
+              }
             >
               <CustomFilePond
                 allowMultiple={false}
@@ -239,7 +245,7 @@ function Register(props: PropsType) {
           fullWidth
           disabled={disabled}
         >
-          انشاء الحساب
+          {t("auth.register")}
         </LoadingButton>
       </DialogActions>
     </Dialog>

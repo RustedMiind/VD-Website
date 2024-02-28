@@ -127,13 +127,13 @@ function App() {
           variant="success"
           autoHideDuration={10000}
         >
-          <AuthProvider>
-            <DirectionProvider>
+          <DirectionProvider>
+            <AuthProvider>
               <div className="App">
                 <Layout />
               </div>
-            </DirectionProvider>
-          </AuthProvider>
+            </AuthProvider>
+          </DirectionProvider>
         </SnackbarProvider>
       </ThemeProvider>
     </LocalizationProvider>

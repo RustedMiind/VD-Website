@@ -40,6 +40,8 @@ const EnTranslation: TranslationObjectType = {
     register: "Register",
     login: "Login",
     idNumber: "ID",
+    companyReferenceNumber: "Register Number",
+    id: "ID",
     form: {
       otp: "OTP",
       name: "Name",
@@ -47,12 +49,15 @@ const EnTranslation: TranslationObjectType = {
       email: "Email Address",
       phone: "Phone",
       correspondenceAddress: "Correspondence Address",
+      didntRecieveCode: "Didnt Recieve OTP ?",
+      resend: "Resend",
     },
     title: {
       registerIndividual: "Register as Individual",
       registerCompany: "Register as Company",
     },
   },
+
   design: {
     main: "Designs Services",
     title: {

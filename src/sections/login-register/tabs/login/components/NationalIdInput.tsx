@@ -1,6 +1,9 @@
 import { TextField } from "@mui/material";
+import { useTranslation } from "react-i18next";
 
 function NationalIdInput(props: PropsType) {
+  const { t } = useTranslation();
+
   return (
     <TextField
       error={!!props.error}
@@ -9,7 +12,7 @@ function NationalIdInput(props: PropsType) {
       value={props.value}
       onChange={props.onChange}
       name="nationalId"
-      label="رقم الهوية"
+      label={t("auth.idNumber")}
       helperText={props.error}
     />
   );

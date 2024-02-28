@@ -20,8 +20,10 @@ import api from "methods/api";
 import { setTokenCookie, setUserState } from "redux/middlewares/userMiddleware";
 import { User } from "types/User";
 import { AuthContext } from "contexts/Auth";
+import { useTranslation } from "react-i18next";
 
 function Login(props: PropsType) {
+  const { t } = useTranslation();
   const [state, setState] = useState<
     "show" | "loading-only" | "hide" | "loading"
   >("hide");
@@ -134,7 +136,7 @@ function Login(props: PropsType) {
         component="form"
         onSubmit={submitHandler}
       >
-        <DialogTitle>تسجيل الدخول</DialogTitle>
+        <DialogTitle>{t("auth.login")}</DialogTitle>
         <DialogContent sx={{ height: "fit-content" }}>
           {/* <DialogContentText>
       </DialogContentText> */}
@@ -165,7 +167,7 @@ function Login(props: PropsType) {
             fullWidth
             type="submit"
           >
-            تسجيل الدخول
+            {t("auth.login")}
           </LoadingButton>
         </DialogActions>
       </Dialog>
