@@ -1,16 +1,26 @@
 import { Box, Button, Grid, TextField, Typography } from "@mui/material";
-import BackgroundVideo from "./components/backgroundVideo/BackgroundVideo";
-import ProjectCard from "./components/ProjectCard/ProjectCard";
-import { useState } from "react";
+import BackgroundVideo from "../../components/backgroundVideo/BackgroundVideo";
+import ProjectCard from "../../components/ProjectCard/ProjectCard";
+import { useEffect, useState } from "react";
 import SearchOutlinedIcon from "@mui/icons-material/SearchOutlined";
 import "./index.scss";
 import { useTranslation } from "react-i18next";
+import MapBanner from "./MapBanner";
+import axios from "axios";
+import api from "methods/api";
+import {
+  MapReport,
+  WorkInstructionsResponseRoot,
+} from "pages/Infrastructure_projects/types/WorkInstructionsReport";
 
 const Infrastructure_projects_Page = () => {
   // declare state
   const [activeSubTitle, setActiveSubTitle] = useState<string>("all");
   const [searchKey, setSearchKey] = useState<string>("");
   const [showSearch, setShowSearch] = useState(false);
+  const [mapReport, setMapReport] = useState<MapReport[] | undefined>(
+    undefined
+  );
   const { t } = useTranslation();
   const searchLabelVal: JSX.Element = (
     <Box
@@ -28,6 +38,18 @@ const Infrastructure_projects_Page = () => {
     searchLabelVal
   );
 
+  const getMapData = () => {
+    axios
+      .get<WorkInstructionsResponseRoot>(
+        api(`employee/report-work-instructions/${2}`)
+      )
+      .then(({ data }) => {
+        setMapReport(data.map_report);
+      });
+  };
+
+  useEffect(getMapData, []);
+
   const projects = [
     { id: 1, name: "project 1" },
     { id: 2, name: "project 2" },
@@ -39,11 +61,13 @@ const Infrastructure_projects_Page = () => {
     { id: 8, name: "project 8" },
   ];
 
-
   return (
     <Box id="InfrestructrueMainPage" sx={{ margin: 0, padding: 0 }}>
-      <BackgroundVideo activeSubTitle={activeSubTitle} setActiveSubTitle={setActiveSubTitle}/>
-     
+      {/* <BackgroundVideo activeSubTitle={activeSubTitle} setActiveSubTitle={setActiveSubTitle}/> */}
+      <MapBanner
+        center={{ lat: 29.918867242194107, lng: 31.182304554077636 }}
+        mapReport={mapReport}
+      />
       {/* header and search field */}
       <Box
         sx={{
