@@ -10,7 +10,7 @@ import {
 } from "@mui/material";
 import GoogleMapReact from "google-map-react";
 import engIcon from "../../../../../assets/images/icons/engineer2.png";
-import companyIcon from "../../../../../assets/images/icons/company.png";
+import underCon from "../../../../../assets/images/icons/under-con1.png";
 import { Tooltip } from "react-tooltip";
 import { ImgHTMLAttributes, useState } from "react";
 import EngineeringIcon from "@mui/icons-material/Engineering";
@@ -120,9 +120,7 @@ function MapBanner({
               title={report.name}
               key={`${report.id} ${report.type}`}
               toolTipId={report.id?.toString()}
-              src={
-                report.type === MapReportTypes.EMPLOYEE ? engIcon : companyIcon
-              }
+              src={report.type === MapReportTypes.EMPLOYEE ? engIcon : underCon}
               onClick={() => {
                 console.log("pressed");
                 if (report.employee) {
@@ -142,14 +140,14 @@ function MapBanner({
         <Tooltip id={item.id.toString()} />
       ))}
       <Stack
-        direction="row"
-        alignItems="center"
+        direction={{ xs: "column-reverse", md: "row" }}
+        alignItems={{ xs: "end", md: "center" }}
         spacing={1}
         p={1}
         sx={{
           position: "absolute",
           bottom: 0,
-          right: 50,
+          right: { xs: 0, md: 50 },
         }}
       >
         <MapSearchInput />
@@ -181,7 +179,7 @@ function MapBanner({
           icon={<EngineeringIcon />}
         />
         <CustomChip
-          label="مقاول"
+          label="امر عمل"
           onClick={() => setType(MapReportTypes.CONTRACTOR)}
           icon={<BusinessIcon />}
         />
