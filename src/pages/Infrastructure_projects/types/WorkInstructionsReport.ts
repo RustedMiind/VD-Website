@@ -1,39 +1,46 @@
-export interface WorkInstructionsResponseRoot {
-  map_report: MapReport[];
+import { Employee } from "types/Employee";
+
+export interface WorkInstructionsResponseRoot<T = unknown> {
+  map_report: T;
   message: string;
   status: boolean;
 }
 
-export interface MapReport {
+export interface MapReportEmployee extends Employee {}
+
+export interface MapReportContractor {
   id: number;
-  name: string;
-  first_name: string;
-  second_name: string;
-  last_name: string;
-  full_name: string;
-  user_id: number;
-  shift_id: number;
-  email: string;
-  phone: string;
-  country_id: number;
-  city_id: number;
-  address: string;
-  draft: number;
-  has_overtime: number;
-  deleted_at: any;
+  reference_number: string;
+  type_work_instruction_id: string;
+  costable_id: number;
+  expected_cost: string;
+  real_cost: string;
+  latitude: string;
+  longitude: string;
+  contractor_id: number;
+  period: number;
+  status: number;
+  start_date: string;
   created_at: string;
   updated_at: string;
-  employee_track?: EmployeeTrack;
+  type_work_instruction: TypeWorkInstruction;
+  contractor: Contractor;
 }
 
-export interface EmployeeTrack {
+export interface TypeWorkInstruction {
   id: number;
-  latitude?: string;
-  longitude?: string;
-  last_seen: string;
-  employee_id: number;
+  reference_number: string;
+  name: string;
+  description: string;
   created_at: string;
   updated_at: string;
-  active: number;
-  notify: number;
+}
+
+export interface Contractor {
+  id: number;
+  name: string;
+  phone: string;
+  email: string;
+  created_at: string;
+  updated_at: string;
 }
