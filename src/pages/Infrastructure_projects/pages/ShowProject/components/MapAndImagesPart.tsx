@@ -9,11 +9,17 @@ import { UserState, UserStateType } from "redux/reducers/userSlice";
 import { useState } from "react";
 import LoginRegister from "sections/login-register/LoginRegister";
 
-const MapAndImagesPart = () => {
+const MapAndImagesPart = ({
+  mapStr,
+  urls,
+}: {
+  mapStr: string;
+  urls: string[];
+}) => {
   const { t } = useTranslation();
   const navigator = useNavigate();
   const { settings, user } = useSelector(
-    (state: { settings: SettingsStateType; user: UserStateType }) => ({
+    (state: { settings: SettingsStateType; user: any }) => ({
       settings: state.settings,
       user: state.user,
     })
@@ -42,7 +48,11 @@ const MapAndImagesPart = () => {
                 float: "right",
               }}
               onClick={() => {
-                if (user.user.userState === UserState.NOT_USER) {
+                if (
+                  user == undefined ||
+                  user?.userState === UserState.NOT_USER ||
+                  user?.userState === UserState.UNKNOWN
+                ) {
                   //login
                   setNavDialog("login");
                   setLoginOpen(true);
@@ -66,7 +76,7 @@ const MapAndImagesPart = () => {
           </Grid>
           <Grid item xs={12}>
             {/* <MapWrapper coOrdinates={{ lat: 21.422510, lng: 39.826168 }} /> */}
-            <GoOgleMap />
+            <GoOgleMap map={mapStr} />
           </Grid>
           <Grid
             item
@@ -78,13 +88,13 @@ const MapAndImagesPart = () => {
               marginTop: "4rem",
             }}
           >
-            <ImagesGallery />
+            <ImagesGallery urls={urls} />
           </Grid>
         </Grid>
       </Grid>
       <LoginRegister
         type={navDialog}
-        open={loginOpen && user.user.userState === UserState.NOT_USER}
+        open={loginOpen}
         onClose={() => setLoginOpen(false)}
       />
     </>
