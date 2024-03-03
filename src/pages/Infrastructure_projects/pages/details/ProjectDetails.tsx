@@ -74,13 +74,13 @@ const ProjectDetails = () => {
   );
 
   useEffect(() => {
-    // if (
-    //   user?.userState === UserState.NOT_USER ||
-    //   user?.userState === UserState.UNKNOWN ||
-    //   user == undefined
-    // ) {
-    //   return Naviator("/");
-    // }
+    if (
+      user?.userState === UserState.NOT_USER ||
+      user?.userState === UserState.UNKNOWN ||
+      user == undefined
+    ) {
+      return Naviator("/");
+    }
   }, []);
 
   //TODO::fetch project data
