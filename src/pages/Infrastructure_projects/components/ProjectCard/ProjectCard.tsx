@@ -24,7 +24,7 @@ const ProjectCard = (props: propsType) => {
   const Navigator = useNavigate();
   let { id, name } = props;
   const { settings, user } = useSelector(
-    (state: { settings: SettingsStateType; user: UserStateType }) => ({
+    (state: { settings: SettingsStateType; user: any }) => ({
       settings: state.settings,
       user: state.user,
     })
@@ -61,7 +61,11 @@ const ProjectCard = (props: propsType) => {
           }}
           className="ProjectCard"
         >
-          <CardMedia sx={{ height: 228 }} image={Img} title={name} />
+          <CardMedia
+            sx={{ height: 228 }}
+            image={(props.imgUrl && props.imgUrl.length > 0) ? props.imgUrl : Img}
+            title={name}
+          />
           <CardContent sx={{ bgcolor: "#fff" }}>
             <Box
               sx={{
@@ -71,7 +75,7 @@ const ProjectCard = (props: propsType) => {
               }}
             >
               <Typography color={"#f19b02"} variant="body1" fontSize={"1rem"}>
-                جدة
+                {props.branchName}
               </Typography>
               <Typography
                 sx={{
@@ -87,7 +91,7 @@ const ProjectCard = (props: propsType) => {
                 <AccessTimeIcon />
                 <Typography fontFamily={"Cairo"} variant="body1">
                   {" "}
-                  3 شهر{" "}
+                  {props.period} يوم{" "}
                 </Typography>
               </Typography>
             </Box>
@@ -154,8 +158,11 @@ const ProjectCard = (props: propsType) => {
                   },
                 }}
                 onClick={() => {
-                  if (user.user.userState === UserState.NOT_USER) {
-                    //login
+                  if (
+                    user == undefined ||
+                    user?.userState === UserState.NOT_USER ||
+                    user?.userState === UserState.UNKNOWN
+                  ) {
                     setNavDialog("login");
                     setLoginOpen(true);
                   } else {
@@ -187,7 +194,7 @@ const ProjectCard = (props: propsType) => {
                   variant="body2"
                   sx={{ color: "#000" }}
                 >
-                  سلام راضي رمضان
+                  {props.engineerName}
                 </Typography>
               </Box>
             </Box>
@@ -196,7 +203,7 @@ const ProjectCard = (props: propsType) => {
       </Grid>
       <LoginRegister
         type={navDialog}
-        open={loginOpen && user.user.userState === UserState.NOT_USER}
+        open={loginOpen}
         onClose={() => setLoginOpen(false)}
       />
     </>
@@ -207,6 +214,10 @@ type NavDialogTypes = "login" | "register";
 type propsType = {
   id: number;
   name: string;
+  period: string;
+  branchName: string;
+  engineerName: string;
+  imgUrl: string;
 };
 
 export default ProjectCard;

@@ -10,27 +10,113 @@ import ChatBox from "pages/Infrastructure_projects/components/Chat/ChatBox";
 import { UserState, UserStateType } from "redux/reducers/userSlice";
 import { SettingsStateType } from "redux/reducers/settingsSlice";
 import { useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
+import Loader from "pages/Infrastructure_projects/components/Loading/Loading";
+import axios from "axios";
+import api from "methods/api";
+import AttachmentSections from "./components/AttachmentSections";
+
+type showProjctInformation = {
+  id: number;
+  name: string;
+  Contract_status: number;
+  amount: string;
+  branchName: string;
+  supportNumber: string;
+  OwnerName: string; //client.name
+  contractorName: string;
+  numberOfPieces: number;
+  area: number;
+  masterImg: string;
+  location: string;
+};
+
+type ContractSubItem = {
+  contract_item_id: number;
+  created_at: string;
+  employee_id: number;
+  id: number;
+  is_attachment: number;
+  is_processing: number;
+  is_progress_bar: number;
+  name: string;
+  updated_at: string;
+};
+
+type ContractItems = {
+  contract_id: number;
+  contract_sub_items: ContractSubItem[];
+  created_at: string;
+  description: string;
+  end_date: string;
+  id: number;
+  manager_id: number;
+  name: string;
+  start_date: string;
+  updated_at: string;
+};
 
 const ProjectDetails = () => {
   const [showChatBox, setShowChatBox] = useState<Boolean>(false);
+  const [project, setProject] = useState<showProjctInformation>();
   const Naviator = useNavigate();
+  let { projectId } = useParams();
+  const [loading, setLoading] = useState(false);
+  const [contractItems, setContractItems] = useState<ContractItems[]>([]);
+  // const [contractRatioItems, setContractRatioItems] = useState<ContractSubItem[]>([]);
+  // const [contractProcessingItems, setContractProcessingItems] = useState<ContractSubItem[]>([]);
+  // const [contractAttachmentItems, setContractAttachmentItems] = useState<ContractSubItem[]>([]);
   const { user } = useSelector(
-    (state: { settings: SettingsStateType; user: UserStateType }) => ({
+    (state: { settings: SettingsStateType; user: any }) => ({
       settings: state.settings,
       user: state.user,
     })
   );
 
   useEffect(() => {
-    console.log("User101", user, UserState, "|");
-    if (
-      user.user.userState === UserState.NOT_USER ||
-      user.user.userState === UserState.UNKNOWN
-    ) {
-      return Naviator("/");
-    }
+    // if (
+    //   user?.userState === UserState.NOT_USER ||
+    //   user?.userState === UserState.UNKNOWN ||
+    //   user == undefined
+    // ) {
+    //   return Naviator("/");
+    // }
   }, []);
+
+  //TODO::fetch project data
+  useEffect(() => {
+    setLoading(true);
+    axios
+      .get(api(`employee/contract-details/${projectId}`))
+      .then((data) => {
+        console.log("Incomming data :", data);
+        setProject({
+          id: +data?.data?.data?.id,
+          name: data?.data?.data?.details,
+          Contract_status: +data?.data?.data?.Contract_status,
+          branchName: data?.data?.data?.branch?.name,
+          supportNumber: data?.data?.data?.client?.phone,
+          OwnerName: data?.data?.data?.client?.name,
+          contractorName: "contractorName",
+          area: data?.data?.data?.contract_details?.area,
+          location: data?.data?.data?.contract_details?.location,
+          numberOfPieces: data?.data?.data?.contract_details?.number_parts,
+          masterImg: data?.data?.data?.contract_details?.media?.filter(
+            (ele: { collection_name: string }) =>
+              ele?.collection_name == "master_image"
+          )[0]?.original_url,
+          amount: "",
+        });
+        setContractItems(data?.data?.data?.contract_items);
+      })
+      .catch((err) => {
+        console.log("Error in fetch projects Data:", err);
+      })
+      .finally(() => setLoading(false));
+  }, []);
+
+  if (loading)
+    return <Loader h="95vh" title="جاري تحميل بيانات مشروع البنية التحتية.." />;
 
   return (
     <Box
@@ -89,7 +175,7 @@ const ProjectDetails = () => {
           }}
         >
           <Typography variant="h3" sx={{ fontSize: "2.5rem" }} fontWeight={700}>
-            تفاصيل المشروع مخطط 604
+            تفاصيل المشروع {project?.name}
           </Typography>
         </Grid>
         {/* Details */}
@@ -99,145 +185,20 @@ const ProjectDetails = () => {
             marginY: "2rem",
             display: "flex",
             justifyContent: "space-between",
-            alignItems: "center",
+            alignItems: "start",
           }}
         >
           <Grid item xs={12} md={3}>
-            <CompletionRates />
+            <CompletionRates contractItems={contractItems} />
           </Grid>
           <Grid item xs={12} md={5}>
-            <ZoningPlan />
+            <ZoningPlan
+              masterImg={project?.masterImg}
+              contractItems={contractItems}
+            />
           </Grid>
           <Grid item xs={12} md={3}>
-            <Grid
-              container
-              sx={{
-                backgroundColor: "#fff",
-                borderRadius: "17px",
-                boxSizing: "border-box",
-                padding: "1rem",
-                minHeight: "999px",
-              }}
-            >
-              <Grid item xs={12} sx={{ marginY: "1rem" }} id="ZoningPlanTable2">
-                <table style={{ width: "98%" }}>
-                  {/* header */}
-                  <thead>
-                    <tr style={{ height: "60px" }}>
-                      <th className="topCell rightCell">
-                        <Typography
-                          variant="h6"
-                          fontSize="1.2rem"
-                          fontWeight={700}
-                        >
-                          المعاملة
-                        </Typography>
-                      </th>
-                      <th className="topCell leftCell">
-                        <Typography
-                          variant="h6"
-                          fontSize="1.2rem"
-                          fontWeight={700}
-                        >
-                          الحالة الحالية
-                        </Typography>
-                      </th>
-                    </tr>
-                  </thead>
-                  {/* body */}
-                  <tbody>
-                    <tr>
-                      <td className="rightCell">
-                        <Typography
-                          variant="h6"
-                          fontSize={"1rem"}
-                          fontWeight="bolder"
-                        >
-                          الشركة السعودية للكهرباء
-                        </Typography>
-                      </td>
-                      <td className="leftCell">
-                        <Typography variant="body2" fontWeight={400}>
-                          المعاملة بالاعتماد النهائي <br />
-                          210123-322-444
-                        </Typography>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td className="rightCell">
-                        <Typography
-                          variant="h6"
-                          fontSize={"1rem"}
-                          fontWeight="bolder"
-                        >
-                          الشركة السعودية للكهرباء
-                        </Typography>
-                      </td>
-                      <td className="leftCell">
-                        <Typography variant="body2" fontWeight={400}>
-                          المعاملة بالاعتماد النهائي <br />
-                          210123-322-444
-                        </Typography>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td className="rightCell">
-                        <Typography
-                          variant="h6"
-                          fontSize={"1rem"}
-                          fontWeight="bolder"
-                        >
-                          الشركة السعودية للكهرباء
-                        </Typography>
-                      </td>
-                      <td className="leftCell">
-                        <Typography variant="body2" fontWeight={400}>
-                          المعاملة بالاعتماد النهائي <br />
-                          210123-322-444
-                        </Typography>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td className="rightCell">
-                        <Typography
-                          variant="h6"
-                          fontSize={"1rem"}
-                          fontWeight="bolder"
-                        >
-                          الشركة السعودية للكهرباء
-                        </Typography>
-                      </td>
-                      <td className="leftCell">
-                        <Typography variant="body2" fontWeight={400}>
-                          المعاملة بالاعتماد النهائي <br />
-                          210123-322-444
-                        </Typography>
-                      </td>
-                    </tr>
-                  </tbody>
-                  {/* bottom */}
-                  <tfoot>
-                    <tr>
-                      <td className="rightCell">
-                        <Typography
-                          variant="h6"
-                          fontSize={"1rem"}
-                          fontWeight="bolder"
-                        >
-                          الشركة السعودية للكهرباء
-                        </Typography>
-                      </td>
-                      <td className="leftCell">
-                        <Typography variant="body2" fontWeight={400}>
-                          المعاملة بالاعتماد النهائي <br />
-                          210123-322-444
-                        </Typography>
-                      </td>
-                    </tr>
-                  </tfoot>
-                </table>
-              </Grid>
-            </Grid>
+            <AttachmentSections contractItems={contractItems} />
           </Grid>
         </Grid>
         {/* print btn */}

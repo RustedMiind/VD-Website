@@ -5,34 +5,24 @@ import { useEffect, useState } from "react";
 import SearchOutlinedIcon from "@mui/icons-material/SearchOutlined";
 import "./index.scss";
 import { useTranslation } from "react-i18next";
-import MapBanner, { MapReportBase, MapReportTypes } from "./MapBanner";
 import axios from "axios";
 import api from "methods/api";
-import {
-  Contractor,
-  MapReportContractor,
-  MapReportEmployee,
-  WorkInstructionsResponseRoot,
-} from "pages/Infrastructure_projects/types/WorkInstructionsReport";
-import ReportDrawer from "./MapBanner/ReportDrawer";
-import { Employee } from "types/Employee";
+import Loader from "pages/Infrastructure_projects/components/Loading/Loading";
 
+type projectCard = {
+  id: number;
+  code: string;
+  branchName: string;
+  engineerName: string;
+  name: string;
+  period: string;
+  imgUrl: string;
+};
 const Infrastructure_projects_Page = () => {
   // declare state
   const [activeSubTitle, setActiveSubTitle] = useState<string>("all");
   const [searchKey, setSearchKey] = useState<string>("");
   const [showSearch, setShowSearch] = useState(false);
-  const [drawerOpen, setDrawerOpen] = useState(false);
-  const [reportType, setReportType] = useState<MapReportTypes>(
-    MapReportTypes.EMPLOYEE
-  );
-  const [mapReport, setMapReport] = useState<MapReportBase[] | undefined>(
-    undefined
-  );
-  const [reportDetails, setReportDetails] = useState<{
-    contractor?: MapReportContractor;
-    employee?: Employee;
-  }>({});
   const { t } = useTranslation();
   const searchLabelVal: JSX.Element = (
     <Box
@@ -49,123 +39,49 @@ const Infrastructure_projects_Page = () => {
   const [searchLabel, setSearchLabel] = useState<JSX.Element | string>(
     searchLabelVal
   );
+  const [loading, setLoading] = useState(false);
+  const [projects, setProjects] = useState<projectCard[]>([]);
 
-  const setMapContractorDetails = (contractor?: MapReportContractor) => {
-    setReportDetails({ contractor });
-  };
-  const setMapEmployeeDetails = (employee?: Employee) => {
-    setReportDetails({ employee });
-  };
-
-  const getMapContractorData = () => {
+  useEffect(() => {
+    setLoading(true);
     axios
-      .get<WorkInstructionsResponseRoot<MapReportContractor[]>>(
-        api(`employee/report-work-instructions/${MapReportTypes.CONTRACTOR}`)
-      )
-      .then(({ data }) => {
-        const reportData: MapReportBase[] = data.map_report
-          ?.filter((report) => {
-            if (
-              report.contractor &&
-              report.latitude &&
-              report.longitude &&
-              report.id
-            )
-              return true;
-            return false;
-          })
-          .map((report) => {
-            return {
-              name: report.contractor.name,
-              lat: parseFloat(report.latitude || "") || 0,
-              lng: parseFloat(report.longitude || "") || 0,
-              id: report.id,
-              type: MapReportTypes.CONTRACTOR,
-              contractor: report,
-            };
+      .get(api(`employee/contract?type=1`), {
+        params: {
+          limit: 100,
+        },
+      })
+      .then((data) => {
+        let arr = [],
+          n = data.data?.data?.length;
+        console.log("Arr", data.data.data, n);
+        for (let i = 0; i < n; i++) {
+          const element = data.data.data[i];
+          arr.push({
+            id: element?.id,
+            code: element?.code,
+            branchName: element?.branch?.name,
+            engineerName: element?.employee?.name,
+            name: element?.details,
+            period: element?.period,
+            imgUrl: element?.contract_details?.media?.filter(
+              (ele: { collection_name: string }) =>
+                ele?.collection_name == "main_image"
+            )[0]?.original_url,
           });
-        setMapReport(reportData);
-      });
-  };
-
-  const getMapEmployeeData = () => {
-    axios
-      .get<WorkInstructionsResponseRoot<MapReportEmployee[]>>(
-        api(`employee/report-work-instructions/${MapReportTypes.EMPLOYEE}`)
-      )
-      .then(({ data }) => {
-        const reportData: MapReportBase[] = data.map_report
-          ?.filter((report) => {
-            if (
-              report.full_name &&
-              report.employee_track?.latitude &&
-              report.employee_track?.longitude &&
-              report.id
-            )
-              return true;
-            return false;
-          })
-          .map((report) => {
-            return {
-              name: report.full_name,
-              lat: parseFloat(report.employee_track?.latitude || "") || 0,
-              lng: parseFloat(report.employee_track?.longitude || "") || 0,
-              id: report.id,
-              type: MapReportTypes.EMPLOYEE,
-              employee: report,
-            };
-          });
-        setMapReport(reportData);
-      });
-  };
-
-  const getMapData = () => {
-    setMapReport(undefined);
-    switch (reportType) {
-      case MapReportTypes.CONTRACTOR:
-        getMapContractorData();
-        break;
-      case MapReportTypes.EMPLOYEE:
-        getMapEmployeeData();
-        break;
-    }
-  };
-
-  console.log(mapReport);
-
-  useEffect(getMapData, [reportType]);
-
-  const projects = [
-    { id: 1, name: "project 1" },
-    { id: 2, name: "project 2" },
-    { id: 3, name: "project 3" },
-    { id: 4, name: "project 4" },
-    { id: 5, name: "project 5" },
-    { id: 6, name: "project 6" },
-    { id: 7, name: "project 7" },
-    { id: 8, name: "project 8" },
-  ];
+        }
+        setProjects(arr);
+      })
+      .catch((err) => {
+        console.log("Error in fetch projects Data:", err);
+      })
+      .finally(() => setLoading(false));
+  }, []);
 
   return (
     <Box id="InfrestructrueMainPage" sx={{ margin: 0, padding: 0 }}>
-      <ReportDrawer
-        reportDetails={reportDetails}
-        open={drawerOpen}
-        onClose={() => {
-          setDrawerOpen(false);
-        }}
-      />
-      {/* <BackgroundVideo activeSubTitle={activeSubTitle} setActiveSubTitle={setActiveSubTitle}/> */}
-      <MapBanner
-        center={{ lat: 29.918867242194107, lng: 31.182304554077636 }}
-        mapReport={mapReport}
-        type={reportType}
-        setType={setReportType}
-        openDrawer={() => {
-          setDrawerOpen(true);
-        }}
-        setReportContractorDetails={setMapContractorDetails}
-        setReportEmployeeDetails={setMapEmployeeDetails}
+      <BackgroundVideo
+        activeSubTitle={activeSubTitle}
+        setActiveSubTitle={setActiveSubTitle}
       />
       {/* header and search field */}
       <Box
@@ -249,9 +165,19 @@ const Infrastructure_projects_Page = () => {
             flexWrap: "wrap",
           }}
         >
-          {projects.map((p) => (
-            <ProjectCard key={p.id} id={p.id} name={p.name} />
-          ))}
+          {projects.length == 0 && <Loader />}
+          {projects.length > 0 &&
+            projects.map((p, idx) => (
+              <ProjectCard
+                key={`p_${idx}_${p.id}_${p.code}`}
+                id={p.id}
+                name={p.name}
+                period={p.period}
+                branchName={p.branchName}
+                imgUrl={p.imgUrl}
+                engineerName={p.engineerName}
+              />
+            ))}
         </Grid>
       </Box>
       <Box className="pyramid-container">
