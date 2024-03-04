@@ -26,6 +26,7 @@ type showProjctInformation = {
   area: number;
   bannerImg: string;
   location: string;
+  cardId?: number;
 };
 const ShowProject = () => {
   // declare our state
@@ -58,6 +59,7 @@ const ShowProject = () => {
               ele?.collection_name == "banner"
           )[0]?.original_url,
           amount: "",
+          cardId: data?.data?.data?.client?.card_id,
         });
 
         setMapStr(data?.data?.data?.contract_details?.map);
@@ -133,7 +135,12 @@ const ShowProject = () => {
             <ProjectInformation project={project} />
           </Grid>
           <Grid item xs={12} md={6}>
-            <MapAndImagesPart mapStr={mapStr} urls={subImagesUrls} />
+            <MapAndImagesPart
+              id={project?.id}
+              cardId={project?.cardId}
+              mapStr={mapStr}
+              urls={subImagesUrls}
+            />
           </Grid>
         </Grid>
       </Box>

@@ -53,6 +53,16 @@ const BackgroundVideo = ({ activeSubTitle, setActiveSubTitle }: propsType) => {
       >
         {/* particles-js */}
         <ParticlesBG />
+        <Box
+          sx={{
+            position: "absolute",
+            top: "39%",
+            color: "#fff",
+            fontWeight: 800,
+          }}
+        >
+          <Typography variant="h1">مشاريع البنية التحتية</Typography>
+        </Box>
         {/* sub titles links */}
         <Box className="InfrastructureProjectsSubTitlesContainer">
           <Box className="InfrastructureProjectsSubTitles">{singleLink}</Box>
