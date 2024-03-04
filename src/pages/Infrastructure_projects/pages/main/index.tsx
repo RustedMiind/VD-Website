@@ -17,6 +17,7 @@ type projectCard = {
   name: string;
   period: string;
   imgUrl: string;
+  cardId?: number;
 };
 const Infrastructure_projects_Page = () => {
   // declare state
@@ -53,7 +54,7 @@ const Infrastructure_projects_Page = () => {
       .then((data) => {
         let arr = [],
           n = data.data?.data?.length;
-        console.log("Arr", data.data.data, n);
+
         for (let i = 0; i < n; i++) {
           const element = data.data.data[i];
           arr.push({
@@ -67,6 +68,7 @@ const Infrastructure_projects_Page = () => {
               (ele: { collection_name: string }) =>
                 ele?.collection_name == "main_image"
             )[0]?.original_url,
+            cardId: element?.client?.card_id,
           });
         }
         setProjects(arr);
@@ -176,6 +178,7 @@ const Infrastructure_projects_Page = () => {
                 branchName={p.branchName}
                 imgUrl={p.imgUrl}
                 engineerName={p.engineerName}
+                cardId={p.cardId}
               />
             ))}
         </Grid>

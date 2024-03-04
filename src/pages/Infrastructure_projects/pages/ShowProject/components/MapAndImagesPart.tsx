@@ -8,16 +8,24 @@ import { SettingsStateType } from "redux/reducers/settingsSlice";
 import { UserState, UserStateType } from "redux/reducers/userSlice";
 import { useState } from "react";
 import LoginRegister from "sections/login-register/LoginRegister";
+import axios from "axios";
+import api from "methods/api";
+import { useSnackbar } from "notistack";
 
 const MapAndImagesPart = ({
   mapStr,
   urls,
+  id,
+  cardId,
 }: {
   mapStr: string;
   urls: string[];
+  id?: number;
+  cardId?: number;
 }) => {
   const { t } = useTranslation();
   const navigator = useNavigate();
+  const { enqueueSnackbar } = useSnackbar();
   const { settings, user } = useSelector(
     (state: { settings: SettingsStateType; user: any }) => ({
       settings: state.settings,
@@ -26,7 +34,14 @@ const MapAndImagesPart = ({
   );
   const [loginOpen, setLoginOpen] = useState(false);
   const [navDialog, setNavDialog] = useState<NavDialogTypes>("login");
+  // TODO::function to check valid to continue in login or not
+  const unAbaleToSeeProjectDetails = (nationalNum: string) => {
+    return !cardId || nationalNum != cardId?.toString();
+  };
 
+  const redirectToDetails = () => {
+    navigator(`/infrastructure_projects/details/${id}`);
+  };
   return (
     <>
       <Grid
@@ -57,7 +72,25 @@ const MapAndImagesPart = ({
                   setNavDialog("login");
                   setLoginOpen(true);
                 } else {
-                  navigator(`/`);
+                  //TODO::check user able to see project details or not?
+                  axios
+                    .get(api(`client/contact-details-authorized/${id}`))
+                    .then((response) => {
+                      if (
+                        response?.data?.msg?.includes("authorized") &&
+                        !response?.data?.msg?.includes("not")
+                      ) {
+                        navigator(`/infrastructure_projects/details/${id}`);
+                      } else {
+                        enqueueSnackbar(
+                          "ليس لديك صلاحية لروية تفاصيل المشروع",
+                          { variant: "error" }
+                        );
+                      }
+                    })
+                    .catch((err) => {
+                      console.log("Error::", err);
+                    });
                 }
               }}
               variant="contained"
@@ -95,6 +128,8 @@ const MapAndImagesPart = ({
       <LoginRegister
         type={navDialog}
         open={loginOpen}
+        unAbaleToSeeProjectDetails={unAbaleToSeeProjectDetails}
+        redirectTo={redirectToDetails}
         onClose={() => setLoginOpen(false)}
       />
     </>

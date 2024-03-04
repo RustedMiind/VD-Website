@@ -10,7 +10,7 @@ import {
 } from "@mui/material";
 import SaveIcon from "@mui/icons-material/Save";
 import LoadingButton from "@mui/lab/LoadingButton";
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import NationalIdInput from "./components/NationalIdInput";
 import OtpInputContainer from "./components/OtpInputContainer";
@@ -77,6 +77,9 @@ function Login(props: PropsType) {
         setState("hide");
         setUserState({ user: data.data.client }, dispatch);
         setTokenCookie(data.data.token);
+        if (props?.redirectTo) {
+          props?.redirectTo();
+        }
       })
       .catch((err) => {
         setState("show");
@@ -122,6 +125,15 @@ function Login(props: PropsType) {
   function submitHandler(e: React.FormEvent<HTMLFormElement | HTMLDivElement>) {
     e.preventDefault();
     setError("");
+    //* open it from infrestructures page :/
+    if (props?.unAbaleToSeeProjectDetails) {
+      let check = props?.unAbaleToSeeProjectDetails(nationalNumber);
+      if (check) {
+        setError("ليس لديك صلاحية لروية تفاصيل المشروع");
+        return;
+      }
+    }
+    //* open it from any where else :)
     if (state === "hide") nationalNumberSubmit();
     else if (state === "show") otpSubmit();
   }
@@ -175,6 +187,11 @@ function Login(props: PropsType) {
   );
 }
 
-type PropsType = { open: boolean; onClose: () => void };
+type PropsType = {
+  open: boolean;
+  onClose: () => void;
+  redirectTo?: () => void;
+  unAbaleToSeeProjectDetails?: (nationalNum: string) => boolean; //for checking this user able to see project details or not
+};
 
 export default Login;

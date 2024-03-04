@@ -19,9 +19,13 @@ import { UserState, UserStateType } from "redux/reducers/userSlice";
 import { SettingsStateType } from "redux/reducers/settingsSlice";
 import { useState } from "react";
 import LoginRegister from "sections/login-register/LoginRegister";
+import axios from "axios";
+import api from "methods/api";
+import { useSnackbar } from "notistack";
 
 const ProjectCard = (props: propsType) => {
   const Navigator = useNavigate();
+  const { enqueueSnackbar } = useSnackbar();
   let { id, name } = props;
   const { settings, user } = useSelector(
     (state: { settings: SettingsStateType; user: any }) => ({
@@ -31,6 +35,14 @@ const ProjectCard = (props: propsType) => {
   );
   const [loginOpen, setLoginOpen] = useState(false);
   const [navDialog, setNavDialog] = useState<NavDialogTypes>("login");
+
+  // TODO::function to check valid to continue in login or not
+  const unAbaleToSeeProjectDetails = (nationalNum: string) => {
+    return !props?.cardId || nationalNum != props?.cardId?.toString();
+  };
+  const redirectToDetails = () => {
+    Navigator(`/infrastructure_projects/details/${id}`);
+  };
 
   return (
     <>
@@ -63,7 +75,7 @@ const ProjectCard = (props: propsType) => {
         >
           <CardMedia
             sx={{ height: 228 }}
-            image={(props.imgUrl && props.imgUrl.length > 0) ? props.imgUrl : Img}
+            image={props.imgUrl && props.imgUrl.length > 0 ? props.imgUrl : Img}
             title={name}
           />
           <CardContent sx={{ bgcolor: "#fff" }}>
@@ -166,7 +178,25 @@ const ProjectCard = (props: propsType) => {
                     setNavDialog("login");
                     setLoginOpen(true);
                   } else {
-                    Navigator(`details/${id}`);
+                    //TODO::check user able to see project details or not?
+                    axios
+                      .get(api(`client/contact-details-authorized/${props.id}`))
+                      .then((response) => {
+                        if (
+                          response?.data?.msg?.includes("authorized") &&
+                          !response?.data?.msg?.includes("not")
+                        ) {
+                          Navigator(`details/${id}`);
+                        } else {
+                          enqueueSnackbar(
+                            "ليس لديك صلاحية لروية تفاصيل المشروع",
+                            { variant: "error" }
+                          );
+                        }
+                      })
+                      .catch((err) => {
+                        console.log("Error::", err);
+                      });
                   }
                 }}
               >
@@ -204,6 +234,8 @@ const ProjectCard = (props: propsType) => {
       <LoginRegister
         type={navDialog}
         open={loginOpen}
+        unAbaleToSeeProjectDetails={unAbaleToSeeProjectDetails}
+        redirectTo={redirectToDetails}
         onClose={() => setLoginOpen(false)}
       />
     </>
@@ -218,6 +250,7 @@ type propsType = {
   branchName: string;
   engineerName: string;
   imgUrl: string;
+  cardId?: number;
 };
 
 export default ProjectCard;
