@@ -34,7 +34,14 @@ const MapAndImagesPart = ({
   );
   const [loginOpen, setLoginOpen] = useState(false);
   const [navDialog, setNavDialog] = useState<NavDialogTypes>("login");
+  // TODO::function to check valid to continue in login or not
+  const unAbaleToSeeProjectDetails = (nationalNum: string) => {
+    return !cardId || nationalNum != cardId?.toString();
+  };
 
+  const redirectToDetails = () => {
+    navigator(`/infrastructure_projects/details/${id}`);
+  };
   return (
     <>
       <Grid
@@ -121,8 +128,8 @@ const MapAndImagesPart = ({
       <LoginRegister
         type={navDialog}
         open={loginOpen}
-        cardId={cardId ?? -1}
-        redirectTo={`/infrastructure_projects/details/${id}`}
+        unAbaleToSeeProjectDetails={unAbaleToSeeProjectDetails}
+        redirectTo={redirectToDetails}
         onClose={() => setLoginOpen(false)}
       />
     </>

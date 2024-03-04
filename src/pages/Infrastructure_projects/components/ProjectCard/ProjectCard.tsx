@@ -36,6 +36,14 @@ const ProjectCard = (props: propsType) => {
   const [loginOpen, setLoginOpen] = useState(false);
   const [navDialog, setNavDialog] = useState<NavDialogTypes>("login");
 
+  // TODO::function to check valid to continue in login or not
+  const unAbaleToSeeProjectDetails = (nationalNum: string) => {
+    return !props?.cardId || nationalNum != props?.cardId?.toString();
+  };
+  const redirectToDetails = () => {
+    Navigator(`/infrastructure_projects/details/${id}`);
+  };
+
   return (
     <>
       <Grid
@@ -226,8 +234,8 @@ const ProjectCard = (props: propsType) => {
       <LoginRegister
         type={navDialog}
         open={loginOpen}
-        cardId={props?.cardId ?? -1}
-        redirectTo={`details/${id}`}
+        unAbaleToSeeProjectDetails={unAbaleToSeeProjectDetails}
+        redirectTo={redirectToDetails}
         onClose={() => setLoginOpen(false)}
       />
     </>

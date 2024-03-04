@@ -21,7 +21,6 @@ import { setTokenCookie, setUserState } from "redux/middlewares/userMiddleware";
 import { User } from "types/User";
 import { AuthContext } from "contexts/Auth";
 import { useTranslation } from "react-i18next";
-import { useNavigate } from "react-router-dom";
 
 function Login(props: PropsType) {
   const { t } = useTranslation();
@@ -34,18 +33,8 @@ function Login(props: PropsType) {
   const [otpError, setOtpError] = useState("");
   const [otp, setOtp] = useState("");
   const dispatch = useDispatch();
-  const navigator = useNavigate();
-  const [checkAbleSeeIPDetails, setCheckAbleSeeIPDetails] = useState(false);
   const { openRegisterDialog } = useContext(AuthContext);
 
-  //TODO::check if user login from infrestructures page
-  useEffect(() => {
-    if (props?.cardId) {
-      setCheckAbleSeeIPDetails(true);
-    } else {
-      setCheckAbleSeeIPDetails(false);
-    }
-  }, [props.cardId]);
   // functions
   function nationalNumberSubmit() {
     // setState("loading");
@@ -88,8 +77,8 @@ function Login(props: PropsType) {
         setState("hide");
         setUserState({ user: data.data.client }, dispatch);
         setTokenCookie(data.data.token);
-        if (props?.redirectTo && props?.redirectTo?.length > 0) {
-          navigator(props?.redirectTo);
+        if (props?.redirectTo) {
+          props?.redirectTo();
         }
       })
       .catch((err) => {
@@ -136,9 +125,10 @@ function Login(props: PropsType) {
   function submitHandler(e: React.FormEvent<HTMLFormElement | HTMLDivElement>) {
     e.preventDefault();
     setError("");
-    if (checkAbleSeeIPDetails) {
-      //* user open login page from infrestructres page :)
-      if (!props.cardId || nationalNumber != props?.cardId?.toString()) {
+    //* open it from infrestructures page :/
+    if (props?.unAbaleToSeeProjectDetails) {
+      let check = props?.unAbaleToSeeProjectDetails(nationalNumber);
+      if (check) {
         setError("ليس لديك صلاحية لروية تفاصيل المشروع");
         return;
       }
@@ -200,8 +190,8 @@ function Login(props: PropsType) {
 type PropsType = {
   open: boolean;
   onClose: () => void;
-  cardId?: number; //for checking this user able to see project details or not
-  redirectTo?: string;
+  redirectTo?: () => void;
+  unAbaleToSeeProjectDetails?: (nationalNum: string) => boolean; //for checking this user able to see project details or not
 };
 
 export default Login;
