@@ -10,9 +10,9 @@ export default function ImagesGallery({ urls }: { urls: string[] }){
           return { id: `Img_${idx}_${Math.random() * 10}`, src: url };
         })
       : [];
-  let more = images.length > 6,
+  let more = images.length > 4,
     imagesArr = images;
-  if (more) imagesArr = images.slice(0, 5);
+  if (more) imagesArr = images.slice(0, 4);
 
   return (
     <Grid container sx={{ width: "95%" }}>
@@ -29,7 +29,7 @@ export default function ImagesGallery({ urls }: { urls: string[] }){
           </Grid>
         );
       })}
-      {more && (
+      {/* {more && (
         <Grid item xs={12} md={6} sx={{ padding: "0.2rem" }}>
           <Box
             style={{
@@ -62,7 +62,7 @@ export default function ImagesGallery({ urls }: { urls: string[] }){
             </Box>
           </Box>
         </Grid>
-      )}
+      )} */}
     </Grid>
   );
 };
