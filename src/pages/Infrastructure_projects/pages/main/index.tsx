@@ -8,6 +8,7 @@ import { useTranslation } from "react-i18next";
 import axios from "axios";
 import api from "methods/api";
 import Loader from "pages/Infrastructure_projects/components/Loading/Loading";
+import ThereIsNoData from "../details/components/NoData";
 
 type projectCard = {
   id: number;
@@ -167,8 +168,22 @@ const Infrastructure_projects_Page = () => {
             flexWrap: "wrap",
           }}
         >
-          {projects.length == 0 && <Loader />}
-          {projects.length > 0 &&
+          {loading && <Loader />}
+          {!loading && projects.length == 0 && (
+            <Box
+              sx={{
+                width: "100%",
+                textAlign: "center",
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+              }}
+            >
+              <ThereIsNoData />
+            </Box>
+          )}
+          {!loading &&
+            projects.length > 0 &&
             projects.map((p, idx) => (
               <ProjectCard
                 key={`p_${idx}_${p.id}_${p.code}`}
