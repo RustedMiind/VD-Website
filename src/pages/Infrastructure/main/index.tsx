@@ -1,7 +1,11 @@
 import { Stack } from "@mui/material";
 import PageBannerLayout from "pages/page-banner-layout/PageBannerLayout";
-
+import CardContainer from "./CardContainer";
+import BackgroundVideo from "./backgroundVideo/BackgroundVideo";
+import { useState } from "react";
 function InfrastructureMainPage() {
+  const [activeSubTitle, setActiveSubTitle] = useState<string>("all");
+
   return (
     <Stack>
       {/*
@@ -11,7 +15,11 @@ function InfrastructureMainPage() {
 
       */}
       {/* Search Component */}
-      {/* Cards Container */}
+      <BackgroundVideo
+        activeSubTitle={activeSubTitle}
+        setActiveSubTitle={setActiveSubTitle}
+      />
+      <CardContainer />
     </Stack>
   );
 }
