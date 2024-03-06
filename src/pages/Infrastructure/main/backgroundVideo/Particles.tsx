@@ -33,7 +33,7 @@ const ParticlesBG = () => {
           image: `url(${bgImg})`,
           size: "100% 100%",
         },
-        fpsLimit: 24,
+        fpsLimit: 90,
         interactivity: {
           events: {
             onClick: {
@@ -74,7 +74,7 @@ const ParticlesBG = () => {
               default: "bounce",
             },
             random: false,
-            speed: 1,
+            speed: 1.5,
             straight: false,
           },
           number: {
@@ -89,12 +89,13 @@ const ParticlesBG = () => {
           },
           shape: {
             type: "circle",
+            polygon: { sides: 10 },
           },
           size: {
             value: { min: 1, max: 2 },
           },
         },
-        detectRetina: true,
+        smooth: true,
       }}
     />
   );

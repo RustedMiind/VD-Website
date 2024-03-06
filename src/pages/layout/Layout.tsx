@@ -46,10 +46,6 @@ function Layout() {
             element={<Infrastructure_projects_Page />}
           />
           <Route
-            path="InfrastructureMainPage"
-            element={<InfrastructureMainPage />}
-          />
-          <Route
             path="Infrastructure_projects/show/:projectId"
             element={<ShowProject />}
           />
@@ -77,7 +73,8 @@ function Layout() {
             </Route>
 
             <Route path="infrastructure">
-              <Route path="" element={<ProjectPreviewPage />} />
+              <Route path="" element={<InfrastructureMainPage />} />
+              <Route path=":id" element={<ProjectPreviewPage />} />
             </Route>
           </Route>
           <Route path="projects">
