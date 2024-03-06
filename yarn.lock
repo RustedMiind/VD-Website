@@ -2304,6 +2304,13 @@
     "@types/qs" "*"
     "@types/serve-static" "*"
 
+"@types/fslightbox-react@^1.7.7":
+  version "1.7.7"
+  resolved "https://registry.yarnpkg.com/@types/fslightbox-react/-/fslightbox-react-1.7.7.tgz#a10997255df7adb660fabaa0d4e0502bab81cbce"
+  integrity sha512-pp9Y7/+L4NFlMp+PdESx66EG0/m70aqg81FNlLP08dGWvRRSvNJFv08Jc91IEQkbh/C1PpokCekNCWZqpWxiyQ==
+  dependencies:
+    "@types/react" "*"
+
 "@types/google-map-react@^2.1.7":
   version "2.1.7"
   resolved "https://registry.npmjs.org/@types/google-map-react/-/google-map-react-2.1.7.tgz"
@@ -5116,6 +5123,11 @@ fsevents@^2.3.2, fsevents@~2.3.2:
   version "2.3.3"
   resolved "https://registry.yarnpkg.com/fsevents/-/fsevents-2.3.3.tgz#cac6407785d03675a2a5e1a5305c697b347d90d6"
   integrity sha512-5xoDfX+fL7faATnagmWPpbFtwh/R77WmMMqqHGS65C3vvB0YHrgF+B1YmZ3441tMj5n63k0212XNoJwzlhffQw==
+
+fslightbox-react@^1.7.6:
+  version "1.7.6"
+  resolved "https://registry.yarnpkg.com/fslightbox-react/-/fslightbox-react-1.7.6.tgz#eb9565e1f836b647cdbdf4734705222ca542dbd3"
+  integrity sha512-7LN2GZRLHo2vZGKdH+BZDJUoUDkCRCLlZ5hOwtLtZplmGZQ9nqzpG54cTax7XNjbYGTWLT6BHdMiL5zOEhiRlA==
 
 function-bind@^1.1.1:
   version "1.1.1"

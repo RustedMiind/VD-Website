@@ -77,6 +77,10 @@ function App() {
           secondary: {
             main: "#004693",
           },
+          success: {
+            main: "#03C827",
+            contrastText: "#FFFFFF",
+          },
           background: {
             default: "#FFFFFF",
             paper: "#F1F1F1",

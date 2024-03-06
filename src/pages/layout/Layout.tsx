@@ -22,6 +22,7 @@ import ShowProject from "pages/Infrastructure_projects/pages/ShowProject/ShowPro
 import ProjectDetails from "pages/Infrastructure_projects/pages/details/ProjectDetails";
 import ProjectMoreDetails from "pages/Infrastructure_projects/pages/moreDetails/ProjectMoreDetails";
 import InfrastructureMainPage from "pages/Infrastructure/main";
+import ProjectPreviewPage from "pages/Infrastructure/project";
 
 function Layout() {
   const { lang } = useContext(LangContext);
@@ -39,6 +40,7 @@ function Layout() {
           <Route path="privacy" element={<PrivacyPage />} />
           <Route path="news" element={<NewsPage />} />
           <Route path="contact" element={<ContactUsPage />} />
+
           <Route
             path="Infrastructure_projects"
             element={<Infrastructure_projects_Page />}
@@ -72,6 +74,10 @@ function Layout() {
               <Route path="" element={<DesignService />} />
               <Route path=":designId" element={<DesignPreview />} />
               <Route path="purchase/:designId" element={<DesignPurchase />} />
+            </Route>
+
+            <Route path="infrastructure">
+              <Route path="" element={<ProjectPreviewPage />} />
             </Route>
           </Route>
           <Route path="projects">

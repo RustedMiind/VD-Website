@@ -23,6 +23,7 @@ import {
   MapReportContractor,
 } from "pages/Infrastructure_projects/types/WorkInstructionsReport";
 import { Employee } from "types/Employee";
+import GoogleMapApiKey from "contstants/GoogleMapApiKey";
 
 export enum MapReportTypes {
   CONTRACTOR = 1,
@@ -107,7 +108,7 @@ function MapBanner({
       </Backdrop>
       {mapReport ? (
         <GoogleMapReact
-          bootstrapURLKeys={{ key: "AIzaSyBx1GmOXC3CLSgfvPNYpu0CEDItEMN3W0M" }}
+          bootstrapURLKeys={{ key: GoogleMapApiKey }}
           center={currentCenter ? mapReport?.[currentCenter] || center : center}
           defaultZoom={8}
           key={`${center.lat}, ${center.lng}, ${"currentCenter"}`}
