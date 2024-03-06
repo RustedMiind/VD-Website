@@ -21,6 +21,7 @@ import Infrastructure_projects_Page from "pages/Infrastructure_projects/pages/ma
 import ShowProject from "pages/Infrastructure_projects/pages/ShowProject/ShowProject";
 import ProjectDetails from "pages/Infrastructure_projects/pages/details/ProjectDetails";
 import ProjectMoreDetails from "pages/Infrastructure_projects/pages/moreDetails/ProjectMoreDetails";
+import InfrastructureMainPage from "pages/Infrastructure/main";
 
 function Layout() {
   const { lang } = useContext(LangContext);
@@ -41,6 +42,10 @@ function Layout() {
           <Route
             path="Infrastructure_projects"
             element={<Infrastructure_projects_Page />}
+          />
+          <Route
+            path="InfrastructureMainPage"
+            element={<InfrastructureMainPage />}
           />
           <Route
             path="Infrastructure_projects/show/:projectId"

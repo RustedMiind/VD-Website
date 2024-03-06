@@ -22,7 +22,7 @@ const ParticlesBG = () => {
         width: "100%",
         position: "absolute",
         top: "0",
-        height: "88vh",
+        left: "0",
       }}
       id="tsparticles"
       init={particlesInit}
@@ -33,11 +33,11 @@ const ParticlesBG = () => {
           image: `url(${bgImg})`,
           size: "100% 100%",
         },
-        fpsLimit: 120,
+        fpsLimit: 24,
         interactivity: {
           events: {
             onClick: {
-              enable: true,
+              enable: false,
               mode: "push",
             },
             onHover: {
@@ -48,10 +48,10 @@ const ParticlesBG = () => {
           },
           modes: {
             push: {
-              quantity: 4,
+              quantity: 0,
             },
             repulse: {
-              distance: 200,
+              distance: 100,
               duration: 0.4,
             },
           },
@@ -65,7 +65,7 @@ const ParticlesBG = () => {
             distance: 150,
             enable: true,
             opacity: 0.5,
-            width: 1,
+            width: 0.5,
           },
           move: {
             direction: "none",
@@ -74,24 +74,24 @@ const ParticlesBG = () => {
               default: "bounce",
             },
             random: false,
-            speed: 4,
+            speed: 1,
             straight: false,
           },
           number: {
             density: {
               enable: true,
-              area: 800,
+              area: 500,
             },
-            value: 80,
+            value: 70,
           },
           opacity: {
-            value: 0.5,
+            value: 3,
           },
           shape: {
             type: "circle",
           },
           size: {
-            value: { min: 1, max: 5 },
+            value: { min: 1, max: 2 },
           },
         },
         detectRetina: true,
