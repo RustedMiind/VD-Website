@@ -1,6 +1,6 @@
-import { Grid } from "@mui/material";
+import { Box, Grid } from "@mui/material";
 import AspectRatioImageV2 from "components/AspectRatioImageV2";
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import FsLightbox from "fslightbox-react";
 
 function GridImagesViewer({ images, limitRows = 2 }: PropsType) {
@@ -11,14 +11,21 @@ function GridImagesViewer({ images, limitRows = 2 }: PropsType) {
     setCurrentImageIndex(index);
     setToggler(!toggler);
   };
+  const exceeded = useMemo(
+    () => images.length - imagesToShow.length,
+    [images.length]
+  );
   return (
     <>
       <Grid container spacing={1}>
         {imagesToShow.map((img, index) => (
-          <Grid key={img.src} item xs={6}>
+          <Grid key={img.src} item xs={6} sx={{ position: "relative" }}>
             <AspectRatioImageV2
               src={img.src}
               onClick={() => openImage(index)}
+              {...(index === imagesToShow.length - 1 && exceeded > 1
+                ? { overlay: `+${exceeded}` }
+                : undefined)}
             />
           </Grid>
         ))}
