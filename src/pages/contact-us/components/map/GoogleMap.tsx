@@ -1,5 +1,6 @@
 import React from "react";
 import GoogleMapReact from "google-map-react";
+import GoogleMapApiKey from "contstants/GoogleMapApiKey";
 
 function GoogleMap(props: PropsType) {
   const myLatLng = props.coOrdinates;
@@ -18,7 +19,7 @@ function GoogleMap(props: PropsType) {
     // Important! Always set the container height explicitly
     <div style={{ height: "100%", width: "100%" }}>
       <GoogleMapReact
-        bootstrapURLKeys={{ key: "AIzaSyBx1GmOXC3CLSgfvPNYpu0CEDItEMN3W0M" }}
+        bootstrapURLKeys={{ key: GoogleMapApiKey }}
         center={defaultProps.center}
         defaultZoom={defaultProps.zoom}
         onGoogleApiLoaded={({ map, maps }) => renderMarkers(map, maps)}
