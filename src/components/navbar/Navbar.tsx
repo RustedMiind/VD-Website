@@ -91,7 +91,7 @@ function Navbar() {
                 <MenuItem component={NavLink} to="/e-services/design">
                   {t("links.eServices.design")}
                 </MenuItem>
-                <MenuItem component={NavLink} to="/infrastructure_projects">
+                <MenuItem component={NavLink} to="/e-services/infrastructure">
                   البنية التحتية
                 </MenuItem>
               </MenuList>

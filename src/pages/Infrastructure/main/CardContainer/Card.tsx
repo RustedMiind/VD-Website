@@ -14,7 +14,7 @@ import AccessTimeIcon from "@mui/icons-material/AccessTime";
 import FindInPageIcon from "@mui/icons-material/FindInPage";
 import { Contract } from "types/Contract/Contract";
 import { NavLink } from "react-router-dom";
-import placeholderImage from "assets/images/card-bg.png";
+import placeholderImage from "assets/images/card-image-placeholder.png";
 
 function InfrastructureCard({ details }: PropsType) {
   return (
