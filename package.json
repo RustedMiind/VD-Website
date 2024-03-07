@@ -30,6 +30,7 @@
     "axios": "^1.4.0",
     "dayjs": "^1.11.10",
     "filepond": "^4.30.6",
+    "framer-motion": "^11.0.8",
     "fslightbox-react": "^1.7.6",
     "google-map-react": "^2.2.1",
     "i18next": "^23.4.4",

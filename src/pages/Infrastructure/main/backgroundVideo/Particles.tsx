@@ -29,10 +29,10 @@ const ParticlesBG = () => {
       loaded={particlesLoaded}
       options={{
         fullScreen: false,
-        background: {
-          image: `url(${bgImg})`,
-          size: "100% 100%",
-        },
+        // background: {
+        //   image: `url(${bgImg})`,
+        //   size: "100% 100%",
+        // },
         fpsLimit: 90,
         interactivity: {
           events: {

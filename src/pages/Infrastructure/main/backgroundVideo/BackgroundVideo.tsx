@@ -1,11 +1,12 @@
 import React, { useRef, useEffect } from "react";
 import bgImg from "assets/images/infrestructurePeojectsImages/Infrastructure_projects_minPageBG.png";
-import { Box, Button, Typography } from "@mui/material";
+import { Box, Button, Container, Typography } from "@mui/material";
 import { useTranslation } from "react-i18next";
 import ParticlesBG from "./Particles";
 
 const BackgroundVideo = ({ activeSubTitle, setActiveSubTitle }: propsType) => {
   const { t } = useTranslation();
+
   const subTitles = [
     { id: 1, title: t("InfrastructureProjects.subTitles.all"), tag: "all" },
     {
@@ -30,8 +31,9 @@ const BackgroundVideo = ({ activeSubTitle, setActiveSubTitle }: propsType) => {
       <Box
         sx={{
           width: "100%",
-          // backgroundImage: `url(${bgImg})`,
-          backgroundSize: "100% 100%",
+          backgroundImage: `url(${bgImg})`,
+          backgroundSize: "cover",
+          backgroundPositionY: "bottom",
           height: "100vh",
           display: "flex",
           justifyContent: "center",
@@ -54,35 +56,38 @@ const BackgroundVideo = ({ activeSubTitle, setActiveSubTitle }: propsType) => {
         </Box>
         {/* sub titles links */}
         <Box
-          sx={{
+          component={Container}
+          maxWidth={"xl"}
+          sx={({ breakpoints }) => ({
             position: "absolute",
-            bottom: "15%",
-            width: "60%",
+            bottom: "18%",
             display: "flex",
             justifyContent: "center",
-            background: " rgba(243, 245, 247, 0.3)",
+            background: " rgba(243, 245, 247, 0.2)",
             borderRadius: "10px",
-          }}
+          })}
         >
           <Box
             sx={{
               display: "flex",
               justifyContent: "space-around",
               width: "100%",
+              gap: 2,
+              flexWrap: "wrap",
             }}
           >
-            {subTitles.map((ele) => (
+            {subTitles.map((subtitle) => (
               <Button
-                onClick={() => setActiveSubTitle(ele.tag)}
-                variant={activeSubTitle === ele.tag ? "contained" : "text"}
-                // className={activeSubTitle === ele.tag ? "active" : ""}
+                onClick={() => setActiveSubTitle(subtitle.tag)}
+                variant={activeSubTitle === subtitle.tag ? "contained" : "text"}
                 sx={{
-                  color: "#fff",
+                  color: "primary.contrastText",
                   my: 2,
                   borderRadius: "50px",
                 }}
+                disabled
               >
-                {ele?.title}
+                {subtitle?.title}
               </Button>
             ))}
           </Box>

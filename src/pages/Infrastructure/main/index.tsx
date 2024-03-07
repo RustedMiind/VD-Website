@@ -1,11 +1,17 @@
-import { Stack } from "@mui/material";
+import { Box, Container, Stack } from "@mui/material";
 import PageBannerLayout from "pages/page-banner-layout/PageBannerLayout";
 import CardContainer from "./CardContainer";
 import BackgroundVideo from "./backgroundVideo/BackgroundVideo";
-import { useState } from "react";
+import Search from "./Search";
+import { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
+import { requestSetInfrastrucureProjects } from "redux/middlewares/infrastructureMiddleware";
 function InfrastructureMainPage() {
   const [activeSubTitle, setActiveSubTitle] = useState<string>("all");
-
+  const dispatch = useDispatch();
+  useEffect(() => {
+    requestSetInfrastrucureProjects(dispatch);
+  }, []);
   return (
     <Stack>
       {/*
@@ -19,7 +25,14 @@ function InfrastructureMainPage() {
         activeSubTitle={activeSubTitle}
         setActiveSubTitle={setActiveSubTitle}
       />
-      <CardContainer />
+      <Container maxWidth="xl">
+        <Stack spacing={4} pb={4}>
+          <Search />
+          <Box>
+            <CardContainer />
+          </Box>
+        </Stack>
+      </Container>
     </Stack>
   );
 }
