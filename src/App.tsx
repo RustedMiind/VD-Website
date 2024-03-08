@@ -28,6 +28,8 @@ import { prefixer } from "stylis";
 import rtlPlugin from "stylis-plugin-rtl";
 import { CacheProvider } from "@emotion/react";
 import "react-tooltip/dist/react-tooltip.css";
+import { Route, Routes } from "react-router-dom";
+import InteractiveMapLAyout from "Layouts/interactive-map-layout";
 
 const cacheRtl = createCache({
   key: "muirtl",
@@ -135,7 +137,13 @@ function App() {
           <DirectionProvider>
             <AuthProvider>
               <div className="App">
-                <Layout />
+                <Routes>
+                  <Route
+                    path="interactive-map/*"
+                    element={<InteractiveMapLAyout />}
+                  />
+                  <Route path="*" element={<Layout />} />
+                </Routes>
               </div>
             </AuthProvider>
           </DirectionProvider>

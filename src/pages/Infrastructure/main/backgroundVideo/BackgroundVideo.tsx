@@ -85,7 +85,7 @@ const BackgroundVideo = ({ activeSubTitle, setActiveSubTitle }: propsType) => {
                   my: 2,
                   borderRadius: "50px",
                 }}
-                disabled
+                // disabled
               >
                 {subtitle?.title}
               </Button>
