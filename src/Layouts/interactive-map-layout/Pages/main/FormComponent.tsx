@@ -15,6 +15,7 @@ import FormControlLabel from "@mui/material/FormControlLabel";
 import FormControl from "@mui/material/FormControl";
 import FormLabel from "@mui/material/FormLabel";
 import SupportAgentIcon from "@mui/icons-material/SupportAgent";
+import nafazIcon from "assets/images/nafas.png";
 
 const FormControlWrapper = (props: PaperProps) => (
   <Paper sx={{ px: 1 }} {...props} />
@@ -59,25 +60,17 @@ function FormComponent({ selectMap, selectedMap }: PropsType) {
           </FormControlWrapper>
         </RadioGroup>
       </FormControl>
-      <Box>
-        <Grid container spacing={2}>
-          <Grid item xs={12} md={6}>
-            <TextField fullWidth label="الرجاء ادخال كود التعريف" />
-          </Grid>
-          <Grid item xs={12} md={6}>
-            <Button
-              color="secondary"
-              component={Paper}
-              size="large"
-              sx={{ height: 1 }}
-              fullWidth
-            >
-              الدخول
-            </Button>
-          </Grid>
-        </Grid>
-      </Box>
-      <DialogActions>
+      <Stack alignItems={"center"} spacing={2}>
+        <Box width={0.5}>
+          <TextField fullWidth label="الرجاء ادخال كود التعريف" />
+        </Box>
+        <Box width={0.5}>
+          <Button color="secondary" size="large" fullWidth>
+            الدخول
+          </Button>
+        </Box>
+      </Stack>
+      <DialogActions sx={{ gap: 2 }}>
         <Button
           size="small"
           startIcon={
@@ -89,9 +82,13 @@ function FormComponent({ selectMap, selectedMap }: PropsType) {
         >
           التواصل مع الدعم
         </Button>
-        <Button size="small" variant="outlined">
-          النفاذ الوطني
-        </Button>
+        <a
+          href="https://www.iam.gov.sa/authservice/userauthservice?lang=ar"
+          target="_blank"
+          rel="noreferrer"
+        >
+          <img alt="نفاذ" src={nafazIcon} height={24} />
+        </a>
       </DialogActions>
     </Stack>
   );

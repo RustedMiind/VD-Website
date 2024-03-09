@@ -38,7 +38,7 @@ function MainPage() {
       <InteractiveBackground />
       {/* Page Content */}
       <Box padding={6}>
-        <Grid container spacing={6}>
+        <Grid container spacing={6} alignItems={"center"}>
           <Grid lg={5} item>
             <Box
               p={{
