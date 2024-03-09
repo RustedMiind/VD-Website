@@ -1,12 +1,11 @@
 import { Box, Paper } from "@mui/material";
+import ReactPlayer from "react-player";
 
-function VideoComponent() {
+function VideoComponent({ video }: PropsType) {
   return (
     <Box
-      component={Paper}
       sx={(theme) => ({
         position: "relative",
-        height: 500,
         ":before": {
           content: '""',
           zIndex: -10,
@@ -20,8 +19,22 @@ function VideoComponent() {
             "radial-gradient(76.87% 77.36% at 10.71% 10.1%, #78818D 0%, #422411 100%) ,linear-gradient(223.38deg, rgba(255, 255, 255, 0) 44.65%, rgba(255, 255, 255, 0.25) 48.69%, rgba(255, 255, 255, 0) 52.57%)",
         },
       })}
-    ></Box>
+    >
+      <Paper sx={{ overflow: "hidden", height: 500 }}>
+        <ReactPlayer
+          key={video}
+          playing={true}
+          muted={true}
+          controls={true}
+          width={"100%"}
+          height={"100%"}
+          url={video}
+        />
+      </Paper>
+    </Box>
   );
 }
+
+type PropsType = { video: string };
 
 export default VideoComponent;

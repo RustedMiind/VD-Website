@@ -20,7 +20,7 @@ const FormControlWrapper = (props: PaperProps) => (
   <Paper sx={{ px: 1 }} {...props} />
 );
 
-function FormComponent() {
+function FormComponent({ selectMap, selectedMap }: PropsType) {
   return (
     <Stack component={Paper} p={3} spacing={4}>
       <Box width={1}>
@@ -28,27 +28,31 @@ function FormComponent() {
       </Box>
       <FormControl>
         <RadioGroup
-          defaultValue="female"
+          value={selectedMap}
+          onChange={(e, v) => {
+            console.log(v);
+            selectMap(v);
+          }}
           sx={{ justifyContent: "space-between", gap: 1 }}
           row
         >
           <FormControlWrapper>
             <FormControlLabel
-              value="female"
+              value="rain"
               control={<Radio />}
               label="تصريف الامطار"
             />
           </FormControlWrapper>
           <FormControlWrapper>
             <FormControlLabel
-              value="2"
+              value="elec"
               control={<Radio />}
               label="شركة الكهرباء"
             />
           </FormControlWrapper>
           <FormControlWrapper>
             <FormControlLabel
-              value="fem432ale"
+              value="water"
               control={<Radio />}
               label="شركة المياه"
             />
@@ -92,5 +96,10 @@ function FormComponent() {
     </Stack>
   );
 }
+
+type PropsType = {
+  selectedMap: string | undefined;
+  selectMap: (selected: string | undefined) => void;
+};
 
 export default FormComponent;

@@ -3,7 +3,27 @@ import InteractiveBackground from "./interactive-background";
 import FormComponent from "./FormComponent";
 import VideoComponent from "./Video";
 
+import video1 from "./placeholder1.mp4";
+import video2 from "./placeholder2.mp4";
+import video3 from "./placeholder3.mp4";
+import { useMemo, useState } from "react";
+
 function MainPage() {
+  const [selectedMap, setSelectedMap] = useState<string | undefined>("rain");
+  const currentVideo = useMemo(() => {
+    switch (selectedMap) {
+      case "rain":
+        return video2;
+      case "elec":
+        return video1;
+      case "water":
+        return video3;
+
+      default:
+        return video2;
+    }
+  }, [selectedMap]);
+
   return (
     <Stack
       component="main"
@@ -26,11 +46,14 @@ function MainPage() {
                 xs: 2,
               }}
             >
-              <FormComponent />
+              <FormComponent
+                selectMap={setSelectedMap}
+                selectedMap={selectedMap}
+              />
             </Box>
           </Grid>
           <Grid lg={7} item>
-            <VideoComponent />
+            <VideoComponent video={currentVideo} />
           </Grid>
         </Grid>
       </Box>
