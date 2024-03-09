@@ -12,6 +12,7 @@ function InteractiveBackground() {
         top: 0,
         left: 0,
         overflow: "hidden",
+        zIndex: -1000,
       }}
     >
       <BackgroundImage />
