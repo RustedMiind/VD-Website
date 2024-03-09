@@ -128,7 +128,7 @@ const ShowProject = () => {
             width: "90%",
             display: "flex",
             justifyContent: "space-between",
-            alignItems: "center",
+            alignItems: "start",
           }}
         >
           <Grid item xs={12} md={6}>

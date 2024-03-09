@@ -374,6 +374,8 @@ const ProjectInformation = ({
             sxw={12}
           />
         </Grid>
+
+        {/* remove latest 4 rows according they desire
         <Grid container className="showProjectInfoRowOfdata">
           <GridItemInDetails
             title={t("InfrastructureProjects.showPage.works")}
@@ -455,7 +457,8 @@ const ProjectInformation = ({
             mdw={12}
             sxw={12}
           />
-        </Grid>
+        </Grid> */}
+
         <Grid container>
           <Button
             variant="contained"
