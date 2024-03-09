@@ -1,16 +1,26 @@
 import { Box, Paper, Stack } from "@mui/material";
 import AspectRatio from "components/AspectRatio";
+import { useEffect, useState } from "react";
 import ReactPlayer from "react-player";
 
 function VideoComponent({ video }: PropsType) {
+  const [currentVideo, setCurrentVideo] = useState("");
+
+  useEffect(() => {
+    setTimeout(() => setCurrentVideo(video), 600);
+  }, [video]);
+
   return (
     <Stack alignItems={"center"} height={"fit-content"} width={1}>
       <Box
         width={{ xl: 850, lg: 700, md: 550, xs: 1 }}
-        component={Paper}
-        elevation={10}
         sx={(theme) => ({
+          bgcolor: "transparent",
           position: "relative",
+          transition: "300ms ease-in",
+          opacity: video === currentVideo ? 1 : 0,
+          transform: video === currentVideo ? undefined : "scale(1.1)",
+          // filter: video === currentVideo ? undefined : "blur(25px)",
           ":before": {
             content: '""',
             zIndex: -10,
@@ -28,16 +38,22 @@ function VideoComponent({ video }: PropsType) {
       >
         <AspectRatio ratio={16 / 9}>
           <Box>
-            <Paper sx={{ overflow: "hidden", height: 1 }}>
+            <Paper
+              sx={{
+                overflow: "hidden",
+                bgcolor: "transparent",
+                height: 1,
+              }}
+            >
               <ReactPlayer
-                key={video}
+                key={currentVideo}
                 playing={true}
                 muted={true}
                 controls={false}
                 width={"100%"}
                 height={"100%"}
                 loop
-                url={video}
+                url={currentVideo}
               />
             </Paper>
           </Box>
