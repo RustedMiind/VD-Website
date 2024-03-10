@@ -20,6 +20,7 @@ import { MapReportContractor } from "pages/Infrastructure_projects/types/WorkIns
 import { Employee } from "types/Employee";
 import GoogleMapApiKey from "contstants/GoogleMapApiKey";
 import Filters from "../Filters";
+import ButtonsColor from "../ButtonsColor";
 
 export enum MapReportTypes {
   CONTRACTOR = 1,
@@ -439,6 +440,7 @@ function MapBanner({
         <CircularProgress />
       </Backdrop>
       <Filters handleSelect={handleSelectedCity} selectedCity={selectedCity} />
+      <ButtonsColor />
       {mapReport ? (
         <GoogleMapReact
           bootstrapURLKeys={{ key: GoogleMapApiKey }}
