@@ -1,27 +1,28 @@
 import { Stack } from "@mui/material";
-import MapBanner, { MapReportTypes } from "./MapBanner";
+import MapBanner, { MapPositionsType, MapReportTypes } from "./MapBanner";
 import ReportDialog from "./MapBanner/ReportDrawer";
 import { useState } from "react";
-const mapPositions = [
+export const mapPositions: MapPositionsType[] = [
   {
     name: "جده",
     typeId: 1,
-    center: { lat: 24.774265, lng: 46.738586 },
+    center: { lat: 21.49417687931842, lng: 39.23323984402052 },
   },
   {
     name: "الرياض",
     typeId: 2,
-    center: { lat: 30.033333, lng: 31.233334 },
+    center: { lat: 24.772539640503144, lng: 46.821391518405356 },
   },
   {
-    name: "المدينة",
+    name: "المدينة المنورة",
     typeId: 3,
-    center: { lat: 30.033333, lng: 31.233334 },
+    center: { lat: 24.474017980704378, lng: 39.6182478831776 },
   },
   {
-    name: "العزيزيه",
+    name: "مكة المكرمة",
     typeId: 4,
-    center: { lat: 30.033333, lng: 31.233334 },
+
+    center: { lat: 21.40977625862909, lng: 39.83496956573179 },
   },
 ];
 function InteractiveMapPage() {
@@ -45,7 +46,7 @@ function InteractiveMapPage() {
         onClose={() => setDialogOpen(false)}
       />
       <MapBanner
-        openDrawer={() => {}}
+        openDrawer={() => setDialogOpen(true)}
         setReportContractorDetails={() => {}}
         setReportEmployeeDetails={() => {}}
         setType={() => {}}

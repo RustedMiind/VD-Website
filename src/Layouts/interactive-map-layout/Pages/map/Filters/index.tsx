@@ -16,6 +16,10 @@ import FormLabel from "@mui/material/FormLabel";
 import FilterAltIcon from "@mui/icons-material/FilterAlt";
 import { useState } from "react";
 import AddLabelToEl from "components/AddLabelToEl";
+import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+import LocationCityIcon from "@mui/icons-material/LocationCity";
+import { mapPositions } from "..";
+import { MapPositionsType } from "../MapBanner";
 
 const CustomPaper = (props: PaperProps) => (
   <Paper
@@ -38,7 +42,7 @@ const CustomChip = (props: ChipProps) => (
   />
 );
 
-function Filters() {
+function Filters({ handleSelect, selectedCity }: PropsType) {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
     setAnchorEl(event.currentTarget);
@@ -46,27 +50,112 @@ function Filters() {
   const handleClose = () => {
     setAnchorEl(null);
   };
+
+  const [selectAnchorEl, setSelectAnchorEl] = useState<null | HTMLElement>(
+    null
+  );
+  const handleSelectClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+    setSelectAnchorEl(event.currentTarget);
+  };
+  const handleSelectClose = () => {
+    setSelectAnchorEl(null);
+  };
   return (
-    <Stack sx={{ position: "absolute", top: 10, left: 50, zIndex: 100 }}>
-      <Paper
-        sx={(theme) => ({
-          background: `${theme.palette.background.default}60`,
-          backdropFilter: "blur(10px)",
-        })}
+    <>
+      <Stack
+        sx={{ position: "absolute", top: 10, left: 50, zIndex: 100 }}
+        spacing={2}
       >
-        <Button
-          sx={{
-            px: 4,
-            py: 1,
-          }}
-          variant="text"
-          color="secondary"
-          onClick={handleClick}
-          startIcon={<FilterAltIcon />}
+        <Paper
+          sx={(theme) => ({
+            background: `${theme.palette.background.default}60`,
+            backdropFilter: "blur(10px)",
+          })}
         >
-          خيارات البحث
-        </Button>
-      </Paper>
+          <Button
+            sx={{
+              px: 4,
+              py: 1,
+            }}
+            variant="text"
+            color="secondary"
+            fullWidth
+            onClick={handleClick}
+            startIcon={<FilterAltIcon />}
+            endIcon={<ExpandMoreIcon />}
+          >
+            خيارات البحث
+          </Button>
+        </Paper>
+        <Paper
+          sx={(theme) => ({
+            background: `${theme.palette.background.default}60`,
+            backdropFilter: "blur(10px)",
+          })}
+        >
+          <Button
+            sx={{
+              px: 4,
+              py: 1,
+            }}
+            variant="text"
+            color="secondary"
+            onClick={handleSelectClick}
+            fullWidth
+            startIcon={<LocationCityIcon />}
+            endIcon={<ExpandMoreIcon />}
+          >
+            المدن
+          </Button>
+        </Paper>
+      </Stack>
+
+      <Menu
+        slotProps={{
+          paper: {
+            // elevation: 4,
+            sx(theme) {
+              return {
+                background: `${theme.palette.background.default}10`,
+                backdropFilter: "blur(15px)",
+                p: 1,
+              };
+            },
+          },
+        }}
+        anchorEl={selectAnchorEl}
+        open={Boolean(selectAnchorEl)}
+        onClose={handleSelectClose}
+      >
+        <Stack
+          direction={{ xs: "column-reverse", md: "row" }}
+          alignItems={{ xs: "end", md: "center" }}
+          spacing={1}
+          width={"fit-content"}
+          p={1}
+        >
+          {mapPositions.map((city) => (
+            <Button
+              onClick={handleSelect(city)}
+              key={city.typeId}
+              variant="text"
+              sx={(theme) => ({
+                backgroundColor:
+                  city.typeId == selectedCity?.typeId
+                    ? `${theme.palette.secondary.main} !important`
+                    : `${theme.palette.background.default} !important`,
+                color:
+                  city.typeId == selectedCity?.typeId
+                    ? `${theme.palette.background.default} !important`
+                    : `${theme.palette.secondary.main} !important`,
+              })}
+            >
+              {city.name}
+            </Button>
+          ))}
+        </Stack>
+      </Menu>
+
       <Menu
         slotProps={{
           paper: {
@@ -155,8 +244,13 @@ function Filters() {
           </CustomPaper>
         </Stack>
       </Menu>
-    </Stack>
+    </>
   );
 }
+
+type PropsType = {
+  selectedCity?: MapPositionsType;
+  handleSelect: (city: MapPositionsType) => () => void;
+};
 
 export default Filters;

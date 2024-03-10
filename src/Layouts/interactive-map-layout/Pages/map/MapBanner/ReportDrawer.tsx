@@ -38,45 +38,28 @@ function ReportDialog({
   reportDetails: { contractor, employee },
 }: PropsType) {
   return (
-    <Drawer open={open} onClose={onClose} sx={{ direction: "rtl" }}>
-      <Stack width={400}>
-        <Grid container rowSpacing={2}>
-          {contractor && (
-            <>
-              <InfoItem
-                label="الرقم المرجعي"
-                value={contractor.reference_number}
-              />
-              <InfoItem
-                label="نوع امر العمر"
-                value={contractor.type_work_instruction?.name}
-              />
-              <InfoItem
-                label="وصف امر العمل"
-                value={contractor.type_work_instruction?.description}
-              />
-              <InfoItem
-                label="التكلفة التقديرية"
-                value={contractor.expected_cost}
-              />
-              <InfoItem
-                label="الاحداثيات"
-                value={`${contractor.longitude}, ${contractor.latitude}`}
-              />
-              <InfoItem label="المقاول" value={contractor.contractor.name} />
-              <InfoItem label="المدة" value={`${contractor.period} يوم`} />
-              <InfoItem label="تاريخ الاسناد" value={contractor.start_date} />
-            </>
-          )}
-          {employee && (
-            <>
-              <InfoItem label="الاسم" value={employee.name} />
-              <InfoItem label="رقم الجوال" value={employee.phone} />
-              <InfoItem label="العنوان" value={employee.address} />
-            </>
-          )}
-        </Grid>
-      </Stack>
+    <Drawer
+      open={open}
+      onClose={onClose}
+      anchor="right"
+      slotProps={{
+        backdrop: {
+          sx: {
+            bgcolor: "transparent",
+          },
+        },
+      }}
+      PaperProps={{
+        sx(theme) {
+          return {
+            bgcolor: `${theme.palette.background.default}99`,
+            backdropFilter: "blur(10px)",
+          };
+        },
+      }}
+      sx={{ direction: "rtl" }}
+    >
+      <Stack width={400} spacing={2} p={2}></Stack>
     </Drawer>
   );
 }
