@@ -3,9 +3,14 @@ import animation from "assets/images/robot-loading.gif";
 
 function RobotDialog(props: PropsType) {
   return (
-    <Dialog {...props} PaperProps={{ sx: { bgcolor: "background.default" } }}>
+    <Dialog
+      {...props}
+      maxWidth={"lg"}
+      fullWidth
+      PaperProps={{ sx: { bgcolor: "background.default" } }}
+    >
       <DialogContent>
-        <img src={animation} alt="loading robot" />
+        <img width={"100%"} src={animation} alt="loading robot" />
       </DialogContent>
     </Dialog>
   );

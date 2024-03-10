@@ -2,6 +2,7 @@ import { Stack } from "@mui/material";
 import MapBanner, { MapPositionsType, MapReportTypes } from "./MapBanner";
 import ReportDialog from "./MapBanner/ReportDrawer";
 import { useState } from "react";
+import SideTabs from "./SideTabs";
 export const mapPositions: MapPositionsType[] = [
   {
     name: "جده",
@@ -40,6 +41,7 @@ function InteractiveMapPage() {
         zIndex: -1000,
       }}
     >
+      <SideTabs />
       <ReportDialog
         open={dialogOpen}
         reportDetails={{}}

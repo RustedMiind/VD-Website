@@ -70,6 +70,20 @@ function Filters({ handleSelect, selectedCity }: PropsType) {
           sx={(theme) => ({
             background: `${theme.palette.background.default}60`,
             backdropFilter: "blur(10px)",
+            px: 2,
+            py: 1,
+          })}
+        >
+          <img
+            style={{ width: 250 }}
+            src="https://cdn.discordapp.com/attachments/1195066403288535111/1216393845936488478/image.png?ex=66003a0c&is=65edc50c&hm=511aa2f8cee189dfad6f39e443272a1d58960a79606e3b66ee055bab42ce1c5a&"
+            alt=""
+          />
+        </Paper>
+        <Paper
+          sx={(theme) => ({
+            background: `${theme.palette.background.default}60`,
+            backdropFilter: "blur(10px)",
           })}
         >
           <Button
@@ -87,7 +101,7 @@ function Filters({ handleSelect, selectedCity }: PropsType) {
             خيارات البحث
           </Button>
         </Paper>
-        <Paper
+        {/* <Paper
           sx={(theme) => ({
             background: `${theme.palette.background.default}60`,
             backdropFilter: "blur(10px)",
@@ -107,7 +121,7 @@ function Filters({ handleSelect, selectedCity }: PropsType) {
           >
             المدن
           </Button>
-        </Paper>
+        </Paper> */}
       </Stack>
 
       <Menu

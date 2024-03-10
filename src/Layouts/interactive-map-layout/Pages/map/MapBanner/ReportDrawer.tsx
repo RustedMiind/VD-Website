@@ -1,4 +1,5 @@
 import {
+  Box,
   Button,
   ButtonProps,
   Dialog,
@@ -66,14 +67,11 @@ const InfoItem = ({
   </Grid>
 );
 
-function ReportDialog({
-  onClose,
-  open,
-  reportDetails: { contractor, employee },
-}: PropsType) {
+function ReportDialog({ onClose, open }: PropsType) {
   return (
     <Drawer
       open={open}
+      SlideProps={{ direction: "right" }}
       onClose={onClose}
       anchor="right"
       slotProps={{
@@ -93,6 +91,14 @@ function ReportDialog({
       }}
     >
       <Stack width={400} spacing={2} p={2}>
+        <Stack alignItems={"end"}>
+          <Box sx={{ width: 0.6, p: 1 }}>
+            <img
+              style={{ width: "100%" }}
+              src="https://cdn.discordapp.com/attachments/1195066403288535111/1216388626418765924/image.png?ex=6600352f&is=65edc02f&hm=476fd009f65dd5af48fcb663960fdeb575701a3af78393cd8d6f5a42e3a45204&"
+            />
+          </Box>
+        </Stack>
         <CustomPaper>
           <Stack spacing={2}>
             <AddLabelToEl label="المستفيد من الخدمة">
@@ -129,7 +135,7 @@ function ReportDialog({
         <Paper>
           <img
             style={{ width: "100%" }}
-            src="https://cdn.discordapp.com/attachments/1195066403288535111/1216379203130232922/image.png?ex=66002c69&is=65edb769&hm=11a5032ade45b0aa90d4c63d145ce8ee646227e760e1f57708880c49004b2f67&"
+            src="https://cdn.discordapp.com/attachments/1195066403288535111/1216388322599895060/image.png?ex=660034e7&is=65edbfe7&hm=39547f5e9f4abf1b1e8a94f67158324b073b243b271a303e1ff00e663f0d9f2c&"
             alt=""
           />
         </Paper>
