@@ -26,6 +26,7 @@ import {
 } from "pages/Infrastructure_projects/types/WorkInstructionsReport";
 import { Employee } from "types/Employee";
 import GoogleMapApiKey from "contstants/GoogleMapApiKey";
+import Filters from "../Filters";
 
 export enum MapReportTypes {
   CONTRACTOR = 1,
@@ -431,6 +432,7 @@ function MapBanner({
       <Backdrop open={!mapReport} sx={{ position: "absolute", zIndex: 100 }}>
         <CircularProgress />
       </Backdrop>
+      <Filters />
       {mapReport ? (
         <GoogleMapReact
           bootstrapURLKeys={{ key: GoogleMapApiKey }}

@@ -25,7 +25,7 @@ const mapPositions = [
   },
 ];
 function InteractiveMapPage() {
-  const [dialogOpen, setDialogOpen] = useState(true);
+  const [dialogOpen, setDialogOpen] = useState(false);
 
   return (
     <Stack
