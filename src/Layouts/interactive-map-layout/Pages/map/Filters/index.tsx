@@ -21,7 +21,7 @@ import LocationCityIcon from "@mui/icons-material/LocationCity";
 import { mapPositions } from "..";
 import { MapPositionsType } from "../MapBanner";
 
-const CustomPaper = (props: PaperProps) => (
+export const CustomPaper = (props: PaperProps) => (
   <Paper
     elevation={1}
     sx={(theme) => ({

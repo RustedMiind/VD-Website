@@ -24,3 +24,5 @@ type PropsType = {
   required?: boolean;
   labelTypographyProps?: TypographyProps;
 };
+
+export type AddLabelToElProps = PropsType;
