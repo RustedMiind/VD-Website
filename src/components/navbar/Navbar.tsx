@@ -1,5 +1,5 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import "./navbar.scss";
 import { List } from "react-bootstrap-icons";
 import { NavLink } from "react-router-dom";
@@ -28,24 +28,26 @@ import api from "methods/api";
 import { logout } from "redux/middlewares/userMiddleware";
 import { AuthContext } from "contexts/Auth";
 import GTranslateIcon from "@mui/icons-material/GTranslate";
+import { InfrastructureContext } from "contexts/InfrastructureContext";
 
 function Navbar() {
   const { changeLang, lang } = useContext(LangContext);
   const currentLang = lang();
   const [anchorElUser, setAnchorElUser] = useState<null | HTMLElement>(null);
   const dispatch = useDispatch();
-
   const { settings, user } = useSelector(
     (state: { settings: SettingsStateType } & UserStateType) => ({
       settings: state.settings,
       user: state.user,
     })
   );
-
   const { t } = useTranslation();
   const [navVisibilty, setNavVisibilty] = useState<"show" | "hide">("hide");
   const { openLoginDialog, openRegisterDialog, closeDialog } =
     useContext(AuthContext);
+  //@infrastructurePageName refer to type of infrestructures in back-end
+  let { infrastructurePageName } = useContext(InfrastructureContext);
+
   const handleOpenUserMenu = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorElUser(event.currentTarget);
   };
@@ -59,8 +61,6 @@ function Navbar() {
     if (current === "en") changeLang("ar");
     else changeLang("en");
   };
-
-  console.log("user", user);
 
   return (
     <>
@@ -91,9 +91,11 @@ function Navbar() {
                 <MenuItem component={NavLink} to="/e-services/design">
                   {t("links.eServices.design")}
                 </MenuItem>
-                <MenuItem component={NavLink} to="/infrastructure_projects">
-                  البنية التحتية
-                </MenuItem>
+                {infrastructurePageName.length > 0 && (
+                  <MenuItem component={NavLink} to="/infrastructure_projects">
+                    {infrastructurePageName}
+                  </MenuItem>
+                )}
               </MenuList>
             </Paper>
           </li>

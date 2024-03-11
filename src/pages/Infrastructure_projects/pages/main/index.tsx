@@ -43,6 +43,7 @@ const Infrastructure_projects_Page = () => {
   );
   const [loading, setLoading] = useState(false);
   const [projects, setProjects] = useState<projectCard[]>([]);
+  const [originProjects, setOriginProjects] = useState<projectCard[]>([]);
 
   useEffect(() => {
     setLoading(true);
@@ -53,26 +54,30 @@ const Infrastructure_projects_Page = () => {
         },
       })
       .then((data) => {
+        console.log("Demo Data", data);
         let arr = [],
           n = data.data?.data?.length;
 
         for (let i = 0; i < n; i++) {
           const element = data.data.data[i];
-          arr.push({
-            id: element?.id,
-            code: element?.code,
-            branchName: element?.branch?.name,
-            engineerName: element?.employee?.name,
-            name: element?.details,
-            period: element?.period,
-            imgUrl: element?.contract_details?.media?.filter(
-              (ele: { collection_name: string }) =>
-                ele?.collection_name == "main_image"
-            )[0]?.original_url,
-            cardId: element?.client?.card_id,
-          });
+          //! this filteration must be in back-end
+          if (element?.contract_details?.online_service == 1)
+            arr.push({
+              id: element?.id,
+              code: element?.code,
+              branchName: element?.branch?.name,
+              engineerName: element?.employee?.name,
+              name: element?.details,
+              period: element?.period,
+              imgUrl: element?.contract_details?.media?.filter(
+                (ele: { collection_name: string }) =>
+                  ele?.collection_name == "main_image"
+              )[0]?.original_url,
+              cardId: element?.client?.card_id,
+            });
         }
         setProjects(arr);
+        setOriginProjects(arr);
       })
       .catch((err) => {
         console.log("Error in fetch projects Data:", err);
@@ -135,7 +140,13 @@ const Infrastructure_projects_Page = () => {
                   setShowSearch(false);
                 } else setSearchKey("");
               }}
-              onChange={(e) => setSearchKey(e.target.value)}
+              onChange={(e) => {
+                setSearchKey(e.target.value);
+                let arr = originProjects.filter((ele) =>
+                  ele.name?.includes(e.target.value)
+                );
+                setProjects(arr);
+              }}
               sx={{
                 borderRadius: "35px",
                 height: " 50px",
@@ -163,7 +174,6 @@ const Infrastructure_projects_Page = () => {
             boxSizing: "border-box",
             display: "flex",
             width: "90%",
-            justifyContent: "space-between",
             alignItems: "center",
             flexWrap: "wrap",
           }}

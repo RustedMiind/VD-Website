@@ -79,7 +79,7 @@ export default function GoOgleMap(props: mapProps) {
             ? polygonCoordinates[0]
             : { lat: 21.42251, lng: 39.826168 }
         }
-        defaultZoom={14}
+        defaultZoom={3}
         yesIWantToUseGoogleMapApiInternals={true}
         onGoogleApiLoaded={({ map, maps }) => handleApiLoaded(map, maps)}
       >
