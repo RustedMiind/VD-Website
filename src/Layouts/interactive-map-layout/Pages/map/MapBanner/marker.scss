@@ -1,0 +1,76 @@
+.marker-image-container {
+  position: absolute;
+  transform: translate(50%, -50%);
+  transform-origin: center;
+  width: 38px;
+  height: 38px;
+  background: #fff;
+  border-radius: 100px;
+  .image-wrapper {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    padding: 5px;
+    border-radius: inherit;
+    &::after {
+      pointer-events: none;
+      content: "";
+      border-radius: inherit;
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      outline: dashed var(--main) 2px;
+      z-index: 1100000;
+      animation-name: RotateBorder;
+      animation-duration: 15s;
+      animation-timing-function: linear;
+      animation-iteration-count: infinite;
+    }
+  }
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    animation-name: PulseEffect;
+    animation-duration: 2000ms;
+    animation-iteration-count: infinite;
+  }
+  &.red {
+    .image-wrapper::after {
+      outline-color: var(--error);
+    }
+  }
+  &.green {
+    .image-wrapper::after {
+      outline-color: var(--success);
+    }
+  }
+  &.yellow {
+    .image-wrapper::after {
+      outline-color: var(--third);
+    }
+  }
+}
+
+@keyframes RotateBorder {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes PulseEffect {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.2);
+  }
+  100% {
+    transform: scale(1);
+  }
+}

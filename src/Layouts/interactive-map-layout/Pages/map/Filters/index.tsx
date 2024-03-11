@@ -1,12 +1,17 @@
 import {
+  Accordion,
+  AccordionDetails,
+  AccordionSummary,
   Button,
   Chip,
   ChipProps,
   Menu,
   Paper,
   PaperProps,
+  Slider,
   Stack,
   TextField,
+  Typography,
 } from "@mui/material";
 import Radio from "@mui/material/Radio";
 import RadioGroup from "@mui/material/RadioGroup";
@@ -26,12 +31,33 @@ export const CustomPaper = (props: PaperProps) => (
     elevation={1}
     sx={(theme) => ({
       p: 2,
-      bgcolor: `${theme.palette.background.default}AA`,
+      bgcolor: `${theme.palette.background.default}80`,
     })}
     {...props}
   />
 );
 
+const FilterCategory = ({ children, label }: FilterCategoryProps) => (
+  <Stack>
+    <Accordion
+      elevation={0}
+      sx={(theme) => ({
+        bgcolor: `${theme.palette.background.default}80`,
+      })}
+    >
+      <AccordionSummary expandIcon={<ExpandMoreIcon />}>
+        <Typography variant="body1" fontWeight={700}>
+          {label}
+        </Typography>
+      </AccordionSummary>
+      <AccordionDetails>{children}</AccordionDetails>
+    </Accordion>
+  </Stack>
+);
+type FilterCategoryProps = {
+  children: React.ReactNode;
+  label: string;
+};
 const CustomChip = (props: ChipProps) => (
   <Chip
     variant="outlined"
@@ -51,6 +77,29 @@ function Filters({ handleSelect, selectedCity }: PropsType) {
     setAnchorEl(null);
   };
 
+  const [range, setRange] = useState<number[]>([0, 100000]);
+  const minDistance = 2000;
+  const handleChangeRange = (
+    event: Event,
+    newValue: number | number[],
+    activeThumb: number
+  ) => {
+    if (!Array.isArray(newValue)) {
+      return;
+    }
+
+    if (newValue[1] - newValue[0] < minDistance) {
+      if (activeThumb === 0) {
+        const clamped = Math.min(newValue[0], 100 - minDistance);
+        setRange([clamped, clamped + minDistance]);
+      } else {
+        const clamped = Math.max(newValue[1], minDistance);
+        setRange([clamped - minDistance, clamped]);
+      }
+    } else {
+      setRange(newValue as number[]);
+    }
+  };
   const [selectAnchorEl, setSelectAnchorEl] = useState<null | HTMLElement>(
     null
   );
@@ -229,33 +278,43 @@ function Filters({ handleSelect, selectedCity }: PropsType) {
             </FormControl>
           </CustomPaper>
 
-          <CustomPaper>
-            <AddLabelToEl label="اختر المقاول">
-              <Stack direction={"row"} gap={1} flexWrap={"wrap"}>
-                <CustomChip label="محمد سعيد" />
-                <CustomChip label="خالد عبدالرحمن" />
-                <CustomChip label="عبدالله سيد" />
-                <CustomChip label="احمد عادل" />
-                <CustomChip label="احمد عادل" />
-                <CustomChip label="عبدالله سيد" />
-                <CustomChip label="محمد سعيد" />
-              </Stack>
-            </AddLabelToEl>
-          </CustomPaper>
+          <FilterCategory label="اختر المقاول">
+            <Stack direction={"row"} gap={1} flexWrap={"wrap"}>
+              <CustomChip label="محمد سعيد" />
+              <CustomChip label="خالد عبدالرحمن" />
+              <CustomChip label="عبدالله سيد" />
+              <CustomChip label="احمد عادل" />
+              <CustomChip label="احمد عادل" />
+              <CustomChip label="عبدالله سيد" />
+              <CustomChip label="محمد سعيد" />
+            </Stack>
+          </FilterCategory>
 
-          <CustomPaper>
-            <AddLabelToEl label="اختر الاستشاري">
-              <Stack direction={"row"} gap={1} flexWrap={"wrap"}>
-                <CustomChip label="محمد سعيد" />
-                <CustomChip label="خالد عبدالرحمن" />
-                <CustomChip label="عبدالله سيد" />
-                <CustomChip label="احمد عادل" />
-                <CustomChip label="احمد عادل" />
-                <CustomChip label="عبدالله سيد" />
-                <CustomChip label="محمد سعيد" />
-              </Stack>
-            </AddLabelToEl>
-          </CustomPaper>
+          <FilterCategory label="طول الخط البديل">
+            <div dir="ltr">
+              <Slider
+                min={0}
+                max={1000000}
+                value={range}
+                onChange={handleChangeRange}
+                valueLabelDisplay="auto"
+                step={12500}
+                disableSwap
+              />
+            </div>
+          </FilterCategory>
+
+          <FilterCategory label="اختر الاستشاري">
+            <Stack direction={"row"} gap={1} flexWrap={"wrap"}>
+              <CustomChip label="محمد سعيد" />
+              <CustomChip label="خالد عبدالرحمن" />
+              <CustomChip label="عبدالله سيد" />
+              <CustomChip label="احمد عادل" />
+              <CustomChip label="احمد عادل" />
+              <CustomChip label="عبدالله سيد" />
+              <CustomChip label="محمد سعيد" />
+            </Stack>
+          </FilterCategory>
         </Stack>
       </Menu>
     </>
