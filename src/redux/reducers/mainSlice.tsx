@@ -1,7 +1,17 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { ProjectType } from "./projectsSlice";
 
-export type MainStateType = MainType;
+export type MainStateType =
+  | "error"
+  | "loading"
+  | {
+      icons: IconsType;
+      services: [];
+      projects: ProjectType[];
+      members: MembersType;
+      file: string;
+      main_description: string;
+    };
 
 const initialState: MainStateType = "loading";
 
@@ -18,17 +28,7 @@ export const mainSlice = createSlice({
   },
 });
 
-export type MainType =
-  | "error"
-  | "loading"
-  | {
-      icons: IconsType;
-      services: [];
-      projects: ProjectType[];
-      members: MembersType;
-      file: string;
-      main_description: string;
-    };
+export type MainType = MainStateType;
 
 export type IconsType = {
   icons: {

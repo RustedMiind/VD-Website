@@ -30,8 +30,8 @@ const ParticlesBG = () => {
       options={{
         fullScreen: false,
         background: {
-            image:`url(${bgImg})`,
-            size:'100% 100%'
+          image: `url(${bgImg})`,
+          size: "100% 100%",
         },
         fpsLimit: 120,
         interactivity: {

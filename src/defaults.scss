@@ -3,6 +3,13 @@ ol {
   list-style: none;
 }
 
+.MuiTable-root {
+  td,
+  th {
+    border: none;
+  }
+}
+
 a {
   text-decoration: none;
   color: inherit;

@@ -42,12 +42,12 @@
     }
   }
   > .content {
-    width: 80%;
-    max-width: 90vw;
+    width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
   }
+
   @include Mobile {
     padding-top: 3rem;
   }
