@@ -46,7 +46,7 @@ function Navbar() {
   const { openLoginDialog, openRegisterDialog, closeDialog } =
     useContext(AuthContext);
   //@infrastructurePageName refer to type of infrestructures in back-end
-  let { infrastructurePageName } = useContext(InfrastructureContext);
+  let { electronServicesLinks } = useContext(InfrastructureContext);
 
   const handleOpenUserMenu = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorElUser(event.currentTarget);
@@ -88,14 +88,25 @@ function Navbar() {
             <span>{t("links.eServices.main")}</span>
             <Paper className="menu">
               <MenuList>
-                <MenuItem component={NavLink} to="/e-services/design">
+                {/* <MenuItem component={NavLink} to="/e-services/design">
                   {t("links.eServices.design")}
-                </MenuItem>
-                {infrastructurePageName.length > 0 && (
-                  <MenuItem component={NavLink} to="/infrastructure_projects">
-                    {infrastructurePageName}
-                  </MenuItem>
-                )}
+                </MenuItem> */}
+                {electronServicesLinks?.length > 0 &&
+                  electronServicesLinks?.map((str) => {
+                    return (
+                      <MenuItem
+                        key={`i_link_${Math.random()}`}
+                        component={NavLink}
+                        to={
+                          str == "البنيه التحتيه"
+                            ? "/infrastructure_projects"
+                            : "/e-services/design"
+                        }
+                      >
+                        {str}
+                      </MenuItem>
+                    );
+                  })}
               </MenuList>
             </Paper>
           </li>

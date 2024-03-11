@@ -4,25 +4,20 @@ import api from "methods/api";
 
 // * create infrastructure context
 export const InfrastructureContext = createContext<InfrastructureContextType>({
-  infrastructurePageName: "",
+  electronServicesLinks: [],
 });
 // * prepare our provider
 function InfrastructureContextProvider({ children }: PropsType) {
-  const [infrastructurePageName, setInfrastructurePageName] = useState("");
+  const [electronServicesLinks, setElectronServicesLinks] = useState<string[]>(
+    []
+  );
 
   useEffect(() => {
     axios
-      .get<{ types: WorkTypes }>(api("employee/contract/types"))
+      .get<{ services: string[] }>(api("employee/electronic-services"))
       .then(({ data }) => {
-        console.log("InfrastructureContextProvider Data:-", data);
-        let n = Object.keys(data?.types).length;
-        for (let i = 0; i < n; i++) {
-          let _key = Object.keys(data?.types)[i];
-          if (_key.includes("بني") && _key.includes("تحتي")) {
-            setInfrastructurePageName(_key);
-            break;
-          }
-        }
+        console.log("data?.services", data?.services);
+        setElectronServicesLinks(data?.services);
       })
       .catch((err) => {
         console.log(
@@ -32,7 +27,7 @@ function InfrastructureContextProvider({ children }: PropsType) {
       });
   }, []);
   return (
-    <InfrastructureContext.Provider value={{ infrastructurePageName }}>
+    <InfrastructureContext.Provider value={{ electronServicesLinks }}>
       {children}
     </InfrastructureContext.Provider>
   );
@@ -40,11 +35,18 @@ function InfrastructureContextProvider({ children }: PropsType) {
 
 // * define our types
 type InfrastructureContextType = {
-  infrastructurePageName: string;
+  electronServicesLinks: string[];
 };
-type WorkTypes = {
-  id: string;
+type WorkType = {
+  id: number;
+  name: string;
 };
+type subType = {
+  id: number;
+  direct_entry_type_id: number;
+  name: string;
+};
+
 type PropsType = { children: React.ReactNode };
 
 export default InfrastructureContextProvider;

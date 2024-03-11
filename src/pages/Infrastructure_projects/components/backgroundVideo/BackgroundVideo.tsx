@@ -7,30 +7,41 @@ import axios from "axios";
 import api from "methods/api";
 import { useSnackbar } from "notistack";
 
-
 const BackgroundVideo = ({ activeSubTitle, setActiveSubTitle }: propsType) => {
   const { t } = useTranslation();
   const { enqueueSnackbar } = useSnackbar();
   // its dummy till back-end prepare apis
-  const [subTitles, setSubTitles] = useState<
-    { id: number; title: string; tag: string }[]
-  >([
-    { id: 2, title: "تصنيف 1", tag: "all1" },
-    { id: 3, title: "تصنيف 2", tag: "all2" },
-    { id: 4, title: "تصنيف 3", tag: "all3" },
-  ]);
+  const [subTitles, setSubTitles] = useState<subType[]>([]);
 
   let singleLink = subTitles.map((ele) => {
     return (
       <Button
-        onClick={() => setActiveSubTitle(ele.tag)}
-        variant={activeSubTitle === ele.tag ? "contained" : "text"}
-        className={activeSubTitle === ele.tag ? "active" : ""}
+        onClick={() => setActiveSubTitle(ele.name)}
+        variant={activeSubTitle === ele.name ? "contained" : "text"}
+        className={activeSubTitle === ele.name ? "active" : ""}
+        sx={{
+          marginX: "2rem",
+        }}
       >
-        {ele?.title}
+        {ele?.name}
       </Button>
     );
   });
+
+  useEffect(() => {
+    axios
+      .get<{ sub_types: subType[] }>(api("employee/contract/types/1"))
+      .then(({ data }) => {
+        console.log("InfrastructureContextProvider Data:-", data);
+        setSubTitles(data.sub_types);
+      })
+      .catch((err) => {
+        console.log(
+          "Error in fetch data in InfrastructureContextProvider:",
+          err
+        );
+      });
+  }, []);
 
   useEffect(() => {
     // ! Handle if there is only one classification.
@@ -38,13 +49,15 @@ const BackgroundVideo = ({ activeSubTitle, setActiveSubTitle }: propsType) => {
       setSubTitles([
         {
           id: 1,
-          title: t("InfrastructureProjects.subTitles.all"),
-          tag: "all",
+          name: t("InfrastructureProjects.subTitles.all"),
+          direct_entry_type_id: 0,
         },
         ...subTitles,
       ]);
+    } else if (subTitles.length == 1) {
+      setActiveSubTitle(subTitles[0].name);
     }
-  }, []);
+  }, [subTitles]);
 
   return (
     <>
@@ -66,12 +79,12 @@ const BackgroundVideo = ({ activeSubTitle, setActiveSubTitle }: propsType) => {
         <Box
           sx={{
             position: "absolute",
-            top: "35%",
+            top: "33.5%",
             color: "#fff",
             fontWeight: 800,
           }}
         >
-          <Typography variant="h1">مشاريع البنية التحتية</Typography>
+          <Typography variant="h2">مشاريع البنية التحتية</Typography>
         </Box>
         {/* sub titles links */}
         <Box
@@ -83,6 +96,12 @@ const BackgroundVideo = ({ activeSubTitle, setActiveSubTitle }: propsType) => {
       </Box>
     </>
   );
+};
+
+type subType = {
+  id: number;
+  direct_entry_type_id: number;
+  name: string;
 };
 
 type propsType = {

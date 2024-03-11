@@ -35,6 +35,12 @@ const ProjectCard = (props: propsType) => {
   );
   const [loginOpen, setLoginOpen] = useState(false);
   const [navDialog, setNavDialog] = useState<NavDialogTypes>("login");
+  let _period =
+    +props.period > 999
+      ? `${(+props.period / 365).toFixed(1).toString()} سنة`
+      : +props.period > 99
+      ? `${(+props.period / 30).toFixed(1).toString()} شهر`
+      : `${props.period} يوم`;
 
   // TODO::function to check valid to continue in login or not
   const unAbaleToSeeProjectDetails = (nationalNum: string) => {
@@ -72,6 +78,7 @@ const ProjectCard = (props: propsType) => {
             background: "#fff",
           }}
           className="ProjectCard"
+          onClick={() => Navigator(`show/${id}`)}
         >
           <CardMedia
             sx={{ height: 228 }}
@@ -94,7 +101,7 @@ const ProjectCard = (props: propsType) => {
                   display: "flex",
                   justifyContent: "space-between",
                   alignItems: "center",
-                  width: "71px",
+                  width: "85px",
                   color: "#A8A8A8",
                 }}
                 variant="body1"
@@ -102,8 +109,7 @@ const ProjectCard = (props: propsType) => {
               >
                 <AccessTimeIcon />
                 <Typography fontFamily={"Cairo"} variant="body1">
-                  {" "}
-                  {props.period} يوم{" "}
+                  {_period}
                 </Typography>
               </Typography>
             </Box>
