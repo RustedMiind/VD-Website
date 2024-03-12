@@ -5,7 +5,6 @@ import { BrowserRouter } from "react-router-dom";
 import { Provider } from "react-redux";
 import { store } from "redux/store";
 import LangContextProvider from "contexts/LangContext";
-import InfrastructureContextProvider from "contexts/InfrastructureContext";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
@@ -13,11 +12,9 @@ const root = ReactDOM.createRoot(
 root.render(
   <BrowserRouter>
     <LangContextProvider>
-      <InfrastructureContextProvider>
-        <Provider store={store}>
-          <App />
-        </Provider>
-      </InfrastructureContextProvider>
+      <Provider store={store}>
+        <App />
+      </Provider>
     </LangContextProvider>
   </BrowserRouter>
 );

@@ -28,25 +28,29 @@ import api from "methods/api";
 import { logout } from "redux/middlewares/userMiddleware";
 import { AuthContext } from "contexts/Auth";
 import GTranslateIcon from "@mui/icons-material/GTranslate";
-import { InfrastructureContext } from "contexts/InfrastructureContext";
+import { electronServicesLinksType } from "redux/reducers/electronServicesLinksSlice";
 
 function Navbar() {
   const { changeLang, lang } = useContext(LangContext);
   const currentLang = lang();
   const [anchorElUser, setAnchorElUser] = useState<null | HTMLElement>(null);
   const dispatch = useDispatch();
-  const { settings, user } = useSelector(
-    (state: { settings: SettingsStateType } & UserStateType) => ({
+  const { settings, user, electronServices } = useSelector(
+    (
+      state: {
+        settings: SettingsStateType;
+        electronServicesLinks: electronServicesLinksType;
+      } & UserStateType
+    ) => ({
       settings: state.settings,
       user: state.user,
+      electronServices: state.electronServicesLinks,
     })
   );
   const { t } = useTranslation();
   const [navVisibilty, setNavVisibilty] = useState<"show" | "hide">("hide");
   const { openLoginDialog, openRegisterDialog, closeDialog } =
     useContext(AuthContext);
-  //@infrastructurePageName refer to type of infrestructures in back-end
-  let { electronServicesLinks } = useContext(InfrastructureContext);
 
   const handleOpenUserMenu = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorElUser(event.currentTarget);
@@ -91,8 +95,8 @@ function Navbar() {
                 {/* <MenuItem component={NavLink} to="/e-services/design">
                   {t("links.eServices.design")}
                 </MenuItem> */}
-                {electronServicesLinks?.length > 0 &&
-                  electronServicesLinks?.map((str) => {
+                {electronServices?.electronServicesLinks?.length > 0 &&
+                  electronServices?.electronServicesLinks?.map((str) => {
                     return (
                       <MenuItem
                         key={`i_link_${Math.random()}`}
