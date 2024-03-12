@@ -30,7 +30,7 @@ export const mapPositions: MapPositionsType[] = [
 function InteractiveMapPage() {
   const [dialogOpen, setDialogOpen] = useState(false);
   const [subDrawerOpen, setSubDrawerOpen] = useState(false);
-  const [fileDialog, setFileDialog] = useState(true);
+  const [fileDialog, setFileDialog] = useState(false);
   return (
     <Stack
       sx={{
