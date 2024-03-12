@@ -238,7 +238,7 @@ function Filters({ handleSelect, selectedCity }: PropsType) {
                     </Stack>
                   </FilterCategory>
 
-                  <FilterCategory label="اختر الاستشاري">
+                  <FilterCategory label="مقاول الخط البديل">
                     <Stack direction={"row"} gap={1} flexWrap={"wrap"}>
                       <CustomChip label="محمد سعيد" />
                       <CustomChip label="خالد عبدالرحمن" />
@@ -250,7 +250,7 @@ function Filters({ handleSelect, selectedCity }: PropsType) {
                     </Stack>
                   </FilterCategory>
 
-                  <FilterCategory label="المدة المتبقية لانهاء النشر">
+                  <FilterCategory label="المدة المتبقية لانهاء الضخ">
                     <Stack direction={"row"} gap={1} flexWrap={"wrap"}>
                       <CustomChip label="60 يوم" />
                       <CustomChip label="90 يوم" />

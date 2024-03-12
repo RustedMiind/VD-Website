@@ -21,7 +21,7 @@ import SquareRoundedIcon from "@mui/icons-material/SquareRounded";
 function AltProject() {
   return (
     <Grid container spacing={4}>
-      <Grid item xs={5}>
+      <Grid item xs={6}>
         <Stack spacing={1}>
           <Paper sx={{ p: 1 }}>
             <Stack spacing={1}>
@@ -152,7 +152,7 @@ function AltProject() {
           </Paper>
         </Stack>
       </Grid>
-      <Grid item xs={7}>
+      <Grid item xs={6}>
         <Typography
           textAlign={"center"}
           fontWeight={700}

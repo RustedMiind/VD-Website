@@ -141,7 +141,7 @@ export function CircularProgressWithLabel(
 }
 function ReportDialog({ onClose, open, withSubDrawer }: PropsType) {
   const [progress, setProgress] = useState(50);
-
+  const [timerOpen, setTimerOpen] = useState(false);
   return (
     <>
       <AltDrawer open={open && withSubDrawer} />
@@ -368,9 +368,12 @@ function ReportDialog({ onClose, open, withSubDrawer }: PropsType) {
             </Paper>
             <Paper sx={{ m: 2 }}>
               <Stack alignItems={"center"}>
-                <Box>
+                <Box textAlign={"center"}>
                   <Typography sx={{ fontWeight: "700" }}>
                     عدد الايام المتبقية لانهاء الضخ
+                  </Typography>
+                  <Typography variant="body1" fontWeight={700}>
+                    <Countdown date={new Date("2024-03-25")} />
                   </Typography>
                   <Box
                     sx={{
@@ -536,6 +539,8 @@ function ReportDialog({ onClose, open, withSubDrawer }: PropsType) {
                   textAlign: "center",
                   py: 1,
                 }}
+                component={Button}
+                onClick={() => setTimerOpen(true)}
               >
                 <Box
                   sx={{
@@ -551,12 +556,18 @@ function ReportDialog({ onClose, open, withSubDrawer }: PropsType) {
                       width: "50px",
                       height: "50px",
                     }}
-                    src="https://cdn.discordapp.com/attachments/1216663823956836385/1216687820878512229/image.png?ex=66014bd5&is=65eed6d5&hm=989de16703926ecdb05353fc47c4ba53ed090e6dd743d1b54c1c39729fe8b8d3&"
+                    src={
+                      timerOpen
+                        ? "https://cdn.discordapp.com/attachments/1216663823956836385/1216687820878512229/image.png?ex=66014bd5&is=65eed6d5&hm=989de16703926ecdb05353fc47c4ba53ed090e6dd743d1b54c1c39729fe8b8d3&"
+                        : "https://cdn-icons-png.flaticon.com/512/2014/2014825.png"
+                    }
                     alt=""
                   />
-                  <Typography variant="body1" fontWeight={700}>
-                    <Countdown date={new Date("2024-03-25")} />
-                  </Typography>
+                  {timerOpen && (
+                    <Typography variant="body1" fontWeight={700}>
+                      <Countdown date={new Date("2024-03-25")} />
+                    </Typography>
+                  )}
                 </Box>
               </Paper>
               <Paper

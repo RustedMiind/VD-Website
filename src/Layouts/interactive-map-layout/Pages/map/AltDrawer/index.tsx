@@ -29,7 +29,10 @@ function AltDrawer(props: DrawerProps) {
             bgcolor: "transparent",
             outline: "none",
             border: "none",
-            zIndex: theme.zIndex.drawer + 1400,
+            pointerEvents: "none",
+            ">*": {
+              pointerEvents: "all",
+            },
           };
         },
         elevation: 0,
@@ -56,7 +59,7 @@ function AltDrawer(props: DrawerProps) {
         >
           <Swiper
             spaceBetween={10}
-            slidesPerView={1.4}
+            slidesPerView={1.7}
             onSlideChange={() => console.log("slide change")}
             onSwiper={(swiper) => console.log(swiper)}
           >
