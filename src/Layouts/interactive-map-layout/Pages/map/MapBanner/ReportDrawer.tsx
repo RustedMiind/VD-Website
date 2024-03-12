@@ -139,12 +139,18 @@ export function CircularProgressWithLabel(
     </Box>
   );
 }
-function ReportDialog({ onClose, open, withSubDrawer }: PropsType) {
+function ReportDialog({
+  onClose,
+  open,
+  withSubDrawer,
+  setFileDialog,
+}: PropsType) {
   const [progress, setProgress] = useState(50);
   const [timerOpen, setTimerOpen] = useState(false);
+  const openDialog = () => setFileDialog(true);
   return (
     <>
-      <AltDrawer open={open && withSubDrawer} />
+      <AltDrawer openDialog={openDialog} open={open && !withSubDrawer} />
       <Drawer
         open={open}
         variant={"persistent"}
@@ -269,43 +275,12 @@ function ReportDialog({ onClose, open, withSubDrawer }: PropsType) {
                 </Stack>
               </Stack>
             </Paper>
-            <Paper sx={{ m: 2 }}>
-              <Stack
-                direction={"row"}
-                alignItems={"center"}
-                justifyContent={"space-around"}
-              >
-                <Stack sx={{ alignItems: "center", padding: 2 }}>
-                  <IconImage
-                    src="https://cdn.discordapp.com/attachments/1216663823956836385/1216666143218208819/image.png?ex=660137a5&is=65eec2a5&hm=bf8dc847f6bd8bcb77869d321df5a0d8cedab6347b605e5bef16544ed2dc31f6&"
-                    alt=""
-                  />
-                </Stack>
-                <Stack sx={{ alignItems: "center", padding: 2 }}>
-                  <IconImage
-                    src="https://cdn.discordapp.com/attachments/1216663823956836385/1216666143218208819/image.png?ex=660137a5&is=65eec2a5&hm=bf8dc847f6bd8bcb77869d321df5a0d8cedab6347b605e5bef16544ed2dc31f6&"
-                    alt=""
-                  />
-                </Stack>
-                <Stack sx={{ alignItems: "center", padding: 2 }}>
-                  <IconImage
-                    src="https://cdn.discordapp.com/attachments/1216663823956836385/1216666143218208819/image.png?ex=660137a5&is=65eec2a5&hm=bf8dc847f6bd8bcb77869d321df5a0d8cedab6347b605e5bef16544ed2dc31f6&"
-                    alt=""
-                  />
-                </Stack>
-                <Stack sx={{ alignItems: "center", padding: 2 }}>
-                  <IconImage
-                    src="https://cdn.discordapp.com/attachments/1216663823956836385/1216666143218208819/image.png?ex=660137a5&is=65eec2a5&hm=bf8dc847f6bd8bcb77869d321df5a0d8cedab6347b605e5bef16544ed2dc31f6&"
-                    alt=""
-                  />
-                </Stack>
-                <Stack sx={{ alignItems: "center", padding: 2 }}>
-                  <IconImage
-                    src="https://cdn.discordapp.com/attachments/1216663823956836385/1216666143218208819/image.png?ex=660137a5&is=65eec2a5&hm=bf8dc847f6bd8bcb77869d321df5a0d8cedab6347b605e5bef16544ed2dc31f6&"
-                    alt=""
-                  />
-                </Stack>
-              </Stack>
+            <Paper sx={{ p: 2, m: 2 }}>
+              <img
+                style={{ width: "100%" }}
+                onClick={openDialog}
+                src="https://cdn.discordapp.com/attachments/1200820678006415432/1217090775473717278/image.png?ex=6602c31d&is=65f04e1d&hm=339a46111d811f867e20fa90c97371625c4014df343c4f3fb635c373b395ee84&"
+              />
             </Paper>
             <Stack
               sx={{ m: 2 }}
@@ -333,23 +308,16 @@ function ReportDialog({ onClose, open, withSubDrawer }: PropsType) {
             </Stack>
           </Paper>
           <Paper>
-            <Paper sx={{ m: 2 }}>
-              <Grid
-                container
-                sx={{
-                  display: "flex",
-                  alignItems: "center",
-                  padding: 2,
-                }}
-              >
-                <Grid item xs={3}>
-                  <Button variant="contained" color="secondary">
-                    تصريح الضخ
-                  </Button>
-                </Grid>
-                <Grid item xs={9}>
-                  <Box>
-                    <Slider
+            <Paper sx={{ m: 2, padding: 2 }}>
+              <Grid container>
+                {/* <Grid item xs={3}>
+                </Grid> */}
+                <Grid item xs={12}>
+                  <Stack spacing={2}>
+                    <Button variant="contained" color="secondary">
+                      تصريح الضخ
+                    </Button>
+                    {/* <Slider
                       track={false}
                       getAriaValueText={valuetext}
                       defaultValue={[20, 37, 50]}
@@ -361,8 +329,16 @@ function ReportDialog({ onClose, open, withSubDrawer }: PropsType) {
                       getAriaValueText={valuetext}
                       defaultValue={[20, 37, 50]}
                       marks={marks}
+                    /> */}
+                    <img
+                      style={{ width: "100%" }}
+                      src="https://media.discordapp.net/attachments/1200820678006415432/1217080851959906325/image.png?ex=6602b9df&is=65f044df&hm=2314533d9fd644320395498de6509e5989d0884abfc6a54a91bee4e6bfd741ca&=&format=webp&quality=lossless"
                     />
-                  </Box>
+                    <img
+                      style={{ width: "100%" }}
+                      src="https://media.discordapp.net/attachments/1200820678006415432/1217080912903409765/image.png?ex=6602b9ed&is=65f044ed&hm=994bc3b19701f2819ada268058093a4f2868a608a044e57df5b63d0ac04919f3&=&format=webp&quality=lossless"
+                    />
+                  </Stack>
                 </Grid>
               </Grid>
             </Paper>
@@ -601,6 +577,7 @@ type PropsType = {
   open: boolean;
   withSubDrawer: boolean;
   onClose: () => void;
+  setFileDialog: (open: boolean) => void;
 };
 
 export default ReportDialog;

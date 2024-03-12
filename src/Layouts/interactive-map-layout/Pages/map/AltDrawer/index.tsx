@@ -17,7 +17,7 @@ const SwiperSlidePaper = (props: PaperProps) => (
   />
 );
 
-function AltDrawer(props: DrawerProps) {
+function AltDrawer({ openDialog, ...props }: PropsType) {
   return (
     <Drawer
       variant={"persistent"}
@@ -65,38 +65,38 @@ function AltDrawer(props: DrawerProps) {
           >
             <SwiperSlide>
               <SwiperSlidePaper>
-                <AltProject />
+                <AltProject openDialog={openDialog} />
               </SwiperSlidePaper>
             </SwiperSlide>
 
             <SwiperSlide>
               <SwiperSlidePaper>
-                <AltProject />
+                <AltProject openDialog={openDialog} />
               </SwiperSlidePaper>
             </SwiperSlide>
             <SwiperSlide>
               <SwiperSlidePaper>
-                <AltProject />
+                <AltProject openDialog={openDialog} />
               </SwiperSlidePaper>
             </SwiperSlide>
             <SwiperSlide>
               <SwiperSlidePaper>
-                <AltProject />
+                <AltProject openDialog={openDialog} />
               </SwiperSlidePaper>
             </SwiperSlide>
             <SwiperSlide>
               <SwiperSlidePaper>
-                <AltProject />
+                <AltProject openDialog={openDialog} />
               </SwiperSlidePaper>
             </SwiperSlide>
             <SwiperSlide>
               <SwiperSlidePaper>
-                <AltProject />
+                <AltProject openDialog={openDialog} />
               </SwiperSlidePaper>
             </SwiperSlide>
             <SwiperSlide>
               <SwiperSlidePaper>
-                <AltProject />
+                <AltProject openDialog={openDialog} />
               </SwiperSlidePaper>
             </SwiperSlide>
           </Swiper>
@@ -105,5 +105,9 @@ function AltDrawer(props: DrawerProps) {
     </Drawer>
   );
 }
+
+type PropsType = {
+  openDialog: () => void;
+} & DrawerProps;
 
 export default AltDrawer;

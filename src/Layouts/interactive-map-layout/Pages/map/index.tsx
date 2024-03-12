@@ -3,6 +3,7 @@ import MapBanner, { MapPositionsType, MapReportTypes } from "./MapBanner";
 import ReportDialog from "./MapBanner/ReportDrawer";
 import { useState } from "react";
 import SideTabs from "./SideTabs";
+import FileDialog from "./FileDialog";
 export const mapPositions: MapPositionsType[] = [
   {
     name: "جده",
@@ -29,7 +30,7 @@ export const mapPositions: MapPositionsType[] = [
 function InteractiveMapPage() {
   const [dialogOpen, setDialogOpen] = useState(false);
   const [subDrawerOpen, setSubDrawerOpen] = useState(false);
-
+  const [fileDialog, setFileDialog] = useState(true);
   return (
     <Stack
       sx={{
@@ -43,6 +44,7 @@ function InteractiveMapPage() {
       }}
     >
       <SideTabs />
+      <FileDialog open={fileDialog} onClose={() => setFileDialog(false)} />
       <ReportDialog
         open={dialogOpen}
         withSubDrawer={subDrawerOpen}
@@ -50,6 +52,7 @@ function InteractiveMapPage() {
           setDialogOpen(false);
           setSubDrawerOpen(false);
         }}
+        setFileDialog={setFileDialog}
       />
       <MapBanner
         openDrawer={(withSubDrawer?: boolean) => {

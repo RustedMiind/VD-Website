@@ -18,7 +18,7 @@ import {
 } from "../MapBanner/ReportDrawer";
 import SquareRoundedIcon from "@mui/icons-material/SquareRounded";
 
-function AltProject() {
+function AltProject({ openDialog }: PropsType) {
   return (
     <Grid container spacing={4}>
       <Grid item xs={6}>
@@ -125,30 +125,11 @@ function AltProject() {
           </Paper>
 
           <Paper sx={{ p: 1 }}>
-            <Stack
-              direction={"row"}
-              alignItems={"center"}
-              justifyContent={"space-around"}
-            >
-              <Stack sx={{ alignItems: "center", padding: 2 }}>
-                <IconImage
-                  src="https://cdn.discordapp.com/attachments/1216663823956836385/1216666143218208819/image.png?ex=660137a5&is=65eec2a5&hm=bf8dc847f6bd8bcb77869d321df5a0d8cedab6347b605e5bef16544ed2dc31f6&"
-                  alt=""
-                />
-              </Stack>
-              <Stack sx={{ alignItems: "center", padding: 2 }}>
-                <IconImage
-                  src="https://cdn.discordapp.com/attachments/1216663823956836385/1216666143218208819/image.png?ex=660137a5&is=65eec2a5&hm=bf8dc847f6bd8bcb77869d321df5a0d8cedab6347b605e5bef16544ed2dc31f6&"
-                  alt=""
-                />
-              </Stack>
-              <Stack sx={{ alignItems: "center", padding: 2 }}>
-                <IconImage
-                  src="https://cdn.discordapp.com/attachments/1216663823956836385/1216666143218208819/image.png?ex=660137a5&is=65eec2a5&hm=bf8dc847f6bd8bcb77869d321df5a0d8cedab6347b605e5bef16544ed2dc31f6&"
-                  alt=""
-                />
-              </Stack>
-            </Stack>
+            <img
+              style={{ width: "100%" }}
+              onClick={openDialog}
+              src="https://cdn.discordapp.com/attachments/1200820678006415432/1217090775473717278/image.png?ex=6602c31d&is=65f04e1d&hm=339a46111d811f867e20fa90c97371625c4014df343c4f3fb635c373b395ee84&"
+            />
           </Paper>
         </Stack>
       </Grid>
@@ -172,5 +153,9 @@ function AltProject() {
     </Grid>
   );
 }
+
+type PropsType = {
+  openDialog: () => void;
+};
 
 export default AltProject;
