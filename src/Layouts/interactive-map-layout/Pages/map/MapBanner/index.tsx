@@ -56,7 +56,7 @@ const IconImage = ({
   >
     <div className="image-wrapper">
       <img
-        src={"https://cdn-icons-png.flaticon.com/512/9356/9356230.png"}
+        src={src || "https://cdn-icons-png.flaticon.com/512/9356/9356230.png"}
         alt="Pin Marker"
         {...props}
         className="reactive-map-marker"
@@ -92,6 +92,7 @@ const allPoints: Point[] = [
     lat: 21.317835376548818,
     long: 39.11745326690841,
     color: "blue",
+    withSubDrawer: true,
   },
   {
     id: "65ecf1f80679da146af232c2",
@@ -101,6 +102,7 @@ const allPoints: Point[] = [
     lat: 21.39244036889389,
     long: 39.71345094620678,
     color: "green",
+    withSubDrawer: false,
   },
   {
     id: "65ecf1f810f2a233aa8e7e56",
@@ -110,6 +112,7 @@ const allPoints: Point[] = [
     lat: 24.628777873163713,
     long: 46.465441703932484,
     color: "blue",
+    withSubDrawer: true,
   },
   {
     id: "65ecf1f84e46e6d8835115b9",
@@ -119,6 +122,7 @@ const allPoints: Point[] = [
     lat: 21.339460344890384,
     long: 39.925577342125145,
     color: "yellow",
+    withSubDrawer: false,
   },
   {
     id: "65ecf1f873a131645a3805d8",
@@ -128,6 +132,7 @@ const allPoints: Point[] = [
     lat: 24.700531855293832,
     long: 46.915886015326464,
     color: "green",
+    withSubDrawer: true,
   },
   {
     id: "65ecf1f898bf4b29872b3530",
@@ -137,6 +142,7 @@ const allPoints: Point[] = [
     lat: 21.25854262516186,
     long: 39.30306413173173,
     color: "blue",
+    withSubDrawer: true,
   },
   {
     id: "65ecf1f8eccefc06ff3ad3c3",
@@ -146,6 +152,7 @@ const allPoints: Point[] = [
     lat: 21.31006042332534,
     long: 39.861757054689214,
     color: "green",
+    withSubDrawer: true,
   },
   {
     id: "65ecf1f835172f6f0eb41253",
@@ -155,6 +162,7 @@ const allPoints: Point[] = [
     lat: 21.35923479985044,
     long: 39.20409445154947,
     color: "yellow",
+    withSubDrawer: true,
   },
   {
     id: "65ecf1f8f63478ef1c342bb5",
@@ -164,6 +172,7 @@ const allPoints: Point[] = [
     lat: 21.465348358737412,
     long: 39.183406662286274,
     color: "red",
+    withSubDrawer: true,
   },
   {
     id: "65ecf1f85fb13e713290da4b",
@@ -173,6 +182,7 @@ const allPoints: Point[] = [
     lat: 21.464099041773736,
     long: 39.8047313061976,
     color: "yellow",
+    withSubDrawer: false,
   },
   {
     id: "65ecf1f80760036682d2d5b9",
@@ -182,6 +192,7 @@ const allPoints: Point[] = [
     lat: 21.561540858932762,
     long: 39.132381872337334,
     color: "green",
+    withSubDrawer: true,
   },
   {
     id: "65ecf1f8643504f9604b025a",
@@ -191,6 +202,7 @@ const allPoints: Point[] = [
     lat: 24.5245652226843,
     long: 39.458140533066555,
     color: "red",
+    withSubDrawer: false,
   },
   {
     id: "65ecf1f827bc7926aa66b435",
@@ -200,6 +212,7 @@ const allPoints: Point[] = [
     lat: 21.24635144688178,
     long: 39.32262396070511,
     color: "red",
+    withSubDrawer: false,
   },
   {
     id: "65ecf1f8e4e63fbe08ae383e",
@@ -209,6 +222,7 @@ const allPoints: Point[] = [
     lat: 24.976822878818577,
     long: 46.5520652888745,
     color: "blue",
+    withSubDrawer: false,
   },
   {
     id: "65ecf1f854d1a9a2060fdfad",
@@ -218,6 +232,7 @@ const allPoints: Point[] = [
     lat: 21.58133478920504,
     long: 39.30240364368915,
     color: "green",
+    withSubDrawer: false,
   },
   {
     id: "65ecf1f8d5bdea483d82ac25",
@@ -227,6 +242,7 @@ const allPoints: Point[] = [
     lat: 24.840269300794628,
     long: 46.91912273599955,
     color: "green",
+    withSubDrawer: true,
   },
   {
     id: "65ecf1f801c860eabad17fb6",
@@ -236,6 +252,7 @@ const allPoints: Point[] = [
     lat: 24.49270214364645,
     long: 39.76740527614899,
     color: "blue",
+    withSubDrawer: true,
   },
   {
     id: "65ecf1f8b465cdd58d9a663d",
@@ -245,6 +262,7 @@ const allPoints: Point[] = [
     lat: 24.979322007177945,
     long: 46.54105634263121,
     color: "blue",
+    withSubDrawer: true,
   },
   {
     id: "65ecf1f84fdfda196185aae2",
@@ -254,6 +272,7 @@ const allPoints: Point[] = [
     lat: 21.559981342407657,
     long: 39.78611965727989,
     color: "yellow",
+    withSubDrawer: true,
   },
   {
     id: "65ecf1f87d2eeb75ff475dd5",
@@ -263,6 +282,7 @@ const allPoints: Point[] = [
     lat: 21.230594490363096,
     long: 39.22042847634609,
     color: "green",
+    withSubDrawer: true,
   },
   {
     id: "65ecf1f8172efbf3493b5faa",
@@ -272,6 +292,7 @@ const allPoints: Point[] = [
     lat: 25.079164141395797,
     long: 46.452938456068374,
     color: "green",
+    withSubDrawer: true,
   },
   {
     id: "65ecf1f8e5762bebc7188ca5",
@@ -281,6 +302,7 @@ const allPoints: Point[] = [
     lat: 24.616339997839308,
     long: 47.084567098177246,
     color: "yellow",
+    withSubDrawer: false,
   },
   {
     id: "65ecf1f8af2c881fe7d7d8eb",
@@ -290,6 +312,7 @@ const allPoints: Point[] = [
     lat: 24.333884875221962,
     long: 39.495655206758954,
     color: "green",
+    withSubDrawer: false,
   },
   {
     id: "65ecf1f8b99d187121848e6f",
@@ -299,6 +322,7 @@ const allPoints: Point[] = [
     lat: 24.78960004743542,
     long: 46.666020311036355,
     color: "yellow",
+    withSubDrawer: true,
   },
   {
     id: "65ecf1f89c0d7d198aeccf12",
@@ -308,6 +332,7 @@ const allPoints: Point[] = [
     lat: 24.39059869597154,
     long: 47.03559105100021,
     color: "blue",
+    withSubDrawer: true,
   },
   {
     id: "65ecf1f81a7984950dd6ab2f",
@@ -317,6 +342,7 @@ const allPoints: Point[] = [
     lat: 21.25350163730565,
     long: 39.38364071516232,
     color: "red",
+    withSubDrawer: false,
   },
   {
     id: "65ecf1f88546d6ef23ece322",
@@ -326,6 +352,7 @@ const allPoints: Point[] = [
     lat: 21.76397257821048,
     long: 39.08233023982218,
     color: "yellow",
+    withSubDrawer: false,
   },
   {
     id: "65ecf1f8b40fd2048a86f2bd",
@@ -335,6 +362,7 @@ const allPoints: Point[] = [
     lat: 24.34094236497671,
     long: 39.702982925185744,
     color: "red",
+    withSubDrawer: false,
   },
   {
     id: "65ecf1f8fd2f3d79257c6a8d",
@@ -344,6 +372,7 @@ const allPoints: Point[] = [
     lat: 24.47183758023006,
     long: 39.60989160432324,
     color: "green",
+    withSubDrawer: false,
   },
   {
     id: "65ecf1f8fc925eb644c21006",
@@ -353,6 +382,7 @@ const allPoints: Point[] = [
     lat: 24.426345963862886,
     long: 46.78203900556791,
     color: "yellow",
+    withSubDrawer: false,
   },
   {
     id: "65ecf1f8f27db9ecf039fe97",
@@ -362,6 +392,7 @@ const allPoints: Point[] = [
     lat: 21.476879676627817,
     long: 39.96065469875149,
     color: "red",
+    withSubDrawer: false,
   },
   {
     id: "65ecf1f8b35b7257ca2a9e4b",
@@ -371,6 +402,7 @@ const allPoints: Point[] = [
     lat: 24.626405809957557,
     long: 39.50366393738483,
     color: "blue",
+    withSubDrawer: false,
   },
   {
     id: "65ecf1f8d7609a28de599939",
@@ -380,6 +412,7 @@ const allPoints: Point[] = [
     lat: 24.354626283360407,
     long: 39.72775335343886,
     color: "red",
+    withSubDrawer: false,
   },
   {
     id: "65ecf1f81d4ac9cdb4cecff5",
@@ -389,6 +422,7 @@ const allPoints: Point[] = [
     lat: 24.930667075297567,
     long: 46.49151115700216,
     color: "blue",
+    withSubDrawer: true,
   },
   {
     id: "65ecf1f837de5cac940feced",
@@ -398,6 +432,7 @@ const allPoints: Point[] = [
     lat: 21.835069332853557,
     long: 39.22077431213564,
     color: "blue",
+    withSubDrawer: false,
   },
   {
     id: "65ecf1f83bd86ba13a90b551",
@@ -407,6 +442,7 @@ const allPoints: Point[] = [
     lat: 21.644859101329182,
     long: 39.0900350185139,
     color: "green",
+    withSubDrawer: true,
   },
   {
     id: "65ecf1f845288811d89ae167",
@@ -416,6 +452,7 @@ const allPoints: Point[] = [
     lat: 21.325399606361753,
     long: 39.84185534081245,
     color: "green",
+    withSubDrawer: false,
   },
   {
     id: "65ecf1f8f4c8c657193d3fd7",
@@ -425,6 +462,7 @@ const allPoints: Point[] = [
     lat: 21.470820663057644,
     long: 39.365676056350125,
     color: "red",
+    withSubDrawer: true,
   },
   {
     id: "65ecf1f85ee08e73a68c7e78",
@@ -434,6 +472,7 @@ const allPoints: Point[] = [
     lat: 21.432746799374748,
     long: 39.75255444233856,
     color: "blue",
+    withSubDrawer: true,
   },
 ];
 function MapBanner({
@@ -451,11 +490,16 @@ function MapBanner({
   const [selectedColor, setSelectedColor] = useState<string | undefined>(
     undefined
   );
+  const [selectedSub, setSelectedSub] = useState<string | undefined>(undefined);
   const handleSelectColor = (
     e: React.MouseEvent<HTMLButtonElement, MouseEvent>
   ) => {
     if (selectedColor === e.currentTarget.value) setSelectedColor(undefined);
     else setSelectedColor(e.currentTarget.value);
+  };
+  const handleSelectSub = (value: string) => {
+    if (selectedSub === value) setSelectedSub(undefined);
+    else setSelectedSub(value);
   };
   let points = [...allPoints];
   if (selectedCity) {
@@ -463,7 +507,11 @@ function MapBanner({
   }
   if (selectedColor)
     points = points.filter((point) => point.color === selectedColor);
-
+  if (selectedSub) {
+    if (selectedSub === "alt")
+      points = points.filter((point) => point.withSubDrawer);
+    else points = points.filter((point) => !point.withSubDrawer);
+  }
   function handleSelectedCity(city: MapPositionsType) {
     return () => {
       if (city.typeId === selectedCity?.typeId) setSelectedCity(undefined);
@@ -477,7 +525,12 @@ function MapBanner({
         <CircularProgress />
       </Backdrop>
       <Filters handleSelect={handleSelectedCity} selectedCity={selectedCity} />
-      <ButtonsColor selected={selectedColor} handleSelect={handleSelectColor} />
+      <ButtonsColor
+        selectedSub={selectedSub}
+        handSelectSub={handleSelectSub}
+        selected={selectedColor}
+        handleSelect={handleSelectColor}
+      />
       {mapReport ? (
         <GoogleMapReact
           bootstrapURLKeys={{ key: GoogleMapApiKey }}
@@ -488,24 +541,46 @@ function MapBanner({
           }, ${"currentCenter"}`}
           options={{ fullscreenControl: false }}
         >
-          {points.map((point) => (
-            <Marker
-              lat={point.lat}
-              lng={point.long}
-              title={point.about}
-              key={`${point.id} `}
-              toolTipId={point.typeId?.toString()}
-              src={pinIcon}
-              // style={{
-              //   backgroundColor: "#fff ",
-              //   borderRadius: "50%",
-              //   padding: "5px",
-              //   border: " dashed tomato 3px",
-              // }}
-              className={point.color}
-              onClick={openDrawer}
-            />
-          ))}
+          {points.map((point) => {
+            let src =
+              "https://media.discordapp.net/attachments/1195066403288535111/1216962982211358750/9356230.png?ex=66024c19&is=65efd719&hm=3dd35fc300552197afba2867425623415543c8bd46d899cfb27a3bd220895143&=&format=webp&quality=lossless";
+            switch (point.color) {
+              case "green":
+                src =
+                  "https://media.discordapp.net/attachments/1195066403288535111/1216962983364792330/green.png?ex=66024c19&is=65efd719&hm=820addfdf8330caf0ad54d144ef006e87e5536b0f21cef8ef14b4006d231f9ec&=&format=webp&quality=lossless";
+                break;
+              case "yellow":
+                src =
+                  "https://media.discordapp.net/attachments/1195066403288535111/1216962982777720892/yellow.png?ex=66024c19&is=65efd719&hm=15df071b91cd0119d1e095204658b1185af3dd341894eebdb19dabbe14255a70&=&format=webp&quality=lossless";
+                break;
+              case "blue":
+                src =
+                  "https://media.discordapp.net/attachments/1195066403288535111/1216962983121387570/blue.png?ex=66024c19&is=65efd719&hm=18115d1e9317c03f7b08e0c506da67418882b7f140ebd7281c3cbbf71725fdec&=&format=webp&quality=lossless";
+                break;
+              default:
+                break;
+            }
+            return (
+              <Marker
+                lat={point.lat}
+                lng={point.long}
+                title={point.about}
+                key={`${point.id} `}
+                toolTipId={point.typeId?.toString()}
+                src={src}
+                // style={{
+                //   backgroundColor: "#fff ",
+                //   borderRadius: "50%",
+                //   padding: "5px",
+                //   border: " dashed tomato 3px",
+                // }}
+                className={point.withSubDrawer ? "yellow" : undefined}
+                onClick={() => {
+                  openDrawer(point.withSubDrawer);
+                }}
+              />
+            );
+          })}
         </GoogleMapReact>
       ) : (
         <Skeleton variant="rectangular" width={"100%"} height={"100%"} />
@@ -521,7 +596,7 @@ type PropsType = {
   mapReport?: MapReportBase[];
   type: MapReportTypes;
   setType: (type: MapReportTypes) => void;
-  openDrawer: () => void;
+  openDrawer: (subDrawer?: boolean) => void;
   setReportEmployeeDetails: (employee?: Employee) => void;
   setReportContractorDetails: (contractor?: MapReportContractor) => void;
   mapPositions: MapPositionsType[];
@@ -548,6 +623,7 @@ export type Point = {
   lat: number;
   long: number;
   color: string;
+  withSubDrawer: boolean;
 };
 
 export default MapBanner;

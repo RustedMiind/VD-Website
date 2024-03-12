@@ -1,4 +1,5 @@
 .marker-image-container {
+  --outline-color: var(--main);
   position: absolute;
   transform: translate(50%, -50%);
   transform-origin: center;
@@ -21,7 +22,7 @@
       left: 0;
       width: 100%;
       height: 100%;
-      outline: dashed var(--main) 2px;
+      outline: dashed var(--outline-color) 2px;
       z-index: 1100000;
       animation-name: RotateBorder;
       animation-duration: 15s;
@@ -38,19 +39,13 @@
     animation-iteration-count: infinite;
   }
   &.red {
-    .image-wrapper::after {
-      outline-color: var(--error);
-    }
+    --outline-color: var(--error);
   }
   &.green {
-    .image-wrapper::after {
-      outline-color: var(--success);
-    }
+    --outline-color: var(--success);
   }
   &.yellow {
-    .image-wrapper::after {
-      outline-color: var(--third);
-    }
+    --outline-color: var(--third);
   }
 }
 

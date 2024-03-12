@@ -28,6 +28,7 @@ export const mapPositions: MapPositionsType[] = [
 ];
 function InteractiveMapPage() {
   const [dialogOpen, setDialogOpen] = useState(false);
+  const [subDrawerOpen, setSubDrawerOpen] = useState(false);
 
   return (
     <Stack
@@ -44,11 +45,17 @@ function InteractiveMapPage() {
       <SideTabs />
       <ReportDialog
         open={dialogOpen}
-        reportDetails={{}}
-        onClose={() => setDialogOpen(false)}
+        withSubDrawer={subDrawerOpen}
+        onClose={() => {
+          setDialogOpen(false);
+          setSubDrawerOpen(false);
+        }}
       />
       <MapBanner
-        openDrawer={() => setDialogOpen(true)}
+        openDrawer={(withSubDrawer?: boolean) => {
+          setDialogOpen(true);
+          setSubDrawerOpen(Boolean(withSubDrawer));
+        }}
         setReportContractorDetails={() => {}}
         setReportEmployeeDetails={() => {}}
         setType={() => {}}

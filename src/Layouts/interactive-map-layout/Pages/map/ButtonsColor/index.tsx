@@ -1,7 +1,12 @@
 import { Box, Button, Chip, Paper, Stack } from "@mui/material";
 import React from "react";
 
-export default function ButtonsColor({ handleSelect, selected }: PropsType) {
+export default function ButtonsColor({
+  handleSelect,
+  selected,
+  handSelectSub,
+  selectedSub,
+}: PropsType) {
   function getVariant(color: string): "contained" | "outlined" {
     return selected === color ? "contained" : "outlined";
   }
@@ -65,8 +70,18 @@ export default function ButtonsColor({ handleSelect, selected }: PropsType) {
           alignItems: "center",
         }}
       >
-        <Chip size="small" label="بديل" variant="outlined" color="warning" />
-        <Chip size="small" label="ضخ" variant="outlined" color="secondary" />
+        <Chip
+          label="بديل"
+          variant={selectedSub === "alt" ? "filled" : "outlined"}
+          color="warning"
+          onClick={() => handSelectSub("alt")}
+        />
+        <Chip
+          label="ضخ"
+          variant={selectedSub === "push" ? "filled" : "outlined"}
+          color="secondary"
+          onClick={() => handSelectSub("push")}
+        />
       </Box>
     </Stack>
   );
@@ -74,4 +89,6 @@ export default function ButtonsColor({ handleSelect, selected }: PropsType) {
 type PropsType = {
   selected: string | undefined;
   handleSelect: (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
+  handSelectSub: (selected: string) => void;
+  selectedSub?: string;
 };

@@ -28,7 +28,7 @@ import { MapPositionsType } from "../MapBanner";
 
 export const CustomPaper = (props: PaperProps) => (
   <Paper
-    elevation={1}
+    elevation={0}
     sx={(theme) => ({
       p: 2,
       bgcolor: `${theme.palette.background.default}80`,
@@ -129,27 +129,157 @@ function Filters({ handleSelect, selectedCity }: PropsType) {
             alt=""
           />
         </Paper>
-        <Paper
-          sx={(theme) => ({
-            background: `${theme.palette.background.default}60`,
-            backdropFilter: "blur(10px)",
-          })}
-        >
-          <Button
-            sx={{
-              px: 4,
-              py: 1,
-            }}
-            variant="text"
-            color="secondary"
-            fullWidth
-            onClick={handleClick}
-            startIcon={<FilterAltIcon />}
-            endIcon={<ExpandMoreIcon />}
+        <Stack>
+          <Accordion
+            elevation={0}
+            sx={(theme) => ({
+              bgcolor: `${theme.palette.background.default}80`,
+              backdropFilter: "blur(15px)",
+            })}
           >
-            خيارات البحث
-          </Button>
-        </Paper>
+            <AccordionSummary expandIcon={<ExpandMoreIcon />}>
+              <Typography variant="body1" fontWeight={700}>
+                خيارات البحث
+              </Typography>
+            </AccordionSummary>
+            <AccordionDetails>
+              <Paper
+                elevation={0}
+                sx={(theme) => ({
+                  background: `${theme.palette.background.default}10`,
+                  backdropFilter: "blur(15px)",
+                  p: 2,
+                  maxHeight: "65vh",
+                  overflowY: "auto",
+                })}
+              >
+                <Stack width={400} spacing={2}>
+                  <CustomPaper>
+                    <TextField size="small" label="البحث" fullWidth />
+                  </CustomPaper>
+
+                  <CustomPaper>
+                    <FormControl>
+                      <FormLabel id="demo-row-radio-buttons-group-label">
+                        اختر نسبة الانجاز
+                      </FormLabel>
+                      <RadioGroup
+                        row
+                        aria-labelledby="demo-row-radio-buttons-group-label"
+                        name="row-radio-buttons-group"
+                      >
+                        <Stack direction="row" justifyContent="space-between">
+                          <FormControlLabel
+                            value="female"
+                            control={<Radio />}
+                            label="25%"
+                          />
+                          <FormControlLabel
+                            value="male"
+                            control={<Radio />}
+                            label="50%"
+                          />
+                          <FormControlLabel
+                            value="other"
+                            control={<Radio />}
+                            label="75%"
+                          />
+                          <FormControlLabel
+                            value="disabled"
+                            disabled
+                            control={<Radio />}
+                            label="100%"
+                          />
+                        </Stack>
+                      </RadioGroup>
+                    </FormControl>
+                  </CustomPaper>
+
+                  <FilterCategory label="اختر المقاول">
+                    <Stack direction={"row"} gap={1} flexWrap={"wrap"}>
+                      <CustomChip label="محمد سعيد" />
+                      <CustomChip label="خالد عبدالرحمن" />
+                      <CustomChip label="عبدالله سيد" />
+                      <CustomChip label="احمد عادل" />
+                      <CustomChip label="احمد عادل" />
+                      <CustomChip label="عبدالله سيد" />
+                      <CustomChip label="محمد سعيد" />
+                    </Stack>
+                  </FilterCategory>
+
+                  <FilterCategory label="طول الخط البديل">
+                    <div dir="ltr">
+                      <Slider
+                        min={0}
+                        max={1000000}
+                        value={range}
+                        onChange={handleChangeRange}
+                        valueLabelDisplay="auto"
+                        step={12500}
+                        disableSwap
+                      />
+                    </div>
+                  </FilterCategory>
+
+                  <FilterCategory label="نوع امر العمل">
+                    <Stack direction={"row"} gap={1} flexWrap={"wrap"}>
+                      <Button
+                        variant="outlined"
+                        sx={{
+                          borderStyle: "dashed",
+                          borderWidth: "2px !important",
+                        }}
+                      >
+                        ضخ
+                      </Button>
+                      <Button variant="outlined" color="secondary">
+                        خط بديل
+                      </Button>
+                    </Stack>
+                  </FilterCategory>
+
+                  <FilterCategory label="اختر الاستشاري">
+                    <Stack direction={"row"} gap={1} flexWrap={"wrap"}>
+                      <CustomChip label="محمد سعيد" />
+                      <CustomChip label="خالد عبدالرحمن" />
+                      <CustomChip label="عبدالله سيد" />
+                      <CustomChip label="احمد عادل" />
+                      <CustomChip label="احمد عادل" />
+                      <CustomChip label="عبدالله سيد" />
+                      <CustomChip label="محمد سعيد" />
+                    </Stack>
+                  </FilterCategory>
+
+                  <FilterCategory label="المدة المتبقية لانهاء النشر">
+                    <Stack direction={"row"} gap={1} flexWrap={"wrap"}>
+                      <CustomChip label="60 يوم" />
+                      <CustomChip label="90 يوم" />
+                      <CustomChip label="120 يوم" />
+                      <CustomChip label="160 يوم" />
+                      <CustomChip label="30 يوم" />
+                    </Stack>
+                  </FilterCategory>
+                  <Stack direction="row" spacing={2}>
+                    <Button
+                      sx={{ width: 0.5 }}
+                      variant="contained"
+                      color="secondary"
+                    >
+                      بحث
+                    </Button>
+                    <Button
+                      sx={{ width: 0.5 }}
+                      variant="outlined"
+                      color="secondary"
+                    >
+                      اعادة تعيين
+                    </Button>
+                  </Stack>
+                </Stack>
+              </Paper>
+            </AccordionDetails>
+          </Accordion>
+        </Stack>
         {/* <Paper
           sx={(theme) => ({
             background: `${theme.palette.background.default}60`,
@@ -216,105 +346,6 @@ function Filters({ handleSelect, selectedCity }: PropsType) {
               {city.name}
             </Button>
           ))}
-        </Stack>
-      </Menu>
-
-      <Menu
-        slotProps={{
-          paper: {
-            // elevation: 4,
-            sx(theme) {
-              return {
-                background: `${theme.palette.background.default}10`,
-                backdropFilter: "blur(15px)",
-                p: 2,
-              };
-            },
-          },
-        }}
-        anchorEl={anchorEl}
-        open={Boolean(anchorEl)}
-        onClose={handleClose}
-      >
-        <Stack width={400} spacing={2}>
-          <CustomPaper>
-            <TextField size="small" label="البحث" fullWidth />
-          </CustomPaper>
-
-          <CustomPaper>
-            <FormControl>
-              <FormLabel id="demo-row-radio-buttons-group-label">
-                اختر نسبة الانجاز
-              </FormLabel>
-              <RadioGroup
-                row
-                aria-labelledby="demo-row-radio-buttons-group-label"
-                name="row-radio-buttons-group"
-              >
-                <Stack direction="row" justifyContent="space-between">
-                  <FormControlLabel
-                    value="female"
-                    control={<Radio />}
-                    label="25%"
-                  />
-                  <FormControlLabel
-                    value="male"
-                    control={<Radio />}
-                    label="50%"
-                  />
-                  <FormControlLabel
-                    value="other"
-                    control={<Radio />}
-                    label="75%"
-                  />
-                  <FormControlLabel
-                    value="disabled"
-                    disabled
-                    control={<Radio />}
-                    label="100%"
-                  />
-                </Stack>
-              </RadioGroup>
-            </FormControl>
-          </CustomPaper>
-
-          <FilterCategory label="اختر المقاول">
-            <Stack direction={"row"} gap={1} flexWrap={"wrap"}>
-              <CustomChip label="محمد سعيد" />
-              <CustomChip label="خالد عبدالرحمن" />
-              <CustomChip label="عبدالله سيد" />
-              <CustomChip label="احمد عادل" />
-              <CustomChip label="احمد عادل" />
-              <CustomChip label="عبدالله سيد" />
-              <CustomChip label="محمد سعيد" />
-            </Stack>
-          </FilterCategory>
-
-          <FilterCategory label="طول الخط البديل">
-            <div dir="ltr">
-              <Slider
-                min={0}
-                max={1000000}
-                value={range}
-                onChange={handleChangeRange}
-                valueLabelDisplay="auto"
-                step={12500}
-                disableSwap
-              />
-            </div>
-          </FilterCategory>
-
-          <FilterCategory label="اختر الاستشاري">
-            <Stack direction={"row"} gap={1} flexWrap={"wrap"}>
-              <CustomChip label="محمد سعيد" />
-              <CustomChip label="خالد عبدالرحمن" />
-              <CustomChip label="عبدالله سيد" />
-              <CustomChip label="احمد عادل" />
-              <CustomChip label="احمد عادل" />
-              <CustomChip label="عبدالله سيد" />
-              <CustomChip label="محمد سعيد" />
-            </Stack>
-          </FilterCategory>
         </Stack>
       </Menu>
     </>
