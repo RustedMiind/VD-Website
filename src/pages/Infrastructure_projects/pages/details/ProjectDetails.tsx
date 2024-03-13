@@ -73,29 +73,29 @@ const ProjectDetails = () => {
     })
   );
 
-  // useEffect(() => {
-  //   if (
-  //     user?.userState === UserState.NOT_USER ||
-  //     user?.userState === UserState.UNKNOWN ||
-  //     user == undefined
-  //   ) {
-  //     return Naviator("/");
-  //   } else {
-  //     //TODO::check user able to see project details or not?
-  //     axios
-  //       .get(api(`client/contact-details-authorized/${projectId}`))
-  //       .then((response) => {
-  //         console.log("Response101", response);
-  //         if (response?.data?.msg?.includes("not")) {
-  //           Naviator(`/`);
-  //         }
-  //       })
-  //       .catch((err) => {
-  //         Naviator(`/`);
-  //         console.log("Error::", err);
-  //       });
-  //   }
-  // }, []);
+  useEffect(() => {
+    if (
+      user?.userState === UserState.NOT_USER ||
+      user?.userState === UserState.UNKNOWN ||
+      user == undefined
+    ) {
+      return Naviator("/");
+    } else {
+      //TODO::check user able to see project details or not?
+      axios
+        .get(api(`client/contact-details-authorized/${projectId}`))
+        .then((response) => {
+          console.log("Response101", response);
+          if (response?.data?.msg?.includes("not")) {
+            Naviator(`/`);
+          }
+        })
+        .catch((err) => {
+          Naviator(`/`);
+          console.log("Error::", err);
+        });
+    }
+  }, []);
 
   //TODO::fetch project data
   useEffect(() => {
@@ -219,7 +219,7 @@ const ProjectDetails = () => {
           </Grid>
         </Grid>
         {/* print btn */}
-        <Grid
+        {/* <Grid
           item
           xs={12}
           sx={{
@@ -249,7 +249,7 @@ const ProjectDetails = () => {
               طباعة
             </Typography>
           </Button>
-        </Grid>
+        </Grid> */}
         {/* chat btn */}
         <Grid
           item
