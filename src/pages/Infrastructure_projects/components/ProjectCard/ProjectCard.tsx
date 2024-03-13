@@ -78,7 +78,10 @@ const ProjectCard = (props: propsType) => {
             background: "#fff",
           }}
           className="ProjectCard"
-          onClick={() => Navigator(`show/${id}`)}
+          onClick={(e) => {
+            e.stopPropagation();
+            Navigator(`show/${id}`);
+          }}
         >
           <CardMedia
             sx={{ height: 228 }}
@@ -175,7 +178,8 @@ const ProjectCard = (props: propsType) => {
                     background: "#fff",
                   },
                 }}
-                onClick={() => {
+                onClick={(e) => {
+                  e.stopPropagation();
                   if (
                     user == undefined ||
                     user?.userState === UserState.NOT_USER ||

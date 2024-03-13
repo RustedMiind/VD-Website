@@ -73,29 +73,29 @@ const ProjectDetails = () => {
     })
   );
 
-  useEffect(() => {
-    if (
-      user?.userState === UserState.NOT_USER ||
-      user?.userState === UserState.UNKNOWN ||
-      user == undefined
-    ) {
-      return Naviator("/");
-    } else {
-      //TODO::check user able to see project details or not?
-      axios
-        .get(api(`client/contact-details-authorized/${projectId}`))
-        .then((response) => {
-          console.log("Response101", response);
-          if (response?.data?.msg?.includes("not")) {
-            Naviator(`/`);
-          }
-        })
-        .catch((err) => {
-          Naviator(`/`);
-          console.log("Error::", err);
-        });
-    }
-  }, []);
+  // useEffect(() => {
+  //   if (
+  //     user?.userState === UserState.NOT_USER ||
+  //     user?.userState === UserState.UNKNOWN ||
+  //     user == undefined
+  //   ) {
+  //     return Naviator("/");
+  //   } else {
+  //     //TODO::check user able to see project details or not?
+  //     axios
+  //       .get(api(`client/contact-details-authorized/${projectId}`))
+  //       .then((response) => {
+  //         console.log("Response101", response);
+  //         if (response?.data?.msg?.includes("not")) {
+  //           Naviator(`/`);
+  //         }
+  //       })
+  //       .catch((err) => {
+  //         Naviator(`/`);
+  //         console.log("Error::", err);
+  //       });
+  //   }
+  // }, []);
 
   //TODO::fetch project data
   useEffect(() => {
@@ -103,7 +103,6 @@ const ProjectDetails = () => {
     axios
       .get(api(`employee/contract-details/${projectId}`))
       .then((data) => {
-        console.log("Incomming data :", data);
         setProject({
           id: +data?.data?.data?.id,
           name: data?.data?.data?.details,
@@ -117,7 +116,7 @@ const ProjectDetails = () => {
           numberOfPieces: data?.data?.data?.contract_details?.number_parts,
           masterImg: data?.data?.data?.contract_details?.media?.filter(
             (ele: { collection_name: string }) =>
-              ele?.collection_name == "master_image"
+              ele?.collection_name == "master_plan"
           )[0]?.original_url,
           amount: "",
         });
@@ -128,6 +127,10 @@ const ProjectDetails = () => {
       })
       .finally(() => setLoading(false));
   }, []);
+
+  useEffect(() => {
+    console.log("Project_data", project);
+  }, [project]);
 
   if (loading)
     return <Loader h="95vh" title="جاري تحميل بيانات مشروع البنية التحتية.." />;
@@ -202,16 +205,16 @@ const ProjectDetails = () => {
             alignItems: "start",
           }}
         >
-          <Grid item xs={12} md={3}>
+          <Grid item xs={12} md={3} marginBottom={"2rem"}>
             <CompletionRates contractItems={contractItems} />
           </Grid>
-          <Grid item xs={12} md={5}>
+          <Grid item xs={12} md={5} marginBottom={"2rem"}>
             <ZoningPlan
               masterImg={project?.masterImg}
               contractItems={contractItems}
             />
           </Grid>
-          <Grid item xs={12} md={3}>
+          <Grid item xs={12} md={3} marginBottom={'2rem'}>
             <AttachmentSections contractItems={contractItems} />
           </Grid>
         </Grid>
