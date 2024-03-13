@@ -16,6 +16,9 @@ import outsidePartnerImg1 from "../../../../../assets/images/infrestructurePeoje
 import outsidePartnerImg2 from "../../../../../assets/images/infrestructurePeojectsImages/outsidePartner2.png";
 import outsidePartnerImg3 from "../../../../../assets/images/infrestructurePeojectsImages/outsidePartner3.png";
 import { useTranslation } from "react-i18next";
+import { useSelector } from "react-redux";
+import { SettingsStateType } from "redux/reducers/settingsSlice";
+import { getValueByKey } from "types/SettingsType";
 // import { CircularProgressbar } from 'react-circular-progressbar';
 
 const GridItem = ({
@@ -270,6 +273,11 @@ const ProjectInformation = ({
   project: showProjctInformation | undefined;
 }) => {
   const { t } = useTranslation();
+  const settings = useSelector(
+    (state: { settings: SettingsStateType }) => state.settings
+  );
+  const getvalue = getValueByKey(settings);
+  const whatsapp = getvalue("whatsapp") as undefined | [string];
   let workItems = [
     { id: 1, title: "الاسفلت", val: 80, src: WayImage },
     { id: 2, title: "الانارة", val: 50, src: lightImage },
@@ -296,49 +304,50 @@ const ProjectInformation = ({
           {t("InfrastructureProjects.showPage.showStatment")} {project?.name}
         </Typography>
       </Box>
-      <Grid container style={{ width: "100%" }}>
-        <Grid container className="showProjectInfoRowOfdata">
-          <GridItem
-            fullLine={false}
-            title={t("InfrastructureProjects.showPage.planName")}
-            val={project?.name ?? ""}
-            mdw={6}
-            sxw={12}
-          />
-          <GridItem
-            fullLine={false}
-            title={t("InfrastructureProjects.showPage.numberOfPieces")}
-            val={project?.numberOfPieces?.toString() ?? ""}
-            mdw={6}
-            sxw={12}
-          />
-        </Grid>
-        <Grid container className="showProjectInfoRowOfdata">
-          <GridItem
-            fullLine={false}
-            title={t("InfrastructureProjects.showPage.location")}
-            val={project?.location ?? ""}
-            mdw={6}
-            sxw={12}
-          />
-          <GridItem
+      <Grid container style={{ width: "100%", marginBottom: "3rem" }}>
+        <Grid container xs={12}>
+          <Grid container className="showProjectInfoRowOfdata">
+            <GridItem
+              fullLine={false}
+              title={t("InfrastructureProjects.showPage.planName")}
+              val={project?.name ?? ""}
+              mdw={6}
+              sxw={12}
+            />
+            <GridItem
+              fullLine={false}
+              title={t("InfrastructureProjects.showPage.numberOfPieces")}
+              val={project?.numberOfPieces?.toString() ?? ""}
+              mdw={6}
+              sxw={12}
+            />
+          </Grid>
+          <Grid container className="showProjectInfoRowOfdata">
+            <GridItem
+              fullLine={false}
+              title={t("InfrastructureProjects.showPage.location")}
+              val={project?.location ?? ""}
+              mdw={6}
+              sxw={12}
+            />
+            {/* <GridItem
             fullLine={false}
             title={t("InfrastructureProjects.showPage.supportNumber")}
             val={project?.supportNumber ?? ""}
             mdw={6}
             sxw={12}
-          />
-        </Grid>
-        <Grid container className="showProjectInfoRowOfdata">
-          <GridItem
-            fullLine={true}
-            title={t("InfrastructureProjects.showPage.area")}
-            val={project?.area ? project?.area.toString() : ""}
-            mdw={12}
-            sxw={12}
-          />
-        </Grid>
-        <Grid container className="showProjectInfoRowOfdata">
+          /> */}
+          </Grid>
+          <Grid container className="showProjectInfoRowOfdata">
+            <GridItem
+              fullLine={true}
+              title={t("InfrastructureProjects.showPage.area")}
+              val={project?.area ? project?.area.toString() : ""}
+              mdw={12}
+              sxw={12}
+            />
+          </Grid>
+          {/* <Grid container className="showProjectInfoRowOfdata">
           <GridItem
             fullLine={true}
             title={t("InfrastructureProjects.showPage.buildingSystem")}
@@ -346,26 +355,26 @@ const ProjectInformation = ({
             mdw={12}
             sxw={12}
           />
-        </Grid>
-        <Grid container className="showProjectInfoRowOfdata">
-          <GridItem
-            fullLine={true}
-            title={t("InfrastructureProjects.showPage.owner")}
-            val={project?.area ? project?.OwnerName.toString() : ""}
-            mdw={12}
-            sxw={12}
-          />
-        </Grid>
-        <Grid container className="showProjectInfoRowOfdata">
-          <GridItem
-            fullLine={true}
-            title={t("InfrastructureProjects.showPage.engineeringOffice")}
-            val="مساحة لكتابة اسم"
-            mdw={12}
-            sxw={12}
-          />
-        </Grid>
-        <Grid container className="showProjectInfoRowOfdata">
+        </Grid> */}
+          <Grid container className="showProjectInfoRowOfdata">
+            <GridItem
+              fullLine={true}
+              title={t("InfrastructureProjects.showPage.owner")}
+              val={project?.OwnerName ? project?.OwnerName.toString() : ""}
+              mdw={12}
+              sxw={12}
+            />
+          </Grid>
+          <Grid container className="showProjectInfoRowOfdata">
+            <GridItem
+              fullLine={true}
+              title={t("InfrastructureProjects.showPage.engineeringOffice")}
+              val={project?.branchName ? project?.branchName.toString() : ""}
+              mdw={12}
+              sxw={12}
+            />
+          </Grid>
+          {/* <Grid container className="showProjectInfoRowOfdata">
           <GridItem
             fullLine={true}
             title={t("InfrastructureProjects.showPage.implementingContractor")}
@@ -373,9 +382,9 @@ const ProjectInformation = ({
             mdw={12}
             sxw={12}
           />
-        </Grid>
+        </Grid> */}
 
-        {/* remove latest 4 rows according they desire
+          {/* remove latest 4 rows according they desire
         <Grid container className="showProjectInfoRowOfdata">
           <GridItemInDetails
             title={t("InfrastructureProjects.showPage.works")}
@@ -458,9 +467,10 @@ const ProjectInformation = ({
             sxw={12}
           />
         </Grid> */}
+        </Grid>
 
-        <Grid container>
-          <Button
+        <Grid container marginTop={"4rem"}>
+          {/* <Button
             variant="contained"
             sx={{
               width: "80%",
@@ -472,7 +482,7 @@ const ProjectInformation = ({
             <Typography sx={{ marginX: "0.4rem" }} variant="body2">
               {t("InfrastructureProjects.buttons.print")}
             </Typography>
-          </Button>
+          </Button> */}
           <Box
             sx={{
               width: "100%",
@@ -495,6 +505,8 @@ const ProjectInformation = ({
               margin: "0 auto 1rem",
               backgroundColor: "#03c827",
             }}
+            target="_blank"
+            href={whatsapp && whatsapp[0] ? `https://wa.me/${whatsapp[0]}` : ""}
           >
             <Typography sx={{ marginX: "0.4rem" }} variant="body2">
               WhatsApp

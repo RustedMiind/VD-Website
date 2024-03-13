@@ -30,6 +30,7 @@ import { CacheProvider } from "@emotion/react";
 import "react-tooltip/dist/react-tooltip.css";
 import { Route, Routes } from "react-router-dom";
 import InteractiveMapLAyout from "Layouts/interactive-map-layout";
+import { requestGetElectronServicesLinks } from "redux/middlewares/electronServicesLinksMiddleware";
 
 const cacheRtl = createCache({
   key: "muirtl",
@@ -63,6 +64,10 @@ function App() {
       .then((res) => {})
       .catch((err) => {});
   }, [lang]);
+
+  useEffect(() => {
+    requestGetElectronServicesLinks(dispatch);
+  }, []);
 
   const theme = useMemo(
     () =>

@@ -8,9 +8,11 @@ import newsSlice from "./reducers/newsSlice";
 import designsSlice from "./reducers/designsSlice";
 import userSlice from "./reducers/userSlice";
 import infrastructureSlice from "./reducers/infrastructureSlice";
+import electronServicesLinksSlice from "./reducers/electronServicesLinksSlice";
 
 export const store = configureStore({
   reducer: {
+    electronServicesLinks:electronServicesLinksSlice,
     projects: projectsSlice,
     services: servicesSlice,
     settings: settingsSlice,

@@ -168,7 +168,7 @@ export default function CompletionRates({
     { title: string; items: ContractSubItem[] }[]
   >([]);
 
-  //   TODO::prepare ratio items
+  //   TODO::prepare ratio items data
   useEffect(() => {
     setLoading(true);
     let raioArr = [],
@@ -197,7 +197,7 @@ export default function CompletionRates({
         borderRadius: "17px",
         boxSizing: "border-box",
         padding: "1rem",
-        minHeight: "999px",
+        alignItems: "start",
       }}
     >
       {/* Complete rates in Gada */}
@@ -229,7 +229,13 @@ export default function CompletionRates({
           );
         })}
       {/* النسبة المئوية الكلية من انجاز المشروع */}
-      <>
+      <Grid
+        xs={12}
+        container
+        sx={{
+          display: "flex",
+          marginY: "2rem",
+        }}>
         <Grid item xs={12} sx={{ marginY: "0.5rem" }}>
           <Typography fontWeight={800} variant="h5">
             نسب انجاز الاعمال بالجهات الخدمية
@@ -269,7 +275,7 @@ export default function CompletionRates({
             </Box>
           </Grid>
         </Grid>
-      </>
+      </Grid>
     </Grid>
   );
 }

@@ -1,5 +1,5 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import "./navbar.scss";
 import { List } from "react-bootstrap-icons";
 import { NavLink } from "react-router-dom";
@@ -28,24 +28,30 @@ import api from "methods/api";
 import { logout } from "redux/middlewares/userMiddleware";
 import { AuthContext } from "contexts/Auth";
 import GTranslateIcon from "@mui/icons-material/GTranslate";
+import { electronServicesLinksType } from "redux/reducers/electronServicesLinksSlice";
 
 function Navbar() {
   const { changeLang, lang } = useContext(LangContext);
   const currentLang = lang();
   const [anchorElUser, setAnchorElUser] = useState<null | HTMLElement>(null);
   const dispatch = useDispatch();
-
-  const { settings, user } = useSelector(
-    (state: { settings: SettingsStateType } & UserStateType) => ({
+  const { settings, user, electronServices } = useSelector(
+    (
+      state: {
+        settings: SettingsStateType;
+        electronServicesLinks: electronServicesLinksType;
+      } & UserStateType
+    ) => ({
       settings: state.settings,
       user: state.user,
+      electronServices: state.electronServicesLinks,
     })
   );
-
   const { t } = useTranslation();
   const [navVisibilty, setNavVisibilty] = useState<"show" | "hide">("hide");
   const { openLoginDialog, openRegisterDialog, closeDialog } =
     useContext(AuthContext);
+
   const handleOpenUserMenu = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorElUser(event.currentTarget);
   };
@@ -59,8 +65,6 @@ function Navbar() {
     if (current === "en") changeLang("ar");
     else changeLang("en");
   };
-
-  console.log("user", user);
 
   return (
     <>
@@ -88,12 +92,25 @@ function Navbar() {
             <span>{t("links.eServices.main")}</span>
             <Paper className="menu">
               <MenuList>
-                <MenuItem component={NavLink} to="/e-services/design">
+                {/* <MenuItem component={NavLink} to="/e-services/design">
                   {t("links.eServices.design")}
-                </MenuItem>
-                <MenuItem component={NavLink} to="/e-services/infrastructure">
-                  البنية التحتية
-                </MenuItem>
+                </MenuItem> */}
+                {electronServices?.electronServicesLinks?.length > 0 &&
+                  electronServices?.electronServicesLinks?.map((str) => {
+                    return (
+                      <MenuItem
+                        key={`i_link_${Math.random()}`}
+                        component={NavLink}
+                        to={
+                          str == "البنيه التحتيه"
+                            ? "/infrastructure_projects"
+                            : "/e-services/design"
+                        }
+                      >
+                        {str}
+                      </MenuItem>
+                    );
+                  })}
               </MenuList>
             </Paper>
           </li>
