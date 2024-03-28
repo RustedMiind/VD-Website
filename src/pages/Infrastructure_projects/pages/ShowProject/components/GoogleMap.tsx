@@ -1,7 +1,8 @@
 import React, { useEffect, useRef, useState } from "react";
 import GoogleMapReact from "google-map-react";
 
-const API_KEY = "AIzaSyBx1GmOXC3CLSgfvPNYpu0CEDItEMN3W0M";
+// const API_KEY = "AIzaSyBx1GmOXC3CLSgfvPNYpu0CEDItEMN3W0M";
+const API_KEY = "AIzaSyCLMkS3uH2eW8Fn7a36lKama2jJW9KFFhc";
 
 export default function GoOgleMap(props: mapProps) {
   const mapRef = useRef<google.maps.Map<Element> | null>(null);
@@ -79,7 +80,7 @@ export default function GoOgleMap(props: mapProps) {
             ? polygonCoordinates[0]
             : { lat: 21.42251, lng: 39.826168 }
         }
-        defaultZoom={14}
+        defaultZoom={3}
         yesIWantToUseGoogleMapApiInternals={true}
         onGoogleApiLoaded={({ map, maps }) => handleApiLoaded(map, maps)}
       >

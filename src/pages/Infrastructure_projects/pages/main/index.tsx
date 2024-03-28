@@ -15,6 +15,7 @@ type projectCard = {
   code: string;
   branchName: string;
   engineerName: string;
+  subTypeName: string;
   name: string;
   period: string;
   imgUrl: string;
@@ -43,6 +44,51 @@ const Infrastructure_projects_Page = () => {
   );
   const [loading, setLoading] = useState(false);
   const [projects, setProjects] = useState<projectCard[]>([]);
+  const [originProjects, setOriginProjects] = useState<projectCard[]>([]);
+
+  // TODO::Handle search
+  const handleSearch = () => {
+    setLoading(true);
+    axios
+      .get(api(`employee/contract?details=${searchKey}`), {
+        params: {
+          limit: 100,
+        },
+      })
+      .then((data) => {
+        console.log("Demo Data", data);
+        let arr = [],
+          n = data.data?.data?.length;
+
+        for (let i = 0; i < n; i++) {
+          const element = data.data.data[i];
+          //! this filteration must be in back-end
+          if (element?.contract_details?.online_service == 1)
+            arr.push({
+              id: element?.id,
+              code: element?.code,
+              branchName: element?.branch?.name,
+              engineerName: element?.employee?.name,
+              name: element?.details,
+              period: element?.period,
+              subTypeName: element?.contract_direct_entry_sub_type?.name ?? "",
+              imgUrl: element?.contract_details?.media?.filter(
+                (ele: { collection_name: string }) =>
+                  ele?.collection_name == "main_image"
+              )[0]?.original_url,
+              cardId: element?.client?.card_id,
+            });
+        }
+        setProjects(arr);
+      })
+      .then(() => {
+        setSearchKey("");
+      })
+      .catch((err) => {
+        console.log("Error in fetch projects Data:", err);
+      })
+      .finally(() => setLoading(false));
+  };
 
   useEffect(() => {
     setLoading(true);
@@ -53,32 +99,47 @@ const Infrastructure_projects_Page = () => {
         },
       })
       .then((data) => {
+        console.log("Demo Data", data);
         let arr = [],
           n = data.data?.data?.length;
 
         for (let i = 0; i < n; i++) {
           const element = data.data.data[i];
-          arr.push({
-            id: element?.id,
-            code: element?.code,
-            branchName: element?.branch?.name,
-            engineerName: element?.employee?.name,
-            name: element?.details,
-            period: element?.period,
-            imgUrl: element?.contract_details?.media?.filter(
-              (ele: { collection_name: string }) =>
-                ele?.collection_name == "main_image"
-            )[0]?.original_url,
-            cardId: element?.client?.card_id,
-          });
+          //! this filteration must be in back-end
+          if (element?.contract_details?.online_service == 1)
+            arr.push({
+              id: element?.id,
+              code: element?.code,
+              branchName: element?.branch?.name,
+              engineerName: element?.employee?.name,
+              name: element?.details,
+              period: element?.period,
+              subTypeName: element?.contract_direct_entry_sub_type?.name ?? "",
+              imgUrl: element?.contract_details?.media?.filter(
+                (ele: { collection_name: string }) =>
+                  ele?.collection_name == "main_image"
+              )[0]?.original_url,
+              cardId: element?.client?.card_id,
+            });
         }
         setProjects(arr);
+        setOriginProjects(arr);
       })
       .catch((err) => {
         console.log("Error in fetch projects Data:", err);
       })
       .finally(() => setLoading(false));
   }, []);
+
+  useEffect(() => {
+    console.log("activeSubTitle", activeSubTitle);
+    let arr = originProjects.filter((ele) => {
+      let condation1 = true;
+      if (searchKey) condation1 = ele.name?.includes(searchKey);
+      return condation1 && ele.subTypeName == activeSubTitle;
+    });
+    setProjects(arr);
+  }, [activeSubTitle]);
 
   return (
     <Box id="InfrestructrueMainPage" sx={{ margin: 0, padding: 0 }}>
@@ -133,15 +194,19 @@ const Infrastructure_projects_Page = () => {
                 if (searchKey.trim().length === 0) {
                   setSearchLabel(searchLabelVal);
                   setShowSearch(false);
-                } else setSearchKey("");
+                }
+                handleSearch();
               }}
-              onChange={(e) => setSearchKey(e.target.value)}
+              onChange={(e) => {
+                setSearchKey(e.target.value);
+              }}
               sx={{
                 borderRadius: "35px",
                 height: " 50px",
                 color: "#004693",
                 border: "1px solid #004693",
                 outline: "none",
+                transition: "all 0.4s ease",
               }}
             />
           )}
@@ -163,7 +228,6 @@ const Infrastructure_projects_Page = () => {
             boxSizing: "border-box",
             display: "flex",
             width: "90%",
-            justifyContent: "space-between",
             alignItems: "center",
             flexWrap: "wrap",
           }}

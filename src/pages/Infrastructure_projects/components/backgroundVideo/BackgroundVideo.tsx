@@ -7,71 +7,57 @@ import axios from "axios";
 import api from "methods/api";
 import { useSnackbar } from "notistack";
 
-type WorkTypes = {
-  id: string;
-};
-
 const BackgroundVideo = ({ activeSubTitle, setActiveSubTitle }: propsType) => {
   const { t } = useTranslation();
   const { enqueueSnackbar } = useSnackbar();
-  const [subTitles, setSubTitles] = useState<
-    { id: number; title: string; tag: string }[]
-  >([{ id: 0, title: "الكل", tag: "all" }]);
-  // const subTitles = [
-  //   { id: 1, title: t("InfrastructureProjects.subTitles.all"), tag: "all" },
-  //   {
-  //     id: 2,
-  //     title: t("InfrastructureProjects.subTitles.specialCharts"),
-  //     tag: "all1",
-  //   },
-  //   {
-  //     id: 3,
-  //     title: t("InfrastructureProjects.subTitles.waterStudies"),
-  //     tag: "all2",
-  //   },
-  //   {
-  //     id: 4,
-  //     title: t("InfrastructureProjects.subTitles.categoryTitle"),
-  //     tag: "all3",
-  //   },
-  // ];
+  // its dummy till back-end prepare apis
+  const [subTitles, setSubTitles] = useState<subType[]>([]);
+
   let singleLink = subTitles.map((ele) => {
     return (
       <Button
-        onClick={() => setActiveSubTitle(ele.tag)}
-        variant={activeSubTitle === ele.tag ? "contained" : "text"}
-        className={activeSubTitle === ele.tag ? "active" : ""}
+        onClick={() => setActiveSubTitle(ele.name)}
+        variant={activeSubTitle === ele.name ? "contained" : "text"}
+        className={activeSubTitle === ele.name ? "active" : ""}
+        sx={{
+          marginX: "2rem",
+        }}
       >
-        {ele?.title}
+        {ele?.name}
       </Button>
     );
   });
 
   useEffect(() => {
     axios
-      .get<{ types: WorkTypes }>(api("employee/contract/types"))
+      .get<{ sub_types: subType[] }>(api("employee/contract/types/1"))
       .then(({ data }) => {
-        console.log("Typesssss Data:-", data);
-        let n = Object.keys(data?.types).length,
-          arr = [{ id: 0, title: "الكل", tag: "all" }];
-        for (let i = 0; i < n; i++) {
-          let _key = Object.keys(data?.types)[i];
-          arr.push({
-            title: _key,
-            id: +data?.types[_key as keyof WorkTypes],
-            tag: `all${i + 1}`,
-          });
-        }
-        console.log("Array101 :", arr);
-        setSubTitles(arr);
+        console.log("InfrastructureContextProvider Data:-", data);
+        setSubTitles(data.sub_types);
       })
       .catch((err) => {
-        console.log("Error in fetch data:", err);
-        enqueueSnackbar("تعذر في تحميل بيانات انواع اوامر العمل", {
-          variant: "error",
-        });
+        console.log(
+          "Error in fetch data in InfrastructureContextProvider:",
+          err
+        );
       });
   }, []);
+
+  useEffect(() => {
+    // ! Handle if there is only one classification.
+    if (subTitles.length > 1) {
+      setSubTitles([
+        {
+          id: 1,
+          name: t("InfrastructureProjects.subTitles.all"),
+          direct_entry_type_id: 0,
+        },
+        ...subTitles,
+      ]);
+    } else if (subTitles.length == 1) {
+      setActiveSubTitle(subTitles[0].name);
+    }
+  }, [subTitles]);
 
   return (
     <>
@@ -93,22 +79,29 @@ const BackgroundVideo = ({ activeSubTitle, setActiveSubTitle }: propsType) => {
         <Box
           sx={{
             position: "absolute",
-            top: "35%",
+            top: "33.5%",
             color: "#fff",
             fontWeight: 800,
           }}
         >
-          <Typography variant="h1">مشاريع البنية التحتية</Typography>
+          <Typography variant="h2">مشاريع البنية التحتية</Typography>
         </Box>
         {/* sub titles links */}
         <Box
           className="InfrastructureProjectsSubTitlesContainer"
-          sx={{ marginBottom: "1rem" }}>
+          sx={{ marginBottom: "1rem" }}
+        >
           <Box className="InfrastructureProjectsSubTitles">{singleLink}</Box>
         </Box>
       </Box>
     </>
   );
+};
+
+type subType = {
+  id: number;
+  direct_entry_type_id: number;
+  name: string;
 };
 
 type propsType = {

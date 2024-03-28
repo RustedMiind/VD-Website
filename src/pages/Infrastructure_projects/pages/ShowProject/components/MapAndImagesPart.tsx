@@ -100,16 +100,36 @@ const MapAndImagesPart = ({
           </Grid>
           <Grid sx={{ marginY: "0.5rem" }} item xs={12}>
             <Typography
-              sx={{ marginY: "0.3rem", paddingX: "0.3rem" }}
+              sx={{
+                marginY: "0.3rem",
+                paddingX: "0.3rem",
+              }}
               variant="h5"
               fontWeight={700}
             >
-              {t("InfrastructureProjects.showPage.map")}
+              <span style={{ borderBottom: "2px solid #f19b02" }}>
+                {t("InfrastructureProjects.showPage.map")}
+              </span>
             </Typography>
           </Grid>
           <Grid item xs={12}>
             {/* <MapWrapper coOrdinates={{ lat: 21.422510, lng: 39.826168 }} /> */}
             <GoOgleMap map={mapStr} />
+          </Grid>
+
+          <Grid sx={{ marginY: "0.5rem" }} item xs={12}>
+            <Typography
+              sx={{
+                paddingX: "0.3rem",
+                marginTop: "2rem",
+              }}
+              variant="h5"
+              fontWeight={700}
+            >
+              <span style={{ borderBottom: "2px solid #f19b02" }}>
+                عرض الصور
+              </span>
+            </Typography>
           </Grid>
           <Grid
             item
@@ -118,7 +138,7 @@ const MapAndImagesPart = ({
               display: "flex",
               justifyContent: "center",
               alignItems: "center",
-              marginTop: "4rem",
+              marginTop: "1rem",
             }}
           >
             <ImagesGallery urls={urls} />
