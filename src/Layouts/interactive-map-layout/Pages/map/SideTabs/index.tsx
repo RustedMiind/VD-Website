@@ -8,9 +8,9 @@ function SideTabs() {
     <Box
       sx={{
         position: "fixed",
-        top: 50,
+        top: -50,
         right: 0,
-        maxWidth: "80vh",
+        maxWidth: "100vh",
         bgcolor: "background.default",
         transform: "rotate(90deg)",
         transformOrigin: "right bottom",
@@ -28,6 +28,9 @@ function SideTabs() {
         <Tab label="الاستشارات الهندسية" />
         <Tab label="الامن والسلامة" />
         <Tab label="اعمال البيئة" />
+        <Tab label="سلامة المختبر" />
+        <Tab label="اعمال خرسانة" />
+        <Tab label="اعمال التربة" />
         <Tab label="سلامة المختبر" />
         <Tab label="اعمال خرسانة" />
         <Tab label="اعمال التربة" />
