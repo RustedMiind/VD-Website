@@ -72,7 +72,7 @@ function App() {
   const theme = useMemo(
     () =>
       createTheme({
-        direction: langContext.lang() === "en" ? "ltr" : "ltr",
+        direction: langContext.lang() === "en" ? "ltr" : "rtl",
         shape: {
           borderRadius: 10,
         },
