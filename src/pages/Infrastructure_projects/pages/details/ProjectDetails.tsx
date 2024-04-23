@@ -15,8 +15,9 @@ import Loader from "pages/Infrastructure_projects/components/Loading/Loading";
 import axios from "axios";
 import api from "methods/api";
 import AttachmentSections from "./components/AttachmentSections";
+import ParticlesBG from "pages/Infrastructure/main/backgroundVideo/Particles";
 
-type showProjctInformation = {
+export type showProjctInformation = {
   id: number;
   name: string;
   Contract_status: number;
@@ -29,9 +30,30 @@ type showProjctInformation = {
   area: number;
   masterImg: string;
   location: string;
+  date: string;
+  dateEnd: string;
 };
 
-type ContractSubItem = {
+export type typeCommentType = {
+  comment: string;
+  created_at: string;
+  employee_id: number;
+  id: number;
+  note: string;
+  processing_contract_sub_item_id: number;
+};
+export type TransactionType = {
+  contract_sub_item_id: number;
+  created_at: string;
+  id: number;
+  letter_num: string;
+  order_num: string;
+  receiver: string;
+  subject: string;
+  comments: typeCommentType[];
+};
+
+export type ContractSubItem = {
   contract_item_id: number;
   created_at: string;
   employee_id: number;
@@ -41,9 +63,11 @@ type ContractSubItem = {
   is_progress_bar: number;
   name: string;
   updated_at: string;
+  achievement_percentage: number;
+  processing: TransactionType[];
 };
 
-type ContractItems = {
+export type ContractItems = {
   contract_id: number;
   contract_sub_items: ContractSubItem[];
   created_at: string;
@@ -63,9 +87,8 @@ const ProjectDetails = () => {
   let { projectId } = useParams();
   const [loading, setLoading] = useState(false);
   const [contractItems, setContractItems] = useState<ContractItems[]>([]);
-  // const [contractRatioItems, setContractRatioItems] = useState<ContractSubItem[]>([]);
-  // const [contractProcessingItems, setContractProcessingItems] = useState<ContractSubItem[]>([]);
-  // const [contractAttachmentItems, setContractAttachmentItems] = useState<ContractSubItem[]>([]);
+  const [achievement_percentage, setAchievement_percentage] = useState(0);
+
   const { user } = useSelector(
     (state: { settings: SettingsStateType; user: any }) => ({
       settings: state.settings,
@@ -103,6 +126,12 @@ const ProjectDetails = () => {
     axios
       .get(api(`employee/contract-details/${projectId}`))
       .then((data) => {
+        console.log(
+          "Request_Incomming Data::",
+          data?.data?.data?.achievement_percentage,
+          data
+        );
+        setAchievement_percentage(data?.data?.data?.achievement_percentage);
         setProject({
           id: +data?.data?.data?.id,
           name: data?.data?.data?.details,
@@ -119,6 +148,8 @@ const ProjectDetails = () => {
               ele?.collection_name == "master_plan"
           )[0]?.original_url,
           amount: "",
+          date: data?.data?.data?.date,
+          dateEnd: data?.data?.data?.dateEnd,
         });
         setContractItems(data?.data?.data?.contract_items);
       })
@@ -128,10 +159,6 @@ const ProjectDetails = () => {
       .finally(() => setLoading(false));
   }, []);
 
-  useEffect(() => {
-    console.log("Project_data", project);
-  }, [project]);
-
   if (loading)
     return <Loader h="95vh" title="جاري تحميل بيانات مشروع البنية التحتية.." />;
 
@@ -140,6 +167,7 @@ const ProjectDetails = () => {
       id="ProjectInfrestructureDetailsPage"
       sx={{
         backgroundImage: `url(${bgImg})`,
+        backgroundAttachment: "fixed",
         width: "100%",
         backgroundSize: "100% 100%",
         display: "flex",
@@ -206,15 +234,20 @@ const ProjectDetails = () => {
           }}
         >
           <Grid item xs={12} md={3} marginBottom={"2rem"}>
-            <CompletionRates contractItems={contractItems} />
+            <CompletionRates
+              contractItems={contractItems}
+              achievement_percentage={achievement_percentage}
+            />
           </Grid>
           <Grid item xs={12} md={5} marginBottom={"2rem"}>
             <ZoningPlan
               masterImg={project?.masterImg}
               contractItems={contractItems}
+              dateStart={project?.date}
+              dateEnd={project?.dateEnd}
             />
           </Grid>
-          <Grid item xs={12} md={3} marginBottom={'2rem'}>
+          <Grid item xs={12} md={3} marginBottom={"2rem"}>
             <AttachmentSections contractItems={contractItems} />
           </Grid>
         </Grid>
@@ -305,6 +338,7 @@ const ProjectDetails = () => {
           </Button>
         </Grid>
       </Grid>
+      <ParticlesBG />
     </Box>
   );
 };
