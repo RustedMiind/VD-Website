@@ -87,10 +87,8 @@ function Register(props: PropsType) {
     errors.phone = "يجب ان يبدأ رقم الهاتف ب5";
   else if (!(inputs.phone.length === 9))
     errors.phone = "يجب ان يكون عدد الارقام 9 ارقام";
-  console.log(inputs);
 
   const submit = handleSubmit((data) => {
-    console.log(data, errors);
     setStatus("loading");
     axios
       .post(
@@ -113,7 +111,6 @@ function Register(props: PropsType) {
         enqueueSnackbar("تم ارسال طلبك. برجاء انتظار الموافقة");
       })
       .catch((err) => {
-        console.log(err);
         setStatus("error");
         enqueueSnackbar(
           err?.response?.data?.message ||

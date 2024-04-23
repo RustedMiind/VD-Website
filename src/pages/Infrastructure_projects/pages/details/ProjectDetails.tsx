@@ -96,29 +96,29 @@ const ProjectDetails = () => {
     })
   );
 
-  useEffect(() => {
-    if (
-      user?.userState === UserState.NOT_USER ||
-      user?.userState === UserState.UNKNOWN ||
-      user == undefined
-    ) {
-      return Naviator("/");
-    } else {
-      //TODO::check user able to see project details or not?
-      axios
-        .get(api(`client/contact-details-authorized/${projectId}`))
-        .then((response) => {
-          console.log("Response101", response);
-          if (response?.data?.msg?.includes("not")) {
-            Naviator(`/`);
-          }
-        })
-        .catch((err) => {
-          Naviator(`/`);
-          console.log("Error::", err);
-        });
-    }
-  }, []);
+  // useEffect(() => {
+  //   if (
+  //     user?.userState === UserState.NOT_USER ||
+  //     user?.userState === UserState.UNKNOWN ||
+  //     user == undefined
+  //   ) {
+  //     return Naviator("/");
+  //   } else {
+  //     //TODO::check user able to see project details or not?
+  //     axios
+  //       .get(api(`client/contact-details-authorized/${projectId}`))
+  //       .then((response) => {
+  //         console.log("Response101", response);
+  //         if (response?.data?.msg?.includes("not")) {
+  //           Naviator(`/`);
+  //         }
+  //       })
+  //       .catch((err) => {
+  //         Naviator(`/`);
+  //         console.log("Error::", err);
+  //       });
+  //   }
+  // }, []);
 
   //TODO::fetch project data
   useEffect(() => {
@@ -126,11 +126,6 @@ const ProjectDetails = () => {
     axios
       .get(api(`employee/contract-details/${projectId}`))
       .then((data) => {
-        console.log(
-          "Request_Incomming Data::",
-          data?.data?.data?.achievement_percentage,
-          data
-        );
         setAchievement_percentage(data?.data?.data?.achievement_percentage);
         setProject({
           id: +data?.data?.data?.id,
@@ -153,9 +148,7 @@ const ProjectDetails = () => {
         });
         setContractItems(data?.data?.data?.contract_items);
       })
-      .catch((err) => {
-        console.log("Error in fetch projects Data:", err);
-      })
+      .catch((err) => {})
       .finally(() => setLoading(false));
   }, []);
 

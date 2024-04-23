@@ -55,12 +55,9 @@ function Filters({ setDesignFilters }: PropsType) {
             _arr.push({ id: data[key], name: key });
           }
         }
-        console.log("response data ", data, _arr);
         setUtilitiesOptions(_arr);
       })
-      .catch((err) => {
-        console.log("error in fetch options data:", err);
-      });
+      .catch((err) => {});
   }, []);
 
   return (

@@ -60,8 +60,8 @@ function AltDrawer({ openDialog, ...props }: PropsType) {
           <Swiper
             spaceBetween={10}
             slidesPerView={1.7}
-            onSlideChange={() => console.log("slide change")}
-            onSwiper={(swiper) => console.log(swiper)}
+            onSlideChange={() => {}}
+            onSwiper={(swiper) => {}}
           >
             <SwiperSlide>
               <SwiperSlidePaper>

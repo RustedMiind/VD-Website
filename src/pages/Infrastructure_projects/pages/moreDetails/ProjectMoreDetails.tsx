@@ -22,7 +22,6 @@ const ProjectMoreDetails = () => {
   );
 
   useEffect(() => {
-    console.log("User101", user);
     if (
       user.user.userState === UserState.NOT_USER ||
       user.user.userState === UserState.UNKNOWN

@@ -179,7 +179,7 @@ export default function CompletionRates({
         raioArr.push({ title, items });
       }
     }
-    console.log("Ratio Array:-", raioArr);
+    
     setRatioArr(raioArr);
     setLoading(false);
   }, []);

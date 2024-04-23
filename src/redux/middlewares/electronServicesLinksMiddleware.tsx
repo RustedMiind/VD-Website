@@ -10,7 +10,7 @@ export function requestGetElectronServicesLinks(dispatch: Dispatch<AnyAction>) {
     axios
       .get<{ services: string[] }>(api("employee/electronic-services"))
       .then((data) => {
-        console.log("ReduxMiddleware", data.data.services);
+        
         dispatch(
           getElectronServicesLinks({
             electronServicesLinks: data.data.services,

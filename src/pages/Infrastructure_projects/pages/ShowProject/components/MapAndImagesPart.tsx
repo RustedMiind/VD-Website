@@ -88,9 +88,7 @@ const MapAndImagesPart = ({
                         );
                       }
                     })
-                    .catch((err) => {
-                      console.log("Error::", err);
-                    });
+                    .catch((err) => {});
                 }
               }}
               variant="contained"

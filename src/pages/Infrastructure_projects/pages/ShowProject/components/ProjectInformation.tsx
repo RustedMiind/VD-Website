@@ -290,7 +290,7 @@ const ProjectInformation = ({
     { id: 2, val: 50, src: outsidePartnerImg2, short: true },
     { id: 3, val: 100, src: outsidePartnerImg3, short: true },
   ];
-  console.log("Project Props:", project);
+  
 
   return (
     <>

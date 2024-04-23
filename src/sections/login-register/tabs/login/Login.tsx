@@ -53,7 +53,6 @@ function Login(props: PropsType) {
       .then(() => setState("show"))
       .catch((err) => {
         setState("hide");
-        console.log("Raw Err", err);
         setError(err.response.data.message.message);
         openRegisterDialog();
       });
