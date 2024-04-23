@@ -53,7 +53,6 @@ export function getTokenCookie() {
 
 export function setAuthHeaders(token?: string) {
   const tokenCookie = getTokenCookie();
-  console.log("tokenCookie ", tokenCookie);
   axios.defaults.headers.common.Authorization = `Bearer  ${
     token ? token : tokenCookie
   }`;
@@ -65,7 +64,6 @@ export function checkUser(dispatch: Dispatch<AnyAction>) {
   axios
     .post<ApiResponse<User>>(api("client/user"))
     .then(({ data }) => {
-      console.log("profile", data);
       setUserState({ user: data.data }, dispatch);
     })
     .catch((err) => {

@@ -204,9 +204,7 @@ const ProjectCard = (props: propsType) => {
                           );
                         }
                       })
-                      .catch((err) => {
-                        console.log("Error::", err);
-                      });
+                      .catch((err) => {});
                   }
                 }}
               >

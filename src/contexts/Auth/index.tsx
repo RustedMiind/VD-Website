@@ -27,9 +27,6 @@ function AuthProvider({ children }: { children: React.ReactNode }) {
   const closeDialog = () => {
     setOpen(false);
   };
-
-  console.log(dialog, open);
-
   return (
     <AuthContext.Provider
       value={{

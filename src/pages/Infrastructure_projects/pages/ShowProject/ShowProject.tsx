@@ -75,12 +75,9 @@ const ShowProject = () => {
               data?.data?.data?.contract_details?.media[i]?.original_url
             );
         }
-        console.log("urls", urls);
         setSubImagesUrls(urls);
       })
-      .catch((err) => {
-        console.log("Error in fetch projects Data:", err);
-      })
+      .catch((err) => {})
       .finally(() => setLoading(false));
   }, []);
 

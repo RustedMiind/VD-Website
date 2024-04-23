@@ -34,7 +34,7 @@ export default function ZoningPlan({
         raioArr.push({ title, items });
       }
     }
-    console.log("Ratio Array:-", raioArr);
+    
     setprocessArr(raioArr);
     setLoading(false);
   }, []);

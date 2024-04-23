@@ -93,7 +93,6 @@ function MapBanner({
     if (!mapReport) return;
     const newCenterIndex =
       typeof currentCenter === "number" ? currentCenter + indexIncrement : 0;
-    console.log(newCenterIndex);
     if (newCenterIndex >= 0 && newCenterIndex < mapReport?.length) {
       setCurrentCenter(newCenterIndex);
     } else {
@@ -123,7 +122,6 @@ function MapBanner({
               toolTipId={report.id?.toString()}
               src={report.type === MapReportTypes.EMPLOYEE ? engIcon : underCon}
               onClick={() => {
-                console.log("pressed");
                 if (report.employee) {
                   setReportEmployeeDetails(report.employee);
                 } else if (report.contractor) {

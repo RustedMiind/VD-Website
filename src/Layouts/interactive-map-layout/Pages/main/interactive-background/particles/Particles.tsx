@@ -10,9 +10,7 @@ const ParticlesBG = () => {
   }, []);
 
   const particlesLoaded = useCallback(
-    async (container: Container | undefined) => {
-      console.log(container);
-    },
+    async (container: Container | undefined) => {},
     []
   );
 

@@ -34,12 +34,7 @@ const BackgroundVideo = ({ activeSubTitle, setActiveSubTitle }: propsType) => {
       .then(({ data }) => {
         setSubTitles(data.sub_types);
       })
-      .catch((err) => {
-        console.log(
-          "Error in fetch data in InfrastructureContextProvider:",
-          err
-        );
-      });
+      .catch((err) => {});
   }, []);
 
   useEffect(() => {

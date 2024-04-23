@@ -44,7 +44,6 @@ function FormComponent({ selectMap, selectedMap }: PropsType) {
           <RadioGroup
             value={selectedMap}
             onChange={(e, v) => {
-              console.log(v);
               selectMap(v);
             }}
             sx={{ justifyContent: "space-between", gap: 1 }}

@@ -56,7 +56,6 @@ const Infrastructure_projects_Page = () => {
         },
       })
       .then((data) => {
-        console.log("Demo Data", data);
         let arr = [],
           n = data.data?.data?.length;
 
@@ -84,9 +83,7 @@ const Infrastructure_projects_Page = () => {
       .then(() => {
         setSearchKey("");
       })
-      .catch((err) => {
-        console.log("Error in fetch projects Data:", err);
-      })
+      .catch((err) => {})
       .finally(() => setLoading(false));
   };
 
@@ -99,7 +96,6 @@ const Infrastructure_projects_Page = () => {
         },
       })
       .then((data) => {
-        console.log("Demo Data", data);
         let arr = [],
           n = data.data?.data?.length;
 
@@ -125,14 +121,12 @@ const Infrastructure_projects_Page = () => {
         setProjects(arr);
         setOriginProjects(arr);
       })
-      .catch((err) => {
-        console.log("Error in fetch projects Data:", err);
-      })
+      .catch((err) => {})
       .finally(() => setLoading(false));
   }, []);
 
   useEffect(() => {
-    console.log("activeSubTitle", activeSubTitle);
+    
     let arr = originProjects.filter((ele) => {
       let condation1 = true;
       if (searchKey) condation1 = ele.name?.includes(searchKey);

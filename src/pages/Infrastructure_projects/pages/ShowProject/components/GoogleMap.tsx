@@ -51,7 +51,6 @@ export default function GoOgleMap(props: mapProps) {
         }
       }
     }
-    // console.log("polygonCoordinates", polygonCoordinatesArr);
     setPolygonCoordinates(polygonCoordinatesArr);
     const polygon = new maps.Polygon({
       paths: polygonCoordinatesArr,
