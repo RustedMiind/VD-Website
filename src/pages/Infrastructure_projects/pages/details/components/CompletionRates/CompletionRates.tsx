@@ -12,31 +12,7 @@ import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import Loader from "pages/Infrastructure_projects/components/Loading/Loading";
 import ThereIsNoData from "../NoData";
-
-type ContractSubItem = {
-  contract_item_id: number;
-  created_at: string;
-  employee_id: number;
-  id: number;
-  is_attachment: number;
-  is_processing: number;
-  is_progress_bar: number;
-  name: string;
-  updated_at: string;
-};
-
-type ContractItems = {
-  contract_id: number;
-  contract_sub_items: ContractSubItem[];
-  created_at: string;
-  description: string;
-  end_date: string;
-  id: number;
-  manager_id: number;
-  name: string;
-  start_date: string;
-  updated_at: string;
-};
+import { ContractItems, ContractSubItem } from "../../ProjectDetails";
 
 const RateGridItem = ({ title, val }: { title: string; val: number }) => {
   return (
@@ -76,6 +52,24 @@ const RateGridItem = ({ title, val }: { title: string; val: number }) => {
               justifyContent: "center",
               alignItems: "end",
               paddingBottom: "5px",
+              ".MuiSlider-valueLabelOpen": {
+                backgroundColor:
+                  val < 50 ? "#ff0000b8" : val < 70 ? "#f19b02" : "#008000b3",
+              },
+              ".MuiSlider-track": {
+                height: "5px",
+                width: "100%",
+                color:
+                  val < 50 ? "#ff0000b8" : val < 70 ? "#f19b02" : "#008000b3",
+              },
+              ".MuiSlider-rail": {
+                height: "4px",
+                background: "gray",
+              },
+              ".MuiSlider-thumb": {
+                color:
+                  val < 50 ? "#ff0000b8" : val < 70 ? "#f19b02" : "#008000b3",
+              },
             }}
           />
         </Grid>
@@ -159,8 +153,10 @@ const DoneAndReminder = ({ column }: { column?: boolean }) => {
 
 export default function CompletionRates({
   contractItems,
+  achievement_percentage,
 }: {
   contractItems: ContractItems[];
+  achievement_percentage: number;
 }) {
   //* declare and prepare our contract ratio items
   const [loading, setLoading] = useState(false);
@@ -221,7 +217,7 @@ export default function CompletionRates({
                   <RateGridItem
                     key={`subItem_${item.id}`}
                     title={item.name}
-                    val={70}
+                    val={item.achievement_percentage}
                   />
                 );
               })}
@@ -235,7 +231,8 @@ export default function CompletionRates({
         sx={{
           display: "flex",
           marginY: "2rem",
-        }}>
+        }}
+      >
         <Grid item xs={12} sx={{ marginY: "0.5rem" }}>
           <Typography fontWeight={800} variant="h5">
             نسب انجاز الاعمال بالجهات الخدمية
@@ -259,7 +256,17 @@ export default function CompletionRates({
                 style={{ width: "90px" }}
                 variant="determinate"
                 color={"primary"}
-                value={85.5}
+                sx={{
+                  ".MuiCircularProgress-svg": {
+                    color:
+                      achievement_percentage < 50
+                        ? "#ff0000b8"
+                        : achievement_percentage < 70
+                        ? "#f19b02"
+                        : "#008000b3",
+                  },
+                }}
+                value={achievement_percentage}
               />
               <Typography
                 sx={{
@@ -270,7 +277,7 @@ export default function CompletionRates({
                 }}
                 variant="body2"
               >
-                85.5%
+                {achievement_percentage}%
               </Typography>
             </Box>
           </Grid>

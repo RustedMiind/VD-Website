@@ -32,7 +32,6 @@ const BackgroundVideo = ({ activeSubTitle, setActiveSubTitle }: propsType) => {
     axios
       .get<{ sub_types: subType[] }>(api("employee/contract/types/1"))
       .then(({ data }) => {
-        console.log("InfrastructureContextProvider Data:-", data);
         setSubTitles(data.sub_types);
       })
       .catch((err) => {
