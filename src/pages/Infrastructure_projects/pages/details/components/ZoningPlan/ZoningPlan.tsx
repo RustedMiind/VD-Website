@@ -210,7 +210,11 @@ export default function ZoningPlan({
             return (
               <Grid xs={12} key={`GTK_${idx}`}>
                 <Grid item xs={12} sx={{ marginY: "0.5rem" }}>
-                  <Typography fontWeight={600} fontSize={"1.103rem"} variant="h6">
+                  <Typography
+                    fontWeight={600}
+                    fontSize={"1.103rem"}
+                    variant="h6"
+                  >
                     أرقام المعاملات لدى {ele.title} وحالتها
                   </Typography>
                 </Grid>
@@ -256,57 +260,66 @@ export default function ZoningPlan({
                     {/* body */}
                     <tbody>
                       {ele.items.map((row) => {
-                        return (
-                          <tr key={`pI_${row.id}_${idx}`}>
-                            <td className="rightCell">
-                              <Typography
-                                variant="h6"
-                                fontSize={"1rem"}
-                                fontWeight="bolder"
-                              >
-                                {row.name}
-                              </Typography>
-                            </td>
-                            <td className="">
-                              <Typography variant="body2" fontWeight={400}>
-                                {row.id ?? "لا يوجد"}
-                              </Typography>
-                            </td>
-                            <td className="leftCell">
-                              <Typography variant="body2" fontWeight={400}>
-                                {row.processing.length == 0
-                                  ? "مرسل"
-                                  : row.processing[0].comments.length == 0
-                                  ? "مرسل"
-                                  : `تم الرد بالملاحظات الاتية:${row.processing[0].comments[0].note}`}
-                              </Typography>
-                            </td>
-                          </tr>
-                        );
+                        if (row.processing.length == 0)
+                          return (
+                            <tr key={`pI_${row.id}_${idx}`}>
+                              <td className="rightCell">
+                                <Typography
+                                  variant="h6"
+                                  fontSize={"1rem"}
+                                  fontWeight="bolder"
+                                >
+                                  {row.name}
+                                </Typography>
+                              </td>
+                              <td className="">
+                                <Typography variant="body2" fontWeight={400}>
+                                  {"لا يوجد"}
+                                </Typography>
+                              </td>
+                              <td className="leftCell">
+                                <Typography variant="body2" fontWeight={400}>
+                                  {"لا يوجد"}
+                                </Typography>
+                              </td>
+                            </tr>
+                          );
+                        else {
+                          return row.processing.map((process, index) => {
+                            return (
+                              <tr key={`pI_${row.id}_${process.id}`}>
+                                {index == 0 && (
+                                  <td
+                                    rowSpan={row.processing.length}
+                                    className="rightCell"
+                                  >
+                                    <Typography
+                                      variant="h6"
+                                      fontSize={"1rem"}
+                                      fontWeight="bolder"
+                                    >
+                                      {row.name}
+                                    </Typography>
+                                  </td>
+                                )}
+                                <td className="">
+                                  <Typography variant="body2" fontWeight={400}>
+                                    {process.id ?? "لا يوجد"}
+                                  </Typography>
+                                </td>
+                                <td className="leftCell">
+                                  <Typography variant="body2" fontWeight={400}>
+                                    {process.comments.length == 0
+                                      ? "مرسل"
+                                      : `تم الرد بالملاحظات الاتية:${process.comments[0].note}`}
+                                  </Typography>
+                                </td>
+                              </tr>
+                            );
+                          });
+                        }
                       })}
                     </tbody>
-                    {/* bottom */}
-                    {/* <tfoot>
-            <tr>
-              <td className="rightCell">
-                <Typography variant="h6" fontSize={"1rem"} fontWeight="bolder">
-                  الشركة السعودية للكهرباء
-                </Typography>
-              </td>
-              <td className="">
-                <Typography variant="body2" fontWeight={400}>
-                  المعاملة بالاعتماد النهائي <br />
-                  210123-322-444
-                </Typography>
-              </td>
-              <td className="leftCell">
-                <Typography variant="body2" fontWeight={400}>
-                  المعاملة بالاعتماد النهائي <br />
-                  210123-322-444
-                </Typography>
-              </td>
-            </tr>
-          </tfoot> */}
                   </table>
                 </Grid>
               </Grid>
