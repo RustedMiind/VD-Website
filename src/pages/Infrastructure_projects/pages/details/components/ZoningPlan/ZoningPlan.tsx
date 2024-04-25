@@ -237,7 +237,7 @@ export default function ZoningPlan({
                             المعاملة
                           </Typography>
                         </th>
-                        <th className="topCell">
+                        <th className="topCell meduimCell">
                           <Typography
                             variant="h6"
                             fontSize={"1.2rem"}
@@ -272,7 +272,7 @@ export default function ZoningPlan({
                                   {row.name}
                                 </Typography>
                               </td>
-                              <td className="">
+                              <td className="meduimCell">
                                 <Typography variant="body2" fontWeight={400}>
                                   {"لا يوجد"}
                                 </Typography>
@@ -302,7 +302,7 @@ export default function ZoningPlan({
                                     </Typography>
                                   </td>
                                 )}
-                                <td className="">
+                                <td className="meduimCell">
                                   <Typography variant="body2" fontWeight={400}>
                                     {process.id ?? "لا يوجد"}
                                   </Typography>
