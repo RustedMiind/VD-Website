@@ -36,6 +36,9 @@ const ShowProject = () => {
   const [mapStr, setMapStr] = useState("");
   const [subImagesUrls, setSubImagesUrls] = useState<string[]>([]);
   let { projectId } = useParams();
+  const [polygonCoordinates, setPolygonCoordinates] = useState<
+    { lat: number; lng: number }[]
+  >([]);
 
   //TODO::fetch project data
   useEffect(() => {
@@ -80,6 +83,41 @@ const ShowProject = () => {
       .catch((err) => {})
       .finally(() => setLoading(false));
   }, []);
+
+  useEffect(() => {
+    if (mapStr) {
+      let validChars = ".0123456789";
+      let _mapStr = mapStr?.slice(3, -3);
+      let polygonCoordinatesArr = [];
+      let n = _mapStr?.length,
+        coordinate = "",
+        lat = "",
+        long = "",
+        _key = true;
+
+      for (let i = 0; i < n; i++) {
+        if (validChars.indexOf(_mapStr[i]) != -1) {
+          coordinate += _mapStr[i];
+        } else {
+          if (lat.length == 0) {
+            lat = coordinate;
+            coordinate = "";
+          }
+          if (lat.length > 0 && long.length == 0) {
+            long = coordinate;
+            coordinate = "";
+          }
+          if (lat.length > 0 && long.length > 0) {
+            polygonCoordinatesArr.push({ lat: +lat, lng: +long });
+            lat = "";
+            long = "";
+          }
+        }
+      }
+
+      setPolygonCoordinates(polygonCoordinatesArr);
+    }
+  }, [mapStr]);
 
   if (loading)
     return <Loader h="95vh" title="جاري تحميل بيانات مشروع البنية التحتية.." />;
@@ -136,6 +174,7 @@ const ShowProject = () => {
               id={project?.id}
               cardId={project?.cardId}
               mapStr={mapStr}
+              polygonCoordinates={polygonCoordinates}
               urls={subImagesUrls}
             />
           </Grid>
