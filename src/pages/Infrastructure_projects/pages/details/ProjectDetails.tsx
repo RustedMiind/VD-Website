@@ -108,14 +108,12 @@ const ProjectDetails = () => {
       axios
         .get(api(`client/contact-details-authorized/${projectId}`))
         .then((response) => {
-          console.log("Response101", response);
           if (response?.data?.msg?.includes("not")) {
             Naviator(`/`);
           }
         })
         .catch((err) => {
           Naviator(`/`);
-          console.log("Error::", err);
         });
     }
   }, []);
