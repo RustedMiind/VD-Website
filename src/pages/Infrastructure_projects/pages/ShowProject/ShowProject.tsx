@@ -13,7 +13,7 @@ import axios from "axios";
 import api from "methods/api";
 import Loader from "pages/Infrastructure_projects/components/Loading/Loading";
 
-type showProjctInformation = {
+export type showProjctInformation = {
   id: number;
   name: string;
   Contract_status: number;
@@ -24,6 +24,7 @@ type showProjctInformation = {
   contractorName: string;
   numberOfPieces: number;
   area: number;
+  map_link: string;
   bannerImg: string;
   location: string;
   cardId?: number;
@@ -46,7 +47,6 @@ const ShowProject = () => {
     axios
       .get(api(`employee/contract-details/${projectId}`))
       .then((data) => {
-        console.log("DATAAAAAAAAA::", data?.data?.data);
         setProject({
           id: +data?.data?.data?.id,
           name: data?.data?.data?.details,
@@ -56,6 +56,7 @@ const ShowProject = () => {
           OwnerName: data?.data?.data?.owner,
           contractorName: "contractorName",
           area: data?.data?.data?.contract_details?.area,
+          map_link: data?.data?.data?.contract_details?.map_link,
           location: data?.data?.data?.contract_details?.location,
           numberOfPieces: data?.data?.data?.contract_details?.number_parts,
           bannerImg: data?.data?.data?.contract_details?.media?.filter(

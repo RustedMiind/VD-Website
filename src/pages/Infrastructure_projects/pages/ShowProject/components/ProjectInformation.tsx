@@ -19,6 +19,7 @@ import { useTranslation } from "react-i18next";
 import { useSelector } from "react-redux";
 import { SettingsStateType } from "redux/reducers/settingsSlice";
 import { getValueByKey } from "types/SettingsType";
+import { showProjctInformation } from "../ShowProject";
 // import { CircularProgressbar } from 'react-circular-progressbar';
 
 const GridItem = ({
@@ -27,12 +28,14 @@ const GridItem = ({
   mdw,
   sxw,
   fullLine,
+  link,
 }: {
   title: string;
   val: string;
   mdw: number;
   sxw: number;
   fullLine: boolean;
+  link?: string | undefined;
 }) => {
   if (!fullLine)
     return (
@@ -57,10 +60,14 @@ const GridItem = ({
           {title}
         </Typography>
         <Typography
+          component={link ? "a" : "div"}
+          href={link}
+          target="_blank"
           sx={{
             fontWeight: 400,
             fontSize: "18px",
             fontFamily: "Cairo",
+            textDecoration: link ? "underline" : "none",
           }}
           variant="body2"
         >
@@ -252,21 +259,6 @@ const GridItemInDetails = ({
   );
 };
 
-type showProjctInformation = {
-  id: number;
-  name: string;
-  Contract_status: number;
-  amount: string;
-  branchName: string;
-  supportNumber: string;
-  OwnerName: string; //client.name
-  contractorName: string;
-  numberOfPieces: number;
-  area: number;
-  bannerImg: string;
-  location: string;
-};
-
 const ProjectInformation = ({
   project,
 }: {
@@ -290,7 +282,6 @@ const ProjectInformation = ({
     { id: 2, val: 50, src: outsidePartnerImg2, short: true },
     { id: 3, val: 100, src: outsidePartnerImg3, short: true },
   ];
-  
 
   return (
     <>
@@ -313,6 +304,7 @@ const ProjectInformation = ({
               val={project?.name ?? ""}
               mdw={6}
               sxw={12}
+              link={project?.map_link}
             />
             <GridItem
               fullLine={false}
