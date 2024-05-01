@@ -17,16 +17,18 @@ const MapAndImagesPart = ({
   urls,
   id,
   cardId,
-  polygonCoordinates
+  polygonCoordinates,
+  projectName,
 }: {
   mapStr: string;
   urls: string[];
   id?: number;
   cardId?: number;
+  projectName: string | undefined;
   polygonCoordinates: {
     lat: number;
     lng: number;
-}[]
+  }[];
 }) => {
   const { t } = useTranslation();
   const navigator = useNavigate();
@@ -117,7 +119,11 @@ const MapAndImagesPart = ({
           </Grid>
           <Grid item xs={12}>
             {/* <MapWrapper coOrdinates={{ lat: 21.422510, lng: 39.826168 }} /> */}
-            <GoOgleMap map={mapStr} polygonCoordinates={polygonCoordinates}/>
+            <GoOgleMap
+              map={mapStr}
+              polygonCoordinates={polygonCoordinates}
+              projectName={projectName}
+            />
           </Grid>
 
           <Grid sx={{ marginY: "0.5rem" }} item xs={12}>

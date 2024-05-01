@@ -176,6 +176,7 @@ const ShowProject = () => {
               mapStr={mapStr}
               polygonCoordinates={polygonCoordinates}
               urls={subImagesUrls}
+              projectName={project?.name}
             />
           </Grid>
         </Grid>
