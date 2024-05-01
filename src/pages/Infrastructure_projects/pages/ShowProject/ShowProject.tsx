@@ -20,7 +20,7 @@ type showProjctInformation = {
   amount: string;
   branchName: string;
   supportNumber: string;
-  OwnerName: string; //client.name
+  OwnerName: string;
   contractorName: string;
   numberOfPieces: number;
   area: number;
@@ -46,13 +46,14 @@ const ShowProject = () => {
     axios
       .get(api(`employee/contract-details/${projectId}`))
       .then((data) => {
+        console.log("DATAAAAAAAAA::", data?.data?.data);
         setProject({
           id: +data?.data?.data?.id,
           name: data?.data?.data?.details,
           Contract_status: +data?.data?.data?.Contract_status,
-          branchName: data?.data?.data?.branch?.name,
+          branchName: data?.data?.data?.engineering_office,
           supportNumber: data?.data?.data?.client?.phone,
-          OwnerName: data?.data?.data?.client?.name,
+          OwnerName: data?.data?.data?.owner,
           contractorName: "contractorName",
           area: data?.data?.data?.contract_details?.area,
           location: data?.data?.data?.contract_details?.location,

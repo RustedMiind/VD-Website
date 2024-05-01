@@ -1,11 +1,12 @@
 import React, { useEffect, useRef, useState } from "react";
 import GoogleMapReact from "google-map-react";
+import { Typography } from "@mui/material";
 
 // const API_KEY = "AIzaSyBx1GmOXC3CLSgfvPNYpu0CEDItEMN3W0M";
 const API_KEY = "AIzaSyCLMkS3uH2eW8Fn7a36lKama2jJW9KFFhc";
 
 const PolygonTitle = ({ text }: { text: string; lat: number; lng: number }) => (
-  <div>{text}</div>
+  <Typography fontWeight={600}>{text}</Typography>
 );
 
 export default function GoOgleMap(props: mapProps) {
