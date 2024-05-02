@@ -13,17 +13,18 @@ import axios from "axios";
 import api from "methods/api";
 import Loader from "pages/Infrastructure_projects/components/Loading/Loading";
 
-type showProjctInformation = {
+export type showProjctInformation = {
   id: number;
   name: string;
   Contract_status: number;
   amount: string;
   branchName: string;
   supportNumber: string;
-  OwnerName: string; //client.name
+  OwnerName: string;
   contractorName: string;
   numberOfPieces: number;
   area: number;
+  map_link: string;
   bannerImg: string;
   location: string;
   cardId?: number;
@@ -50,11 +51,12 @@ const ShowProject = () => {
           id: +data?.data?.data?.id,
           name: data?.data?.data?.details,
           Contract_status: +data?.data?.data?.Contract_status,
-          branchName: data?.data?.data?.branch?.name,
+          branchName: data?.data?.data?.engineering_office,
           supportNumber: data?.data?.data?.client?.phone,
-          OwnerName: data?.data?.data?.client?.name,
+          OwnerName: data?.data?.data?.owner,
           contractorName: "contractorName",
           area: data?.data?.data?.contract_details?.area,
+          map_link: data?.data?.data?.contract_details?.map_link,
           location: data?.data?.data?.contract_details?.location,
           numberOfPieces: data?.data?.data?.contract_details?.number_parts,
           bannerImg: data?.data?.data?.contract_details?.media?.filter(
@@ -176,6 +178,7 @@ const ShowProject = () => {
               mapStr={mapStr}
               polygonCoordinates={polygonCoordinates}
               urls={subImagesUrls}
+              projectName={project?.name}
             />
           </Grid>
         </Grid>
